@@ -233,10 +233,10 @@ export default function ComparativaPage() {
                     <td className="px-4 py-3 text-right font-mono font-semibold text-slate-800 tabular-nums">{d.total2}</td>
                     <td className="px-4 py-3 text-right"><VarBadge pct={vKwh} /></td>
                     <td className="px-4 py-3 text-right font-mono text-slate-400 tabular-nums">
-                      {d.costo1 ? d.costo1.toFixed(2) : "—"}
+                      {d.costo1 ? d.costo1.toFixed(3) : "—"}
                     </td>
                     <td className="px-4 py-3 text-right font-mono font-semibold text-slate-700 tabular-nums">
-                      {d.costo2.toFixed(2)}
+                      {d.costo2.toFixed(3)}
                     </td>
                     <td className="px-5 py-3 text-right"><VarBadge pct={vCosto} /></td>
                   </tr>
@@ -255,10 +255,10 @@ export default function ComparativaPage() {
                   </td>
                   <td className="px-4 py-4 text-right"><VarBadge pct={avgVarConsumo} /></td>
                   <td className="px-4 py-4 text-right font-mono text-slate-400 tabular-nums">
-                    {paired.reduce((a, d) => a + d.costo1, 0).toFixed(2)}
+                    {paired.reduce((a, d) => a + d.costo1, 0).toFixed(3)}
                   </td>
                   <td className="px-4 py-4 text-right font-mono text-slate-700 tabular-nums">
-                    {paired.reduce((a, d) => a + d.costo2, 0).toFixed(2)}
+                    {paired.reduce((a, d) => a + d.costo2, 0).toFixed(3)}
                   </td>
                   <td className="px-5 py-4 text-right"><VarBadge pct={avgVarCosto} /></td>
                 </tr>

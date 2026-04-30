@@ -59,23 +59,23 @@ function KpiCard({
   const down = (trend ?? 0) < 0;
 
   return (
-    <div className={`${cfg.bg} ${cfg.border} rounded-2xl shadow-card-md p-5 animate-slide-up hover:shadow-card-lg transition-shadow duration-200`}>
+    <div className={`${cfg.bg} ${cfg.border} rounded-2xl shadow-card-md p-5 animate-slide-up hover:shadow-card-lg transition-all duration-300 hover:scale-[1.02] hover:-translate-y-1 group`}>
       <div className="flex items-start justify-between mb-3">
-        <p className={`text-[11px] font-semibold uppercase tracking-widest ${cfg.labelColor}`}>{label}</p>
+        <p className={`text-[11px] font-semibold uppercase tracking-widest ${cfg.labelColor}`} style={{ fontFamily: "var(--font-sora, Sora), sans-serif" }}>{label}</p>
         {Icon && (
-          <div className={`w-8 h-8 rounded-lg ${cfg.iconBg} flex items-center justify-center flex-shrink-0`}>
+          <div className={`w-8 h-8 rounded-lg ${cfg.iconBg} flex items-center justify-center flex-shrink-0 transition-all duration-300 group-hover:scale-110`}>
             <Icon className={`w-4 h-4 ${cfg.iconColor}`} />
           </div>
         )}
       </div>
 
-      <p className={`text-[28px] font-bold tracking-tight leading-none tabular-nums ${cfg.valueColor}`}>
+      <p className={`text-[28px] font-bold tracking-tight leading-none tabular-nums ${cfg.valueColor} group-hover:text-slate-900 transition-colors duration-300`} style={{ fontFamily: "var(--font-sora, Sora), sans-serif" }}>
         {value}
         {unit && <span className="text-sm font-normal text-slate-400 ml-1.5">{unit}</span>}
       </p>
 
       {subLabel && (
-        <p className="text-xs text-slate-400 mt-1">{subLabel}</p>
+        <p className="text-xs text-slate-400 mt-1 group-hover:text-slate-500 transition-colors">{subLabel}</p>
       )}
 
       {trend !== undefined && (
@@ -129,7 +129,7 @@ function TarifaCard({
         <div className="flex justify-between items-center">
           <span className={`text-xs font-medium ${isHC ? "text-hc-500" : "text-hp-500"}`}>Coste</span>
           <span className={`text-sm font-bold tabular-nums ${isHC ? "text-hc-700" : "text-hp-700"}`}>
-            {costo.toFixed(2)} €
+            {costo.toFixed(3)} €
           </span>
         </div>
         <div className="flex justify-between items-center">
@@ -156,7 +156,7 @@ function TarifaCard({
 /* ── Ventaja Card (center) ───────────────────────────────────────── */
 function VentajaCard({ d }: { d: KPIMensual }) {
   const { ventajaHC, difHCHP, pctHC, pctHP, costoHC, costoHP } = d;
-  const costoAbsDif = Math.abs(costoHP - costoHC).toFixed(2);
+  const costoAbsDif = Math.abs(costoHP - costoHC).toFixed(3);
   const isGood = ventajaHC;
 
   return (
@@ -284,7 +284,7 @@ export default function DashboardPage() {
           <div>
             <p className="text-[11px] font-semibold text-slate-400 uppercase tracking-wide">Total mes</p>
             <p className="text-base font-bold text-slate-800 leading-none tabular-nums">
-              {actual.total} kWh · {actual.costoTotal.toFixed(2)} €
+              {actual.total} kWh · {actual.costoTotal.toFixed(3)} €
             </p>
           </div>
         </div>
@@ -303,7 +303,7 @@ export default function DashboardPage() {
         />
         <KpiCard
           label="Coste total"
-          value={actual.costoTotal.toFixed(2)}
+          value={actual.costoTotal.toFixed(3)}
           unit="€"
           subLabel="HC + HP combinado"
           trend={varCosto}
@@ -314,7 +314,7 @@ export default function DashboardPage() {
           label="HC — Heures Creuses"
           value={String(actual.hc)}
           unit="kWh"
-          subLabel={`${actual.costoHC.toFixed(2)} € · ${actual.pctHC.toFixed(1)}% del total`}
+          subLabel={`${actual.costoHC.toFixed(3)} € · ${actual.pctHC.toFixed(1)}% del total`}
           accent="hc"
           icon={Zap}
         />
@@ -322,7 +322,7 @@ export default function DashboardPage() {
           label="HP — Heures Pleines"
           value={String(actual.hp)}
           unit="kWh"
-          subLabel={`${actual.costoHP.toFixed(2)} € · ${actual.pctHP.toFixed(1)}% del total`}
+          subLabel={`${actual.costoHP.toFixed(3)} € · ${actual.pctHP.toFixed(1)}% del total`}
           accent="hp"
           icon={Zap}
         />
@@ -384,12 +384,12 @@ export default function DashboardPage() {
               <div className="text-right">
                 <p className="text-[10px] font-semibold uppercase text-slate-400 tracking-wide">2025</p>
                 <p className="text-sm text-slate-500 tabular-nums">{anterior.total} kWh</p>
-                <p className="text-sm text-slate-400 tabular-nums">{anterior.costoTotal.toFixed(2)} €</p>
+                <p className="text-sm text-slate-400 tabular-nums">{anterior.costoTotal.toFixed(3)} €</p>
               </div>
               <div className="text-right">
                 <p className="text-[10px] font-semibold uppercase text-slate-600 tracking-wide">2026</p>
                 <p className="text-sm font-bold text-slate-700 tabular-nums">{actual.total} kWh</p>
-                <p className="text-sm font-bold text-slate-600 tabular-nums">{actual.costoTotal.toFixed(2)} €</p>
+                <p className="text-sm font-bold text-slate-600 tabular-nums">{actual.costoTotal.toFixed(3)} €</p>
               </div>
             </div>
           </div>

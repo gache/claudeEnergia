@@ -28,7 +28,7 @@ export default function StatCard({
   const sube = variacion !== undefined && variacion > 0;
 
   return (
-    <div className={`bg-white rounded-2xl shadow-card-md border border-slate-100 ${cfg.border} p-5 hover:shadow-card-lg transition-shadow duration-200`}>
+    <div className={`bg-white rounded-2xl shadow-card-md border border-slate-100 ${cfg.border} p-5 hover:shadow-card-lg transition-all duration-300 hover:scale-[1.02] hover:-translate-y-1 group`}>
       <div className="flex items-start justify-between mb-3">
         <p className="text-[11px] font-semibold uppercase tracking-widest text-slate-400">{titulo}</p>
         <div className={`w-8 h-8 rounded-lg ${cfg.iconBg} ${colorIcono ?? cfg.iconColor} flex items-center justify-center flex-shrink-0`}>
@@ -36,7 +36,7 @@ export default function StatCard({
         </div>
       </div>
 
-      <p className="text-[28px] font-bold tabular-nums tracking-tight text-slate-800 leading-none">
+      <p className="text-[28px] font-bold tabular-nums tracking-tight text-slate-800 leading-none font-display group-hover:text-slate-900 transition-colors">
         {valor}
         {unidad && <span className="text-sm font-normal text-slate-400 ml-1.5">{unidad}</span>}
       </p>

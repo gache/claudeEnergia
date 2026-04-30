@@ -4,7 +4,7 @@ import {
   LineChart, Line, XAxis, YAxis, CartesianGrid,
   Tooltip, Legend, ResponsiveContainer,
 } from "recharts";
-import { KPIMensual, MESES } from "@/lib/data";
+import { KPIMensual, MESES, fmtNum } from "@/lib/data";
 
 type Props = {
   data: KPIMensual[];
@@ -34,7 +34,7 @@ function CustomTooltip({ active, payload, label }: any) {
                 <span className="text-xs text-slate-500">{item.key}</span>
               </div>
               <span className="text-sm font-bold tabular-nums" style={{ color: item.color }}>
-                {entry.value.toFixed(2)} {item.unit}
+                {entry.value.toFixed(3)} {item.unit}
               </span>
             </div>
           );
@@ -47,9 +47,9 @@ function CustomTooltip({ active, payload, label }: any) {
 export default function CostoEvolucionChart({ data, title = "Evolución del coste (€)" }: Props) {
   const chartData = data.map(d => ({
     mes:        MESES[d.mes - 1],
-    "Coste HC": +d.costoHC.toFixed(2),
-    "Coste HP": +d.costoHP.toFixed(2),
-    "Total":    +d.costoTotal.toFixed(2),
+    "Coste HC": fmtNum(d.costoHC, 3),
+    "Coste HP": fmtNum(d.costoHP, 3),
+    "Total":    fmtNum(d.costoTotal, 3),
   }));
 
   return (

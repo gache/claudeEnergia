@@ -37,11 +37,11 @@ export default function TablaConsumo({ data, showVarPct = true }: Props) {
   const avgPctHP = data.length > 0 ? sumPctHP / data.length : 0;
 
   return (
-    <div className="bg-white rounded-2xl shadow-card-md border border-slate-100 overflow-hidden">
+    <div className="bg-white rounded-2xl shadow-card-md border border-slate-100 overflow-hidden hover:shadow-card-lg transition-shadow duration-300">
       {/* Table header bar */}
-      <div className="px-5 py-3.5 border-b border-slate-100 flex items-center justify-between">
-        <h3 className="section-title">Detalle mensual</h3>
-        <span className="text-xs text-slate-400">{data.length} meses registrados</span>
+      <div className="px-5 py-3.5 border-b border-slate-100 flex items-center justify-between bg-gradient-to-r from-slate-50 to-transparent">
+        <h3 className="section-title" style={{ fontFamily: "var(--font-sora, Sora), sans-serif" }}>Detalle mensual</h3>
+        <span className="text-xs text-slate-400 font-semibold">{data.length} meses</span>
       </div>
 
       <div className="overflow-x-auto">
@@ -70,7 +70,7 @@ export default function TablaConsumo({ data, showVarPct = true }: Props) {
               return (
                 <tr
                   key={`${d.año}-${d.mes}`}
-                  className="border-b border-slate-50 hover:bg-slate-50/70 transition-colors duration-100"
+                  className="border-b border-slate-50 hover:bg-blue-50/50 transition-colors duration-150 hover:shadow-sm"
                 >
                   <td className="px-5 py-3">
                     <div className="flex items-center gap-2">

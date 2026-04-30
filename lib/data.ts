@@ -60,8 +60,12 @@ export function calcularKPI(
   };
 }
 
-export function fmt(n: number, dec = 2): string {
+export function fmt(n: number, dec = 3): string {
   return n.toFixed(dec);
+}
+
+export function fmtNum(n: number, dec = 3): number {
+  return Math.round(n * Math.pow(10, dec)) / Math.pow(10, dec);
 }
 
 export function calcularTotales(data: KPIMensual[]) {

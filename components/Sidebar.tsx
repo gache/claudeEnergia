@@ -50,16 +50,16 @@ export default function Sidebar() {
   }
 
   return (
-    <aside className="w-64 min-h-screen flex flex-col shrink-0" style={{ background: "linear-gradient(180deg, #0f1f45 0%, #0a1628 60%, #080f2a 100%)" }}>
+    <aside className="w-64 min-h-screen flex flex-col shrink-0 hidden md:flex" style={{ background: "linear-gradient(180deg, #0f1f45 0%, #0a1628 60%, #080f2a 100%)" }}>
 
       {/* ── Brand header ── */}
-      <div className="px-5 py-6 border-b border-white/10">
+      <div className="px-5 py-6 border-b border-white/10 bg-gradient-to-br from-white/5 to-transparent">
         <div className="flex items-center gap-3">
-          <div className="w-9 h-9 rounded-xl bg-brand-600 flex items-center justify-center shadow-lg flex-shrink-0">
-            <Zap className="w-5 h-5 text-white" />
+          <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-brand-500 to-brand-700 flex items-center justify-center shadow-lg shadow-brand-600/40 flex-shrink-0 hover:scale-110 transition-transform duration-300">
+            <Zap className="w-5 h-5 text-white animate-pulse" />
           </div>
           <div>
-            <span className="text-[15px] font-bold tracking-tight text-white leading-none block">
+            <span className="text-[15px] font-bold tracking-tight text-white leading-none block" style={{ fontFamily: "var(--font-sora, Sora), sans-serif" }}>
               claudeEnergía
             </span>
             <p className="text-[11px] text-slate-400 mt-0.5 font-medium">Análisis HC / HP</p>
@@ -84,12 +84,12 @@ export default function Sidebar() {
                   : "text-slate-400 hover:bg-white/10 hover:text-slate-100"
               }`}
             >
-              <div className={`w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0 transition-colors ${
+              <div className={`w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0 transition-all duration-300 ${
                 active
-                  ? "bg-white/20"
-                  : "bg-white/5 group-hover:bg-white/10"
+                  ? "bg-white/30 shadow-lg shadow-brand-500/30"
+                  : "bg-white/5 group-hover:bg-white/15 group-hover:shadow-md"
               }`}>
-                <Icon className="w-4 h-4" />
+                <Icon className={`w-4 h-4 transition-transform duration-300 ${active ? "scale-110" : ""}`} />
               </div>
               <div className="min-w-0">
                 <p className="leading-none">{label}</p>
@@ -108,7 +108,7 @@ export default function Sidebar() {
       </nav>
 
       {/* ── Tariff widget ── */}
-      <div className="mx-3 mb-3 p-4 rounded-xl bg-white/5 border border-white/10">
+      <div className="mx-3 mb-3 p-4 rounded-xl bg-gradient-to-br from-white/8 to-white/3 border border-white/15 backdrop-blur-sm shadow-lg shadow-black/20 hover:border-white/25 transition-all duration-300">
 
         {/* Header */}
         <div className="flex items-center justify-between mb-3">

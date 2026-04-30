@@ -150,7 +150,7 @@ export default function RegistroPage() {
                 Tarifa: {tarifaMes.hc.toFixed(5)} €/kWh
                 {hc > 0 && (
                   <span className="ml-2 text-hc-600 font-semibold">
-                    → {(hc * tarifaMes.hc).toFixed(2)} €
+                    → {(hc * tarifaMes.hc).toFixed(3)} €
                   </span>
                 )}
               </p>
@@ -172,7 +172,7 @@ export default function RegistroPage() {
                 Tarifa: {tarifaMes.hp.toFixed(5)} €/kWh
                 {hp > 0 && (
                   <span className="ml-2 text-hp-600 font-semibold">
-                    → {(hp * tarifaMes.hp).toFixed(2)} €
+                    → {(hp * tarifaMes.hp).toFixed(3)} €
                   </span>
                 )}
               </p>
@@ -227,7 +227,7 @@ export default function RegistroPage() {
             <div className="bg-hc-50 rounded-xl p-4 border border-hc-100">
               <p className="text-[10px] font-bold uppercase tracking-widest text-hc-400 mb-1.5">Coste HC</p>
               <p className="text-xl font-bold text-hc-700 tabular-nums">
-                {preview.costoHC.toFixed(2)}
+                {preview.costoHC.toFixed(3)}
                 <span className="text-xs font-normal ml-1 text-hc-400">€</span>
               </p>
             </div>
@@ -235,7 +235,7 @@ export default function RegistroPage() {
             <div className="bg-hp-50 rounded-xl p-4 border border-hp-100">
               <p className="text-[10px] font-bold uppercase tracking-widest text-hp-400 mb-1.5">Coste HP</p>
               <p className="text-xl font-bold text-hp-700 tabular-nums">
-                {preview.costoHP.toFixed(2)}
+                {preview.costoHP.toFixed(3)}
                 <span className="text-xs font-normal ml-1 text-hp-400">€</span>
               </p>
             </div>
@@ -243,7 +243,7 @@ export default function RegistroPage() {
             <div className="bg-violet-50 rounded-xl p-4 border border-violet-100">
               <p className="text-[10px] font-bold uppercase tracking-widest text-violet-400 mb-1.5">Coste total</p>
               <p className="text-xl font-bold text-violet-700 tabular-nums">
-                {preview.costoTotal.toFixed(2)}
+                {preview.costoTotal.toFixed(3)}
                 <span className="text-xs font-normal ml-1 text-violet-400">€</span>
               </p>
             </div>

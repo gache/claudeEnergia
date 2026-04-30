@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 /* ── Google Fonts ─────────────────────────────────────────────────── */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Sora:wght@300;400;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap');
 
 /* ── CSS Design Tokens ───────────────────────────────────────────── */
 :root {
@@ -47,8 +47,9 @@ html {
 body {
   background: var(--bg-page);
   color: var(--text-primary);
-  font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  font-family: var(--font-inter, "Inter"), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   line-height: 1.6;
+  overflow-x: hidden;
 }
 
 /* ── Scrollbar ───────────────────────────────────────────────────── */
@@ -72,23 +73,32 @@ body {
 
   /* Card base */
   .card {
-    @apply bg-white rounded-2xl border border-slate-100 shadow-card;
+    @apply bg-white rounded-2xl border border-slate-100 shadow-card transition-all duration-300;
+  }
+  .card:hover {
+    @apply shadow-card-md;
   }
   .card-md {
-    @apply bg-white rounded-2xl border border-slate-100 shadow-card-md;
+    @apply bg-white rounded-2xl border border-slate-100 shadow-card-md transition-all duration-300;
+  }
+  .card-md:hover {
+    @apply shadow-card-lg;
   }
 
   /* KPI number */
   .kpi-value {
     @apply text-3xl font-bold tabular-nums tracking-tight;
+    font-family: var(--font-sora, "Sora"), var(--font-inter, "Inter"), sans-serif;
   }
   .kpi-label {
     @apply text-xs font-semibold uppercase tracking-widest text-slate-400;
+    font-family: var(--font-sora, "Sora"), var(--font-inter, "Inter"), sans-serif;
   }
 
   /* Section header */
   .section-title {
-    @apply text-base font-semibold text-slate-700;
+    @apply text-lg font-semibold text-slate-800;
+    font-family: var(--font-sora, "Sora"), var(--font-inter, "Inter"), sans-serif;
   }
 
   /* Mono numbers */
@@ -133,13 +143,14 @@ body {
            font-semibold text-sm text-white bg-brand-600
            hover:bg-brand-700 active:bg-brand-800
            transition-all duration-150 shadow-sm
-           disabled:opacity-40 disabled:cursor-not-allowed disabled:shadow-none;
+           disabled:opacity-40 disabled:cursor-not-allowed disabled:shadow-none
+           hover:scale-[1.02] active:scale-[0.98];
   }
   .btn-secondary {
     @apply inline-flex items-center justify-center gap-2 px-4 py-2 rounded-xl
            font-semibold text-sm text-slate-600 bg-white
            border border-slate-200 hover:bg-slate-50 hover:border-slate-300
-           transition-all duration-150;
+           transition-all duration-150 hover:scale-[1.01];
   }
 
   /* Table */

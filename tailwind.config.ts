@@ -87,7 +87,8 @@ const config: Config = {
       },
       fontFamily: {
         sans: ["Inter", "var(--font-inter)", "-apple-system", "BlinkMacSystemFont", "Segoe UI", "Roboto", "sans-serif"],
-        mono: ["JetBrains Mono", "Fira Code", "ui-monospace", "monospace"],
+        display: ["Sora", "var(--font-sora)", "system-ui", "sans-serif"],
+        mono: ["JetBrains Mono", "var(--font-jetbrains)", "Fira Code", "ui-monospace", "monospace"],
       },
       boxShadow: {
         "card":    "0 1px 3px 0 rgba(0,0,0,.06), 0 1px 2px -1px rgba(0,0,0,.06)",
@@ -97,13 +98,19 @@ const config: Config = {
         "glow-hp": "0 0 20px rgba(245,158,11,.20)",
       },
       animation: {
-        "fade-in":    "fadeIn 0.3s ease-out",
-        "slide-up":   "slideUp 0.3s ease-out",
-        "pulse-slow": "pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite",
+        "fade-in":     "fadeIn 0.4s ease-out",
+        "slide-up":    "slideUp 0.5s ease-out",
+        "pulse-slow":  "pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite",
+        "scale-in":    "scaleIn 0.3s ease-out",
+        "glow-pulse":  "glowPulse 3s ease-in-out infinite",
+        "shimmer":     "shimmer 2s infinite",
       },
       keyframes: {
-        fadeIn:  { "0%": { opacity: "0" },             "100%": { opacity: "1" } },
-        slideUp: { "0%": { opacity: "0", transform: "translateY(8px)" }, "100%": { opacity: "1", transform: "translateY(0)" } },
+        fadeIn:    { "0%": { opacity: "0" },             "100%": { opacity: "1" } },
+        slideUp:   { "0%": { opacity: "0", transform: "translateY(12px)" }, "100%": { opacity: "1", transform: "translateY(0)" } },
+        scaleIn:   { "0%": { opacity: "0", transform: "scale(0.95)" }, "100%": { opacity: "1", transform: "scale(1)" } },
+        glowPulse: { "0%, 100%": { boxShadow: "0 0 20px rgba(59,130,246,0.3)" }, "50%": { boxShadow: "0 0 40px rgba(59,130,246,0.6)" } },
+        shimmer:   { "0%": { backgroundPosition: "-1000px 0" }, "100%": { backgroundPosition: "1000px 0" } },
       },
       backgroundImage: {
         "gradient-brand":   "linear-gradient(135deg, #1e3a8a 0%, #1e2d6b 50%, #080f2a 100%)",

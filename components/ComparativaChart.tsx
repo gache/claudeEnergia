@@ -4,7 +4,7 @@ import {
   BarChart, Bar, XAxis, YAxis, CartesianGrid,
   Tooltip, Legend, ResponsiveContainer,
 } from "recharts";
-import { MESES } from "@/lib/data";
+import { MESES, fmtNum } from "@/lib/data";
 
 export type ComparativaDataPoint = {
   mes: number;
@@ -37,7 +37,7 @@ function CustomTooltip({ active, payload, label, mode, year1, year2 }: any) {
               <span className="text-xs text-slate-500">{p.dataKey}</span>
             </div>
             <span className="text-sm font-bold tabular-nums" style={{ color: p.fill }}>
-              {mode === "costo" ? p.value.toFixed(2) : p.value}{unit}
+              {mode === "costo" ? p.value.toFixed(3) : p.value}{unit}
             </span>
           </div>
         ))}
@@ -65,8 +65,8 @@ export default function ComparativaChart({ data, mode, title, year1 = 2025, year
 
   const chartData = data.map(d => ({
     mes: MESES[d.mes - 1],
-    [String(year1)]: mode === "consumo" ? d.total2025 : +d.costo2025.toFixed(2),
-    [String(year2)]: mode === "consumo" ? d.total2026 : +d.costo2026.toFixed(2),
+    [String(year1)]: mode === "consumo" ? d.total2025 : fmtNum(d.costo2025, 3),
+    [String(year2)]: mode === "consumo" ? d.total2026 : fmtNum(d.costo2026, 3),
   }));
 
   const colors = {
