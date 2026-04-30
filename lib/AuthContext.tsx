@@ -19,17 +19,29 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
   useEffect(() => {
     const auth = getAuth_();
-    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
-      setUser(currentUser);
-      setLoading(false);
-    });
+    let unsubscribe: (() => void) | null = null;
 
-    // Handle redirect result from signInWithRedirect
-    getRedirectResult(auth).catch((error) => {
-      console.error("Redirect result error:", error);
-    });
+    const initAuth = async () => {
+      try {
+        const result = await getRedirectResult(auth);
+        if (result?.user) {
+          console.log("Redirect login successful:", result.user.email);
+        }
+      } catch (error) {
+        console.error("Redirect result error:", error);
+      }
 
-    return unsubscribe;
+      unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+        setUser(currentUser);
+        setLoading(false);
+      });
+    };
+
+    initAuth();
+
+    return () => {
+      if (unsubscribe) unsubscribe();
+    };
   }, []);
 
   const loginWithGoogle = async () => {
