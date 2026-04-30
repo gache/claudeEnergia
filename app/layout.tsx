@@ -3,6 +3,8 @@ import { Inter, Sora, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import Sidebar from "@/components/Sidebar";
 import { EnergyProvider } from "@/lib/EnergyContext";
+import { AuthProvider } from "@/lib/AuthContext";
+import ProtectedLayout from "@/components/ProtectedLayout";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -35,14 +37,18 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="es" className={`${inter.variable} ${sora.variable} ${jetbrainsMono.variable}`}>
       <body className="flex min-h-screen bg-gradient-to-br from-slate-50 via-slate-100 to-slate-50 antialiased flex-col md:flex-row">
-        <EnergyProvider>
-          <Sidebar />
-          <main className="flex-1 overflow-auto">
-            <div className="p-4 sm:p-6 lg:p-8 max-w-[1600px] mx-auto">
-              {children}
-            </div>
-          </main>
-        </EnergyProvider>
+        <AuthProvider>
+          <EnergyProvider>
+            <ProtectedLayout>
+              <Sidebar />
+              <main className="flex-1 overflow-auto">
+                <div className="p-4 sm:p-6 lg:p-8 max-w-[1600px] mx-auto">
+                  {children}
+                </div>
+              </main>
+            </ProtectedLayout>
+          </EnergyProvider>
+        </AuthProvider>
       </body>
     </html>
   );

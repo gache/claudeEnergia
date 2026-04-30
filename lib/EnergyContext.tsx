@@ -1,10 +1,13 @@
 "use client";
 
 import { createContext, useContext, useState, useEffect, ReactNode } from "react";
+import { doc, setDoc, getDoc, serverTimestamp } from "firebase/firestore";
 import {
   RegistroMensual, KPIMensual, TarifaMensual,
   calcularKPI, datosIniciales, TARIFAS_INICIALES, TARIFA_HC, TARIFA_HP,
 } from "./data";
+import { useAuth } from "./AuthContext";
+import { db } from "./firebase";
 
 const KEY_REGISTROS = "energia-registros-v1";
 const KEY_TARIFAS   = "energia-tarifas-v2";
@@ -22,6 +25,7 @@ type EnergyContextType = {
 const EnergyContext = createContext<EnergyContextType | null>(null);
 
 export function EnergyProvider({ children }: { children: ReactNode }) {
+  const { user } = useAuth();
   const [registros, setRegistros] = useState<RegistroMensual[]>(datosIniciales);
   const [tarifas,   setTarifas]   = useState<TarifaMensual[]>(TARIFAS_INICIALES);
   const [hydrated,  setHydrated]  = useState(false);
@@ -39,6 +43,58 @@ export function EnergyProvider({ children }: { children: ReactNode }) {
     setHydrated(true);
   }, []);
 
+  // Cargar datos de Firestore cuando el usuario inicia sesión
+  useEffect(() => {
+    if (!user || !hydrated) return;
+
+    const loadFromFirestore = async () => {
+      try {
+        const docRef = doc(db, "users", user.uid, "data", "profile");
+        const snap = await getDoc(docRef);
+
+        if (snap.exists()) {
+          const data = snap.data();
+          setRegistros(data.registros || datosIniciales);
+          setTarifas(data.tarifas || TARIFAS_INICIALES);
+          localStorage.setItem(KEY_REGISTROS, JSON.stringify(data.registros || datosIniciales));
+          localStorage.setItem(KEY_TARIFAS, JSON.stringify(data.tarifas || TARIFAS_INICIALES));
+        } else {
+          // Nuevo usuario: guardar datos iniciales
+          await setDoc(docRef, {
+            registros: datosIniciales,
+            tarifas: TARIFAS_INICIALES,
+            updatedAt: serverTimestamp(),
+          });
+        }
+      } catch (error) {
+        console.error("Error loading from Firestore:", error);
+      }
+    };
+
+    loadFromFirestore();
+  }, [user, hydrated]);
+
+  // Guardar en Firestore cuando hay usuario autenticado
+  useEffect(() => {
+    if (!user || !hydrated) return;
+
+    const saveToFirestore = async () => {
+      try {
+        const docRef = doc(db, "users", user.uid, "data", "profile");
+        await setDoc(docRef, {
+          registros,
+          tarifas,
+          updatedAt: serverTimestamp(),
+        });
+      } catch (error) {
+        console.error("Error saving to Firestore:", error);
+      }
+    };
+
+    saveToFirestore();
+  }, [registros, tarifas, user, hydrated]);
+
+  // Guardar en localStorage siempre (como caché local)
   useEffect(() => {
     if (!hydrated) return;
     localStorage.setItem(KEY_REGISTROS, JSON.stringify(registros));
