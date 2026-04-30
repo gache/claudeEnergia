@@ -1,14 +1,12 @@
 "use client";
 
 import { createContext, useContext, useEffect, useState, ReactNode } from "react";
-import { onAuthStateChanged, signInWithPopup, signInWithRedirect, signOut, getRedirectResult, User } from "firebase/auth";
-import { getAuth_, getGoogleProvider } from "./firebase";
+import { onAuthStateChanged, signInAnonymously, signOut, User } from "firebase/auth";
+import { getAuth_ } from "./firebase";
 
 type AuthContextType = {
   user: User | null;
   loading: boolean;
-  loginWithGoogle: () => Promise<void>;
-  logout: () => Promise<void>;
 };
 
 const AuthContext = createContext<AuthContextType | null>(null);
@@ -23,12 +21,12 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
     const initAuth = async () => {
       try {
-        const result = await getRedirectResult(auth);
-        if (result?.user) {
-          console.log("Redirect login successful:", result.user.email);
+        // Sign in anonymously if not already signed in
+        if (!auth.currentUser) {
+          await signInAnonymously(auth);
         }
       } catch (error) {
-        console.error("Redirect result error:", error);
+        console.error("Anonymous sign-in error:", error);
       }
 
       unsubscribe = onAuthStateChanged(auth, (currentUser) => {
@@ -44,38 +42,8 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     };
   }, []);
 
-  const loginWithGoogle = async () => {
-    try {
-      const auth = getAuth_();
-      const googleProvider = getGoogleProvider();
-
-      const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
-
-      if (isMobile) {
-        // Use redirect on mobile for better compatibility
-        await signInWithRedirect(auth, googleProvider);
-      } else {
-        // Use popup on desktop
-        await signInWithPopup(auth, googleProvider);
-      }
-    } catch (error) {
-      console.error("Login error:", error);
-      throw error;
-    }
-  };
-
-  const logout = async () => {
-    try {
-      const auth = getAuth_();
-      await signOut(auth);
-    } catch (error) {
-      console.error("Logout error:", error);
-      throw error;
-    }
-  };
-
   return (
-    <AuthContext.Provider value={{ user, loading, loginWithGoogle, logout }}>
+    <AuthContext.Provider value={{ user, loading }}>
       {children}
     </AuthContext.Provider>
   );

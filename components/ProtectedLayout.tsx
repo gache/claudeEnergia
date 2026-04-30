@@ -2,10 +2,9 @@
 
 import { ReactNode } from "react";
 import { useAuth } from "@/lib/AuthContext";
-import LoginScreen from "./LoginScreen";
 
 export default function ProtectedLayout({ children }: { children: ReactNode }) {
-  const { user, loading } = useAuth();
+  const { loading } = useAuth();
 
   if (loading) {
     return (
@@ -16,10 +15,6 @@ export default function ProtectedLayout({ children }: { children: ReactNode }) {
         </div>
       </div>
     );
-  }
-
-  if (!user) {
-    return <LoginScreen />;
   }
 
   return <>{children}</>;

@@ -43,14 +43,14 @@ export function EnergyProvider({ children }: { children: ReactNode }) {
     setHydrated(true);
   }, []);
 
-  // Cargar datos de Firestore cuando el usuario inicia sesión
+  // Cargar datos de Firestore (datos compartidos de familia)
   useEffect(() => {
-    if (!user || !hydrated) return;
+    if (!hydrated) return;
 
     const loadFromFirestore = async () => {
       try {
         const db = getDb();
-        const docRef = doc(db, "users", user.uid, "data", "profile");
+        const docRef = doc(db, "familias", "hogar", "data", "profile");
         const snap = await getDoc(docRef);
 
         if (snap.exists()) {
@@ -60,7 +60,7 @@ export function EnergyProvider({ children }: { children: ReactNode }) {
           localStorage.setItem(KEY_REGISTROS, JSON.stringify(data.registros || datosIniciales));
           localStorage.setItem(KEY_TARIFAS, JSON.stringify(data.tarifas || TARIFAS_INICIALES));
         } else {
-          // Nuevo usuario: guardar datos iniciales
+          // Primera vez: guardar datos iniciales
           await setDoc(docRef, {
             registros: datosIniciales,
             tarifas: TARIFAS_INICIALES,
@@ -73,16 +73,16 @@ export function EnergyProvider({ children }: { children: ReactNode }) {
     };
 
     loadFromFirestore();
-  }, [user, hydrated]);
+  }, [hydrated]);
 
-  // Guardar en Firestore cuando hay usuario autenticado
+  // Guardar en Firestore (datos compartidos de familia)
   useEffect(() => {
-    if (!user || !hydrated) return;
+    if (!hydrated) return;
 
     const saveToFirestore = async () => {
       try {
         const db = getDb();
-        const docRef = doc(db, "users", user.uid, "data", "profile");
+        const docRef = doc(db, "familias", "hogar", "data", "profile");
         await setDoc(docRef, {
           registros,
           tarifas,
@@ -94,7 +94,7 @@ export function EnergyProvider({ children }: { children: ReactNode }) {
     };
 
     saveToFirestore();
-  }, [registros, tarifas, user, hydrated]);
+  }, [registros, tarifas, hydrated]);
 
   // Guardar en localStorage siempre (como caché local)
   useEffect(() => {

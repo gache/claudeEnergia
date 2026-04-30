@@ -3,9 +3,8 @@
 import { useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Zap, LayoutDashboard, History, BarChart2, PenLine, TrendingUp, Pencil, Check, X, LogOut } from "lucide-react";
+import { Zap, LayoutDashboard, History, BarChart2, PenLine, TrendingUp, Pencil, Check, X } from "lucide-react";
 import { useEnergy } from "@/lib/EnergyContext";
-import { useAuth } from "@/lib/AuthContext";
 import { ANOS_DISPONIBLES, MESES } from "@/lib/data";
 
 const nav = [
@@ -18,7 +17,6 @@ const nav = [
 export default function Sidebar() {
   const pathname = usePathname();
   const { getTarifa, setTarifa } = useEnergy();
-  const { user, logout } = useAuth();
 
   const lastAño = ANOS_DISPONIBLES[ANOS_DISPONIBLES.length - 1];
   const [selectedAño, setSelectedAño] = useState<number>(lastAño);
@@ -241,34 +239,7 @@ export default function Sidebar() {
       </div>
 
       {/* ── Footer ── */}
-      <div className="px-5 py-4 border-t border-white/10 space-y-3">
-        {/* User info */}
-        {user && (
-          <div className="flex items-center gap-2 px-3 py-2 rounded-lg bg-white/5 border border-white/10">
-            {user.photoURL ? (
-              <img src={user.photoURL} alt={user.displayName || "User"} className="w-7 h-7 rounded-full flex-shrink-0" />
-            ) : (
-              <div className="w-7 h-7 rounded-full bg-brand-500 flex items-center justify-center flex-shrink-0 text-xs font-bold text-white">
-                {user.displayName?.[0] || user.email?.[0] || "?"}
-              </div>
-            )}
-            <div className="min-w-0 flex-1">
-              <p className="text-xs font-semibold text-slate-200 truncate">{user.displayName || "Usuario"}</p>
-              <p className="text-[10px] text-slate-500 truncate">{user.email}</p>
-            </div>
-          </div>
-        )}
-
-        {/* Logout button */}
-        <button
-          onClick={logout}
-          className="w-full flex items-center justify-center gap-2 px-3 py-2 rounded-lg text-xs font-semibold text-slate-400 hover:text-slate-200 hover:bg-white/10 transition-colors"
-          title="Cerrar sesión"
-        >
-          <LogOut className="w-3.5 h-3.5" />
-          Cerrar sesión
-        </button>
-
+      <div className="px-5 py-4 border-t border-white/10">
         <p className="text-[10px] text-slate-600 text-center">claudeEnergía v2.0</p>
       </div>
     </aside>
