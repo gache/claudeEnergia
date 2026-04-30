@@ -1,10 +1,12 @@
 "use client";
 
+import dynamic from "next/dynamic";
 import { useState } from "react";
-import { ArrowRight, TrendingDown, TrendingUp, Award, BarChart2 } from "lucide-react";
-import ComparativaChart from "@/components/ComparativaChart";
+import { ArrowRight, Award, BarChart2 } from "lucide-react";
 import { useEnergy } from "@/lib/EnergyContext";
 import { MESES, ANOS_DISPONIBLES } from "@/lib/data";
+
+const ComparativaChart = dynamic(() => import("@/components/ComparativaChart"), { ssr: false });
 
 function VarBadge({ pct }: { pct: number | null }) {
   if (pct === null) return <span className="text-slate-300">—</span>;
@@ -25,7 +27,6 @@ function SummaryKPI({
 }: { label: string; value: string | null; subLabel?: string; good?: boolean }) {
   const isGood    = good === true;
   const isBad     = good === false;
-  const isNeutral = good === undefined;
 
   return (
     <div className={`rounded-2xl p-5 border shadow-card-md ${

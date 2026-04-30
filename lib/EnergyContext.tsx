@@ -40,12 +40,10 @@ export function EnergyProvider({ children }: { children: ReactNode }) {
   }, []);
 
   useEffect(() => {
-    if (hydrated) localStorage.setItem(KEY_REGISTROS, JSON.stringify(registros));
-  }, [registros, hydrated]);
-
-  useEffect(() => {
-    if (hydrated) localStorage.setItem(KEY_TARIFAS, JSON.stringify(tarifas));
-  }, [tarifas, hydrated]);
+    if (!hydrated) return;
+    localStorage.setItem(KEY_REGISTROS, JSON.stringify(registros));
+    localStorage.setItem(KEY_TARIFAS, JSON.stringify(tarifas));
+  }, [registros, tarifas, hydrated]);
 
   function addOrUpdate(r: RegistroMensual) {
     setRegistros(prev => {

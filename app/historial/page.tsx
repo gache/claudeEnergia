@@ -1,12 +1,14 @@
 "use client";
 
+import dynamic from "next/dynamic";
 import { useState } from "react";
 import { History, FileX } from "lucide-react";
-import TablaConsumo from "@/components/TablaConsumo";
-import ConsumoHCHPChart from "@/components/ConsumoHCHPChart";
-import CostoEvolucionChart from "@/components/CostoEvolucionChart";
 import { useEnergy } from "@/lib/EnergyContext";
 import { ANOS_DISPONIBLES, calcularTotales } from "@/lib/data";
+
+const TablaConsumo = dynamic(() => import("@/components/TablaConsumo"), { ssr: false });
+const ConsumoHCHPChart = dynamic(() => import("@/components/ConsumoHCHPChart"), { ssr: false });
+const CostoEvolucionChart = dynamic(() => import("@/components/CostoEvolucionChart"), { ssr: false });
 
 export default function HistorialPage() {
   const { getByYear, getTarifa } = useEnergy();

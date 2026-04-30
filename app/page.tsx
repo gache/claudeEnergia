@@ -1,10 +1,12 @@
 "use client";
 
+import dynamic from "next/dynamic";
 import { Zap, TrendingDown, TrendingUp, Minus, BarChart3, Wallet, PenLine } from "lucide-react";
-import ConsumoHCHPChart from "@/components/ConsumoHCHPChart";
-import CostoEvolucionChart from "@/components/CostoEvolucionChart";
 import { useEnergy } from "@/lib/EnergyContext";
 import { KPIMensual } from "@/lib/data";
+
+const ConsumoHCHPChart = dynamic(() => import("@/components/ConsumoHCHPChart"), { ssr: false });
+const CostoEvolucionChart = dynamic(() => import("@/components/CostoEvolucionChart"), { ssr: false });
 
 /* ── KPI Card ─────────────────────────────────────────────────────── */
 type KpiAccent = "brand" | "hc" | "hp" | "violet";
