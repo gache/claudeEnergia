@@ -20,6 +20,12 @@ const initializeFirebase = () => {
     appId: process.env.NEXT_PUBLIC_FIREBASE_APP_ID,
   };
 
+  console.log("Firebase Config Keys:", {
+    apiKey: firebaseConfig.apiKey ? `✓ ${firebaseConfig.apiKey.substring(0, 10)}...` : "❌ MISSING",
+    authDomain: firebaseConfig.authDomain || "❌ MISSING",
+    projectId: firebaseConfig.projectId || "❌ MISSING",
+  });
+
   const app = initializeApp(firebaseConfig);
   db = getFirestore(app);
   auth = getAuth(app);
