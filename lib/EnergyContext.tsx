@@ -1,7 +1,7 @@
 "use client";
 
 import { createContext, useContext, useState, useEffect, ReactNode } from "react";
-import { doc, setDoc, getDoc, serverTimestamp } from "firebase/firestore";
+import { doc, setDoc, getDoc, serverTimestamp, collection, getDocs } from "firebase/firestore";
 import {
   RegistroMensual, KPIMensual, TarifaMensual,
   calcularKPI, datosIniciales, TARIFAS_INICIALES, TARIFA_HC, TARIFA_HP,
@@ -55,17 +55,54 @@ export function EnergyProvider({ children }: { children: ReactNode }) {
 
         if (snap.exists()) {
           const data = snap.data();
-          setRegistros(data.registros || datosIniciales);
-          setTarifas(data.tarifas || TARIFAS_INICIALES);
-          localStorage.setItem(KEY_REGISTROS, JSON.stringify(data.registros || datosIniciales));
-          localStorage.setItem(KEY_TARIFAS, JSON.stringify(data.tarifas || TARIFAS_INICIALES));
+          const registros = data.registros || datosIniciales;
+          const tarifas = data.tarifas || TARIFAS_INICIALES;
+
+          setRegistros(registros);
+          setTarifas(tarifas);
+          localStorage.setItem(KEY_REGISTROS, JSON.stringify(registros));
+          localStorage.setItem(KEY_TARIFAS, JSON.stringify(tarifas));
         } else {
-          // Primera vez: guardar datos iniciales
+          // Intenta migrar datos de /users (datos antiguos de Google Login)
+          try {
+            const usersSnapshot = await getDocs(collection(db, "users"));
+            if (!usersSnapshot.empty) {
+              const firstUser = usersSnapshot.docs[0];
+              const userDataRef = doc(db, "users", firstUser.id, "data", "profile");
+              const userDataSnap = await getDoc(userDataRef);
+
+              if (userDataSnap.exists()) {
+                const migratedData = userDataSnap.data();
+                const registros = migratedData.registros || datosIniciales;
+                const tarifas = migratedData.tarifas || TARIFAS_INICIALES;
+
+                // Guardar en /familias/hogar
+                await setDoc(docRef, {
+                  registros,
+                  tarifas,
+                  updatedAt: serverTimestamp(),
+                });
+
+                setRegistros(registros);
+                setTarifas(tarifas);
+                localStorage.setItem(KEY_REGISTROS, JSON.stringify(registros));
+                localStorage.setItem(KEY_TARIFAS, JSON.stringify(tarifas));
+                console.log("✅ Datos migrados de Google account a /familias/hogar");
+                return;
+              }
+            }
+          } catch (migrationError) {
+            console.log("No legacy data found, using initial data");
+          }
+
+          // Si no hay datos antiguos, usar datos iniciales
           await setDoc(docRef, {
             registros: datosIniciales,
             tarifas: TARIFAS_INICIALES,
             updatedAt: serverTimestamp(),
           });
+          setRegistros(datosIniciales);
+          setTarifas(TARIFAS_INICIALES);
         }
       } catch (error) {
         console.error("Error loading from Firestore:", error);
