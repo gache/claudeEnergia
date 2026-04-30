@@ -1,0 +1,165 @@
+- generic [ref=e1]:
+  - complementary [ref=e2]:
+    - generic [ref=e4]:
+      - img [ref=e6]
+      - generic [ref=e8]:
+        - generic [ref=e9]: claudeEnergía
+        - paragraph [ref=e10]: Análisis HC / HP
+    - navigation [ref=e11]:
+      - paragraph [ref=e12]: Navegación
+      - link "Dashboard Vista principal" [ref=e13] [cursor=pointer]:
+        - /url: /
+        - img [ref=e15]
+        - generic [ref=e20]:
+          - paragraph [ref=e21]: Dashboard
+          - paragraph [ref=e22]: Vista principal
+      - link "Historial Datos por año" [ref=e23] [cursor=pointer]:
+        - /url: /historial
+        - img [ref=e25]
+        - generic [ref=e29]:
+          - paragraph [ref=e30]: Historial
+          - paragraph [ref=e31]: Datos por año
+      - link "Comparativa 25/26 Análisis interanual" [ref=e32] [cursor=pointer]:
+        - /url: /comparativa
+        - img [ref=e34]
+        - generic [ref=e35]:
+          - paragraph [ref=e36]: Comparativa 25/26
+          - paragraph [ref=e37]: Análisis interanual
+      - link "Registrar Nuevo consumo" [ref=e38] [cursor=pointer]:
+        - /url: /registro
+        - img [ref=e40]
+        - generic [ref=e42]:
+          - paragraph [ref=e43]: Registrar
+          - paragraph [ref=e44]: Nuevo consumo
+    - generic [ref=e46]:
+      - generic [ref=e47]:
+        - generic [ref=e48]:
+          - img [ref=e49]
+          - paragraph [ref=e52]: Tarifas
+        - button "Editar tarifa Ene 2026" [ref=e53] [cursor=pointer]:
+          - img [ref=e54]
+      - generic [ref=e57]:
+        - button "2022" [ref=e58] [cursor=pointer]
+        - button "2023" [ref=e59] [cursor=pointer]
+        - button "2024" [ref=e60] [cursor=pointer]
+        - button "2025" [ref=e61] [cursor=pointer]
+        - button "2026" [ref=e62] [cursor=pointer]
+      - generic [ref=e63]:
+        - button "Ene" [ref=e64] [cursor=pointer]
+        - button "Feb" [ref=e65] [cursor=pointer]
+        - button "Mar" [ref=e66] [cursor=pointer]
+        - button "Abr" [ref=e67] [cursor=pointer]
+        - button "May" [ref=e68] [cursor=pointer]
+        - button "Jun" [ref=e69] [cursor=pointer]
+        - button "Jul" [ref=e70] [cursor=pointer]
+        - button "Ago" [ref=e71] [cursor=pointer]
+        - button "Sep" [ref=e72] [cursor=pointer]
+        - button "Oct" [ref=e73] [cursor=pointer]
+        - button "Nov" [ref=e74] [cursor=pointer]
+        - button "Dic" [ref=e75] [cursor=pointer]
+      - generic [ref=e76]:
+        - paragraph [ref=e77]: Ene 2026
+        - generic [ref=e78]:
+          - generic [ref=e81]: HC
+          - generic [ref=e82]: 0.19008 €/kWh
+        - generic [ref=e83]:
+          - generic [ref=e86]: HP
+          - generic [ref=e87]: 0.27436 €/kWh
+        - generic [ref=e88]:
+          - generic [ref=e89]: Ratio HP/HC
+          - generic [ref=e90]: 1.443×
+    - paragraph [ref=e92]: claudeEnergía v2.0
+  - main [ref=e93]:
+    - generic [ref=e95]:
+      - generic [ref=e96]:
+        - generic [ref=e97]:
+          - generic [ref=e98]: Abr 2026
+          - generic [ref=e99]: Registro existente
+        - heading "Registrar consumo" [level=1] [ref=e100]
+        - paragraph [ref=e101]: Introduce el consumo mensual separado por tarifa HC y HP
+      - generic [ref=e104]:
+        - generic [ref=e105]:
+          - generic [ref=e106]:
+            - generic [ref=e107]: Año
+            - generic [ref=e108]:
+              - combobox [ref=e109]:
+                - option "2022"
+                - option "2023"
+                - option "2024"
+                - option "2025"
+                - option "2026" [selected]
+              - img
+          - generic [ref=e110]:
+            - generic [ref=e111]: Mes
+            - generic [ref=e112]:
+              - combobox [ref=e113]:
+                - option "Ene"
+                - option "Feb"
+                - option "Mar"
+                - option "Abr" [selected]
+                - option "May"
+                - option "Jun"
+                - option "Jul"
+                - option "Ago"
+                - option "Sep"
+                - option "Oct"
+                - option "Nov"
+                - option "Dic"
+              - img
+        - generic [ref=e114]:
+          - generic [ref=e115]:
+            - img [ref=e116]
+            - generic [ref=e118]:
+              - paragraph [ref=e119]: Registro existente
+              - paragraph [ref=e120]:
+                - text: "Abr 2026: HC ="
+                - strong [ref=e121]: "112"
+                - text: kWh · HP =
+                - strong [ref=e122]: "133"
+                - text: kWh
+          - button "Cargar valores" [ref=e123] [cursor=pointer]
+        - generic [ref=e124]:
+          - generic [ref=e125]:
+            - generic [ref=e126]: HC — Heures Creuses
+            - spinbutton [ref=e127]: "150"
+            - paragraph [ref=e128]:
+              - text: "Tarifa: 0.19008 €/kWh"
+              - generic [ref=e139]: → 28.512 €
+          - generic [ref=e129]:
+            - generic [ref=e130]: HP — Heures Pleines
+            - spinbutton [active] [ref=e131]
+            - paragraph [ref=e132]: "Tarifa: 0.27436 €/kWh"
+        - button "Actualizar registro" [ref=e133] [cursor=pointer]:
+          - img [ref=e134]
+          - text: Actualizar registro
+      - generic [ref=e140]:
+        - generic [ref=e141]:
+          - img [ref=e143]
+          - generic [ref=e145]: Vista previa — Abr 2026
+          - generic [ref=e146]: Cálculo en tiempo real
+        - generic [ref=e147]:
+          - generic [ref=e148]:
+            - paragraph [ref=e149]: Consumo total
+            - paragraph [ref=e150]: 150kWh
+          - generic [ref=e151]:
+            - paragraph [ref=e152]: Coste HC
+            - paragraph [ref=e153]: 28.512€
+          - generic [ref=e154]:
+            - paragraph [ref=e155]: Coste HP
+            - paragraph [ref=e156]: 0.000€
+          - generic [ref=e157]:
+            - paragraph [ref=e158]: Coste total
+            - paragraph [ref=e159]: 28.512€
+          - generic [ref=e160]:
+            - paragraph [ref=e161]: "% HC / % HP"
+            - paragraph [ref=e162]:
+              - generic [ref=e163]: 100.0%
+              - text: /
+              - generic [ref=e164]: 0.0%
+          - generic [ref=e165]:
+            - paragraph [ref=e166]: Dif. HP − HC
+            - paragraph [ref=e167]: 150kWh
+        - generic [ref=e171]:
+          - generic [ref=e172]: HC 100.0%
+          - generic [ref=e173]: HP 0.0%
+  - alert [ref=e138]

@@ -1,0 +1,232 @@
+- generic [active] [ref=e1]:
+  - complementary [ref=e2]:
+    - generic [ref=e4]:
+      - img [ref=e6]
+      - generic [ref=e8]:
+        - generic [ref=e9]: claudeEnergía
+        - paragraph [ref=e10]: Análisis HC / HP
+    - navigation [ref=e11]:
+      - paragraph [ref=e12]: Navegación
+      - link "Dashboard Vista principal" [ref=e13] [cursor=pointer]:
+        - /url: /
+        - img [ref=e15]
+        - generic [ref=e20]:
+          - paragraph [ref=e21]: Dashboard
+          - paragraph [ref=e22]: Vista principal
+      - link "Historial Datos por año" [ref=e23] [cursor=pointer]:
+        - /url: /historial
+        - img [ref=e25]
+        - generic [ref=e29]:
+          - paragraph [ref=e30]: Historial
+          - paragraph [ref=e31]: Datos por año
+      - link "Comparativa 25/26 Análisis interanual" [ref=e32] [cursor=pointer]:
+        - /url: /comparativa
+        - img [ref=e34]
+        - generic [ref=e35]:
+          - paragraph [ref=e36]: Comparativa 25/26
+          - paragraph [ref=e37]: Análisis interanual
+      - link "Registrar Nuevo consumo" [ref=e39] [cursor=pointer]:
+        - /url: /registro
+        - img [ref=e41]
+        - generic [ref=e43]:
+          - paragraph [ref=e44]: Registrar
+          - paragraph [ref=e45]: Nuevo consumo
+    - generic [ref=e46]:
+      - generic [ref=e47]:
+        - generic [ref=e48]:
+          - img [ref=e49]
+          - paragraph [ref=e52]: Tarifas
+        - button "Editar tarifa Ene 2026" [ref=e53] [cursor=pointer]:
+          - img [ref=e54]
+      - generic [ref=e57]:
+        - button "2022" [ref=e58] [cursor=pointer]
+        - button "2023" [ref=e59] [cursor=pointer]
+        - button "2024" [ref=e60] [cursor=pointer]
+        - button "2025" [ref=e61] [cursor=pointer]
+        - button "2026" [ref=e62] [cursor=pointer]
+      - generic [ref=e63]:
+        - button "Ene" [ref=e64] [cursor=pointer]
+        - button "Feb" [ref=e65] [cursor=pointer]
+        - button "Mar" [ref=e66] [cursor=pointer]
+        - button "Abr" [ref=e67] [cursor=pointer]
+        - button "May" [ref=e68] [cursor=pointer]
+        - button "Jun" [ref=e69] [cursor=pointer]
+        - button "Jul" [ref=e70] [cursor=pointer]
+        - button "Ago" [ref=e71] [cursor=pointer]
+        - button "Sep" [ref=e72] [cursor=pointer]
+        - button "Oct" [ref=e73] [cursor=pointer]
+        - button "Nov" [ref=e74] [cursor=pointer]
+        - button "Dic" [ref=e75] [cursor=pointer]
+      - generic [ref=e76]:
+        - paragraph [ref=e77]: Ene 2026
+        - generic [ref=e78]:
+          - generic [ref=e81]: HC
+          - generic [ref=e82]: 0.19008 €/kWh
+        - generic [ref=e83]:
+          - generic [ref=e86]: HP
+          - generic [ref=e87]: 0.27436 €/kWh
+        - generic [ref=e88]:
+          - generic [ref=e89]: Ratio HP/HC
+          - generic [ref=e90]: 1.443×
+    - paragraph [ref=e92]: claudeEnergía v2.0
+  - main [ref=e93]:
+    - generic [ref=e95]:
+      - generic [ref=e96]:
+        - generic [ref=e97]:
+          - generic [ref=e99]: Análisis interanual
+          - heading "Comparativa interanual" [level=1] [ref=e100]
+          - paragraph [ref=e101]: Consumo y costes comparados · 2025 vs 2026
+        - generic [ref=e102]:
+          - generic [ref=e103]:
+            - generic [ref=e104]: Base
+            - combobox [ref=e105]:
+              - option "2022"
+              - option "2023"
+              - option "2024"
+              - option "2025" [selected]
+              - option "2026"
+          - img [ref=e106]
+          - generic [ref=e108]:
+            - generic [ref=e109]: Comp.
+            - combobox [ref=e110]:
+              - option "2022"
+              - option "2023"
+              - option "2024"
+              - option "2025"
+              - option "2026" [selected]
+      - generic [ref=e111]:
+        - generic [ref=e112]:
+          - paragraph [ref=e113]: Variación media consumo
+          - paragraph [ref=e114]: "-6.2%"
+          - paragraph [ref=e115]: 2026 vs 2025 · 4 meses comparados
+        - generic [ref=e116]:
+          - paragraph [ref=e117]: Variación media coste
+          - paragraph [ref=e118]: "-3.5%"
+          - paragraph [ref=e119]: 2026 vs 2025 · impacto económico
+        - generic [ref=e120]:
+          - generic [ref=e121]:
+            - img [ref=e122]
+            - paragraph [ref=e125]: Mejor mes
+          - paragraph [ref=e126]: Abr
+          - paragraph [ref=e127]: "-8.2% vs 2025 · mayor ahorro"
+      - generic [ref=e128]:
+        - generic [ref=e129]:
+          - generic [ref=e130]:
+            - heading "Consumo total (kWh) — 2025 vs 2026" [level=2] [ref=e131]
+            - generic [ref=e132]:
+              - generic [ref=e135]: 2025 (base)
+              - generic [ref=e138]: 2026 (actual)
+          - generic [ref=e140]:
+            - img [ref=e141]:
+              - generic [ref=e145]:
+                - generic [ref=e147]: Ene
+                - generic [ref=e149]: Feb
+                - generic [ref=e151]: Mar
+                - generic [ref=e153]: Abr
+              - generic [ref=e155]:
+                - generic [ref=e157]: 0 kWh
+                - generic [ref=e159]: 150kWh
+                - generic [ref=e161]: 300kWh
+                - generic [ref=e163]: 450kWh
+                - generic [ref=e165]: 600kWh
+            - list [ref=e167]:
+              - listitem [ref=e168]:
+                - img [ref=e169]
+                - text: "2025"
+              - listitem [ref=e171]:
+                - img [ref=e172]
+                - text: "2026"
+        - generic [ref=e174]:
+          - generic [ref=e175]:
+            - heading "Coste total (€) — 2025 vs 2026" [level=2] [ref=e176]
+            - generic [ref=e177]:
+              - generic [ref=e180]: 2025 (base)
+              - generic [ref=e183]: 2026 (actual)
+          - generic [ref=e185]:
+            - img [ref=e186]:
+              - generic [ref=e190]:
+                - generic [ref=e192]: Ene
+                - generic [ref=e194]: Feb
+                - generic [ref=e196]: Mar
+                - generic [ref=e198]: Abr
+              - generic [ref=e200]:
+                - generic [ref=e202]: 0 €
+                - generic [ref=e204]: 25 €
+                - generic [ref=e206]: 50 €
+                - generic [ref=e208]: 75 €
+                - generic [ref=e210]: 100 €
+            - list [ref=e212]:
+              - listitem [ref=e213]:
+                - img [ref=e214]
+                - text: "2025"
+              - listitem [ref=e216]:
+                - img [ref=e217]
+                - text: "2026"
+      - generic [ref=e219]:
+        - generic [ref=e220]:
+          - img [ref=e221]
+          - heading "Tabla comparativa — 2025 vs 2026" [level=2] [ref=e222]
+        - table [ref=e224]:
+          - rowgroup [ref=e225]:
+            - row "Mes kWh 2025 kWh 2026 Var% kWh € 2025 € 2026 Var% €" [ref=e226]:
+              - columnheader "Mes" [ref=e227]
+              - columnheader "kWh 2025" [ref=e228]
+              - columnheader "kWh 2026" [ref=e229]
+              - columnheader "Var% kWh" [ref=e230]
+              - columnheader "€ 2025" [ref=e231]
+              - columnheader "€ 2026" [ref=e232]
+              - columnheader "Var% €" [ref=e233]
+          - rowgroup [ref=e234]:
+            - row "Ene 421 400 -5.0% 98.177 95.248 -3.0%" [ref=e235]:
+              - cell "Ene" [ref=e236]
+              - cell "421" [ref=e237]
+              - cell "400" [ref=e238]
+              - cell "-5.0%" [ref=e239]:
+                - generic [ref=e240]: "-5.0%"
+              - cell "98.177" [ref=e241]
+              - cell "95.248" [ref=e242]
+              - cell "-3.0%" [ref=e243]:
+                - generic [ref=e244]: "-3.0%"
+            - row "Feb 374 354 -5.3% 80.624 83.807 +3.9%" [ref=e245]:
+              - cell "Feb" [ref=e246]
+              - cell "374" [ref=e247]
+              - cell "354" [ref=e248]
+              - cell "-5.3%" [ref=e249]:
+                - generic [ref=e250]: "-5.3%"
+              - cell "80.624" [ref=e251]
+              - cell "83.807" [ref=e252]
+              - cell "+3.9%" [ref=e253]:
+                - generic [ref=e254]: +3.9%
+            - row "Mar 298 279 -6.4% 69.539 64.916 -6.6%" [ref=e255]:
+              - cell "Mar" [ref=e256]
+              - cell "298" [ref=e257]
+              - cell "279" [ref=e258]
+              - cell "-6.4%" [ref=e259]:
+                - generic [ref=e260]: "-6.4%"
+              - cell "69.539" [ref=e261]
+              - cell "64.916" [ref=e262]
+              - cell "-6.6%" [ref=e263]:
+                - generic [ref=e264]: "-6.6%"
+            - row "Abr 267 245 -8.2% 63.141 57.779 -8.5%" [ref=e265]:
+              - cell "Abr" [ref=e266]
+              - cell "267" [ref=e267]
+              - cell "245" [ref=e268]
+              - cell "-8.2%" [ref=e269]:
+                - generic [ref=e270]: "-8.2%"
+              - cell "63.141" [ref=e271]
+              - cell "57.779" [ref=e272]
+              - cell "-8.5%" [ref=e273]:
+                - generic [ref=e274]: "-8.5%"
+          - rowgroup [ref=e275]:
+            - row "Acumulado 1360 1278 -6.2% 311.480 301.750 -3.5%" [ref=e276]:
+              - cell "Acumulado" [ref=e277]
+              - cell "1360" [ref=e278]
+              - cell "1278" [ref=e279]
+              - cell "-6.2%" [ref=e280]:
+                - generic [ref=e281]: "-6.2%"
+              - cell "311.480" [ref=e282]
+              - cell "301.750" [ref=e283]
+              - cell "-3.5%" [ref=e284]:
+                - generic [ref=e285]: "-3.5%"
+  - alert [ref=e286]
+  - generic [ref=e287]: "25"

@@ -1,0 +1,257 @@
+- generic [ref=e1]:
+  - complementary [ref=e2]:
+    - generic [ref=e4]:
+      - img [ref=e6]
+      - generic [ref=e8]:
+        - generic [ref=e9]: claudeEnergía
+        - paragraph [ref=e10]: Análisis HC / HP
+    - navigation [ref=e11]:
+      - paragraph [ref=e12]: Navegación
+      - link "Dashboard Vista principal" [ref=e13] [cursor=pointer]:
+        - /url: /
+        - img [ref=e15]
+        - generic [ref=e20]:
+          - paragraph [ref=e21]: Dashboard
+          - paragraph [ref=e22]: Vista principal
+      - link "Historial Datos por año" [active] [ref=e24] [cursor=pointer]:
+        - /url: /historial
+        - img [ref=e26]
+        - generic [ref=e30]:
+          - paragraph [ref=e31]: Historial
+          - paragraph [ref=e32]: Datos por año
+      - link "Comparativa 25/26 Análisis interanual" [ref=e33] [cursor=pointer]:
+        - /url: /comparativa
+        - img [ref=e35]
+        - generic [ref=e36]:
+          - paragraph [ref=e37]: Comparativa 25/26
+          - paragraph [ref=e38]: Análisis interanual
+      - link "Registrar Nuevo consumo" [ref=e39] [cursor=pointer]:
+        - /url: /registro
+        - img [ref=e41]
+        - generic [ref=e43]:
+          - paragraph [ref=e44]: Registrar
+          - paragraph [ref=e45]: Nuevo consumo
+    - generic [ref=e46]:
+      - generic [ref=e47]:
+        - generic [ref=e48]:
+          - img [ref=e49]
+          - paragraph [ref=e52]: Tarifas
+        - button "Editar tarifa Ene 2026" [ref=e53] [cursor=pointer]:
+          - img [ref=e54]
+      - generic [ref=e57]:
+        - button "2022" [ref=e58] [cursor=pointer]
+        - button "2023" [ref=e59] [cursor=pointer]
+        - button "2024" [ref=e60] [cursor=pointer]
+        - button "2025" [ref=e61] [cursor=pointer]
+        - button "2026" [ref=e62] [cursor=pointer]
+      - generic [ref=e63]:
+        - button "Ene" [ref=e64] [cursor=pointer]
+        - button "Feb" [ref=e65] [cursor=pointer]
+        - button "Mar" [ref=e66] [cursor=pointer]
+        - button "Abr" [ref=e67] [cursor=pointer]
+        - button "May" [ref=e68] [cursor=pointer]
+        - button "Jun" [ref=e69] [cursor=pointer]
+        - button "Jul" [ref=e70] [cursor=pointer]
+        - button "Ago" [ref=e71] [cursor=pointer]
+        - button "Sep" [ref=e72] [cursor=pointer]
+        - button "Oct" [ref=e73] [cursor=pointer]
+        - button "Nov" [ref=e74] [cursor=pointer]
+        - button "Dic" [ref=e75] [cursor=pointer]
+      - generic [ref=e76]:
+        - paragraph [ref=e77]: Ene 2026
+        - generic [ref=e78]:
+          - generic [ref=e81]: HC
+          - generic [ref=e82]: 0.19008 €/kWh
+        - generic [ref=e83]:
+          - generic [ref=e86]: HP
+          - generic [ref=e87]: 0.27436 €/kWh
+        - generic [ref=e88]:
+          - generic [ref=e89]: Ratio HP/HC
+          - generic [ref=e90]: 1.443×
+    - paragraph [ref=e92]: claudeEnergía v2.0
+  - main [ref=e93]:
+    - generic [ref=e836]:
+      - generic [ref=e837]:
+        - generic [ref=e838]:
+          - generic [ref=e839]:
+            - generic [ref=e840]: 4 meses
+            - generic [ref=e841]: 4m HP
+          - heading "Historial de consumo" [level=1] [ref=e842]
+          - paragraph [ref=e843]: 2026 · 1 278 kWh consumidos · 301.750 € facturado
+        - generic [ref=e844]:
+          - generic [ref=e845]: "Año:"
+          - button "2022" [ref=e846] [cursor=pointer]
+          - button "2023" [ref=e847] [cursor=pointer]
+          - button "2024" [ref=e848] [cursor=pointer]
+          - button "2025" [ref=e849] [cursor=pointer]
+          - button "2026" [ref=e850] [cursor=pointer]
+      - generic [ref=e851]:
+        - generic [ref=e854]: "Tarifas 2026:"
+        - generic [ref=e857]: HC 0.19008 €/kWh
+        - generic [ref=e860]: HP 0.27436 €/kWh
+        - generic [ref=e862]: "Ratio HP/HC: 1.443×"
+        - generic [ref=e864]:
+          - text: "HC total:"
+          - generic [ref=e865]: 580 kWh
+        - generic [ref=e866]:
+          - text: "HP total:"
+          - generic [ref=e867]: 698 kWh
+      - generic [ref=e868]:
+        - generic [ref=e869]:
+          - generic [ref=e870]:
+            - heading "Consumo HC/HP — 2026" [level=2] [ref=e871]
+            - paragraph [ref=e872]: Distribución acumulada HC (azul) y HP (naranja)
+          - generic [ref=e874]:
+            - img [ref=e875]:
+              - generic [ref=e879]:
+                - generic [ref=e881]: Ene
+                - generic [ref=e883]: Feb
+                - generic [ref=e885]: Mar
+                - generic [ref=e887]: Abr
+              - generic [ref=e889]:
+                - generic [ref=e891]: "0"
+                - generic [ref=e893]: "100"
+                - generic [ref=e895]: "200"
+                - generic [ref=e897]: "300"
+                - generic [ref=e899]: "400"
+            - list [ref=e923]:
+              - listitem [ref=e924]:
+                - img [ref=e925]
+                - text: HC (Heures Creuses)
+              - listitem [ref=e927]:
+                - img [ref=e928]
+                - text: HP (Heures Pleines)
+        - generic [ref=e930]:
+          - generic [ref=e931]:
+            - heading "Evolución de costes — 2026 (€)" [level=2] [ref=e932]
+            - paragraph [ref=e933]: Líneas de coste HC (cian), HP (naranja) y total (violeta)
+          - generic [ref=e935]:
+            - img [ref=e936]:
+              - generic [ref=e940]:
+                - generic [ref=e942]: Ene
+                - generic [ref=e944]: Feb
+                - generic [ref=e946]: Mar
+                - generic [ref=e948]: Abr
+              - generic [ref=e950]:
+                - generic [ref=e952]: 0 €
+                - generic [ref=e954]: 25 €
+                - generic [ref=e956]: 50 €
+                - generic [ref=e958]: 75 €
+                - generic [ref=e960]: 100 €
+            - list [ref=e968]:
+              - listitem [ref=e969]:
+                - img [ref=e970]
+                - text: Coste HC
+              - listitem [ref=e972]:
+                - img [ref=e973]
+                - text: Coste HP
+              - listitem [ref=e975]:
+                - img [ref=e976]
+                - text: Total
+      - generic [ref=e978]:
+        - generic [ref=e979]:
+          - heading "Detalle mensual" [level=3] [ref=e980]
+          - generic [ref=e981]: 4 meses
+        - table [ref=e983]:
+          - rowgroup [ref=e984]:
+            - row "Mes HC kWh HP kWh Total kWh € HC € HP € Total % HC % HP Dif Var%" [ref=e985]:
+              - columnheader "Mes" [ref=e986]
+              - columnheader "HC kWh" [ref=e987]
+              - columnheader "HP kWh" [ref=e988]
+              - columnheader "Total kWh" [ref=e989]
+              - columnheader "€ HC" [ref=e990]
+              - columnheader "€ HP" [ref=e991]
+              - columnheader "€ Total" [ref=e992]
+              - columnheader "% HC" [ref=e993]
+              - columnheader "% HP" [ref=e994]
+              - columnheader "Dif" [ref=e995]
+              - columnheader "Var%" [ref=e996]
+          - rowgroup [ref=e997]:
+            - row "Ene HP 172 228 400 32.694 62.554 95.248 43.0% 57.0% 56 —" [ref=e998]:
+              - cell "Ene HP" [ref=e999]:
+                - generic [ref=e1000]:
+                  - generic [ref=e1001]: Ene
+                  - generic [ref=e1002]: HP
+              - cell "172" [ref=e1003]
+              - cell "228" [ref=e1004]
+              - cell "400" [ref=e1005]
+              - cell "32.694" [ref=e1006]
+              - cell "62.554" [ref=e1007]
+              - cell "95.248" [ref=e1008]
+              - cell "43.0%" [ref=e1009]:
+                - generic [ref=e1010]: 43.0%
+              - cell "57.0%" [ref=e1011]:
+                - generic [ref=e1012]: 57.0%
+              - cell "56" [ref=e1013]
+              - cell "—" [ref=e1014]
+            - row "Feb HP 158 196 354 30.033 53.775 83.807 44.6% 55.4% 38 -11.5%" [ref=e1015]:
+              - cell "Feb HP" [ref=e1016]:
+                - generic [ref=e1017]:
+                  - generic [ref=e1018]: Feb
+                  - generic [ref=e1019]: HP
+              - cell "158" [ref=e1020]
+              - cell "196" [ref=e1021]
+              - cell "354" [ref=e1022]
+              - cell "30.033" [ref=e1023]
+              - cell "53.775" [ref=e1024]
+              - cell "83.807" [ref=e1025]
+              - cell "44.6%" [ref=e1026]:
+                - generic [ref=e1027]: 44.6%
+              - cell "55.4%" [ref=e1028]:
+                - generic [ref=e1029]: 55.4%
+              - cell "38" [ref=e1030]
+              - cell "-11.5%" [ref=e1031]:
+                - generic [ref=e1032]: "-11.5%"
+            - row "Mar HP 138 141 279 26.231 38.685 64.916 49.5% 50.5% 3 -21.2%" [ref=e1033]:
+              - cell "Mar HP" [ref=e1034]:
+                - generic [ref=e1035]:
+                  - generic [ref=e1036]: Mar
+                  - generic [ref=e1037]: HP
+              - cell "138" [ref=e1038]
+              - cell "141" [ref=e1039]
+              - cell "279" [ref=e1040]
+              - cell "26.231" [ref=e1041]
+              - cell "38.685" [ref=e1042]
+              - cell "64.916" [ref=e1043]
+              - cell "49.5%" [ref=e1044]:
+                - generic [ref=e1045]: 49.5%
+              - cell "50.5%" [ref=e1046]:
+                - generic [ref=e1047]: 50.5%
+              - cell "3" [ref=e1048]
+              - cell "-21.2%" [ref=e1049]:
+                - generic [ref=e1050]: "-21.2%"
+            - row "Abr HP 112 133 245 21.289 36.490 57.779 45.7% 54.3% 21 -12.2%" [ref=e1051]:
+              - cell "Abr HP" [ref=e1052]:
+                - generic [ref=e1053]:
+                  - generic [ref=e1054]: Abr
+                  - generic [ref=e1055]: HP
+              - cell "112" [ref=e1056]
+              - cell "133" [ref=e1057]
+              - cell "245" [ref=e1058]
+              - cell "21.289" [ref=e1059]
+              - cell "36.490" [ref=e1060]
+              - cell "57.779" [ref=e1061]
+              - cell "45.7%" [ref=e1062]:
+                - generic [ref=e1063]: 45.7%
+              - cell "54.3%" [ref=e1064]:
+                - generic [ref=e1065]: 54.3%
+              - cell "21" [ref=e1066]
+              - cell "-12.2%" [ref=e1067]:
+                - generic [ref=e1068]: "-12.2%"
+          - rowgroup [ref=e1069]:
+            - row "Total / Prom. 580 698 1278 110.246 191.503 301.750 45.7% 54.3% — —" [ref=e1070]:
+              - cell "Total / Prom." [ref=e1071]
+              - cell "580" [ref=e1072]
+              - cell "698" [ref=e1073]
+              - cell "1278" [ref=e1074]
+              - cell "110.246" [ref=e1075]
+              - cell "191.503" [ref=e1076]
+              - cell "301.750" [ref=e1077]
+              - cell "45.7%" [ref=e1078]:
+                - generic [ref=e1079]: 45.7%
+              - cell "54.3%" [ref=e1080]:
+                - generic [ref=e1081]: 54.3%
+              - cell "—" [ref=e1082]
+              - cell "—" [ref=e1083]
+  - alert [ref=e234]
+  - generic [ref=e334]: "150"
