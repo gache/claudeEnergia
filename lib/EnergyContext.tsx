@@ -7,7 +7,7 @@ import {
   calcularKPI, datosIniciales, TARIFAS_INICIALES, TARIFA_HC, TARIFA_HP,
 } from "./data";
 import { useAuth } from "./AuthContext";
-import { db } from "./firebase";
+import { getDb } from "./firebase";
 
 const KEY_REGISTROS = "energia-registros-v1";
 const KEY_TARIFAS   = "energia-tarifas-v2";
@@ -49,6 +49,7 @@ export function EnergyProvider({ children }: { children: ReactNode }) {
 
     const loadFromFirestore = async () => {
       try {
+        const db = getDb();
         const docRef = doc(db, "users", user.uid, "data", "profile");
         const snap = await getDoc(docRef);
 
@@ -80,6 +81,7 @@ export function EnergyProvider({ children }: { children: ReactNode }) {
 
     const saveToFirestore = async () => {
       try {
+        const db = getDb();
         const docRef = doc(db, "users", user.uid, "data", "profile");
         await setDoc(docRef, {
           registros,
