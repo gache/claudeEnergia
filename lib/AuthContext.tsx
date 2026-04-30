@@ -1,7 +1,7 @@
 "use client";
 
 import { createContext, useContext, useEffect, useState, ReactNode } from "react";
-import { onAuthStateChanged, signInWithPopup, signOut, User } from "firebase/auth";
+import { onAuthStateChanged, signInWithPopup, signInWithRedirect, signOut, getRedirectResult, User } from "firebase/auth";
 import { getAuth_, getGoogleProvider } from "./firebase";
 
 type AuthContextType = {
@@ -24,6 +24,11 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       setLoading(false);
     });
 
+    // Handle redirect result from signInWithRedirect
+    getRedirectResult(auth).catch((error) => {
+      console.error("Redirect result error:", error);
+    });
+
     return unsubscribe;
   }, []);
 
@@ -31,7 +36,16 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     try {
       const auth = getAuth_();
       const googleProvider = getGoogleProvider();
-      await signInWithPopup(auth, googleProvider);
+
+      const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+
+      if (isMobile) {
+        // Use redirect on mobile for better compatibility
+        await signInWithRedirect(auth, googleProvider);
+      } else {
+        // Use popup on desktop
+        await signInWithPopup(auth, googleProvider);
+      }
     } catch (error) {
       console.error("Login error:", error);
       throw error;
