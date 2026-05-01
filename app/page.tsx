@@ -259,6 +259,9 @@ export default function DashboardPage() {
     : undefined;
   const isBetter = (varTotal ?? 0) < 0;
 
+  const meses = ["", "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"];
+  const mesActual = meses[currentMonth];
+
   return (
     <div className="space-y-7 animate-fade-in">
 
@@ -267,7 +270,7 @@ export default function DashboardPage() {
         <div>
           <div className="flex items-center gap-2 mb-1">
             <span className="badge bg-brand-50 text-brand-700 border border-brand-100">
-              Abril 2026
+              {mesActual} 2026
             </span>
             {anterior && (
               <span className={`badge ${(varTotal ?? 0) < 0 ? "badge-negative" : "badge-positive"}`}>
