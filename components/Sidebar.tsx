@@ -19,8 +19,9 @@ export default function Sidebar() {
   const { getTarifa, setTarifa } = useEnergy();
 
   const lastAño = ANOS_DISPONIBLES[ANOS_DISPONIBLES.length - 1];
+  const currentMonth = new Date().getMonth() + 1;
   const [selectedAño, setSelectedAño] = useState<number>(lastAño);
-  const [selectedMes, setSelectedMes] = useState<number>(1);
+  const [selectedMes, setSelectedMes] = useState<number>(currentMonth);
   const [draft, setDraft]             = useState<{ hc: string; hp: string } | null>(null);
 
   const tarifa = getTarifa(selectedAño, selectedMes);
