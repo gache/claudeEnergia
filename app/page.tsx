@@ -224,18 +224,20 @@ function VentajaCard({ d }: { d: KPIMensual }) {
 export default function DashboardPage() {
   const { kpiFor, getByYear } = useEnergy();
 
-  const actual   = kpiFor(4, 2026);
-  const anterior = kpiFor(4, 2025);
+  const currentMonth = new Date().getMonth() + 1;
+  const actual   = kpiFor(currentMonth, 2026);
+  const anterior = kpiFor(currentMonth, 2025);
   const kpis2026 = getByYear(2026);
 
   if (!actual) {
+    const meses = ["", "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"];
     return (
       <div className="flex flex-col items-center justify-center py-32 text-center space-y-4">
         <div className="w-20 h-20 rounded-2xl bg-slate-100 flex items-center justify-center">
           <Zap className="w-10 h-10 text-slate-300" />
         </div>
         <div>
-          <p className="text-slate-700 font-semibold text-lg">Sin datos para Abril 2026</p>
+          <p className="text-slate-700 font-semibold text-lg">Sin datos para {meses[currentMonth]} 2026</p>
           <p className="text-slate-400 text-sm mt-1">Ve a Registrar para añadir consumo.</p>
         </div>
         <a
