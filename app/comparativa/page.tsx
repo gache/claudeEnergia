@@ -230,8 +230,8 @@ export default function ComparativaPage() {
                 return (
                   <tr key={d.mes} className="border-b border-slate-50 hover:bg-slate-50/70 transition-colors duration-100">
                     <td className="px-5 py-3 font-semibold text-slate-700">{MESES[d.mes - 1]}</td>
-                    <td className="px-4 py-3 text-right font-mono text-slate-400 tabular-nums">{d.total1 || "—"}</td>
-                    <td className="px-4 py-3 text-right font-mono font-semibold text-slate-800 tabular-nums">{d.total2}</td>
+                    <td className="px-4 py-3 text-right font-mono text-slate-400 tabular-nums">{d.total1 ? d.total1.toFixed(3) : "—"}</td>
+                    <td className="px-4 py-3 text-right font-mono font-semibold text-slate-800 tabular-nums">{d.total2.toFixed(3)}</td>
                     <td className="px-4 py-3 text-right"><VarBadge pct={vKwh} /></td>
                     <td className="px-4 py-3 text-right font-mono text-slate-400 tabular-nums">
                       {d.costo1 ? d.costo1.toFixed(3) : "—"}
