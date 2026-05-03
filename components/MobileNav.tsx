@@ -21,7 +21,7 @@ export default function MobileNav() {
       {/* Hamburger button */}
       <button
         onClick={() => setOpen(!open)}
-        className="md:hidden fixed top-4 left-4 z-50 w-10 h-10 rounded-lg bg-brand-600 text-white flex items-center justify-center shadow-lg hover:bg-brand-700 transition-colors"
+        className="md:hidden fixed top-4 right-4 z-50 w-10 h-10 rounded-lg bg-brand-600 text-white flex items-center justify-center shadow-lg hover:bg-brand-700 transition-colors"
         title={open ? "Cerrar menú" : "Abrir menú"}
       >
         {open ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
