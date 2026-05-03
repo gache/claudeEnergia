@@ -8,8 +8,9 @@ import { MESES, calcularKPI, ANOS_DISPONIBLES } from "@/lib/data";
 export default function RegistroPage() {
   const { addOrUpdate, kpiFor, getTarifa } = useEnergy();
 
+  const currentMonth = new Date().getMonth() + 1;
   const [año, setAño]     = useState(2026);
-  const [mes, setMes]     = useState(4);
+  const [mes, setMes]     = useState(currentMonth);
   const [hcStr, setHcStr] = useState("");
   const [hpStr, setHpStr] = useState("");
   const [saved, setSaved] = useState(false);

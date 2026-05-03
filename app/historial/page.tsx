@@ -73,11 +73,11 @@ export default function HistorialPage() {
         </div>
         <div className="flex items-center gap-2">
           <div className="w-2 h-2 rounded-full bg-hc-500" />
-          <span className="text-xs font-semibold text-hc-700 font-mono">HC {tarifa.hc} €/kWh</span>
+          <span className="text-xs font-semibold text-hc-700 font-mono">HC {tarifa.hc.toFixed(3)} €/kWh</span>
         </div>
         <div className="flex items-center gap-2">
           <div className="w-2 h-2 rounded-full bg-hp-500" />
-          <span className="text-xs font-semibold text-hp-700 font-mono">HP {tarifa.hp} €/kWh</span>
+          <span className="text-xs font-semibold text-hp-700 font-mono">HP {tarifa.hp.toFixed(3)} €/kWh</span>
         </div>
         <div className="h-4 w-px bg-slate-200" />
         <span className="text-xs text-slate-400 font-mono">
