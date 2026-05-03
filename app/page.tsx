@@ -213,7 +213,7 @@ export default function DashboardPage() {
         />
         <KpiCard
           label="Diferencia"
-          value={String(Math.abs(actual.difHCHP))}
+          value={Math.abs(actual.difHCHP).toFixed(3)}
           unit="kWh"
           subLabel={actual.ventajaHC ? "Ventaja HC" : "Domina HP"}
           accent="violet"
