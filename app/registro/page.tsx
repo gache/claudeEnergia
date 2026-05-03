@@ -271,7 +271,7 @@ export default function RegistroPage() {
               <p className={`text-xl font-bold tabular-nums ${
                 preview.difHCHP > 0 ? "text-red-600" : "text-hc-700"
               }`}>
-                {Math.abs(preview.difHCHP)}
+                {Math.abs(preview.difHCHP).toFixed(3)}
                 <span className="text-xs font-normal ml-1 opacity-60">kWh</span>
               </p>
             </div>
