@@ -227,11 +227,11 @@ export default function DashboardPage() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {/* HC Card */}
           <div className="rounded-xl bg-gradient-to-br from-hc-50 to-cyan-50 border border-hc-200 p-5">
-            <div className="flex items-center justify-between mb-3">
-              <p className="text-sm font-bold text-hc-600 uppercase tracking-wider">HC — Heures Creuses</p>
-              <span className="badge badge-hc">{actual.pctHC.toFixed(1)}%</span>
-            </div>
-            <p className="text-2xl font-bold text-hc-700 tabular-nums mb-3">{actual.hc} kWh</p>
+            <p className="text-xs font-bold text-hc-600 uppercase tracking-wider mb-4">HC — Heures Creuses</p>
+            <p className="text-5xl font-black text-hc-700 tabular-nums mb-1" style={{ fontFamily: "var(--font-sora, Sora), sans-serif" }}>
+              {actual.pctHC.toFixed(1)}%
+            </p>
+            <p className="text-sm font-semibold text-hc-600 mb-3">{actual.hc} kWh</p>
             <div className="h-2 rounded-full bg-hc-100 overflow-hidden">
               <div
                 className="h-full bg-hc-500 transition-all duration-700"
@@ -242,11 +242,11 @@ export default function DashboardPage() {
 
           {/* HP Card */}
           <div className="rounded-xl bg-gradient-to-br from-hp-50 to-amber-50 border border-hp-200 p-5">
-            <div className="flex items-center justify-between mb-3">
-              <p className="text-sm font-bold text-hp-600 uppercase tracking-wider">HP — Heures Pleines</p>
-              <span className="badge badge-hp">{actual.pctHP.toFixed(1)}%</span>
-            </div>
-            <p className="text-2xl font-bold text-hp-700 tabular-nums mb-3">{actual.hp} kWh</p>
+            <p className="text-xs font-bold text-hp-600 uppercase tracking-wider mb-4">HP — Heures Pleines</p>
+            <p className="text-5xl font-black text-hp-700 tabular-nums mb-1" style={{ fontFamily: "var(--font-sora, Sora), sans-serif" }}>
+              {actual.pctHP.toFixed(1)}%
+            </p>
+            <p className="text-sm font-semibold text-hp-600 mb-3">{actual.hp} kWh</p>
             <div className="h-2 rounded-full bg-hp-100 overflow-hidden">
               <div
                 className="h-full bg-hp-500 transition-all duration-700"
