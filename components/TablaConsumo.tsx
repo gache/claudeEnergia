@@ -78,9 +78,9 @@ export default function TablaConsumo({ data, showVarPct = true }: Props) {
                       <VentajaBadge ventajaHC={d.ventajaHC} />
                     </div>
                   </td>
-                  <td className="px-4 py-3 text-right font-mono font-medium text-hc-700">{d.hc}</td>
-                  <td className="px-4 py-3 text-right font-mono font-medium text-hp-700">{d.hp}</td>
-                  <td className="px-4 py-3 text-right font-mono font-semibold text-slate-800">{d.total}</td>
+                  <td className="px-4 py-3 text-right font-mono font-medium text-hc-700">{d.hc.toFixed(3)}</td>
+                  <td className="px-4 py-3 text-right font-mono font-medium text-hp-700">{d.hp.toFixed(3)}</td>
+                  <td className="px-4 py-3 text-right font-mono font-semibold text-slate-800">{d.total.toFixed(3)}</td>
                   <td className="px-4 py-3 text-right font-mono text-hc-600">{fmt(d.costoHC)}</td>
                   <td className="px-4 py-3 text-right font-mono text-hp-600">{fmt(d.costoHP)}</td>
                   <td className="px-4 py-3 text-right font-mono font-semibold text-slate-700">{fmt(d.costoTotal)}</td>
@@ -97,7 +97,7 @@ export default function TablaConsumo({ data, showVarPct = true }: Props) {
                   <td className={`px-4 py-3 text-right font-mono text-xs font-semibold ${
                     d.difHCHP > 0 ? "text-red-500" : "text-hc-600"
                   }`}>
-                    {Math.abs(d.difHCHP)}
+                    {Math.abs(d.difHCHP).toFixed(3)}
                   </td>
                   {showVarPct && (
                     <td className="px-5 py-3 text-right">
@@ -113,9 +113,9 @@ export default function TablaConsumo({ data, showVarPct = true }: Props) {
               <td className="px-5 py-3.5 text-xs font-bold uppercase tracking-wider text-slate-500">
                 Total / Prom.
               </td>
-              <td className="px-4 py-3.5 text-right font-mono font-bold text-hc-700">{totalHC}</td>
-              <td className="px-4 py-3.5 text-right font-mono font-bold text-hp-700">{totalHP}</td>
-              <td className="px-4 py-3.5 text-right font-mono font-bold text-slate-800">{totalKwh}</td>
+              <td className="px-4 py-3.5 text-right font-mono font-bold text-hc-700">{totalHC.toFixed(3)}</td>
+              <td className="px-4 py-3.5 text-right font-mono font-bold text-hp-700">{totalHP.toFixed(3)}</td>
+              <td className="px-4 py-3.5 text-right font-mono font-bold text-slate-800">{totalKwh.toFixed(3)}</td>
               <td className="px-4 py-3.5 text-right font-mono font-bold text-hc-700">{fmt(totalCostoHC)}</td>
               <td className="px-4 py-3.5 text-right font-mono font-bold text-hp-700">{fmt(totalCostoHP)}</td>
               <td className="px-4 py-3.5 text-right font-mono font-bold text-slate-800">{fmt(totalCosto)}</td>
