@@ -217,10 +217,26 @@ export default function RegistroPage() {
           </div>
 
           <div className="p-5 grid grid-cols-2 sm:grid-cols-3 gap-3">
+            <div className="bg-hc-50 rounded-xl p-4 border border-hc-100">
+              <p className="text-[10px] font-bold uppercase tracking-widest text-hc-400 mb-1.5">Consumo HC</p>
+              <p className="text-xl font-bold text-hc-700 tabular-nums">
+                {preview.hc.toFixed(3)}
+                <span className="text-xs font-normal ml-1 text-hc-400">kWh</span>
+              </p>
+            </div>
+
+            <div className="bg-hp-50 rounded-xl p-4 border border-hp-100">
+              <p className="text-[10px] font-bold uppercase tracking-widest text-hp-400 mb-1.5">Consumo HP</p>
+              <p className="text-xl font-bold text-hp-700 tabular-nums">
+                {preview.hp.toFixed(3)}
+                <span className="text-xs font-normal ml-1 text-hp-400">kWh</span>
+              </p>
+            </div>
+
             <div className="bg-brand-50 rounded-xl p-4 border border-brand-100">
               <p className="text-[10px] font-bold uppercase tracking-widest text-brand-400 mb-1.5">Consumo total</p>
               <p className="text-xl font-bold text-brand-700 tabular-nums">
-                {preview.total}
+                {preview.total.toFixed(3)}
                 <span className="text-xs font-normal ml-1 text-brand-400">kWh</span>
               </p>
             </div>
