@@ -39,7 +39,7 @@ export default function HistorialPage() {
           <h1 className="text-2xl font-bold text-slate-900 leading-tight">Historial de consumo</h1>
           {datos.length > 0 ? (
             <p className="text-slate-500 text-sm mt-1">
-              {año} · {totalKwh.toLocaleString()} kWh consumidos · {totalCosto.toFixed(3)} € facturado
+              {año} · {totalKwh.toFixed(3)} kWh consumidos · {totalCosto.toFixed(3)} € facturado
             </p>
           ) : (
             <p className="text-slate-400 text-sm mt-1">{año} — sin registros disponibles</p>

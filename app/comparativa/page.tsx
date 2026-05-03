@@ -249,10 +249,10 @@ export default function ComparativaPage() {
                 <tr className="bg-slate-50 border-t-2 border-slate-200 font-bold">
                   <td className="px-5 py-4 text-xs font-bold uppercase tracking-wider text-slate-500">Acumulado</td>
                   <td className="px-4 py-4 text-right font-mono text-slate-400 tabular-nums">
-                    {paired.reduce((a, d) => a + d.total1, 0)}
+                    {paired.reduce((a, d) => a + d.total1, 0).toFixed(3)}
                   </td>
                   <td className="px-4 py-4 text-right font-mono text-slate-800 tabular-nums">
-                    {paired.reduce((a, d) => a + d.total2, 0)}
+                    {paired.reduce((a, d) => a + d.total2, 0).toFixed(3)}
                   </td>
                   <td className="px-4 py-4 text-right"><VarBadge pct={avgVarConsumo} /></td>
                   <td className="px-4 py-4 text-right font-mono text-slate-400 tabular-nums">
