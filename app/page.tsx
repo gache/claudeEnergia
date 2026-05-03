@@ -6,6 +6,7 @@ import { useEnergy } from "@/lib/EnergyContext";
 import { MESES } from "@/lib/data";
 
 const ConsumoHCHPChart = dynamic(() => import("@/components/ConsumoHCHPChart"), { ssr: false });
+const CostoEvolucionChart = dynamic(() => import("@/components/CostoEvolucionChart"), { ssr: false });
 
 /* ── KPI Card ─────────────────────────────────────────────────────── */
 type KpiAccent = "brand" | "hc" | "hp" | "violet";
@@ -317,7 +318,10 @@ export default function DashboardPage() {
       )}
 
       {/* ── 4. GRÁFICO DE CONSUMO HC/HP 2026 ── */}
-      <ConsumoHCHPChart data={kpis2026} title="Consumo HC/HP mensual 2026" />
+      <div className="grid grid-cols-1 xl:grid-cols-2 gap-5">
+        <ConsumoHCHPChart data={kpis2026} title="Consumo HC/HP mensual 2026" />
+        <CostoEvolucionChart data={kpis2026} title="Evolución de costes — 2026 (€)" />
+      </div>
 
     </div>
   );
