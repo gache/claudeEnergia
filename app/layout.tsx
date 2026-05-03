@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter, Sora, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import Sidebar from "@/components/Sidebar";
+import MobileNav from "@/components/MobileNav";
 import { EnergyProvider } from "@/lib/EnergyContext";
 import { AuthProvider } from "@/lib/AuthContext";
 import ProtectedLayout from "@/components/ProtectedLayout";
@@ -40,6 +41,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <AuthProvider>
           <EnergyProvider>
             <ProtectedLayout>
+              <MobileNav />
               <Sidebar />
               <main className="flex-1 overflow-auto">
                 <div className="p-4 sm:p-6 lg:p-8 max-w-[1600px] mx-auto">
