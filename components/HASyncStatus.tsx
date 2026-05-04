@@ -4,7 +4,7 @@ import { useHASync } from "@/lib/useHASync";
 import { CheckCircle2, AlertCircle, RefreshCw, Clock } from "lucide-react";
 
 export function HASyncStatus() {
-  const { status, error, lastSync, syncNow } = useHASync(5);
+  const { status, error, lastSync, syncNow } = useHASync(60);
 
   const statusConfig = {
     idle: {

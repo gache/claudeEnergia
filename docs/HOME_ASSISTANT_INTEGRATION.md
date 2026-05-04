@@ -75,7 +75,7 @@ import { HASyncStatus } from "@/components/HASyncStatus";
 export default function Dashboard() {
   return (
     <div>
-      <HASyncStatus />
+      <HASyncStatus /> {/* Sincroniza cada 60 minutos */}
       {/* resto del contenido */}
     </div>
   );
