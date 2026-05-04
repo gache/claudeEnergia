@@ -37,17 +37,17 @@ export default function TablaConsumo({ data, showVarPct = true }: Props) {
   const avgPctHP = data.length > 0 ? sumPctHP / data.length : 0;
 
   return (
-    <div className="bg-white rounded-2xl shadow-card-md border border-slate-100 overflow-hidden hover:shadow-card-lg transition-shadow duration-300">
+    <div className="bg-white/70 backdrop-blur-md rounded-2xl shadow-card-md border border-slate-100/40 overflow-hidden hover:shadow-card-lg transition-shadow duration-300">
       {/* Table header bar */}
-      <div className="px-5 py-3.5 border-b border-slate-100 flex items-center justify-between bg-gradient-to-r from-slate-50 to-transparent">
-        <h3 className="section-title" style={{ fontFamily: "var(--font-sora, Sora), sans-serif" }}>Detalle mensual</h3>
+      <div className="px-5 py-3.5 border-b border-slate-100/50 flex items-center justify-between bg-gradient-to-r from-slate-50/40 to-transparent">
+        <h3 className="section-title" style={{ fontFamily: "var(--font-space-mono, monospace)" }}>Detalle mensual</h3>
         <span className="text-xs text-slate-400 font-semibold">{data.length} meses</span>
       </div>
 
       <div className="overflow-x-auto">
         <table className="w-full text-sm min-w-[900px]">
           <thead>
-            <tr className="bg-slate-50/80 border-b border-slate-100">
+            <tr className="bg-slate-50/60 border-b border-slate-100/50">
               <th className="text-left px-5 py-3 text-xs font-semibold uppercase tracking-wider text-slate-500">Mes</th>
               <th className="text-right px-4 py-3 text-xs font-semibold uppercase tracking-wider text-hc-600">HC kWh</th>
               <th className="text-right px-4 py-3 text-xs font-semibold uppercase tracking-wider text-hp-600">HP kWh</th>

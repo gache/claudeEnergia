@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter, Sora, JetBrains_Mono } from "next/font/google";
+import { Outfit, Space_Mono, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import Sidebar from "@/components/Sidebar";
 import MobileNav from "@/components/MobileNav";
@@ -7,18 +7,18 @@ import { EnergyProvider } from "@/lib/EnergyContext";
 import { AuthProvider } from "@/lib/AuthContext";
 import ProtectedLayout from "@/components/ProtectedLayout";
 
-const inter = Inter({
+const outfit = Outfit({
   subsets: ["latin"],
-  variable: "--font-inter",
+  variable: "--font-outfit",
   display: "swap",
   weight: ["300", "400", "500", "600", "700", "800", "900"],
 });
 
-const sora = Sora({
+const spaceMono = Space_Mono({
   subsets: ["latin"],
-  variable: "--font-sora",
+  variable: "--font-space-mono",
   display: "swap",
-  weight: ["300", "400", "600", "700"],
+  weight: ["400", "700"],
 });
 
 const jetbrainsMono = JetBrains_Mono({
@@ -36,8 +36,8 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="es" className={`${inter.variable} ${sora.variable} ${jetbrainsMono.variable}`}>
-      <body className="flex min-h-screen bg-gradient-to-br from-slate-50 via-slate-100 to-slate-50 antialiased flex-col md:flex-row">
+    <html lang="es" className={`${outfit.variable} ${spaceMono.variable} ${jetbrainsMono.variable}`}>
+      <body className="flex min-h-screen bg-gradient-subtle antialiased flex-col md:flex-row" style={{ backgroundColor: "#fafbfc" }}>
         <AuthProvider>
           <EnergyProvider>
             <ProtectedLayout>

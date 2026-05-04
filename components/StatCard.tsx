@@ -13,11 +13,11 @@ type Props = {
 };
 
 const accentMap: Record<string, { iconBg: string; iconColor: string; border: string; glowShadow: string }> = {
-  brand:   { iconBg: "bg-brand-50",   iconColor: "text-brand-600",   border: "border-t-[3px] border-brand-500", glowShadow: "group-hover:shadow-blue-500/20" },
-  hc:      { iconBg: "bg-cyan-50",    iconColor: "text-hc-600",      border: "border-t-[3px] border-hc-500", glowShadow: "group-hover:shadow-cyan-500/20" },
-  hp:      { iconBg: "bg-amber-50",   iconColor: "text-hp-600",      border: "border-t-[3px] border-hp-500", glowShadow: "group-hover:shadow-amber-500/20" },
-  violet:  { iconBg: "bg-violet-50",  iconColor: "text-violet-600",  border: "border-t-[3px] border-violet-500", glowShadow: "group-hover:shadow-violet-500/20" },
-  savings: { iconBg: "bg-savings-50", iconColor: "text-savings-600", border: "border-t-[3px] border-savings-500", glowShadow: "group-hover:shadow-green-500/20" },
+  brand:   { iconBg: "bg-brand-100/60", iconColor: "text-brand-600", border: "border border-brand-200/40", glowShadow: "group-hover:shadow-glow-brand" },
+  hc:      { iconBg: "bg-hc-100/70",    iconColor: "text-hc-600",    border: "border border-hc-200/50", glowShadow: "group-hover:shadow-glow-hc" },
+  hp:      { iconBg: "bg-hp-100/70",    iconColor: "text-hp-600",    border: "border border-hp-200/50", glowShadow: "group-hover:shadow-glow-hp" },
+  violet:  { iconBg: "bg-violet-100/60", iconColor: "text-violet-600", border: "border border-violet-200/40", glowShadow: "group-hover:shadow-violet-500/20" },
+  savings: { iconBg: "bg-savings-100/60", iconColor: "text-savings-600", border: "border border-savings-200/40", glowShadow: "group-hover:shadow-green-500/20" },
 };
 
 export default function StatCard({
@@ -34,9 +34,9 @@ export default function StatCard({
 
   return (
     <div
-      className={`bg-white rounded-2xl shadow-card-md border border-slate-100 ${cfg.border} p-5
-        hover:shadow-card-lg transition-all duration-300 hover:scale-[1.02] hover:-translate-y-1 group
-        animate-slide-up`}
+      className={`bg-white/70 backdrop-blur-md rounded-2xl shadow-card-md ${cfg.border} p-5
+        hover:shadow-card-xl transition-all duration-300 hover:scale-[1.02] hover:-translate-y-1 group
+        animate-slide-up ${cfg.glowShadow}`}
       style={delayStyle}
     >
       <div className="flex items-start justify-between mb-3">

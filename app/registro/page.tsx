@@ -79,10 +79,10 @@ export default function RegistroPage() {
       </div>
 
       {/* ── Form card ── */}
-      <div className="bg-white rounded-2xl shadow-card-md border border-slate-100 overflow-hidden animate-slide-up" style={{ animationDelay: "50ms" }}>
+      <div className="bg-white/70 backdrop-blur-md rounded-2xl shadow-card-md border border-slate-100/40 overflow-hidden animate-slide-up hover:shadow-card-lg transition-shadow duration-300" style={{ animationDelay: "50ms" }}>
 
         {/* Form top accent */}
-        <div className="h-1 bg-gradient-to-r from-hc-500 via-brand-500 to-hp-500" />
+        <div className="h-1 bg-gradient-to-r from-hc-500 via-brand-500 to-hp-500 opacity-80" />
 
         <div className="p-6 space-y-5">
           {/* Year / Month selectors */}
@@ -121,7 +121,7 @@ export default function RegistroPage() {
 
           {/* Existing entry notice */}
           {existing && (
-            <div className="flex items-start justify-between bg-amber-50 rounded-xl px-4 py-3 border border-amber-200 gap-3">
+            <div className="flex items-start justify-between bg-amber-50/60 backdrop-blur-sm rounded-xl px-4 py-3 border border-amber-200/60 gap-3">
               <div className="flex items-start gap-2">
                 <AlertCircle className="w-4 h-4 text-amber-500 flex-shrink-0 mt-0.5" />
                 <div>

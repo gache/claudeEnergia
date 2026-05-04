@@ -31,12 +31,12 @@ function SummaryKPI({
   const isBad     = good === false;
 
   return (
-    <div className={`rounded-2xl p-5 border shadow-card-md ${
+    <div className={`rounded-2xl p-5 border shadow-card-md backdrop-blur-sm hover:shadow-card-lg transition-shadow duration-300 ${
       isGood
-        ? "bg-gradient-to-br from-savings-50 to-cyan-50 border-savings-200"
+        ? "bg-savings-50/60 border-savings-200/60"
         : isBad
-          ? "bg-gradient-to-br from-red-50 to-orange-50 border-red-200"
-          : "bg-gradient-to-br from-brand-50 to-blue-50 border-brand-200"
+          ? "bg-red-50/60 border-red-200/60"
+          : "bg-brand-50/60 border-brand-200/60"
     }`}>
       <p className={`text-[11px] font-semibold uppercase tracking-widest mb-2 ${
         isGood ? "text-savings-500" : isBad ? "text-red-500" : "text-brand-500"
@@ -125,7 +125,7 @@ export default function ComparativaPage() {
         </div>
 
         {/* Year pickers */}
-        <div className="flex items-center gap-3 bg-white border border-slate-200 rounded-2xl px-4 py-3 shadow-card flex-wrap">
+        <div className="flex items-center gap-3 bg-white/70 backdrop-blur-md border border-slate-200/60 rounded-2xl px-4 py-3 shadow-card hover:shadow-card-md transition-shadow duration-300 flex-wrap">
           <div className="flex items-center gap-2">
             <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Base</span>
             <select

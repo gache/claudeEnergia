@@ -109,7 +109,7 @@ export default function Sidebar() {
       </nav>
 
       {/* ── Tariff widget ── */}
-      <div className="mx-3 mb-3 p-4 rounded-xl bg-gradient-to-br from-white/8 to-white/3 border border-white/15 backdrop-blur-sm shadow-lg shadow-black/20 hover:border-white/25 transition-all duration-300">
+      <div className="mx-3 mb-3 p-4 rounded-2xl bg-white/10 border border-white/20 backdrop-blur-lg shadow-xl shadow-black/10 hover:bg-white/15 hover:border-white/30 transition-all duration-300">
 
         {/* Header */}
         <div className="flex items-center justify-between mb-3">

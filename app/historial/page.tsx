@@ -68,7 +68,7 @@ export default function HistorialPage() {
       </div>
 
       {/* ── Tariff info strip ── */}
-      <div className="flex flex-wrap gap-4 p-4 bg-white rounded-2xl border border-slate-100 shadow-card items-center animate-slide-up" style={{ animationDelay: "50ms" }}>
+      <div className="flex flex-wrap gap-4 p-4 bg-white/70 backdrop-blur-md rounded-2xl border border-slate-100/40 shadow-card hover:shadow-card-md transition-shadow duration-300 items-center animate-slide-up" style={{ animationDelay: "50ms" }}>
         <div className="flex items-center gap-2">
           <div className="w-2 h-2 rounded-full bg-slate-300" />
           <span className="text-xs text-slate-400 font-medium">Tarifas {año}:</span>
@@ -100,7 +100,7 @@ export default function HistorialPage() {
 
       {/* ── Content ── */}
       {datos.length === 0 ? (
-        <div className="bg-white rounded-2xl border border-slate-100 shadow-card p-16 text-center animate-slide-up" style={{ animationDelay: "100ms" }}>
+        <div className="bg-white/70 backdrop-blur-md rounded-2xl border border-slate-100/40 shadow-card hover:shadow-card-md transition-shadow duration-300 p-16 text-center animate-slide-up" style={{ animationDelay: "100ms" }}>
           <div className="w-16 h-16 rounded-2xl bg-slate-50 flex items-center justify-center mx-auto mb-4">
             <FileX className="w-8 h-8 text-slate-300" />
           </div>

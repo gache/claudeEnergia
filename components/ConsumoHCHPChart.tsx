@@ -52,7 +52,7 @@ export default function ConsumoHCHPChart({ data, title = "Consumo HC / HP (kWh)"
   }));
 
   return (
-    <div className="bg-white rounded-2xl shadow-card-md border border-slate-100 p-6">
+    <div className="bg-white/70 backdrop-blur-md rounded-2xl shadow-card-md border border-slate-100/40 p-6 hover:shadow-card-lg transition-shadow duration-300">
       <div className="mb-5">
         <h2 className="section-title">{title}</h2>
         <p className="text-xs text-slate-400 mt-0.5">Distribución acumulada HC (azul) y HP (naranja)</p>
