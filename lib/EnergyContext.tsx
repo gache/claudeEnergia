@@ -117,7 +117,7 @@ export function EnergyProvider({ children }: { children: ReactNode }) {
     };
   }, [hydrated]);
 
-  // Guardar en Firestore con debounce (máx 1 vez por segundo)
+  // Guardar en Firestore con debounce (máx 1 vez cada 5 segundos para reducir cuota)
   useEffect(() => {
     if (!hydrated) return;
 
@@ -135,7 +135,7 @@ export function EnergyProvider({ children }: { children: ReactNode }) {
       } catch (error) {
         console.error("Error saving to Firestore:", error);
       }
-    }, 1000);
+    }, 5000);
 
     return () => {
       if (saveTimeoutRef.current) clearTimeout(saveTimeoutRef.current);
