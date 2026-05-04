@@ -29,7 +29,7 @@ export function EnergyProvider({ children }: { children: ReactNode }) {
   const [registros, setRegistros] = useState<RegistroMensual[]>(datosIniciales);
   const [tarifas,   setTarifas]   = useState<TarifaMensual[]>(TARIFAS_INICIALES);
   const [hydrated,  setHydrated]  = useState(false);
-  const fromListenerRef = useRef(false);
+  const saveTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
   useEffect(() => {
     try {
@@ -98,12 +98,10 @@ export function EnergyProvider({ children }: { children: ReactNode }) {
             const registros = data.registros || datosIniciales;
             const tarifas = data.tarifas || TARIFAS_INICIALES;
 
-            fromListenerRef.current = true;
             setRegistros(registros);
             setTarifas(tarifas);
             localStorage.setItem(KEY_REGISTROS, JSON.stringify(registros));
             localStorage.setItem(KEY_TARIFAS, JSON.stringify(tarifas));
-            fromListenerRef.current = false;
           }
         });
       } catch (error) {
@@ -119,11 +117,13 @@ export function EnergyProvider({ children }: { children: ReactNode }) {
     };
   }, [hydrated]);
 
-  // Guardar en Firestore solo si cambios vienen del usuario (no del listener)
+  // Guardar en Firestore con debounce (máx 1 vez por segundo)
   useEffect(() => {
-    if (!hydrated || fromListenerRef.current) return;
+    if (!hydrated) return;
 
-    const saveToFirestore = async () => {
+    if (saveTimeoutRef.current) clearTimeout(saveTimeoutRef.current);
+
+    saveTimeoutRef.current = setTimeout(async () => {
       try {
         const db = getDb();
         const docRef = doc(db, "familias", "hogar", "data", "profile");
@@ -135,9 +135,11 @@ export function EnergyProvider({ children }: { children: ReactNode }) {
       } catch (error) {
         console.error("Error saving to Firestore:", error);
       }
-    };
+    }, 1000);
 
-    saveToFirestore();
+    return () => {
+      if (saveTimeoutRef.current) clearTimeout(saveTimeoutRef.current);
+    };
   }, [registros, tarifas, hydrated]);
 
   // Guardar en localStorage siempre (como caché local)
