@@ -1,6 +1,6 @@
 "use client";
 
-import { createContext, useContext, useState, useEffect, ReactNode } from "react";
+import { createContext, useContext, useState, useEffect, useRef, ReactNode } from "react";
 import { doc, setDoc, getDoc, serverTimestamp, collection, getDocs, onSnapshot } from "firebase/firestore";
 import {
   RegistroMensual, KPIMensual, TarifaMensual,
@@ -29,6 +29,7 @@ export function EnergyProvider({ children }: { children: ReactNode }) {
   const [registros, setRegistros] = useState<RegistroMensual[]>(datosIniciales);
   const [tarifas,   setTarifas]   = useState<TarifaMensual[]>(TARIFAS_INICIALES);
   const [hydrated,  setHydrated]  = useState(false);
+  const fromListenerRef = useRef(false);
 
   useEffect(() => {
     try {
@@ -97,10 +98,12 @@ export function EnergyProvider({ children }: { children: ReactNode }) {
             const registros = data.registros || datosIniciales;
             const tarifas = data.tarifas || TARIFAS_INICIALES;
 
+            fromListenerRef.current = true;
             setRegistros(registros);
             setTarifas(tarifas);
             localStorage.setItem(KEY_REGISTROS, JSON.stringify(registros));
             localStorage.setItem(KEY_TARIFAS, JSON.stringify(tarifas));
+            fromListenerRef.current = false;
           }
         });
       } catch (error) {
@@ -116,9 +119,9 @@ export function EnergyProvider({ children }: { children: ReactNode }) {
     };
   }, [hydrated]);
 
-  // Guardar en Firestore (datos compartidos de familia)
+  // Guardar en Firestore solo si cambios vienen del usuario (no del listener)
   useEffect(() => {
-    if (!hydrated) return;
+    if (!hydrated || fromListenerRef.current) return;
 
     const saveToFirestore = async () => {
       try {
