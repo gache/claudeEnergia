@@ -1,7 +1,7 @@
 "use client";
 
 import { createContext, useContext, useState, useEffect, ReactNode } from "react";
-import { doc, setDoc, getDoc, serverTimestamp, collection, getDocs } from "firebase/firestore";
+import { doc, setDoc, getDoc, serverTimestamp, collection, getDocs, onSnapshot } from "firebase/firestore";
 import {
   RegistroMensual, KPIMensual, TarifaMensual,
   calcularKPI, datosIniciales, TARIFAS_INICIALES, TARIFA_HC, TARIFA_HP,
@@ -43,26 +43,19 @@ export function EnergyProvider({ children }: { children: ReactNode }) {
     setHydrated(true);
   }, []);
 
-  // Cargar datos de Firestore (datos compartidos de familia)
+  // Cargar datos de Firestore y escuchar cambios en tiempo real
   useEffect(() => {
     if (!hydrated) return;
 
-    const loadFromFirestore = async () => {
+    let unsubscribe: (() => void) | null = null;
+
+    const initializeFirestore = async () => {
       try {
         const db = getDb();
         const docRef = doc(db, "familias", "hogar", "data", "profile");
         const snap = await getDoc(docRef);
 
-        if (snap.exists()) {
-          const data = snap.data();
-          const registros = data.registros || datosIniciales;
-          const tarifas = data.tarifas || TARIFAS_INICIALES;
-
-          setRegistros(registros);
-          setTarifas(tarifas);
-          localStorage.setItem(KEY_REGISTROS, JSON.stringify(registros));
-          localStorage.setItem(KEY_TARIFAS, JSON.stringify(tarifas));
-        } else {
+        if (!snap.exists()) {
           // Intenta migrar datos de /users (datos antiguos de Google Login)
           try {
             const usersSnapshot = await getDocs(collection(db, "users"));
@@ -76,40 +69,51 @@ export function EnergyProvider({ children }: { children: ReactNode }) {
                 const registros = migratedData.registros || datosIniciales;
                 const tarifas = migratedData.tarifas || TARIFAS_INICIALES;
 
-                // Guardar en /familias/hogar
                 await setDoc(docRef, {
                   registros,
                   tarifas,
                   updatedAt: serverTimestamp(),
                 });
-
-                setRegistros(registros);
-                setTarifas(tarifas);
-                localStorage.setItem(KEY_REGISTROS, JSON.stringify(registros));
-                localStorage.setItem(KEY_TARIFAS, JSON.stringify(tarifas));
                 console.log("✅ Datos migrados de Google account a /familias/hogar");
-                return;
               }
             }
           } catch (migrationError) {
             console.log("No legacy data found, using initial data");
           }
 
-          // Si no hay datos antiguos, usar datos iniciales
-          await setDoc(docRef, {
+          // Si no hay datos antiguos, crear documento inicial
+          const initialData = {
             registros: datosIniciales,
             tarifas: TARIFAS_INICIALES,
             updatedAt: serverTimestamp(),
-          });
-          setRegistros(datosIniciales);
-          setTarifas(TARIFAS_INICIALES);
+          };
+          await setDoc(docRef, initialData);
         }
+
+        // Configurar listener en tiempo real
+        unsubscribe = onSnapshot(docRef, (snap) => {
+          if (snap.exists()) {
+            const data = snap.data();
+            const registros = data.registros || datosIniciales;
+            const tarifas = data.tarifas || TARIFAS_INICIALES;
+
+            setRegistros(registros);
+            setTarifas(tarifas);
+            localStorage.setItem(KEY_REGISTROS, JSON.stringify(registros));
+            localStorage.setItem(KEY_TARIFAS, JSON.stringify(tarifas));
+          }
+        });
       } catch (error) {
-        console.error("Error loading from Firestore:", error);
+        console.error("Error initializing Firestore:", error);
       }
     };
 
-    loadFromFirestore();
+    initializeFirestore();
+
+    // Limpiar listener al desmontar
+    return () => {
+      if (unsubscribe) unsubscribe();
+    };
   }, [hydrated]);
 
   // Guardar en Firestore (datos compartidos de familia)
