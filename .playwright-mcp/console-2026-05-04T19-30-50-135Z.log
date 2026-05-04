@@ -1,0 +1,48 @@
+[     341ms] [INFO] %cDownload the React DevTools for a better development experience: https://reactjs.org/link/react-devtools font-weight:bold @ webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/react-dom/cjs/react-dom.development.js:38559
+[     384ms] [LOG] Firebase Config Keys: {apiKey: ✓ AIzaSyBhWv..., authDomain: energia-a1eef.firebaseapp.com, projectId: energia-a1eef} @ webpack-internal:///(app-pages-browser)/./lib/firebase.ts:30
+[     772ms] [ERROR] Failed to load resource: the server responded with a status of 400 () @ https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyBhWv-ZOIk-qbHZlwF0s2e8Tg3veUq1XGo:0
+[     772ms] [ERROR] Anonymous sign-in error: FirebaseError: Firebase: Error (auth/admin-restricted-operation).
+    at createErrorInternal (webpack-internal:///(app-pages-browser)/./node_modules/firebase/node_modules/@firebase/auth/dist/esm/index-568d0403.js:624:41)
+    at _fail (webpack-internal:///(app-pages-browser)/./node_modules/firebase/node_modules/@firebase/auth/dist/esm/index-568d0403.js:589:11)
+    at _performFetchWithErrorHandling (webpack-internal:///(app-pages-browser)/./node_modules/firebase/node_modules/@firebase/auth/dist/esm/index-568d0403.js:1086:17)
+    at async _performSignInRequest (webpack-internal:///(app-pages-browser)/./node_modules/firebase/node_modules/@firebase/auth/dist/esm/index-568d0403.js:1101:28)
+    at async signInAnonymously (webpack-internal:///(app-pages-browser)/./node_modules/firebase/node_modules/@firebase/auth/dist/esm/index-568d0403.js:5761:22)
+    at async initAuth (webpack-internal:///(app-pages-browser)/./lib/AuthContext.tsx:29:21) @ webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/app-index.js:32
+[     781ms] [ERROR] Failed to load resource: the server responded with a status of 400 () @ https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyBhWv-ZOIk-qbHZlwF0s2e8Tg3veUq1XGo:0
+[     790ms] [ERROR] Anonymous sign-in error: FirebaseError: Firebase: Error (auth/admin-restricted-operation).
+    at createErrorInternal (webpack-internal:///(app-pages-browser)/./node_modules/firebase/node_modules/@firebase/auth/dist/esm/index-568d0403.js:624:41)
+    at _fail (webpack-internal:///(app-pages-browser)/./node_modules/firebase/node_modules/@firebase/auth/dist/esm/index-568d0403.js:589:11)
+    at _performFetchWithErrorHandling (webpack-internal:///(app-pages-browser)/./node_modules/firebase/node_modules/@firebase/auth/dist/esm/index-568d0403.js:1086:17)
+    at async _performSignInRequest (webpack-internal:///(app-pages-browser)/./node_modules/firebase/node_modules/@firebase/auth/dist/esm/index-568d0403.js:1101:28)
+    at async signInAnonymously (webpack-internal:///(app-pages-browser)/./node_modules/firebase/node_modules/@firebase/auth/dist/esm/index-568d0403.js:5761:22)
+    at async initAuth (webpack-internal:///(app-pages-browser)/./lib/AuthContext.tsx:29:21) @ webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/app-index.js:32
+[    5755ms] [ERROR] [2026-05-04T19:30:55.889Z]  @firebase/firestore: Firestore (12.12.0): FirebaseError: [code=resource-exhausted]: Quota exceeded. @ webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/app-index.js:32
+[    5755ms] [ERROR] [2026-05-04T19:30:55.889Z]  @firebase/firestore: Firestore (12.12.0): Using maximum backoff delay to prevent overloading the backend. @ webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/app-index.js:32
+[   55656ms] [ERROR] [2026-05-04T19:31:45.791Z]  @firebase/firestore: Firestore (12.12.0): FirebaseError: [code=resource-exhausted]: Quota exceeded. @ webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/app-index.js:32
+[   55656ms] [ERROR] [2026-05-04T19:31:45.791Z]  @firebase/firestore: Firestore (12.12.0): Using maximum backoff delay to prevent overloading the backend. @ webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/app-index.js:32
+[   94117ms] [ERROR] [2026-05-04T19:32:24.252Z]  @firebase/firestore: Firestore (12.12.0): FirebaseError: [code=resource-exhausted]: Quota exceeded. @ webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/app-index.js:32
+[   94118ms] [ERROR] [2026-05-04T19:32:24.252Z]  @firebase/firestore: Firestore (12.12.0): Using maximum backoff delay to prevent overloading the backend. @ webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/app-index.js:32
+[  142710ms] [ERROR] [2026-05-04T19:33:12.845Z]  @firebase/firestore: Firestore (12.12.0): FirebaseError: [code=resource-exhausted]: Quota exceeded. @ webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/app-index.js:32
+[  142710ms] [ERROR] [2026-05-04T19:33:12.845Z]  @firebase/firestore: Firestore (12.12.0): Using maximum backoff delay to prevent overloading the backend. @ webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/app-index.js:32
+[  207468ms] [ERROR] [2026-05-04T19:34:17.602Z]  @firebase/firestore: Firestore (12.12.0): FirebaseError: [code=resource-exhausted]: Quota exceeded. @ webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/app-index.js:32
+[  207468ms] [ERROR] [2026-05-04T19:34:17.602Z]  @firebase/firestore: Firestore (12.12.0): Using maximum backoff delay to prevent overloading the backend. @ webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/app-index.js:32
+[  270817ms] [ERROR] [2026-05-04T19:35:20.952Z]  @firebase/firestore: Firestore (12.12.0): FirebaseError: [code=resource-exhausted]: Quota exceeded. @ webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/app-index.js:32
+[  270817ms] [ERROR] [2026-05-04T19:35:20.952Z]  @firebase/firestore: Firestore (12.12.0): Using maximum backoff delay to prevent overloading the backend. @ webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/app-index.js:32
+[  328705ms] [ERROR] [2026-05-04T19:36:18.840Z]  @firebase/firestore: Firestore (12.12.0): FirebaseError: [code=resource-exhausted]: Quota exceeded. @ webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/app-index.js:32
+[  328705ms] [ERROR] [2026-05-04T19:36:18.840Z]  @firebase/firestore: Firestore (12.12.0): Using maximum backoff delay to prevent overloading the backend. @ webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/app-index.js:32
+[  385540ms] [ERROR] [2026-05-04T19:37:15.675Z]  @firebase/firestore: Firestore (12.12.0): FirebaseError: [code=resource-exhausted]: Quota exceeded. @ webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/app-index.js:32
+[  385540ms] [ERROR] [2026-05-04T19:37:15.675Z]  @firebase/firestore: Firestore (12.12.0): Using maximum backoff delay to prevent overloading the backend. @ webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/app-index.js:32
+[  432761ms] [ERROR] [2026-05-04T19:38:02.895Z]  @firebase/firestore: Firestore (12.12.0): FirebaseError: [code=resource-exhausted]: Quota exceeded. @ webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/app-index.js:32
+[  432761ms] [ERROR] [2026-05-04T19:38:02.896Z]  @firebase/firestore: Firestore (12.12.0): Using maximum backoff delay to prevent overloading the backend. @ webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/app-index.js:32
+[  435233ms] [LOG] [Fast Refresh] rebuilding @ webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/components/react-dev-overlay/app/hot-reloader-client.js:186
+[  435610ms] [LOG] [Fast Refresh] done in 377ms @ webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/components/react-dev-overlay/app/hot-reloader-client.js:43
+[  439517ms] [LOG] [Fast Refresh] rebuilding @ webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/components/react-dev-overlay/app/hot-reloader-client.js:186
+[  439700ms] [LOG] [Fast Refresh] done in 183ms @ webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/components/react-dev-overlay/app/hot-reloader-client.js:43
+[  443791ms] [LOG] [Fast Refresh] rebuilding @ webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/components/react-dev-overlay/app/hot-reloader-client.js:186
+[  443981ms] [LOG] [Fast Refresh] done in 191ms @ webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/components/react-dev-overlay/app/hot-reloader-client.js:43
+[  449277ms] [LOG] [Fast Refresh] rebuilding @ webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/components/react-dev-overlay/app/hot-reloader-client.js:186
+[  449566ms] [LOG] [Fast Refresh] done in 288ms @ webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/components/react-dev-overlay/app/hot-reloader-client.js:43
+[  453581ms] [LOG] [Fast Refresh] rebuilding @ webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/components/react-dev-overlay/app/hot-reloader-client.js:186
+[  453755ms] [LOG] [Fast Refresh] done in 174ms @ webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/components/react-dev-overlay/app/hot-reloader-client.js:43
+[  457481ms] [LOG] [Fast Refresh] rebuilding @ webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/components/react-dev-overlay/app/hot-reloader-client.js:186
+[  457671ms] [LOG] [Fast Refresh] done in 189ms @ webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/components/react-dev-overlay/app/hot-reloader-client.js:43
