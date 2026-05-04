@@ -50,26 +50,87 @@ async function fetchHAState(entityId: string): Promise<HAState | null> {
   }
 }
 
-export async function getEnergyData(): Promise<SensorData | null> {
-  const [hcState, hpState] = await Promise.all([
-    fetchHAState(SENSOR_HC),
-    fetchHAState(SENSOR_HP),
-  ]);
-
-  if (!hcState || !hpState) {
-    console.warn("No se pudieron obtener datos de sensores");
-    return null;
+async function getMonthlyConsumption(
+  entityId: string
+): Promise<number | null> {
+  if (!TOKEN) {
+    throw new Error("HA_TOKEN no configurado");
   }
 
   try {
-    const hc = parseFloat(hcState.state);
-    const hp = parseFloat(hpState.state);
+    // Obtén el primer día del mes actual a las 00:00
+    const now = new Date();
+    const firstDayOfMonth = new Date(now.getFullYear(), now.getMonth(), 1, 0, 0, 0);
+    const startTime = firstDayOfMonth.toISOString();
 
-    if (isNaN(hc) || isNaN(hp)) {
-      console.warn("Valores inválidos en sensores:", {
-        hc: hcState.state,
-        hp: hpState.state,
+    // Consulta historial desde el inicio del mes
+    const historyUrl = `${BASE_URL}/api/history/period/${startTime}?filter_entity_ids=${entityId}`;
+
+    const response = await fetch(historyUrl, {
+      headers: {
+        Authorization: `Bearer ${TOKEN}`,
+        "Content-Type": "application/json",
+      },
+    });
+
+    if (!response.ok) {
+      console.error(`Error fetching history for ${entityId}:`, response.status);
+      return null;
+    }
+
+    const history = (await response.json()) as Array<
+      Array<{ state: string; last_changed: string }>
+    >;
+
+    if (!history || history.length === 0 || history[0].length === 0) {
+      console.warn(`No history found for ${entityId}`);
+      return null;
+    }
+
+    // Obtén el valor del primer día del mes
+    const firstValue = parseFloat(history[0][0].state);
+
+    // Obtén el valor actual
+    const currentState = await fetchHAState(entityId);
+    if (!currentState) {
+      return null;
+    }
+
+    const currentValue = parseFloat(currentState.state);
+
+    if (isNaN(firstValue) || isNaN(currentValue)) {
+      console.warn(`Invalid values in history for ${entityId}:`, {
+        first: history[0][0].state,
+        current: currentState.state,
       });
+      return null;
+    }
+
+    // Calcula el consumo del mes (diferencia)
+    const monthlyConsumption = currentValue - firstValue;
+
+    console.log(
+      `📊 ${entityId}: acumulado=${currentValue}, inicial=${firstValue}, consumo_mes=${monthlyConsumption.toFixed(
+        3
+      )} kWh`
+    );
+
+    return monthlyConsumption;
+  } catch (error) {
+    console.error(`Error calculating monthly consumption for ${entityId}:`, error);
+    return null;
+  }
+}
+
+export async function getEnergyData(): Promise<SensorData | null> {
+  try {
+    const [hc, hp] = await Promise.all([
+      getMonthlyConsumption(SENSOR_HC),
+      getMonthlyConsumption(SENSOR_HP),
+    ]);
+
+    if (hc === null || hp === null) {
+      console.warn("No se pudieron obtener datos de consumo mensual");
       return null;
     }
 
@@ -79,7 +140,7 @@ export async function getEnergyData(): Promise<SensorData | null> {
       timestamp: new Date().toISOString(),
     };
   } catch (error) {
-    console.error("Error parsing sensor data:", error);
+    console.error("Error getting energy data:", error);
     return null;
   }
 }
