@@ -87,10 +87,10 @@ export default function HistorialPage() {
           <>
             <div className="h-4 w-px bg-slate-200" />
             <span className="text-xs text-slate-500 font-mono">
-              HC total: <span className="font-semibold text-hc-700">{totalHC} kWh</span>
+              HC total: <span className="font-semibold text-hc-700">{totalHC.toFixed(3)} kWh</span>
             </span>
             <span className="text-xs text-slate-500 font-mono">
-              HP total: <span className="font-semibold text-hp-700">{totalHP} kWh</span>
+              HP total: <span className="font-semibold text-hp-700">{totalHP.toFixed(3)} kWh</span>
             </span>
           </>
         )}
