@@ -288,22 +288,36 @@ export default function DashboardPage() {
                 <tr className="bg-slate-50/80 border-b border-slate-100">
                   <th className="text-left px-6 py-3 text-xs font-semibold uppercase tracking-wider text-slate-500">Mes</th>
                   <th className="text-right px-4 py-3 text-xs font-semibold uppercase tracking-wider text-hc-600">HC 2026</th>
+                  <th className="text-right px-4 py-3 text-xs font-semibold uppercase tracking-wider text-hc-400">HC Var%</th>
                   <th className="text-right px-4 py-3 text-xs font-semibold uppercase tracking-wider text-hp-600">HP 2026</th>
+                  <th className="text-right px-4 py-3 text-xs font-semibold uppercase tracking-wider text-hp-400">HP Var%</th>
                   <th className="text-right px-4 py-3 text-xs font-semibold uppercase tracking-wider text-slate-600">Total 2026</th>
-                  <th className="text-right px-4 py-3 text-xs font-semibold uppercase tracking-wider text-slate-400">vs 2025</th>
+                  <th className="text-right px-5 py-3 text-xs font-semibold uppercase tracking-wider text-slate-400">Total Var%</th>
                 </tr>
               </thead>
               <tbody>
                 {last3Months.map(d => {
                   const prev = kpis2025.find(p => p.mes === d.mes);
+                  const varHC = prev ? Math.round(((d.hc - prev.hc) / prev.hc) * 100) : null;
+                  const varHP = prev ? Math.round(((d.hp - prev.hp) / prev.hp) * 100) : null;
                   const varPct = prev ? Math.round(((d.total - prev.total) / prev.total) * 100) : null;
                   return (
                     <tr key={d.mes} className="border-b border-slate-50 hover:bg-slate-50/70">
                       <td className="px-6 py-3 font-semibold text-slate-700">{MESES[d.mes - 1]}</td>
                       <td className="px-4 py-3 text-right font-mono text-hc-600 font-semibold">{d.hc.toFixed(3)}</td>
-                      <td className="px-4 py-3 text-right font-mono text-hp-600 font-semibold">{d.hp.toFixed(3)}</td>
-                      <td className="px-4 py-3 text-right font-mono text-slate-800 font-semibold">{d.total.toFixed(3)}</td>
                       <td className={`px-4 py-3 text-right font-semibold ${
+                        varHC ? (varHC < 0 ? "text-savings-600" : "text-red-500") : "text-slate-400"
+                      }`}>
+                        {varHC ? `${varHC > 0 ? "+" : ""}${varHC}%` : "—"}
+                      </td>
+                      <td className="px-4 py-3 text-right font-mono text-hp-600 font-semibold">{d.hp.toFixed(3)}</td>
+                      <td className={`px-4 py-3 text-right font-semibold ${
+                        varHP ? (varHP < 0 ? "text-savings-600" : "text-red-500") : "text-slate-400"
+                      }`}>
+                        {varHP ? `${varHP > 0 ? "+" : ""}${varHP}%` : "—"}
+                      </td>
+                      <td className="px-4 py-3 text-right font-mono text-slate-800 font-semibold">{d.total.toFixed(3)}</td>
+                      <td className={`px-5 py-3 text-right font-semibold ${
                         varPct ? (varPct < 0 ? "text-savings-600" : "text-red-500") : "text-slate-400"
                       }`}>
                         {varPct ? `${varPct > 0 ? "+" : ""}${varPct}%` : "—"}
