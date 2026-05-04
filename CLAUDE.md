@@ -95,6 +95,14 @@ npm start
 npm run lint
 ```
 
+## Workflow de Commits y Push
+
+**Patrón obligatorio**:
+- **Cada cambio** → Hacer un commit en local (incluso cambios pequeños)
+- **Cada 5 commits acumulados** → Hacer un push a GitHub
+
+Esto mantiene un historial granular de cambios mientras agrupa los pushes remotos para reducir ruido en el repositorio remoto.
+
 ## Configuración de Entorno
 
 Variables requeridas en `.env.local` (configuración de Firebase):
