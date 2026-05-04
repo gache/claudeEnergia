@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
+import { getEnergyData } from "@/lib/homeassistant";
 
 type WebhookPayload = {
   entity_id: string;
@@ -11,6 +12,9 @@ type WebhookPayload = {
   };
 };
 
+let lastSyncTime = 0;
+const SYNC_DEBOUNCE_MS = 5000; // Evita sincronizaciones muy frecuentes
+
 export async function POST(request: NextRequest) {
   try {
     const payload = (await request.json()) as WebhookPayload;
@@ -21,21 +25,45 @@ export async function POST(request: NextRequest) {
       timestamp: new Date().toISOString(),
     });
 
-    // Aquí puedes procesar los datos
-    // Por ahora solo registramos
+    // Debounce: evita sincronizar si fue muy recientemente
+    const now = Date.now();
+    if (now - lastSyncTime < SYNC_DEBOUNCE_MS) {
+      console.log("⏳ Sincronización en espera (debounce)...");
+      return NextResponse.json({
+        success: true,
+        message: "Webhook recibido, sincronización en espera",
+      });
+    }
+
+    lastSyncTime = now;
+
+    // Obtén los datos actualizados con historial
+    const energyData = await getEnergyData();
+
+    if (!energyData) {
+      return NextResponse.json(
+        { error: "No se pudieron obtener datos" },
+        { status: 500 }
+      );
+    }
+
+    console.log("✅ Datos sincronizados vía webhook:", {
+      hc: energyData.hc.toFixed(3),
+      hp: energyData.hp.toFixed(3),
+      timestamp: energyData.timestamp,
+    });
+
+    // Notifica al frontend para que actualice
     return NextResponse.json({
       success: true,
-      message: "Webhook recibido correctamente",
-      received: {
-        entity: payload.entity_id,
-        value: payload.new_state.state,
-      },
+      message: "Sincronización completada",
+      data: energyData,
     });
   } catch (error) {
     console.error("❌ Error en webhook:", error);
     return NextResponse.json(
       { error: "Error procesando webhook" },
-      { status: 400 }
+      { status: 500 }
     );
   }
 }
