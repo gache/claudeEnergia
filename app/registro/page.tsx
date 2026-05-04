@@ -67,7 +67,7 @@ export default function RegistroPage() {
             {MESES[mes - 1]} {año}
           </span>
           {existing && (
-            <span className="badge bg-red-50 text-red-700 border border-red-200">
+            <span className="badge bg-amber-50 text-amber-700 border border-amber-200">
               Registro existente
             </span>
           )}
@@ -121,19 +121,19 @@ export default function RegistroPage() {
 
           {/* Existing entry notice */}
           {existing && (
-            <div className="flex items-start justify-between bg-red-50/60 backdrop-blur-sm rounded-xl px-4 py-3 border border-red-200/60 gap-3">
+            <div className="flex items-start justify-between bg-amber-50/60 backdrop-blur-sm rounded-xl px-4 py-3 border border-amber-200/60 gap-3">
               <div className="flex items-start gap-2">
-                <AlertCircle className="w-4 h-4 text-red-500 flex-shrink-0 mt-0.5" />
+                <AlertCircle className="w-4 h-4 text-amber-500 flex-shrink-0 mt-0.5" />
                 <div>
-                  <p className="text-sm font-semibold text-red-800">Registro existente</p>
-                  <p className="text-xs text-red-600 mt-0.5">
+                  <p className="text-sm font-semibold text-amber-800">Registro existente</p>
+                  <p className="text-xs text-amber-600 mt-0.5">
                     {MESES[mes - 1]} {año}: HC = <strong>{existing.hc}</strong> kWh · HP = <strong>{existing.hp}</strong> kWh
                   </p>
                 </div>
               </div>
               <button
                 onClick={handleLoad}
-                className="text-xs font-semibold text-red-700 hover:text-red-900 border border-red-300 bg-red-100 hover:bg-red-200 px-3 py-1.5 rounded-lg transition-colors whitespace-nowrap min-h-[32px]"
+                className="text-xs font-semibold text-amber-700 hover:text-amber-900 border border-amber-300 bg-amber-100 hover:bg-amber-200 px-3 py-1.5 rounded-lg transition-colors whitespace-nowrap min-h-[32px]"
               >
                 Cargar valores
               </button>
