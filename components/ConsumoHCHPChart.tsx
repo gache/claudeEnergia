@@ -30,7 +30,7 @@ function CustomTooltip({ active, payload, label }: any) {
         </div>
         <div className="flex items-center justify-between gap-4">
           <div className="flex items-center gap-2">
-            <div className="w-2.5 h-2.5 rounded-full bg-hp-500" />
+            <div className="w-2.5 h-2.5 rounded-full bg-red-500" />
             <span className="text-xs text-slate-500">HP</span>
           </div>
           <span className="text-sm font-bold text-hp-700 tabular-nums">{hp} kWh</span>
@@ -79,7 +79,7 @@ export default function ConsumoHCHPChart({ data, title = "Consumo HC / HP (kWh)"
             iconSize={8}
           />
           <Bar dataKey="HC" stackId="a" fill="#06b6d4" name="HC (Heures Creuses)" />
-          <Bar dataKey="HP" stackId="a" fill="#f59e0b" radius={[6, 6, 0, 0]} name="HP (Heures Pleines)" />
+          <Bar dataKey="HP" stackId="a" fill="#ef4444" radius={[6, 6, 0, 0]} name="HP (Heures Pleines)" />
         </BarChart>
       </ResponsiveContainer>
     </div>

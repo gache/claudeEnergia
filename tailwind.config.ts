@@ -49,18 +49,18 @@ const config: Config = {
           800: "#004a88",
           900: "#003d6f",
         },
-        // HP accent — sophisticated coral
+        // HP accent — vibrant red
         hp: {
-          50:  "#fff5f0",
-          100: "#ffe5d9",
-          200: "#ffc9b3",
-          300: "#ffb399",
-          400: "#ff9f7f",
-          500: "#ff7f50",
-          600: "#e66a42",
-          700: "#c95535",
-          800: "#a84228",
-          900: "#87331e",
+          50:  "#fef2f2",
+          100: "#fee2e2",
+          200: "#fecaca",
+          300: "#fca5a5",
+          400: "#f87171",
+          500: "#ef4444",
+          600: "#dc2626",
+          700: "#b91c1c",
+          800: "#991b1b",
+          900: "#7f1d1d",
         },
         // Success / savings
         savings: {

@@ -1,0 +1,215 @@
+[     643ms] [INFO] %cDownload the React DevTools for a better development experience: https://reactjs.org/link/react-devtools font-weight:bold @ webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/react-dom/cjs/react-dom.development.js:38559
+[     726ms] [LOG] Firebase Config Keys: {apiKey: ✓ AIzaSyBhWv..., authDomain: energia-a1eef.firebaseapp.com, projectId: energia-a1eef} @ webpack-internal:///(app-pages-browser)/./lib/firebase.ts:30
+[    1262ms] [ERROR] Failed to load resource: the server responded with a status of 400 () @ https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyBhWv-ZOIk-qbHZlwF0s2e8Tg3veUq1XGo:0
+[    1263ms] [ERROR] Anonymous sign-in error: FirebaseError: Firebase: Error (auth/admin-restricted-operation).
+    at createErrorInternal (webpack-internal:///(app-pages-browser)/./node_modules/firebase/node_modules/@firebase/auth/dist/esm/index-568d0403.js:624:41)
+    at _fail (webpack-internal:///(app-pages-browser)/./node_modules/firebase/node_modules/@firebase/auth/dist/esm/index-568d0403.js:589:11)
+    at _performFetchWithErrorHandling (webpack-internal:///(app-pages-browser)/./node_modules/firebase/node_modules/@firebase/auth/dist/esm/index-568d0403.js:1086:17)
+    at async _performSignInRequest (webpack-internal:///(app-pages-browser)/./node_modules/firebase/node_modules/@firebase/auth/dist/esm/index-568d0403.js:1101:28)
+    at async signInAnonymously (webpack-internal:///(app-pages-browser)/./node_modules/firebase/node_modules/@firebase/auth/dist/esm/index-568d0403.js:5761:22)
+    at async initAuth (webpack-internal:///(app-pages-browser)/./lib/AuthContext.tsx:29:21) @ webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/app-index.js:32
+[    1360ms] [ERROR] Failed to load resource: the server responded with a status of 400 () @ https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyBhWv-ZOIk-qbHZlwF0s2e8Tg3veUq1XGo:0
+[    1362ms] [ERROR] Anonymous sign-in error: FirebaseError: Firebase: Error (auth/admin-restricted-operation).
+    at createErrorInternal (webpack-internal:///(app-pages-browser)/./node_modules/firebase/node_modules/@firebase/auth/dist/esm/index-568d0403.js:624:41)
+    at _fail (webpack-internal:///(app-pages-browser)/./node_modules/firebase/node_modules/@firebase/auth/dist/esm/index-568d0403.js:589:11)
+    at _performFetchWithErrorHandling (webpack-internal:///(app-pages-browser)/./node_modules/firebase/node_modules/@firebase/auth/dist/esm/index-568d0403.js:1086:17)
+    at async _performSignInRequest (webpack-internal:///(app-pages-browser)/./node_modules/firebase/node_modules/@firebase/auth/dist/esm/index-568d0403.js:1101:28)
+    at async signInAnonymously (webpack-internal:///(app-pages-browser)/./node_modules/firebase/node_modules/@firebase/auth/dist/esm/index-568d0403.js:5761:22)
+    at async initAuth (webpack-internal:///(app-pages-browser)/./lib/AuthContext.tsx:29:21) @ webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/app-index.js:32
+[    5986ms] [ERROR] [2026-05-04T19:08:32.269Z]  @firebase/firestore: Firestore (12.12.0): FirebaseError: [code=resource-exhausted]: Quota exceeded. @ webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/app-index.js:32
+[    5986ms] [ERROR] [2026-05-04T19:08:32.270Z]  @firebase/firestore: Firestore (12.12.0): Using maximum backoff delay to prevent overloading the backend. @ webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/app-index.js:32
+[   49979ms] [ERROR] [2026-05-04T19:09:16.262Z]  @firebase/firestore: Firestore (12.12.0): FirebaseError: [code=resource-exhausted]: Quota exceeded. @ webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/app-index.js:32
+[   49979ms] [ERROR] [2026-05-04T19:09:16.263Z]  @firebase/firestore: Firestore (12.12.0): Using maximum backoff delay to prevent overloading the backend. @ webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/app-index.js:32
+[  116589ms] [ERROR] [2026-05-04T19:10:22.872Z]  @firebase/firestore: Firestore (12.12.0): FirebaseError: [code=resource-exhausted]: Quota exceeded. @ webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/app-index.js:32
+[  116589ms] [ERROR] [2026-05-04T19:10:22.872Z]  @firebase/firestore: Firestore (12.12.0): Using maximum backoff delay to prevent overloading the backend. @ webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/app-index.js:32
+[  150645ms] [LOG] [Fast Refresh] rebuilding @ webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/components/react-dev-overlay/app/hot-reloader-client.js:186
+[  151245ms] [LOG] [Fast Refresh] done in 600ms @ webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/components/react-dev-overlay/app/hot-reloader-client.js:43
+[  156914ms] [ERROR] [2026-05-04T19:11:03.198Z]  @firebase/firestore: Firestore (12.12.0): FirebaseError: [code=resource-exhausted]: Quota exceeded. @ webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/app-index.js:32
+[  156914ms] [ERROR] [2026-05-04T19:11:03.198Z]  @firebase/firestore: Firestore (12.12.0): Using maximum backoff delay to prevent overloading the backend. @ webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/app-index.js:32
+[  168576ms] [LOG] [Fast Refresh] rebuilding @ webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/components/react-dev-overlay/app/hot-reloader-client.js:186
+[  168982ms] [LOG] [Fast Refresh] done in 405ms @ webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/components/react-dev-overlay/app/hot-reloader-client.js:43
+[  189395ms] [LOG] [Fast Refresh] rebuilding @ webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/components/react-dev-overlay/app/hot-reloader-client.js:186
+[  189699ms] [LOG] [Fast Refresh] done in 305ms @ webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/components/react-dev-overlay/app/hot-reloader-client.js:43
+[  197449ms] [LOG] [Fast Refresh] rebuilding @ webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/components/react-dev-overlay/app/hot-reloader-client.js:186
+[  197741ms] [LOG] [Fast Refresh] done in 291ms @ webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/components/react-dev-overlay/app/hot-reloader-client.js:43
+[  212238ms] [LOG] [Fast Refresh] rebuilding @ webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/components/react-dev-overlay/app/hot-reloader-client.js:186
+[  213037ms] [ERROR] [2026-05-04T19:11:59.321Z]  @firebase/firestore: Firestore (12.12.0): FirebaseError: [code=resource-exhausted]: Quota exceeded. @ webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/app-index.js:32
+[  213037ms] [ERROR] [2026-05-04T19:11:59.321Z]  @firebase/firestore: Firestore (12.12.0): Using maximum backoff delay to prevent overloading the backend. @ webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/app-index.js:32
+[  214396ms] [LOG] [Fast Refresh] done in 2159ms @ webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/components/react-dev-overlay/app/hot-reloader-client.js:43
+[  214448ms] [LOG] [HMR] Detected local css modules. Reload all css @ webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/mini-css-extract-plugin/hmr/hotModuleReplacement.js:1
+[  214448ms] [LOG] [HMR] Detected local css modules. Reload all css @ webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/mini-css-extract-plugin/hmr/hotModuleReplacement.js:1
+[  214454ms] Error: inter is not defined
+    at RootLayout (webpack-internal:///(rsc)/./app/layout.tsx:41:23)
+    at eC (/Users/erickfranco/claudeEnergia/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:265189)
+    at e (/Users/erickfranco/claudeEnergia/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:269321)
+    at eL (/Users/erickfranco/claudeEnergia/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:269809)
+    at eJ (/Users/erickfranco/claudeEnergia/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:275773)
+    at eR (/Users/erickfranco/claudeEnergia/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:266017)
+    at eC (/Users/erickfranco/claudeEnergia/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:265059)
+    at e (/Users/erickfranco/claudeEnergia/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:269321)
+    at eL (/Users/erickfranco/claudeEnergia/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:269809)
+    at /Users/erickfranco/claudeEnergia/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:267040
+    at Array.toJSON (/Users/erickfranco/claudeEnergia/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:267504)
+    at stringify (<anonymous>)
+    at eJ (/Users/erickfranco/claudeEnergia/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:275872)
+    at eV (/Users/erickfranco/claudeEnergia/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:276390)
+    at AsyncLocalStorage.run (node:internal/async_local_storage/async_context_frame:63:14)
+    at Timeout._onTimeout (/Users/erickfranco/claudeEnergia/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:284753)
+    at listOnTimeout (node:internal/timers:605:17)
+    at process.processTimers (node:internal/timers:541:7)
+[  214454ms] Error: inter is not defined
+    at RootLayout (webpack-internal:///(rsc)/./app/layout.tsx:41:23)
+    at eC (/Users/erickfranco/claudeEnergia/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:265189)
+    at e (/Users/erickfranco/claudeEnergia/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:269321)
+    at eL (/Users/erickfranco/claudeEnergia/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:269809)
+    at eJ (/Users/erickfranco/claudeEnergia/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:275773)
+    at eR (/Users/erickfranco/claudeEnergia/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:266017)
+    at eC (/Users/erickfranco/claudeEnergia/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:265059)
+    at e (/Users/erickfranco/claudeEnergia/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:269321)
+    at eL (/Users/erickfranco/claudeEnergia/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:269809)
+    at /Users/erickfranco/claudeEnergia/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:267040
+    at Array.toJSON (/Users/erickfranco/claudeEnergia/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:267504)
+    at stringify (<anonymous>)
+    at eJ (/Users/erickfranco/claudeEnergia/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:275872)
+    at eV (/Users/erickfranco/claudeEnergia/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:276390)
+    at AsyncLocalStorage.run (node:internal/async_local_storage/async_context_frame:63:14)
+    at Timeout._onTimeout (/Users/erickfranco/claudeEnergia/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:284753)
+    at listOnTimeout (node:internal/timers:605:17)
+    at process.processTimers (node:internal/timers:541:7)
+[  214470ms] Error: inter is not defined
+    at RootLayout (webpack-internal:///(rsc)/./app/layout.tsx:41:23)
+    at eC (/Users/erickfranco/claudeEnergia/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:265189)
+    at e (/Users/erickfranco/claudeEnergia/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:269321)
+    at eL (/Users/erickfranco/claudeEnergia/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:269809)
+    at eJ (/Users/erickfranco/claudeEnergia/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:275773)
+    at eR (/Users/erickfranco/claudeEnergia/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:266017)
+    at eC (/Users/erickfranco/claudeEnergia/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:265059)
+    at e (/Users/erickfranco/claudeEnergia/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:269321)
+    at eL (/Users/erickfranco/claudeEnergia/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:269809)
+    at /Users/erickfranco/claudeEnergia/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:267040
+    at Array.toJSON (/Users/erickfranco/claudeEnergia/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:267504)
+    at stringify (<anonymous>)
+    at eJ (/Users/erickfranco/claudeEnergia/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:275872)
+    at eV (/Users/erickfranco/claudeEnergia/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:276390)
+    at AsyncLocalStorage.run (node:internal/async_local_storage/async_context_frame:63:14)
+    at Timeout._onTimeout (/Users/erickfranco/claudeEnergia/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:284753)
+    at listOnTimeout (node:internal/timers:605:17)
+    at process.processTimers (node:internal/timers:541:7)
+[  214470ms] Error: inter is not defined
+    at RootLayout (webpack-internal:///(rsc)/./app/layout.tsx:41:23)
+    at eC (/Users/erickfranco/claudeEnergia/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:265189)
+    at e (/Users/erickfranco/claudeEnergia/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:269321)
+    at eL (/Users/erickfranco/claudeEnergia/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:269809)
+    at eJ (/Users/erickfranco/claudeEnergia/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:275773)
+    at eR (/Users/erickfranco/claudeEnergia/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:266017)
+    at eC (/Users/erickfranco/claudeEnergia/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:265059)
+    at e (/Users/erickfranco/claudeEnergia/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:269321)
+    at eL (/Users/erickfranco/claudeEnergia/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:269809)
+    at /Users/erickfranco/claudeEnergia/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:267040
+    at Array.toJSON (/Users/erickfranco/claudeEnergia/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:267504)
+    at stringify (<anonymous>)
+    at eJ (/Users/erickfranco/claudeEnergia/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:275872)
+    at eV (/Users/erickfranco/claudeEnergia/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:276390)
+    at AsyncLocalStorage.run (node:internal/async_local_storage/async_context_frame:63:14)
+    at Timeout._onTimeout (/Users/erickfranco/claudeEnergia/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:284753)
+    at listOnTimeout (node:internal/timers:605:17)
+    at process.processTimers (node:internal/timers:541:7)
+[  214470ms] Error: inter is not defined
+    at RootLayout (webpack-internal:///(rsc)/./app/layout.tsx:41:23)
+    at eC (/Users/erickfranco/claudeEnergia/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:265189)
+    at e (/Users/erickfranco/claudeEnergia/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:269321)
+    at eL (/Users/erickfranco/claudeEnergia/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:269809)
+    at eJ (/Users/erickfranco/claudeEnergia/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:275773)
+    at eR (/Users/erickfranco/claudeEnergia/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:266017)
+    at eC (/Users/erickfranco/claudeEnergia/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:265059)
+    at e (/Users/erickfranco/claudeEnergia/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:269321)
+    at eL (/Users/erickfranco/claudeEnergia/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:269809)
+    at /Users/erickfranco/claudeEnergia/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:267040
+    at Array.toJSON (/Users/erickfranco/claudeEnergia/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:267504)
+    at stringify (<anonymous>)
+    at eJ (/Users/erickfranco/claudeEnergia/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:275872)
+    at eV (/Users/erickfranco/claudeEnergia/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:276390)
+    at AsyncLocalStorage.run (node:internal/async_local_storage/async_context_frame:63:14)
+    at Timeout._onTimeout (/Users/erickfranco/claudeEnergia/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:284753)
+    at listOnTimeout (node:internal/timers:605:17)
+    at process.processTimers (node:internal/timers:541:7)
+[  214470ms] Error: inter is not defined
+    at RootLayout (webpack-internal:///(rsc)/./app/layout.tsx:41:23)
+    at eC (/Users/erickfranco/claudeEnergia/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:265189)
+    at e (/Users/erickfranco/claudeEnergia/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:269321)
+    at eL (/Users/erickfranco/claudeEnergia/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:269809)
+    at eJ (/Users/erickfranco/claudeEnergia/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:275773)
+    at eR (/Users/erickfranco/claudeEnergia/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:266017)
+    at eC (/Users/erickfranco/claudeEnergia/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:265059)
+    at e (/Users/erickfranco/claudeEnergia/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:269321)
+    at eL (/Users/erickfranco/claudeEnergia/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:269809)
+    at /Users/erickfranco/claudeEnergia/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:267040
+    at Array.toJSON (/Users/erickfranco/claudeEnergia/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:267504)
+    at stringify (<anonymous>)
+    at eJ (/Users/erickfranco/claudeEnergia/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:275872)
+    at eV (/Users/erickfranco/claudeEnergia/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:276390)
+    at AsyncLocalStorage.run (node:internal/async_local_storage/async_context_frame:63:14)
+    at Timeout._onTimeout (/Users/erickfranco/claudeEnergia/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:284753)
+    at listOnTimeout (node:internal/timers:605:17)
+    at process.processTimers (node:internal/timers:541:7)
+[  214469ms] [ERROR] The above error occurred in the <NotFoundErrorBoundary> component:
+
+    at RedirectErrorBoundary (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/components/redirect-boundary.js:74:9)
+    at RedirectBoundary (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/components/redirect-boundary.js:82:11)
+    at NotFoundErrorBoundary (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/components/not-found-boundary.js:76:9)
+    at NotFoundBoundary (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/components/not-found-boundary.js:84:11)
+    at DevRootNotFoundBoundary (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/components/dev-root-not-found-boundary.js:33:11)
+    at ReactDevOverlay (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/components/react-dev-overlay/app/ReactDevOverlay.js:87:9)
+    at HotReload (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/components/react-dev-overlay/app/hot-reloader-client.js:321:11)
+    at Router (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/components/app-router.js:207:11)
+    at ErrorBoundaryHandler (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/components/error-boundary.js:113:9)
+    at ErrorBoundary (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/components/error-boundary.js:160:11)
+    at AppRouter (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/components/app-router.js:585:13)
+    at ServerRoot (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/app-index.js:112:27)
+    at Root (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/app-index.js:117:11)
+
+React will try to recreate this component tree from scratch using the error boundary you provided, ReactDevOverlay. @ webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/app-index.js:32
+[  222469ms] [LOG] [Fast Refresh] rebuilding @ webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/components/react-dev-overlay/app/hot-reloader-client.js:186
+[  222928ms] [WARNING] [Fast Refresh] performing full reload because your application had an unrecoverable error @ webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/components/react-dev-overlay/app/hot-reloader-client.js:114
+[  223481ms] [INFO] %cDownload the React DevTools for a better development experience: https://reactjs.org/link/react-devtools font-weight:bold @ webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/react-dom/cjs/react-dom.development.js:38559
+[  223564ms] [LOG] Firebase Config Keys: {apiKey: ✓ AIzaSyBhWv..., authDomain: energia-a1eef.firebaseapp.com, projectId: energia-a1eef} @ webpack-internal:///(app-pages-browser)/./lib/firebase.ts:30
+[  223948ms] [ERROR] Failed to load resource: the server responded with a status of 400 () @ https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyBhWv-ZOIk-qbHZlwF0s2e8Tg3veUq1XGo:0
+[  223949ms] [ERROR] Anonymous sign-in error: FirebaseError: Firebase: Error (auth/admin-restricted-operation).
+    at createErrorInternal (webpack-internal:///(app-pages-browser)/./node_modules/firebase/node_modules/@firebase/auth/dist/esm/index-568d0403.js:624:41)
+    at _fail (webpack-internal:///(app-pages-browser)/./node_modules/firebase/node_modules/@firebase/auth/dist/esm/index-568d0403.js:589:11)
+    at _performFetchWithErrorHandling (webpack-internal:///(app-pages-browser)/./node_modules/firebase/node_modules/@firebase/auth/dist/esm/index-568d0403.js:1086:17)
+    at async _performSignInRequest (webpack-internal:///(app-pages-browser)/./node_modules/firebase/node_modules/@firebase/auth/dist/esm/index-568d0403.js:1101:28)
+    at async signInAnonymously (webpack-internal:///(app-pages-browser)/./node_modules/firebase/node_modules/@firebase/auth/dist/esm/index-568d0403.js:5761:22)
+    at async initAuth (webpack-internal:///(app-pages-browser)/./lib/AuthContext.tsx:29:21) @ webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/app-index.js:32
+[  223959ms] [ERROR] Failed to load resource: the server responded with a status of 400 () @ https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyBhWv-ZOIk-qbHZlwF0s2e8Tg3veUq1XGo:0
+[  223960ms] [ERROR] Anonymous sign-in error: FirebaseError: Firebase: Error (auth/admin-restricted-operation).
+    at createErrorInternal (webpack-internal:///(app-pages-browser)/./node_modules/firebase/node_modules/@firebase/auth/dist/esm/index-568d0403.js:624:41)
+    at _fail (webpack-internal:///(app-pages-browser)/./node_modules/firebase/node_modules/@firebase/auth/dist/esm/index-568d0403.js:589:11)
+    at _performFetchWithErrorHandling (webpack-internal:///(app-pages-browser)/./node_modules/firebase/node_modules/@firebase/auth/dist/esm/index-568d0403.js:1086:17)
+    at async _performSignInRequest (webpack-internal:///(app-pages-browser)/./node_modules/firebase/node_modules/@firebase/auth/dist/esm/index-568d0403.js:1101:28)
+    at async signInAnonymously (webpack-internal:///(app-pages-browser)/./node_modules/firebase/node_modules/@firebase/auth/dist/esm/index-568d0403.js:5761:22)
+    at async initAuth (webpack-internal:///(app-pages-browser)/./lib/AuthContext.tsx:29:21) @ webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/app-index.js:32
+[  228648ms] [LOG] [Fast Refresh] rebuilding @ webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/components/react-dev-overlay/app/hot-reloader-client.js:186
+[  228834ms] [ERROR] [2026-05-04T19:12:15.118Z]  @firebase/firestore: Firestore (12.12.0): FirebaseError: [code=resource-exhausted]: Quota exceeded. @ webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/app-index.js:32
+[  228834ms] [ERROR] [2026-05-04T19:12:15.118Z]  @firebase/firestore: Firestore (12.12.0): Using maximum backoff delay to prevent overloading the backend. @ webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/app-index.js:32
+[  229009ms] [LOG] [Fast Refresh] done in 361ms @ webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/components/react-dev-overlay/app/hot-reloader-client.js:43
+[  235465ms] [LOG] [Fast Refresh] rebuilding @ webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/components/react-dev-overlay/app/hot-reloader-client.js:186
+[  235971ms] [LOG] [Fast Refresh] done in 506ms @ webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/components/react-dev-overlay/app/hot-reloader-client.js:43
+[  253902ms] [LOG] [Fast Refresh] rebuilding @ webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/components/react-dev-overlay/app/hot-reloader-client.js:186
+[  254215ms] [LOG] [Fast Refresh] done in 313ms @ webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/components/react-dev-overlay/app/hot-reloader-client.js:43
+[  264219ms] [LOG] [Fast Refresh] rebuilding @ webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/components/react-dev-overlay/app/hot-reloader-client.js:186
+[  264410ms] [LOG] [Fast Refresh] done in 191ms @ webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/components/react-dev-overlay/app/hot-reloader-client.js:43
+[  269609ms] [LOG] [Fast Refresh] rebuilding @ webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/components/react-dev-overlay/app/hot-reloader-client.js:186
+[  269807ms] [LOG] [Fast Refresh] done in 198ms @ webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/components/react-dev-overlay/app/hot-reloader-client.js:43
+[  270350ms] [ERROR] [2026-05-04T19:12:56.633Z]  @firebase/firestore: Firestore (12.12.0): FirebaseError: [code=resource-exhausted]: Quota exceeded. @ webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/app-index.js:32
+[  270350ms] [ERROR] [2026-05-04T19:12:56.634Z]  @firebase/firestore: Firestore (12.12.0): Using maximum backoff delay to prevent overloading the backend. @ webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/app-index.js:32
+[  274432ms] [LOG] [Fast Refresh] rebuilding @ webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/components/react-dev-overlay/app/hot-reloader-client.js:186
+[  274800ms] [LOG] [Fast Refresh] done in 368ms @ webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/components/react-dev-overlay/app/hot-reloader-client.js:43
+[  288441ms] [LOG] [Fast Refresh] rebuilding @ webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/components/react-dev-overlay/app/hot-reloader-client.js:186
+[  288641ms] [LOG] [Fast Refresh] done in 201ms @ webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/components/react-dev-overlay/app/hot-reloader-client.js:43
+[  294656ms] [LOG] [Fast Refresh] rebuilding @ webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/components/react-dev-overlay/app/hot-reloader-client.js:186
+[  294844ms] [LOG] [Fast Refresh] done in 189ms @ webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/components/react-dev-overlay/app/hot-reloader-client.js:43
+[  303040ms] [LOG] [Fast Refresh] rebuilding @ webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/components/react-dev-overlay/app/hot-reloader-client.js:186
+[  303383ms] [LOG] [Fast Refresh] done in 344ms @ webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/components/react-dev-overlay/app/hot-reloader-client.js:43
+[  340000ms] [ERROR] [2026-05-04T19:14:06.283Z]  @firebase/firestore: Firestore (12.12.0): FirebaseError: [code=resource-exhausted]: Quota exceeded. @ webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/app-index.js:32
+[  340000ms] [ERROR] [2026-05-04T19:14:06.283Z]  @firebase/firestore: Firestore (12.12.0): Using maximum backoff delay to prevent overloading the backend. @ webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/app-index.js:32

@@ -16,7 +16,7 @@ function CustomTooltip({ active, payload, label }: any) {
 
   const items = [
     { key: "Coste HC", color: "#06b6d4", unit: "€" },
-    { key: "Coste HP", color: "#f59e0b", unit: "€" },
+    { key: "Coste HP", color: "#ef4444", unit: "€" },
     { key: "Total",    color: "#8b5cf6", unit: "€" },
   ];
 
@@ -91,10 +91,10 @@ export default function CostoEvolucionChart({ data, title = "Evolución del cost
           <Line
             type="monotone"
             dataKey="Coste HP"
-            stroke="#f59e0b"
+            stroke="#ef4444"
             strokeWidth={2.5}
-            dot={{ r: 4, fill: "#f59e0b", strokeWidth: 0 }}
-            activeDot={{ r: 6, fill: "#f59e0b" }}
+            dot={{ r: 4, fill: "#ef4444", strokeWidth: 0 }}
+            activeDot={{ r: 6, fill: "#ef4444" }}
           />
           <Line
             type="monotone"

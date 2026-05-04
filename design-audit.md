@@ -1,0 +1,224 @@
+- generic [ref=e1]:
+  - alert [ref=e6]
+  - complementary [ref=e7]:
+    - generic [ref=e9]:
+      - img [ref=e11]
+      - generic [ref=e13]:
+        - generic [ref=e14]: claudeEnergía
+        - paragraph [ref=e15]: Análisis HC / HP
+    - navigation [ref=e16]:
+      - paragraph [ref=e17]: Navegación
+      - link "Dashboard Vista principal" [active] [ref=e18] [cursor=pointer]:
+        - /url: /
+        - img [ref=e20]
+        - generic [ref=e25]:
+          - paragraph [ref=e26]: Dashboard
+          - paragraph [ref=e27]: Vista principal
+      - link "Historial Datos por año" [ref=e29] [cursor=pointer]:
+        - /url: /historial
+        - img [ref=e31]
+        - generic [ref=e35]:
+          - paragraph [ref=e36]: Historial
+          - paragraph [ref=e37]: Datos por año
+      - link "Comparativa de años Análisis interanual" [ref=e38] [cursor=pointer]:
+        - /url: /comparativa
+        - img [ref=e40]
+        - generic [ref=e41]:
+          - paragraph [ref=e42]: Comparativa de años
+          - paragraph [ref=e43]: Análisis interanual
+      - link "Registrar Nuevo consumo" [ref=e44] [cursor=pointer]:
+        - /url: /registro
+        - img [ref=e46]
+        - generic [ref=e48]:
+          - paragraph [ref=e49]: Registrar
+          - paragraph [ref=e50]: Nuevo consumo
+    - generic [ref=e51]:
+      - generic [ref=e52]:
+        - generic [ref=e53]:
+          - img [ref=e54]
+          - paragraph [ref=e57]: Tarifas
+        - button "Editar tarifa May 2026" [ref=e58] [cursor=pointer]:
+          - img [ref=e59]
+      - generic [ref=e62]:
+        - button "2022" [ref=e63] [cursor=pointer]
+        - button "2023" [ref=e64] [cursor=pointer]
+        - button "2024" [ref=e65] [cursor=pointer]
+        - button "2025" [ref=e66] [cursor=pointer]
+        - button "2026" [ref=e67] [cursor=pointer]
+      - generic [ref=e68]:
+        - button "Ene" [ref=e69] [cursor=pointer]
+        - button "Feb" [ref=e70] [cursor=pointer]
+        - button "Mar" [ref=e71] [cursor=pointer]
+        - button "Abr" [ref=e72] [cursor=pointer]
+        - button "May" [ref=e73] [cursor=pointer]
+        - button "Jun" [ref=e74] [cursor=pointer]
+        - button "Jul" [ref=e75] [cursor=pointer]
+        - button "Ago" [ref=e76] [cursor=pointer]
+        - button "Sep" [ref=e77] [cursor=pointer]
+        - button "Oct" [ref=e78] [cursor=pointer]
+        - button "Nov" [ref=e79] [cursor=pointer]
+        - button "Dic" [ref=e80] [cursor=pointer]
+      - generic [ref=e81]:
+        - paragraph [ref=e82]: May 2026
+        - generic [ref=e83]:
+          - generic [ref=e86]: HC
+          - generic [ref=e87]: 0.19008 €/kWh
+        - generic [ref=e88]:
+          - generic [ref=e91]: HP
+          - generic [ref=e92]: 0.27436 €/kWh
+        - generic [ref=e93]:
+          - generic [ref=e94]: Ratio HP/HC
+          - generic [ref=e95]: 1.443×
+    - paragraph [ref=e97]: claudeEnergía v2.0
+  - main [ref=e98]:
+    - generic [ref=e358]:
+      - generic [ref=e359]:
+        - generic [ref=e360]:
+          - generic [ref=e362]: May 2026
+          - heading "Dashboard Energético" [level=1] [ref=e363]
+          - paragraph [ref=e364]: "Análisis de consumo mensual HC/HP · Tarifas: HC 0.190 €/kWh — HP 0.274 €/kWh"
+        - generic [ref=e365]:
+          - img [ref=e367]
+          - generic [ref=e369]:
+            - paragraph [ref=e370]: Total mes
+            - paragraph [ref=e371]: 36.13 kWh · 7.797 €
+      - generic [ref=e372]:
+        - generic [ref=e373]:
+          - generic [ref=e374]:
+            - paragraph [ref=e375]: Consumo HC
+            - img [ref=e377]
+          - paragraph [ref=e379]: 25.1kWh
+          - paragraph [ref=e380]: 4.771 €
+          - generic [ref=e381]:
+            - img [ref=e382]
+            - generic [ref=e385]: 91% vs año anterior
+        - generic [ref=e386]:
+          - generic [ref=e387]:
+            - paragraph [ref=e388]: Consumo HP
+            - img [ref=e390]
+          - paragraph [ref=e392]: 11.03kWh
+          - paragraph [ref=e393]: 3.026 €
+          - generic [ref=e394]:
+            - img [ref=e395]
+            - generic [ref=e398]: 93% vs año anterior
+        - generic [ref=e399]:
+          - generic [ref=e400]:
+            - paragraph [ref=e401]: Consumo Total
+            - img [ref=e403]
+          - paragraph [ref=e405]: 36.13kWh
+          - paragraph [ref=e406]: 7.797 €
+          - generic [ref=e407]:
+            - img [ref=e408]
+            - generic [ref=e411]: 92% vs año anterior
+        - generic [ref=e412]:
+          - generic [ref=e413]:
+            - paragraph [ref=e414]: Diferencia
+            - img [ref=e416]
+          - paragraph [ref=e417]: 14.070kWh
+          - paragraph [ref=e418]: Ventaja HC
+      - generic [ref=e419]:
+        - heading "Participación del consumo" [level=2] [ref=e420]
+        - generic [ref=e421]:
+          - generic [ref=e422]:
+            - paragraph [ref=e423]: HC — Heures Creuses
+            - paragraph [ref=e424]: 69.5%
+            - paragraph [ref=e425]: 25.1 kWh
+          - generic [ref=e428]:
+            - paragraph [ref=e429]: HP — Heures Pleines
+            - paragraph [ref=e430]: 30.5%
+            - paragraph [ref=e431]: 11.03 kWh
+        - generic [ref=e438]:
+          - generic [ref=e439]: HC 69.5%
+          - generic [ref=e440]: HP 30.5%
+      - generic [ref=e441]:
+        - heading "Últimos 3 meses — 2026 vs 2025" [level=2] [ref=e443]
+        - table [ref=e445]:
+          - rowgroup [ref=e446]:
+            - row "Mes HC 2026 HC Var% HP 2026 HP Var% Total 2026 Total Var%" [ref=e447]:
+              - columnheader "Mes" [ref=e448]
+              - columnheader "HC 2026" [ref=e449]
+              - columnheader "HC Var%" [ref=e450]
+              - columnheader "HP 2026" [ref=e451]
+              - columnheader "HP Var%" [ref=e452]
+              - columnheader "Total 2026" [ref=e453]
+              - columnheader "Total Var%" [ref=e454]
+          - rowgroup [ref=e455]:
+            - row "Mar 913.552 +26% 313.980 -18% 1227.532 +11%" [ref=e456]:
+              - cell "Mar" [ref=e457]
+              - cell "913.552" [ref=e458]
+              - cell "+26%" [ref=e459]
+              - cell "313.980" [ref=e460]
+              - cell "-18%" [ref=e461]
+              - cell "1227.532" [ref=e462]
+              - cell "+11%" [ref=e463]
+            - row "Abr 579.940 +26% 205.150 +17% 785.090 +24%" [ref=e464]:
+              - cell "Abr" [ref=e465]
+              - cell "579.940" [ref=e466]
+              - cell "+26%" [ref=e467]
+              - cell "205.150" [ref=e468]
+              - cell "+17%" [ref=e469]
+              - cell "785.090" [ref=e470]
+              - cell "+24%" [ref=e471]
+            - row "May 25.100 -91% 11.030 -93% 36.130 -92%" [ref=e472]:
+              - cell "May" [ref=e473]
+              - cell "25.100" [ref=e474]
+              - cell "-91%" [ref=e475]
+              - cell "11.030" [ref=e476]
+              - cell "-93%" [ref=e477]
+              - cell "36.130" [ref=e478]
+              - cell "-92%" [ref=e479]
+      - generic [ref=e480]:
+        - generic [ref=e481]:
+          - generic [ref=e482]:
+            - heading "Consumo HC/HP mensual 2026" [level=2] [ref=e483]
+            - paragraph [ref=e484]: Distribución acumulada HC (azul) y HP (naranja)
+          - generic [ref=e486]:
+            - img [ref=e487]:
+              - generic [ref=e491]:
+                - generic [ref=e493]: Ene
+                - generic [ref=e495]: Feb
+                - generic [ref=e497]: Mar
+                - generic [ref=e499]: Abr
+                - generic [ref=e501]: May
+              - generic [ref=e503]:
+                - generic [ref=e505]: "0"
+                - generic [ref=e507]: "500"
+                - generic [ref=e509]: "1000"
+                - generic [ref=e511]: "1500"
+                - generic [ref=e513]: "2000"
+            - list [ref=e539]:
+              - listitem [ref=e540]:
+                - img [ref=e541]
+                - text: HC (Heures Creuses)
+              - listitem [ref=e543]:
+                - img [ref=e544]
+                - text: HP (Heures Pleines)
+        - generic [ref=e546]:
+          - generic [ref=e547]:
+            - heading "Evolución de costes — 2026 (€)" [level=2] [ref=e548]
+            - paragraph [ref=e549]: Líneas de coste HC (cian), HP (naranja) y total (violeta)
+          - generic [ref=e551]:
+            - img [ref=e552]:
+              - generic [ref=e556]:
+                - generic [ref=e558]: Ene
+                - generic [ref=e560]: Feb
+                - generic [ref=e562]: Mar
+                - generic [ref=e564]: Abr
+                - generic [ref=e566]: May
+              - generic [ref=e568]:
+                - generic [ref=e570]: 0 €
+                - generic [ref=e572]: 150 €
+                - generic [ref=e574]: 300 €
+                - generic [ref=e576]: 450 €
+                - generic [ref=e578]: 600 €
+            - list [ref=e604]:
+              - listitem [ref=e605]:
+                - img [ref=e606]
+                - text: Coste HC
+              - listitem [ref=e608]:
+                - img [ref=e609]
+                - text: Coste HP
+              - listitem [ref=e611]:
+                - img [ref=e612]
+                - text: Total
+  - generic [ref=e356]: kWh

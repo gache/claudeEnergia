@@ -24,7 +24,7 @@ function VentajaBadge({ ventajaHC }: { ventajaHC: boolean }) {
     <span className={`inline-flex items-center gap-0.5 px-2 py-0.5 rounded-full text-[10px] font-bold ${
       ventajaHC
         ? "bg-cyan-50 text-cyan-700 border border-cyan-100"
-        : "bg-amber-50 text-amber-700 border border-amber-100"
+        : "bg-red-50 text-red-700 border border-red-100"
     }`}>
       {ventajaHC ? "HC" : "HP"}
     </span>

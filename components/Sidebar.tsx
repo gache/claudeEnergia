@@ -185,14 +185,14 @@ export default function Sidebar() {
               />
             </div>
             <div>
-              <label className="text-[9px] font-bold uppercase tracking-widest text-amber-400 block mb-1">HP €/kWh</label>
+              <label className="text-[9px] font-bold uppercase tracking-widest text-red-400 block mb-1">HP €/kWh</label>
               <input
                 type="number"
                 step="0.00001"
                 min="0"
                 value={draft.hp}
                 onChange={e => setDraft(d => d ? { ...d, hp: e.target.value } : d)}
-                className="w-full bg-white/10 border border-white/20 rounded-lg px-2.5 py-1.5 text-xs font-mono text-amber-200 focus:outline-none focus:border-amber-400/50 focus:bg-white/20"
+                className="w-full bg-white/10 border border-white/20 rounded-lg px-2.5 py-1.5 text-xs font-mono text-red-200 focus:outline-none focus:border-red-400/50 focus:bg-white/20"
               />
             </div>
             <div className="flex gap-2 pt-1">
@@ -226,10 +226,10 @@ export default function Sidebar() {
             </div>
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-2">
-                <div className="w-2 h-2 rounded-full bg-amber-400 flex-shrink-0" />
+                <div className="w-2 h-2 rounded-full bg-red-400 flex-shrink-0" />
                 <span className="text-xs text-slate-400 font-medium">HP</span>
               </div>
-              <span className="text-xs font-semibold text-amber-300 font-mono">{tarifa.hp.toFixed(5)} €/kWh</span>
+              <span className="text-xs font-semibold text-red-300 font-mono">{tarifa.hp.toFixed(5)} €/kWh</span>
             </div>
             <div className="pt-2 mt-1 border-t border-white/10 flex items-center justify-between">
               <span className="text-[10px] text-slate-500">Ratio HP/HC</span>
