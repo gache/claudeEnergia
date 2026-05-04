@@ -1,7 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getEnergyData } from "@/lib/homeassistant";
-import { db } from "@/lib/firebase";
-import { doc, updateDoc, serverTimestamp } from "firebase/firestore";
 
 export async function GET(request: NextRequest) {
   try {
@@ -37,22 +35,6 @@ export async function GET(request: NextRequest) {
         { error: "No se pudieron obtener datos de Home Assistant" },
         { status: 500 }
       );
-    }
-
-    // Actualiza Firestore
-    try {
-      const profileRef = doc(db, "familias/hogar/data/profile");
-      await updateDoc(profileRef, {
-        lastHASyncAt: serverTimestamp(),
-        lastHAData: {
-          hc: energyData.hc,
-          hp: energyData.hp,
-          syncedAt: new Date().toISOString(),
-        },
-      });
-    } catch (firestoreError) {
-      console.error("Error updating Firestore:", firestoreError);
-      // No falles si Firestore no está disponible
     }
 
     return NextResponse.json({
