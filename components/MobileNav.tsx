@@ -8,7 +8,7 @@ import { Menu, X, LayoutDashboard, History, BarChart2, PenLine } from "lucide-re
 const nav = [
   { href: "/",            label: "Dashboard",         icon: LayoutDashboard, desc: "Vista principal" },
   { href: "/historial",   label: "Historial",          icon: History,          desc: "Datos por año" },
-  { href: "/comparativa", label: "Comparativa 25/26",  icon: BarChart2,        desc: "Análisis interanual" },
+  { href: "/comparativa", label: "Comparativa de años",  icon: BarChart2,        desc: "Análisis interanual" },
   { href: "/registro",    label: "Registrar",           icon: PenLine,          desc: "Nuevo consumo" },
 ];
 

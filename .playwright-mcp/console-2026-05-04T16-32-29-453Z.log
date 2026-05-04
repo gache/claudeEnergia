@@ -1,0 +1,486 @@
+[     374ms] [INFO] %cDownload the React DevTools for a better development experience: https://reactjs.org/link/react-devtools font-weight:bold @ webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/react-dom/cjs/react-dom.development.js:38559
+[     417ms] [LOG] Firebase Config Keys: {apiKey: ✓ AIzaSyBhWv..., authDomain: energia-a1eef.firebaseapp.com, projectId: energia-a1eef} @ webpack-internal:///(app-pages-browser)/./lib/firebase.ts:30
+[     741ms] [ERROR] Failed to load resource: the server responded with a status of 400 () @ https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyBhWv-ZOIk-qbHZlwF0s2e8Tg3veUq1XGo:0
+[     741ms] [ERROR] Failed to load resource: the server responded with a status of 400 () @ https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyBhWv-ZOIk-qbHZlwF0s2e8Tg3veUq1XGo:0
+[     742ms] [ERROR] Anonymous sign-in error: FirebaseError: Firebase: Error (auth/admin-restricted-operation).
+    at createErrorInternal (webpack-internal:///(app-pages-browser)/./node_modules/firebase/node_modules/@firebase/auth/dist/esm/index-568d0403.js:624:41)
+    at _fail (webpack-internal:///(app-pages-browser)/./node_modules/firebase/node_modules/@firebase/auth/dist/esm/index-568d0403.js:589:11)
+    at _performFetchWithErrorHandling (webpack-internal:///(app-pages-browser)/./node_modules/firebase/node_modules/@firebase/auth/dist/esm/index-568d0403.js:1086:17)
+    at async _performSignInRequest (webpack-internal:///(app-pages-browser)/./node_modules/firebase/node_modules/@firebase/auth/dist/esm/index-568d0403.js:1101:28)
+    at async signInAnonymously (webpack-internal:///(app-pages-browser)/./node_modules/firebase/node_modules/@firebase/auth/dist/esm/index-568d0403.js:5761:22)
+    at async initAuth (webpack-internal:///(app-pages-browser)/./lib/AuthContext.tsx:29:21) @ webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/app-index.js:32
+[     748ms] [ERROR] Anonymous sign-in error: FirebaseError: Firebase: Error (auth/admin-restricted-operation).
+    at createErrorInternal (webpack-internal:///(app-pages-browser)/./node_modules/firebase/node_modules/@firebase/auth/dist/esm/index-568d0403.js:624:41)
+    at _fail (webpack-internal:///(app-pages-browser)/./node_modules/firebase/node_modules/@firebase/auth/dist/esm/index-568d0403.js:589:11)
+    at _performFetchWithErrorHandling (webpack-internal:///(app-pages-browser)/./node_modules/firebase/node_modules/@firebase/auth/dist/esm/index-568d0403.js:1086:17)
+    at async _performSignInRequest (webpack-internal:///(app-pages-browser)/./node_modules/firebase/node_modules/@firebase/auth/dist/esm/index-568d0403.js:1101:28)
+    at async signInAnonymously (webpack-internal:///(app-pages-browser)/./node_modules/firebase/node_modules/@firebase/auth/dist/esm/index-568d0403.js:5761:22)
+    at async initAuth (webpack-internal:///(app-pages-browser)/./lib/AuthContext.tsx:29:21) @ webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/app-index.js:32
+[    5631ms] [ERROR] [2026-05-04T16:32:35.084Z]  @firebase/firestore: Firestore (12.12.0): FirebaseError: [code=resource-exhausted]: Quota exceeded. @ webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/app-index.js:32
+[    5632ms] [ERROR] [2026-05-04T16:32:35.084Z]  @firebase/firestore: Firestore (12.12.0): Using maximum backoff delay to prevent overloading the backend. @ webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/app-index.js:32
+[   20515ms] [LOG] [Fast Refresh] rebuilding @ webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/components/react-dev-overlay/app/hot-reloader-client.js:186
+[   20864ms] [LOG] [Fast Refresh] done in 349ms @ webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/components/react-dev-overlay/app/hot-reloader-client.js:43
+[   32508ms] [LOG] [Fast Refresh] rebuilding @ webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/components/react-dev-overlay/app/hot-reloader-client.js:186
+[   32701ms] [LOG] [Fast Refresh] done in 193ms @ webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/components/react-dev-overlay/app/hot-reloader-client.js:43
+[   39061ms] [LOG] [Fast Refresh] rebuilding @ webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/components/react-dev-overlay/app/hot-reloader-client.js:186
+[   39295ms] [LOG] [Fast Refresh] done in 234ms @ webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/components/react-dev-overlay/app/hot-reloader-client.js:43
+[   46142ms] [LOG] [Fast Refresh] rebuilding @ webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/components/react-dev-overlay/app/hot-reloader-client.js:186
+[   47035ms] [LOG] [Fast Refresh] done in 894ms @ webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/components/react-dev-overlay/app/hot-reloader-client.js:43
+[   52274ms] [LOG] [Fast Refresh] rebuilding @ webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/components/react-dev-overlay/app/hot-reloader-client.js:186
+[   52699ms] [LOG] [Fast Refresh] done in 426ms @ webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/components/react-dev-overlay/app/hot-reloader-client.js:43
+[   57899ms] [LOG] [Fast Refresh] rebuilding @ webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/components/react-dev-overlay/app/hot-reloader-client.js:186
+[   58317ms] [LOG] [Fast Refresh] done in 419ms @ webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/components/react-dev-overlay/app/hot-reloader-client.js:43
+[   64651ms] [LOG] [Fast Refresh] rebuilding @ webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/components/react-dev-overlay/app/hot-reloader-client.js:186
+[   64935ms] [ERROR] ./app/comparativa/page.tsx
+Error: 
+  x Unexpected token `div`. Expected jsx identifier
+     ,-[/Users/erickfranco/claudeEnergia/app/comparativa/page.tsx:108:1]
+ 108 |   }));
+ 109 | 
+ 110 |   return (
+ 111 |     <div className="space-y-7 animate-fade-in">
+     :      ^^^
+ 112 | 
+ 113 |       {/* ── Header + year selectors ── */}
+ 114 |       <div className="flex items-start justify-between gap-4 flex-wrap animate-slide-up" style={{ animationDelay: "0ms" }}>
+     `----
+
+Caused by:
+    Syntax Error
+
+Import trace for requested module:
+./app/comparativa/page.tsx @ webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/app-index.js:32
+[   64959ms] [LOG] [Fast Refresh] rebuilding @ webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/components/react-dev-overlay/app/hot-reloader-client.js:186
+[   65069ms] [ERROR] ./app/comparativa/page.tsx
+Error: 
+  x Unexpected token `div`. Expected jsx identifier
+     ,-[/Users/erickfranco/claudeEnergia/app/comparativa/page.tsx:108:1]
+ 108 |   }));
+ 109 | 
+ 110 |   return (
+ 111 |     <div className="space-y-7 animate-fade-in">
+     :      ^^^
+ 112 | 
+ 113 |       {/* ── Header + year selectors ── */}
+ 114 |       <div className="flex items-start justify-between gap-4 flex-wrap animate-slide-up" style={{ animationDelay: "0ms" }}>
+     `----
+
+Caused by:
+    Syntax Error
+
+Import trace for requested module:
+./app/comparativa/page.tsx @ webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/app-index.js:32
+[   66046ms] [LOG] [Fast Refresh] done in 1086ms @ webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/components/react-dev-overlay/app/hot-reloader-client.js:43
+[   66664ms] [LOG] [Fast Refresh] done in 1705ms @ webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/components/react-dev-overlay/app/hot-reloader-client.js:43
+[   66826ms] [ERROR] ./app/comparativa/page.tsx
+Error: 
+  x Unexpected token `div`. Expected jsx identifier
+     ,-[/Users/erickfranco/claudeEnergia/app/comparativa/page.tsx:108:1]
+ 108 |   }));
+ 109 | 
+ 110 |   return (
+ 111 |     <div className="space-y-7 animate-fade-in">
+     :      ^^^
+ 112 | 
+ 113 |       {/* ── Header + year selectors ── */}
+ 114 |       <div className="flex items-start justify-between gap-4 flex-wrap animate-slide-up" style={{ animationDelay: "0ms" }}>
+     `----
+
+Caused by:
+    Syntax Error
+
+Import trace for requested module:
+./app/comparativa/page.tsx @ webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/app-index.js:32
+[   66947ms] [ERROR] Failed to load resource: the server responded with a status of 500 (Internal Server Error) @ http://localhost:3000/registro?_rsc=1nldu:0
+[   66955ms] [ERROR] Failed to load resource: the server responded with a status of 500 (Internal Server Error) @ http://localhost:3000/registro?_rsc=1nldu:0
+[   66967ms] [ERROR] Failed to load resource: the server responded with a status of 500 (Internal Server Error) @ http://localhost:3000/registro?_rsc=1nldu:0
+[   67065ms] [ERROR] Failed to load resource: the server responded with a status of 500 (Internal Server Error) @ http://localhost:3000/registro:0
+[   67322ms] [INFO] %cDownload the React DevTools for a better development experience: https://reactjs.org/link/react-devtools font-weight:bold @ webpack-internal:///./node_modules/react-dom/cjs/react-dom.development.js:29889
+[   67358ms] ModuleBuildError: Module build failed (from ./node_modules/next/dist/build/webpack/loaders/next-swc-loader.js):
+Error: 
+  x Unexpected token `div`. Expected jsx identifier
+     ,-[/Users/erickfranco/claudeEnergia/app/comparativa/page.tsx:108:1]
+ 108 |   }));
+ 109 | 
+ 110 |   return (
+ 111 |     <div className="space-y-7 animate-fade-in">
+     :      ^^^
+ 112 | 
+ 113 |       {/* ── Header + year selectors ── */}
+ 114 |       <div className="flex items-start justify-between gap-4 flex-wrap animate-slide-up" style={{ animationDelay: "0ms" }}>
+     `----
+
+
+Caused by:
+    Syntax Error
+    at processResult (file:///Users/erickfranco/claudeEnergia/node_modules/next/dist/compiled/webpack/bundle5.js:28:400590)
+    at <unknown> (file:///Users/erickfranco/claudeEnergia/node_modules/next/dist/compiled/webpack/bundle5.js:28:402302)
+    at <unknown> (file:///Users/erickfranco/claudeEnergia/node_modules/next/dist/compiled/loader-runner/LoaderRunner.js:1:8645)
+    at <unknown> (file:///Users/erickfranco/claudeEnergia/node_modules/next/dist/compiled/loader-runner/LoaderRunner.js:1:5019)
+    at r.callback (file:///Users/erickfranco/claudeEnergia/node_modules/next/dist/compiled/loader-runner/LoaderRunner.js:1:4039)
+[   67364ms] [LOG] [HMR] connected @ webpack-internal:///./node_modules/next/dist/client/components/react-dev-overlay/pages/websocket.js:38
+[   67367ms] [ERROR] ./app/comparativa/page.tsx
+Error: 
+  x Unexpected token `div`. Expected jsx identifier
+     ,-[/Users/erickfranco/claudeEnergia/app/comparativa/page.tsx:108:1]
+ 108 |   }));
+ 109 | 
+ 110 |   return (
+ 111 |     <div className="space-y-7 animate-fade-in">
+     :      ^^^
+ 112 | 
+ 113 |       {/* ── Header + year selectors ── */}
+ 114 |       <div className="flex items-start justify-between gap-4 flex-wrap animate-slide-up" style={{ animationDelay: "0ms" }}>
+     `----
+
+Caused by:
+    Syntax Error @ webpack-internal:///./node_modules/next/dist/client/components/react-dev-overlay/internal/helpers/hydration-error-info.js:62
+[   76639ms] [LOG] [Fast Refresh] rebuilding @ webpack-internal:///./node_modules/next/dist/client/components/react-dev-overlay/pages/hot-reloader-client.js:221
+[   76761ms] [ERROR] ./app/comparativa/page.tsx
+Error: 
+  x Unexpected token `div`. Expected jsx identifier
+     ,-[/Users/erickfranco/claudeEnergia/app/comparativa/page.tsx:108:1]
+ 108 |   }));
+ 109 | 
+ 110 |   return (
+ 111 |     <div className="space-y-7 animate-fade-in">
+     :      ^^^
+ 112 | 
+ 113 |       {/* ── Header + year selectors ── */}
+ 114 |       <div className="flex items-start justify-between gap-4 flex-wrap animate-slide-up" style={{ animationDelay: "0ms" }}>
+     `----
+
+Caused by:
+    Syntax Error
+
+Import trace for requested module:
+./app/comparativa/page.tsx @ webpack-internal:///./node_modules/next/dist/client/components/react-dev-overlay/internal/helpers/hydration-error-info.js:62
+[   77109ms] [ERROR] Failed to load resource: the server responded with a status of 500 (Internal Server Error) @ http://localhost:3000/_next/static/webpack/d9b141a0e94b1ac4.webpack.hot-update.json:0
+[   77109ms] [WARNING] [Fast Refresh] performing full reload
+
+Fast Refresh will perform a full reload when you edit a file that's imported by modules outside of the React rendering tree.
+You might have a file which exports a React component but also exports a value that is imported by a non-React component file.
+Consider migrating the non-React component export to a separate file and importing it into both files.
+
+It is also possible the parent component of the component you edited is a class component, which disables Fast Refresh.
+Fast Refresh requires at least one parent function component in your React tree. @ webpack-internal:///./node_modules/next/dist/client/components/react-dev-overlay/pages/hot-reloader-client.js:347
+[   77292ms] [ERROR] Failed to load resource: the server responded with a status of 500 (Internal Server Error) @ http://localhost:3000/registro:0
+[   77475ms] [INFO] %cDownload the React DevTools for a better development experience: https://reactjs.org/link/react-devtools font-weight:bold @ webpack-internal:///./node_modules/react-dom/cjs/react-dom.development.js:29889
+[   77484ms] ModuleBuildError: Module build failed (from ./node_modules/next/dist/build/webpack/loaders/next-swc-loader.js):
+Error: 
+  x Unexpected token `div`. Expected jsx identifier
+     ,-[/Users/erickfranco/claudeEnergia/app/comparativa/page.tsx:108:1]
+ 108 |   }));
+ 109 | 
+ 110 |   return (
+ 111 |     <div className="space-y-7 animate-fade-in">
+     :      ^^^
+ 112 | 
+ 113 |       {/* ── Header + year selectors ── */}
+ 114 |       <div className="flex items-start justify-between gap-4 flex-wrap animate-slide-up" style={{ animationDelay: "0ms" }}>
+     `----
+
+
+Caused by:
+    Syntax Error
+    at processResult (file:///Users/erickfranco/claudeEnergia/node_modules/next/dist/compiled/webpack/bundle5.js:28:400590)
+    at <unknown> (file:///Users/erickfranco/claudeEnergia/node_modules/next/dist/compiled/webpack/bundle5.js:28:402302)
+    at <unknown> (file:///Users/erickfranco/claudeEnergia/node_modules/next/dist/compiled/loader-runner/LoaderRunner.js:1:8645)
+    at <unknown> (file:///Users/erickfranco/claudeEnergia/node_modules/next/dist/compiled/loader-runner/LoaderRunner.js:1:5019)
+    at r.callback (file:///Users/erickfranco/claudeEnergia/node_modules/next/dist/compiled/loader-runner/LoaderRunner.js:1:4039)
+[   77485ms] [LOG] [HMR] connected @ webpack-internal:///./node_modules/next/dist/client/components/react-dev-overlay/pages/websocket.js:38
+[   77486ms] [ERROR] ./app/comparativa/page.tsx
+Error: 
+  x Unexpected token `div`. Expected jsx identifier
+     ,-[/Users/erickfranco/claudeEnergia/app/comparativa/page.tsx:108:1]
+ 108 |   }));
+ 109 | 
+ 110 |   return (
+ 111 |     <div className="space-y-7 animate-fade-in">
+     :      ^^^
+ 112 | 
+ 113 |       {/* ── Header + year selectors ── */}
+ 114 |       <div className="flex items-start justify-between gap-4 flex-wrap animate-slide-up" style={{ animationDelay: "0ms" }}>
+     `----
+
+Caused by:
+    Syntax Error @ webpack-internal:///./node_modules/next/dist/client/components/react-dev-overlay/internal/helpers/hydration-error-info.js:62
+[   85825ms] [LOG] [Fast Refresh] rebuilding @ webpack-internal:///./node_modules/next/dist/client/components/react-dev-overlay/pages/hot-reloader-client.js:221
+[   86011ms] [ERROR] ./app/comparativa/page.tsx
+Error: 
+  x Unexpected token `div`. Expected jsx identifier
+     ,-[/Users/erickfranco/claudeEnergia/app/comparativa/page.tsx:108:1]
+ 108 |   }));
+ 109 | 
+ 110 |   return (
+ 111 |     <div className="space-y-7 animate-fade-in">
+     :      ^^^
+ 112 | 
+ 113 |       {/* ── Header + year selectors ── */}
+ 114 |       <div className="flex items-start justify-between gap-4 flex-wrap animate-slide-up" style={{ animationDelay: "0ms" }}>
+     `----
+
+Caused by:
+    Syntax Error
+
+Import trace for requested module:
+./app/comparativa/page.tsx @ webpack-internal:///./node_modules/next/dist/client/components/react-dev-overlay/internal/helpers/hydration-error-info.js:62
+[   86619ms] [ERROR] ./app/comparativa/page.tsx
+Error: 
+  x Unexpected token `div`. Expected jsx identifier
+     ,-[/Users/erickfranco/claudeEnergia/app/comparativa/page.tsx:108:1]
+ 108 |   }));
+ 109 | 
+ 110 |   return (
+ 111 |     <div className="space-y-7 animate-fade-in">
+     :      ^^^
+ 112 | 
+ 113 |       {/* ── Header + year selectors ── */}
+ 114 |       <div className="flex items-start justify-between gap-4 flex-wrap animate-slide-up" style={{ animationDelay: "0ms" }}>
+     `----
+
+Caused by:
+    Syntax Error
+
+Import trace for requested module:
+./app/comparativa/page.tsx @ webpack-internal:///./node_modules/next/dist/client/components/react-dev-overlay/internal/helpers/hydration-error-info.js:62
+[   86643ms] [ERROR] Failed to load resource: the server responded with a status of 500 (Internal Server Error) @ http://localhost:3000/_next/static/webpack/d9b141a0e94b1ac4.webpack.hot-update.json:0
+[   86644ms] [WARNING] [Fast Refresh] performing full reload
+
+Fast Refresh will perform a full reload when you edit a file that's imported by modules outside of the React rendering tree.
+You might have a file which exports a React component but also exports a value that is imported by a non-React component file.
+Consider migrating the non-React component export to a separate file and importing it into both files.
+
+It is also possible the parent component of the component you edited is a class component, which disables Fast Refresh.
+Fast Refresh requires at least one parent function component in your React tree. @ webpack-internal:///./node_modules/next/dist/client/components/react-dev-overlay/pages/hot-reloader-client.js:347
+[   86860ms] [ERROR] Failed to load resource: the server responded with a status of 500 (Internal Server Error) @ http://localhost:3000/registro:0
+[   87003ms] [INFO] %cDownload the React DevTools for a better development experience: https://reactjs.org/link/react-devtools font-weight:bold @ webpack-internal:///./node_modules/react-dom/cjs/react-dom.development.js:29889
+[   87012ms] ModuleBuildError: Module build failed (from ./node_modules/next/dist/build/webpack/loaders/next-swc-loader.js):
+Error: 
+  x Unexpected token `div`. Expected jsx identifier
+     ,-[/Users/erickfranco/claudeEnergia/app/comparativa/page.tsx:108:1]
+ 108 |   }));
+ 109 | 
+ 110 |   return (
+ 111 |     <div className="space-y-7 animate-fade-in">
+     :      ^^^
+ 112 | 
+ 113 |       {/* ── Header + year selectors ── */}
+ 114 |       <div className="flex items-start justify-between gap-4 flex-wrap animate-slide-up" style={{ animationDelay: "0ms" }}>
+     `----
+
+
+Caused by:
+    Syntax Error
+    at processResult (file:///Users/erickfranco/claudeEnergia/node_modules/next/dist/compiled/webpack/bundle5.js:28:400590)
+    at <unknown> (file:///Users/erickfranco/claudeEnergia/node_modules/next/dist/compiled/webpack/bundle5.js:28:402302)
+    at <unknown> (file:///Users/erickfranco/claudeEnergia/node_modules/next/dist/compiled/loader-runner/LoaderRunner.js:1:8645)
+    at <unknown> (file:///Users/erickfranco/claudeEnergia/node_modules/next/dist/compiled/loader-runner/LoaderRunner.js:1:5019)
+    at r.callback (file:///Users/erickfranco/claudeEnergia/node_modules/next/dist/compiled/loader-runner/LoaderRunner.js:1:4039)
+[   87012ms] [LOG] [HMR] connected @ webpack-internal:///./node_modules/next/dist/client/components/react-dev-overlay/pages/websocket.js:38
+[   87013ms] [ERROR] ./app/comparativa/page.tsx
+Error: 
+  x Unexpected token `div`. Expected jsx identifier
+     ,-[/Users/erickfranco/claudeEnergia/app/comparativa/page.tsx:108:1]
+ 108 |   }));
+ 109 | 
+ 110 |   return (
+ 111 |     <div className="space-y-7 animate-fade-in">
+     :      ^^^
+ 112 | 
+ 113 |       {/* ── Header + year selectors ── */}
+ 114 |       <div className="flex items-start justify-between gap-4 flex-wrap animate-slide-up" style={{ animationDelay: "0ms" }}>
+     `----
+
+Caused by:
+    Syntax Error @ webpack-internal:///./node_modules/next/dist/client/components/react-dev-overlay/internal/helpers/hydration-error-info.js:62
+[   91506ms] [LOG] [Fast Refresh] rebuilding @ webpack-internal:///./node_modules/next/dist/client/components/react-dev-overlay/pages/hot-reloader-client.js:221
+[   91662ms] [ERROR] ./app/comparativa/page.tsx
+Error: 
+  x Unexpected token `div`. Expected jsx identifier
+     ,-[/Users/erickfranco/claudeEnergia/app/comparativa/page.tsx:108:1]
+ 108 |   }));
+ 109 | 
+ 110 |   return (
+ 111 |     <div className="space-y-7 animate-fade-in">
+     :      ^^^
+ 112 | 
+ 113 |       {/* ── Header + year selectors ── */}
+ 114 |       <div className="flex items-start justify-between gap-4 flex-wrap animate-slide-up" style={{ animationDelay: "0ms" }}>
+     `----
+
+Caused by:
+    Syntax Error
+
+Import trace for requested module:
+./app/comparativa/page.tsx @ webpack-internal:///./node_modules/next/dist/client/components/react-dev-overlay/internal/helpers/hydration-error-info.js:62
+[   91805ms] [ERROR] Failed to load resource: the server responded with a status of 500 (Internal Server Error) @ http://localhost:3000/_next/static/webpack/d9b141a0e94b1ac4.webpack.hot-update.json:0
+[   91805ms] [WARNING] [Fast Refresh] performing full reload
+
+Fast Refresh will perform a full reload when you edit a file that's imported by modules outside of the React rendering tree.
+You might have a file which exports a React component but also exports a value that is imported by a non-React component file.
+Consider migrating the non-React component export to a separate file and importing it into both files.
+
+It is also possible the parent component of the component you edited is a class component, which disables Fast Refresh.
+Fast Refresh requires at least one parent function component in your React tree. @ webpack-internal:///./node_modules/next/dist/client/components/react-dev-overlay/pages/hot-reloader-client.js:347
+[   91933ms] [ERROR] Failed to load resource: the server responded with a status of 500 (Internal Server Error) @ http://localhost:3000/registro:0
+[   92097ms] [INFO] %cDownload the React DevTools for a better development experience: https://reactjs.org/link/react-devtools font-weight:bold @ webpack-internal:///./node_modules/react-dom/cjs/react-dom.development.js:29889
+[   92106ms] ModuleBuildError: Module build failed (from ./node_modules/next/dist/build/webpack/loaders/next-swc-loader.js):
+Error: 
+  x Unexpected token `div`. Expected jsx identifier
+     ,-[/Users/erickfranco/claudeEnergia/app/comparativa/page.tsx:108:1]
+ 108 |   }));
+ 109 | 
+ 110 |   return (
+ 111 |     <div className="space-y-7 animate-fade-in">
+     :      ^^^
+ 112 | 
+ 113 |       {/* ── Header + year selectors ── */}
+ 114 |       <div className="flex items-start justify-between gap-4 flex-wrap animate-slide-up" style={{ animationDelay: "0ms" }}>
+     `----
+
+
+Caused by:
+    Syntax Error
+    at processResult (file:///Users/erickfranco/claudeEnergia/node_modules/next/dist/compiled/webpack/bundle5.js:28:400590)
+    at <unknown> (file:///Users/erickfranco/claudeEnergia/node_modules/next/dist/compiled/webpack/bundle5.js:28:402302)
+    at <unknown> (file:///Users/erickfranco/claudeEnergia/node_modules/next/dist/compiled/loader-runner/LoaderRunner.js:1:8645)
+    at <unknown> (file:///Users/erickfranco/claudeEnergia/node_modules/next/dist/compiled/loader-runner/LoaderRunner.js:1:5019)
+    at r.callback (file:///Users/erickfranco/claudeEnergia/node_modules/next/dist/compiled/loader-runner/LoaderRunner.js:1:4039)
+[   92106ms] [LOG] [HMR] connected @ webpack-internal:///./node_modules/next/dist/client/components/react-dev-overlay/pages/websocket.js:38
+[   92106ms] [ERROR] ./app/comparativa/page.tsx
+Error: 
+  x Unexpected token `div`. Expected jsx identifier
+     ,-[/Users/erickfranco/claudeEnergia/app/comparativa/page.tsx:108:1]
+ 108 |   }));
+ 109 | 
+ 110 |   return (
+ 111 |     <div className="space-y-7 animate-fade-in">
+     :      ^^^
+ 112 | 
+ 113 |       {/* ── Header + year selectors ── */}
+ 114 |       <div className="flex items-start justify-between gap-4 flex-wrap animate-slide-up" style={{ animationDelay: "0ms" }}>
+     `----
+
+Caused by:
+    Syntax Error @ webpack-internal:///./node_modules/next/dist/client/components/react-dev-overlay/internal/helpers/hydration-error-info.js:62
+[   97569ms] [LOG] [Fast Refresh] rebuilding @ webpack-internal:///./node_modules/next/dist/client/components/react-dev-overlay/pages/hot-reloader-client.js:221
+[   97985ms] [LOG] [Fast Refresh] rebuilding @ webpack-internal:///./node_modules/next/dist/client/components/react-dev-overlay/pages/hot-reloader-client.js:221
+[   98379ms] [WARNING] [Fast Refresh] performing full reload
+
+Fast Refresh will perform a full reload when you edit a file that's imported by modules outside of the React rendering tree.
+You might have a file which exports a React component but also exports a value that is imported by a non-React component file.
+Consider migrating the non-React component export to a separate file and importing it into both files.
+
+It is also possible the parent component of the component you edited is a class component, which disables Fast Refresh.
+Fast Refresh requires at least one parent function component in your React tree. @ webpack-internal:///./node_modules/next/dist/client/components/react-dev-overlay/pages/hot-reloader-client.js:347
+[   98822ms] [INFO] %cDownload the React DevTools for a better development experience: https://reactjs.org/link/react-devtools font-weight:bold @ webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/react-dom/cjs/react-dom.development.js:38559
+[   98904ms] [LOG] Firebase Config Keys: {apiKey: ✓ AIzaSyBhWv..., authDomain: energia-a1eef.firebaseapp.com, projectId: energia-a1eef} @ webpack-internal:///(app-pages-browser)/./lib/firebase.ts:30
+[   99313ms] [ERROR] Failed to load resource: the server responded with a status of 400 () @ https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyBhWv-ZOIk-qbHZlwF0s2e8Tg3veUq1XGo:0
+[   99313ms] [ERROR] Failed to load resource: the server responded with a status of 400 () @ https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyBhWv-ZOIk-qbHZlwF0s2e8Tg3veUq1XGo:0
+[   99314ms] [ERROR] Anonymous sign-in error: FirebaseError: Firebase: Error (auth/admin-restricted-operation).
+    at createErrorInternal (webpack-internal:///(app-pages-browser)/./node_modules/firebase/node_modules/@firebase/auth/dist/esm/index-568d0403.js:624:41)
+    at _fail (webpack-internal:///(app-pages-browser)/./node_modules/firebase/node_modules/@firebase/auth/dist/esm/index-568d0403.js:589:11)
+    at _performFetchWithErrorHandling (webpack-internal:///(app-pages-browser)/./node_modules/firebase/node_modules/@firebase/auth/dist/esm/index-568d0403.js:1086:17)
+    at async _performSignInRequest (webpack-internal:///(app-pages-browser)/./node_modules/firebase/node_modules/@firebase/auth/dist/esm/index-568d0403.js:1101:28)
+    at async signInAnonymously (webpack-internal:///(app-pages-browser)/./node_modules/firebase/node_modules/@firebase/auth/dist/esm/index-568d0403.js:5761:22)
+    at async initAuth (webpack-internal:///(app-pages-browser)/./lib/AuthContext.tsx:29:21) @ webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/app-index.js:32
+[   99314ms] [ERROR] Anonymous sign-in error: FirebaseError: Firebase: Error (auth/admin-restricted-operation).
+    at createErrorInternal (webpack-internal:///(app-pages-browser)/./node_modules/firebase/node_modules/@firebase/auth/dist/esm/index-568d0403.js:624:41)
+    at _fail (webpack-internal:///(app-pages-browser)/./node_modules/firebase/node_modules/@firebase/auth/dist/esm/index-568d0403.js:589:11)
+    at _performFetchWithErrorHandling (webpack-internal:///(app-pages-browser)/./node_modules/firebase/node_modules/@firebase/auth/dist/esm/index-568d0403.js:1086:17)
+    at async _performSignInRequest (webpack-internal:///(app-pages-browser)/./node_modules/firebase/node_modules/@firebase/auth/dist/esm/index-568d0403.js:1101:28)
+    at async signInAnonymously (webpack-internal:///(app-pages-browser)/./node_modules/firebase/node_modules/@firebase/auth/dist/esm/index-568d0403.js:5761:22)
+    at async initAuth (webpack-internal:///(app-pages-browser)/./lib/AuthContext.tsx:29:21) @ webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/app-index.js:32
+[  103253ms] [LOG] [Fast Refresh] rebuilding @ webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/components/react-dev-overlay/app/hot-reloader-client.js:186
+[  103483ms] [LOG] [Fast Refresh] done in 230ms @ webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/components/react-dev-overlay/app/hot-reloader-client.js:43
+[  104248ms] [ERROR] [2026-05-04T16:34:13.701Z]  @firebase/firestore: Firestore (12.12.0): FirebaseError: [code=resource-exhausted]: Quota exceeded. @ webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/app-index.js:32
+[  104249ms] [ERROR] [2026-05-04T16:34:13.701Z]  @firebase/firestore: Firestore (12.12.0): Using maximum backoff delay to prevent overloading the backend. @ webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/app-index.js:32
+[  149973ms] [ERROR] [2026-05-04T16:34:59.425Z]  @firebase/firestore: Firestore (12.12.0): FirebaseError: [code=resource-exhausted]: Quota exceeded. @ webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/app-index.js:32
+[  149973ms] [ERROR] [2026-05-04T16:34:59.425Z]  @firebase/firestore: Firestore (12.12.0): Using maximum backoff delay to prevent overloading the backend. @ webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/app-index.js:32
+[  152581ms] [LOG] [Fast Refresh] rebuilding @ webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/components/react-dev-overlay/app/hot-reloader-client.js:186
+[  153190ms] [LOG] [Fast Refresh] done in 608ms @ webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/components/react-dev-overlay/app/hot-reloader-client.js:43
+[  154295ms] [LOG] [Fast Refresh] rebuilding @ webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/components/react-dev-overlay/app/hot-reloader-client.js:186
+[  154413ms] [ERROR] ./app/registro/page.tsx
+Error: 
+  x Unexpected token `div`. Expected jsx identifier
+    ,-[/Users/erickfranco/claudeEnergia/app/registro/page.tsx:51:1]
+ 51 |   }
+ 52 | 
+ 53 |   return (
+ 54 |     <div className="space-y-7 max-w-2xl animate-fade-in">
+    :      ^^^
+ 55 | 
+ 56 |       {/* ── Header ── */}
+ 57 |       <div className="animate-slide-up" style={{ animationDelay: "0ms" }}>
+    `----
+
+Caused by:
+    Syntax Error
+
+Import trace for requested module:
+./app/registro/page.tsx @ webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/app-index.js:32
+[  154818ms] [ERROR] Failed to load resource: the server responded with a status of 500 (Internal Server Error) @ http://localhost:3000/registro?_rsc=1nldu:0
+[  154903ms] [ERROR] Failed to load resource: the server responded with a status of 500 (Internal Server Error) @ http://localhost:3000/registro:0
+[  155122ms] [INFO] %cDownload the React DevTools for a better development experience: https://reactjs.org/link/react-devtools font-weight:bold @ webpack-internal:///./node_modules/react-dom/cjs/react-dom.development.js:29889
+[  155136ms] ModuleBuildError: Module build failed (from ./node_modules/next/dist/build/webpack/loaders/next-swc-loader.js):
+Error: 
+  x Unexpected token `div`. Expected jsx identifier
+    ,-[/Users/erickfranco/claudeEnergia/app/registro/page.tsx:51:1]
+ 51 |   }
+ 52 | 
+ 53 |   return (
+ 54 |     <div className="space-y-7 max-w-2xl animate-fade-in">
+    :      ^^^
+ 55 | 
+ 56 |       {/* ── Header ── */}
+ 57 |       <div className="animate-slide-up" style={{ animationDelay: "0ms" }}>
+    `----
+
+
+Caused by:
+    Syntax Error
+    at processResult (file:///Users/erickfranco/claudeEnergia/node_modules/next/dist/compiled/webpack/bundle5.js:28:400590)
+    at <unknown> (file:///Users/erickfranco/claudeEnergia/node_modules/next/dist/compiled/webpack/bundle5.js:28:402302)
+    at <unknown> (file:///Users/erickfranco/claudeEnergia/node_modules/next/dist/compiled/loader-runner/LoaderRunner.js:1:8645)
+    at <unknown> (file:///Users/erickfranco/claudeEnergia/node_modules/next/dist/compiled/loader-runner/LoaderRunner.js:1:5019)
+    at r.callback (file:///Users/erickfranco/claudeEnergia/node_modules/next/dist/compiled/loader-runner/LoaderRunner.js:1:4039)
+[  155134ms] [LOG] [HMR] connected @ webpack-internal:///./node_modules/next/dist/client/components/react-dev-overlay/pages/websocket.js:38
+[  155138ms] [ERROR] ./app/registro/page.tsx
+Error: 
+  x Unexpected token `div`. Expected jsx identifier
+    ,-[/Users/erickfranco/claudeEnergia/app/registro/page.tsx:51:1]
+ 51 |   }
+ 52 | 
+ 53 |   return (
+ 54 |     <div className="space-y-7 max-w-2xl animate-fade-in">
+    :      ^^^
+ 55 | 
+ 56 |       {/* ── Header ── */}
+ 57 |       <div className="animate-slide-up" style={{ animationDelay: "0ms" }}>
+    `----
+
+Caused by:
+    Syntax Error @ webpack-internal:///./node_modules/next/dist/client/components/react-dev-overlay/internal/helpers/hydration-error-info.js:62
+[  157046ms] [LOG] [Fast Refresh] rebuilding @ webpack-internal:///./node_modules/next/dist/client/components/react-dev-overlay/pages/hot-reloader-client.js:221
+[  157313ms] [LOG] [Fast Refresh] rebuilding @ webpack-internal:///./node_modules/next/dist/client/components/react-dev-overlay/pages/hot-reloader-client.js:221
+[  157547ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://localhost:3000/_next/static/webpack/d9b141a0e94b1ac4.webpack.hot-update.json:0
+[  157548ms] [WARNING] [Fast Refresh] performing full reload because your application had an unrecoverable error @ webpack-internal:///./node_modules/next/dist/client/components/react-dev-overlay/pages/hot-reloader-client.js:349
+[  157959ms] [INFO] %cDownload the React DevTools for a better development experience: https://reactjs.org/link/react-devtools font-weight:bold @ webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/react-dom/cjs/react-dom.development.js:38559
+[  158046ms] [LOG] Firebase Config Keys: {apiKey: ✓ AIzaSyBhWv..., authDomain: energia-a1eef.firebaseapp.com, projectId: energia-a1eef} @ webpack-internal:///(app-pages-browser)/./lib/firebase.ts:30
+[  158544ms] [ERROR] Failed to load resource: the server responded with a status of 400 () @ https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyBhWv-ZOIk-qbHZlwF0s2e8Tg3veUq1XGo:0
+[  158546ms] [ERROR] Failed to load resource: the server responded with a status of 400 () @ https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyBhWv-ZOIk-qbHZlwF0s2e8Tg3veUq1XGo:0
+[  158547ms] [ERROR] Anonymous sign-in error: FirebaseError: Firebase: Error (auth/admin-restricted-operation).
+    at createErrorInternal (webpack-internal:///(app-pages-browser)/./node_modules/firebase/node_modules/@firebase/auth/dist/esm/index-568d0403.js:624:41)
+    at _fail (webpack-internal:///(app-pages-browser)/./node_modules/firebase/node_modules/@firebase/auth/dist/esm/index-568d0403.js:589:11)
+    at _performFetchWithErrorHandling (webpack-internal:///(app-pages-browser)/./node_modules/firebase/node_modules/@firebase/auth/dist/esm/index-568d0403.js:1086:17)
+    at async _performSignInRequest (webpack-internal:///(app-pages-browser)/./node_modules/firebase/node_modules/@firebase/auth/dist/esm/index-568d0403.js:1101:28)
+    at async signInAnonymously (webpack-internal:///(app-pages-browser)/./node_modules/firebase/node_modules/@firebase/auth/dist/esm/index-568d0403.js:5761:22)
+    at async initAuth (webpack-internal:///(app-pages-browser)/./lib/AuthContext.tsx:29:21) @ webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/app-index.js:32
+[  158556ms] [ERROR] Anonymous sign-in error: FirebaseError: Firebase: Error (auth/admin-restricted-operation).
+    at createErrorInternal (webpack-internal:///(app-pages-browser)/./node_modules/firebase/node_modules/@firebase/auth/dist/esm/index-568d0403.js:624:41)
+    at _fail (webpack-internal:///(app-pages-browser)/./node_modules/firebase/node_modules/@firebase/auth/dist/esm/index-568d0403.js:589:11)
+    at _performFetchWithErrorHandling (webpack-internal:///(app-pages-browser)/./node_modules/firebase/node_modules/@firebase/auth/dist/esm/index-568d0403.js:1086:17)
+    at async _performSignInRequest (webpack-internal:///(app-pages-browser)/./node_modules/firebase/node_modules/@firebase/auth/dist/esm/index-568d0403.js:1101:28)
+    at async signInAnonymously (webpack-internal:///(app-pages-browser)/./node_modules/firebase/node_modules/@firebase/auth/dist/esm/index-568d0403.js:5761:22)
+    at async initAuth (webpack-internal:///(app-pages-browser)/./lib/AuthContext.tsx:29:21) @ webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/app-index.js:32

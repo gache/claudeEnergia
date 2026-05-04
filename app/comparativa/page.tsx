@@ -1,12 +1,14 @@
 "use client";
 
 import dynamic from "next/dynamic";
-import { useState } from "react";
+import { useState, Suspense } from "react";
 import { ArrowRight, Award, BarChart2 } from "lucide-react";
 import { useEnergy } from "@/lib/EnergyContext";
 import { MESES, ANOS_DISPONIBLES } from "@/lib/data";
+import ChartSkeleton from "@/components/ChartSkeleton";
+import TableSkeleton from "@/components/TableSkeleton";
 
-const ComparativaChart = dynamic(() => import("@/components/ComparativaChart"), { ssr: false });
+const ComparativaChart = dynamic(() => import("@/components/ComparativaChart"), { ssr: false, loading: () => <ChartSkeleton /> });
 
 function VarBadge({ pct }: { pct: number | null }) {
   if (pct === null) return <span className="text-slate-300">—</span>;
@@ -109,7 +111,7 @@ export default function ComparativaPage() {
     <div className="space-y-7 animate-fade-in">
 
       {/* ── Header + year selectors ── */}
-      <div className="flex items-start justify-between gap-4 flex-wrap">
+      <div className="flex items-start justify-between gap-4 flex-wrap animate-slide-up" style={{ animationDelay: "0ms" }}>
         <div>
           <div className="flex items-center gap-2 mb-1">
             <span className="badge bg-brand-50 text-brand-700 border border-brand-100">
@@ -157,7 +159,7 @@ export default function ComparativaPage() {
       </div>
 
       {/* ── Summary KPIs ── */}
-      <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 animate-slide-up" style={{ animationDelay: "50ms" }}>
         <SummaryKPI
           label="Variación media consumo"
           value={avgVarConsumo !== null ? `${avgVarConsumo > 0 ? "+" : ""}${avgVarConsumo.toFixed(1)}%` : null}
@@ -187,30 +189,35 @@ export default function ComparativaPage() {
       </div>
 
       {/* ── Charts ── */}
-      <div className="grid grid-cols-1 xl:grid-cols-2 gap-5">
-        <ComparativaChart
-          data={chartData}
-          mode="consumo"
-          title={`Consumo total (kWh) — ${year1} vs ${year2}`}
-          year1={year1}
-          year2={year2}
-        />
-        <ComparativaChart
-          data={chartData}
-          mode="costo"
-          title={`Coste total (€) — ${year1} vs ${year2}`}
-          year1={year1}
-          year2={year2}
-        />
+      <div className="grid grid-cols-1 xl:grid-cols-2 gap-5 animate-slide-up" style={{ animationDelay: "100ms" }}>
+        <Suspense fallback={<ChartSkeleton />}>
+          <ComparativaChart
+            data={chartData}
+            mode="consumo"
+            title={`Consumo total (kWh) — ${year1} vs ${year2}`}
+            year1={year1}
+            year2={year2}
+          />
+        </Suspense>
+        <Suspense fallback={<ChartSkeleton />}>
+          <ComparativaChart
+            data={chartData}
+            mode="costo"
+            title={`Coste total (€) — ${year1} vs ${year2}`}
+            year1={year1}
+            year2={year2}
+          />
+        </Suspense>
       </div>
 
       {/* ── Detail table ── */}
-      <div className="bg-white rounded-2xl shadow-card-md border border-slate-100 overflow-hidden">
-        <div className="px-6 py-4 border-b border-slate-100 flex items-center gap-2">
+      <Suspense fallback={<TableSkeleton rows={5} />}>
+        <div className="bg-white rounded-2xl shadow-card-md border border-slate-100 overflow-hidden animate-slide-up" style={{ animationDelay: "150ms" }}>
+          <div className="px-6 py-4 border-b border-slate-100 flex items-center gap-2">
           <BarChart2 className="w-4 h-4 text-slate-400" />
           <h2 className="section-title">Tabla comparativa — {year1} vs {year2}</h2>
-        </div>
-        <div className="overflow-x-auto">
+          </div>
+          <div className="overflow-x-auto">
           <table className="w-full text-sm min-w-[680px]">
             <thead>
               <tr className="bg-slate-50/80 border-b border-slate-100">
@@ -266,8 +273,9 @@ export default function ComparativaPage() {
               </tfoot>
             )}
           </table>
+          </div>
         </div>
-      </div>
+      </Suspense>
     </div>
   );
 }

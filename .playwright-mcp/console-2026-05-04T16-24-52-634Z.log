@@ -1,0 +1,89 @@
+[    5513ms] [INFO] %cDownload the React DevTools for a better development experience: https://reactjs.org/link/react-devtools font-weight:bold @ webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/react-dom/cjs/react-dom.development.js:38559
+[    5605ms] [LOG] Firebase Config Keys: {apiKey: ✓ AIzaSyBhWv..., authDomain: energia-a1eef.firebaseapp.com, projectId: energia-a1eef} @ webpack-internal:///(app-pages-browser)/./lib/firebase.ts:30
+[    5624ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://localhost:3000/favicon.ico:0
+[    6473ms] [ERROR] Failed to load resource: the server responded with a status of 400 () @ https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyBhWv-ZOIk-qbHZlwF0s2e8Tg3veUq1XGo:0
+[    6475ms] [ERROR] Anonymous sign-in error: FirebaseError: Firebase: Error (auth/admin-restricted-operation).
+    at createErrorInternal (webpack-internal:///(app-pages-browser)/./node_modules/firebase/node_modules/@firebase/auth/dist/esm/index-568d0403.js:624:41)
+    at _fail (webpack-internal:///(app-pages-browser)/./node_modules/firebase/node_modules/@firebase/auth/dist/esm/index-568d0403.js:589:11)
+    at _performFetchWithErrorHandling (webpack-internal:///(app-pages-browser)/./node_modules/firebase/node_modules/@firebase/auth/dist/esm/index-568d0403.js:1086:17)
+    at async _performSignInRequest (webpack-internal:///(app-pages-browser)/./node_modules/firebase/node_modules/@firebase/auth/dist/esm/index-568d0403.js:1101:28)
+    at async signInAnonymously (webpack-internal:///(app-pages-browser)/./node_modules/firebase/node_modules/@firebase/auth/dist/esm/index-568d0403.js:5761:22)
+    at async initAuth (webpack-internal:///(app-pages-browser)/./lib/AuthContext.tsx:29:21) @ webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/app-index.js:32
+[   11210ms] [ERROR] [2026-05-04T16:25:03.843Z]  @firebase/firestore: Firestore (12.12.0): FirebaseError: [code=resource-exhausted]: Quota exceeded. @ webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/app-index.js:32
+[   11210ms] [ERROR] [2026-05-04T16:25:03.843Z]  @firebase/firestore: Firestore (12.12.0): Using maximum backoff delay to prevent overloading the backend. @ webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/app-index.js:32
+[   11412ms] [ERROR] Failed to load resource: the server responded with a status of 400 () @ https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyBhWv-ZOIk-qbHZlwF0s2e8Tg3veUq1XGo:0
+[   11416ms] [ERROR] Anonymous sign-in error: FirebaseError: Firebase: Error (auth/admin-restricted-operation).
+    at createErrorInternal (webpack-internal:///(app-pages-browser)/./node_modules/firebase/node_modules/@firebase/auth/dist/esm/index-568d0403.js:624:41)
+    at _fail (webpack-internal:///(app-pages-browser)/./node_modules/firebase/node_modules/@firebase/auth/dist/esm/index-568d0403.js:589:11)
+    at _performFetchWithErrorHandling (webpack-internal:///(app-pages-browser)/./node_modules/firebase/node_modules/@firebase/auth/dist/esm/index-568d0403.js:1086:17)
+    at async _performSignInRequest (webpack-internal:///(app-pages-browser)/./node_modules/firebase/node_modules/@firebase/auth/dist/esm/index-568d0403.js:1101:28)
+    at async signInAnonymously (webpack-internal:///(app-pages-browser)/./node_modules/firebase/node_modules/@firebase/auth/dist/esm/index-568d0403.js:5761:22)
+    at async initAuth (webpack-internal:///(app-pages-browser)/./lib/AuthContext.tsx:29:21) @ webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/app-index.js:32
+[   28095ms] [INFO] %cDownload the React DevTools for a better development experience: https://reactjs.org/link/react-devtools font-weight:bold @ webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/react-dom/cjs/react-dom.development.js:38559
+[   28139ms] [LOG] Firebase Config Keys: {apiKey: ✓ AIzaSyBhWv..., authDomain: energia-a1eef.firebaseapp.com, projectId: energia-a1eef} @ webpack-internal:///(app-pages-browser)/./lib/firebase.ts:30
+[   28453ms] [ERROR] Failed to load resource: the server responded with a status of 400 () @ https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyBhWv-ZOIk-qbHZlwF0s2e8Tg3veUq1XGo:0
+[   28454ms] [ERROR] Anonymous sign-in error: FirebaseError: Firebase: Error (auth/admin-restricted-operation).
+    at createErrorInternal (webpack-internal:///(app-pages-browser)/./node_modules/firebase/node_modules/@firebase/auth/dist/esm/index-568d0403.js:624:41)
+    at _fail (webpack-internal:///(app-pages-browser)/./node_modules/firebase/node_modules/@firebase/auth/dist/esm/index-568d0403.js:589:11)
+    at _performFetchWithErrorHandling (webpack-internal:///(app-pages-browser)/./node_modules/firebase/node_modules/@firebase/auth/dist/esm/index-568d0403.js:1086:17)
+    at async _performSignInRequest (webpack-internal:///(app-pages-browser)/./node_modules/firebase/node_modules/@firebase/auth/dist/esm/index-568d0403.js:1101:28)
+    at async signInAnonymously (webpack-internal:///(app-pages-browser)/./node_modules/firebase/node_modules/@firebase/auth/dist/esm/index-568d0403.js:5761:22)
+    at async initAuth (webpack-internal:///(app-pages-browser)/./lib/AuthContext.tsx:29:21) @ webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/app-index.js:32
+[   28504ms] [ERROR] Failed to load resource: the server responded with a status of 400 () @ https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyBhWv-ZOIk-qbHZlwF0s2e8Tg3veUq1XGo:0
+[   28504ms] [ERROR] Anonymous sign-in error: FirebaseError: Firebase: Error (auth/admin-restricted-operation).
+    at createErrorInternal (webpack-internal:///(app-pages-browser)/./node_modules/firebase/node_modules/@firebase/auth/dist/esm/index-568d0403.js:624:41)
+    at _fail (webpack-internal:///(app-pages-browser)/./node_modules/firebase/node_modules/@firebase/auth/dist/esm/index-568d0403.js:589:11)
+    at _performFetchWithErrorHandling (webpack-internal:///(app-pages-browser)/./node_modules/firebase/node_modules/@firebase/auth/dist/esm/index-568d0403.js:1086:17)
+    at async _performSignInRequest (webpack-internal:///(app-pages-browser)/./node_modules/firebase/node_modules/@firebase/auth/dist/esm/index-568d0403.js:1101:28)
+    at async signInAnonymously (webpack-internal:///(app-pages-browser)/./node_modules/firebase/node_modules/@firebase/auth/dist/esm/index-568d0403.js:5761:22)
+    at async initAuth (webpack-internal:///(app-pages-browser)/./lib/AuthContext.tsx:29:21) @ webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/app-index.js:32
+[   33448ms] [ERROR] [2026-05-04T16:25:26.081Z]  @firebase/firestore: Firestore (12.12.0): FirebaseError: [code=resource-exhausted]: Quota exceeded. @ webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/app-index.js:32
+[   33448ms] [ERROR] [2026-05-04T16:25:26.081Z]  @firebase/firestore: Firestore (12.12.0): Using maximum backoff delay to prevent overloading the backend. @ webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/app-index.js:32
+[   74606ms] [ERROR] [2026-05-04T16:26:07.240Z]  @firebase/firestore: Firestore (12.12.0): FirebaseError: [code=resource-exhausted]: Quota exceeded. @ webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/app-index.js:32
+[   74606ms] [ERROR] [2026-05-04T16:26:07.240Z]  @firebase/firestore: Firestore (12.12.0): Using maximum backoff delay to prevent overloading the backend. @ webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/app-index.js:32
+[  111507ms] [LOG] [Fast Refresh] rebuilding @ webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/components/react-dev-overlay/app/hot-reloader-client.js:186
+[  111943ms] [LOG] [Fast Refresh] done in 437ms @ webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/components/react-dev-overlay/app/hot-reloader-client.js:43
+[  116728ms] [LOG] [Fast Refresh] rebuilding @ webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/components/react-dev-overlay/app/hot-reloader-client.js:186
+[  117014ms] [LOG] [Fast Refresh] done in 285ms @ webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/components/react-dev-overlay/app/hot-reloader-client.js:43
+[  122274ms] [LOG] [Fast Refresh] rebuilding @ webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/components/react-dev-overlay/app/hot-reloader-client.js:186
+[  122493ms] [LOG] [Fast Refresh] done in 219ms @ webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/components/react-dev-overlay/app/hot-reloader-client.js:43
+[  147791ms] [ERROR] [2026-05-04T16:27:20.424Z]  @firebase/firestore: Firestore (12.12.0): FirebaseError: [code=resource-exhausted]: Quota exceeded. @ webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/app-index.js:32
+[  147791ms] [ERROR] [2026-05-04T16:27:20.424Z]  @firebase/firestore: Firestore (12.12.0): Using maximum backoff delay to prevent overloading the backend. @ webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/app-index.js:32
+[  148741ms] [INFO] %cDownload the React DevTools for a better development experience: https://reactjs.org/link/react-devtools font-weight:bold @ webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/react-dom/cjs/react-dom.development.js:38559
+[  148825ms] [LOG] Firebase Config Keys: {apiKey: ✓ AIzaSyBhWv..., authDomain: energia-a1eef.firebaseapp.com, projectId: energia-a1eef} @ webpack-internal:///(app-pages-browser)/./lib/firebase.ts:30
+[  149268ms] [ERROR] Failed to load resource: the server responded with a status of 400 () @ https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyBhWv-ZOIk-qbHZlwF0s2e8Tg3veUq1XGo:0
+[  149269ms] [ERROR] Failed to load resource: the server responded with a status of 400 () @ https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyBhWv-ZOIk-qbHZlwF0s2e8Tg3veUq1XGo:0
+[  149269ms] [ERROR] Anonymous sign-in error: FirebaseError: Firebase: Error (auth/admin-restricted-operation).
+    at createErrorInternal (webpack-internal:///(app-pages-browser)/./node_modules/firebase/node_modules/@firebase/auth/dist/esm/index-568d0403.js:624:41)
+    at _fail (webpack-internal:///(app-pages-browser)/./node_modules/firebase/node_modules/@firebase/auth/dist/esm/index-568d0403.js:589:11)
+    at _performFetchWithErrorHandling (webpack-internal:///(app-pages-browser)/./node_modules/firebase/node_modules/@firebase/auth/dist/esm/index-568d0403.js:1086:17)
+    at async _performSignInRequest (webpack-internal:///(app-pages-browser)/./node_modules/firebase/node_modules/@firebase/auth/dist/esm/index-568d0403.js:1101:28)
+    at async signInAnonymously (webpack-internal:///(app-pages-browser)/./node_modules/firebase/node_modules/@firebase/auth/dist/esm/index-568d0403.js:5761:22)
+    at async initAuth (webpack-internal:///(app-pages-browser)/./lib/AuthContext.tsx:29:21) @ webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/app-index.js:32
+[  149270ms] [ERROR] Anonymous sign-in error: FirebaseError: Firebase: Error (auth/admin-restricted-operation).
+    at createErrorInternal (webpack-internal:///(app-pages-browser)/./node_modules/firebase/node_modules/@firebase/auth/dist/esm/index-568d0403.js:624:41)
+    at _fail (webpack-internal:///(app-pages-browser)/./node_modules/firebase/node_modules/@firebase/auth/dist/esm/index-568d0403.js:589:11)
+    at _performFetchWithErrorHandling (webpack-internal:///(app-pages-browser)/./node_modules/firebase/node_modules/@firebase/auth/dist/esm/index-568d0403.js:1086:17)
+    at async _performSignInRequest (webpack-internal:///(app-pages-browser)/./node_modules/firebase/node_modules/@firebase/auth/dist/esm/index-568d0403.js:1101:28)
+    at async signInAnonymously (webpack-internal:///(app-pages-browser)/./node_modules/firebase/node_modules/@firebase/auth/dist/esm/index-568d0403.js:5761:22)
+    at async initAuth (webpack-internal:///(app-pages-browser)/./lib/AuthContext.tsx:29:21) @ webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/app-index.js:32
+[  154046ms] [INFO] %cDownload the React DevTools for a better development experience: https://reactjs.org/link/react-devtools font-weight:bold @ webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/react-dom/cjs/react-dom.development.js:38559
+[  154113ms] [LOG] Firebase Config Keys: {apiKey: ✓ AIzaSyBhWv..., authDomain: energia-a1eef.firebaseapp.com, projectId: energia-a1eef} @ webpack-internal:///(app-pages-browser)/./lib/firebase.ts:30
+[  154513ms] [ERROR] Failed to load resource: the server responded with a status of 400 () @ https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyBhWv-ZOIk-qbHZlwF0s2e8Tg3veUq1XGo:0
+[  154513ms] [ERROR] Failed to load resource: the server responded with a status of 400 () @ https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyBhWv-ZOIk-qbHZlwF0s2e8Tg3veUq1XGo:0
+[  154514ms] [ERROR] Anonymous sign-in error: FirebaseError: Firebase: Error (auth/admin-restricted-operation).
+    at createErrorInternal (webpack-internal:///(app-pages-browser)/./node_modules/firebase/node_modules/@firebase/auth/dist/esm/index-568d0403.js:624:41)
+    at _fail (webpack-internal:///(app-pages-browser)/./node_modules/firebase/node_modules/@firebase/auth/dist/esm/index-568d0403.js:589:11)
+    at _performFetchWithErrorHandling (webpack-internal:///(app-pages-browser)/./node_modules/firebase/node_modules/@firebase/auth/dist/esm/index-568d0403.js:1086:17)
+    at async _performSignInRequest (webpack-internal:///(app-pages-browser)/./node_modules/firebase/node_modules/@firebase/auth/dist/esm/index-568d0403.js:1101:28)
+    at async signInAnonymously (webpack-internal:///(app-pages-browser)/./node_modules/firebase/node_modules/@firebase/auth/dist/esm/index-568d0403.js:5761:22)
+    at async initAuth (webpack-internal:///(app-pages-browser)/./lib/AuthContext.tsx:29:21) @ webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/app-index.js:32
+[  154514ms] [ERROR] Anonymous sign-in error: FirebaseError: Firebase: Error (auth/admin-restricted-operation).
+    at createErrorInternal (webpack-internal:///(app-pages-browser)/./node_modules/firebase/node_modules/@firebase/auth/dist/esm/index-568d0403.js:624:41)
+    at _fail (webpack-internal:///(app-pages-browser)/./node_modules/firebase/node_modules/@firebase/auth/dist/esm/index-568d0403.js:589:11)
+    at _performFetchWithErrorHandling (webpack-internal:///(app-pages-browser)/./node_modules/firebase/node_modules/@firebase/auth/dist/esm/index-568d0403.js:1086:17)
+    at async _performSignInRequest (webpack-internal:///(app-pages-browser)/./node_modules/firebase/node_modules/@firebase/auth/dist/esm/index-568d0403.js:1101:28)
+    at async signInAnonymously (webpack-internal:///(app-pages-browser)/./node_modules/firebase/node_modules/@firebase/auth/dist/esm/index-568d0403.js:5761:22)
+    at async initAuth (webpack-internal:///(app-pages-browser)/./lib/AuthContext.tsx:29:21) @ webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/app-index.js:32
+[  159357ms] [ERROR] [2026-05-04T16:27:31.990Z]  @firebase/firestore: Firestore (12.12.0): FirebaseError: [code=resource-exhausted]: Quota exceeded. @ webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/app-index.js:32
+[  159357ms] [ERROR] [2026-05-04T16:27:31.990Z]  @firebase/firestore: Firestore (12.12.0): Using maximum backoff delay to prevent overloading the backend. @ webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/app-index.js:32

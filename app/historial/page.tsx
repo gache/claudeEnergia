@@ -1,14 +1,16 @@
 "use client";
 
 import dynamic from "next/dynamic";
-import { useState } from "react";
+import { useState, Suspense } from "react";
 import { History, FileX } from "lucide-react";
 import { useEnergy } from "@/lib/EnergyContext";
 import { ANOS_DISPONIBLES, calcularTotales } from "@/lib/data";
+import ChartSkeleton from "@/components/ChartSkeleton";
+import TableSkeleton from "@/components/TableSkeleton";
 
 const TablaConsumo = dynamic(() => import("@/components/TablaConsumo"), { ssr: false });
-const ConsumoHCHPChart = dynamic(() => import("@/components/ConsumoHCHPChart"), { ssr: false });
-const CostoEvolucionChart = dynamic(() => import("@/components/CostoEvolucionChart"), { ssr: false });
+const ConsumoHCHPChart = dynamic(() => import("@/components/ConsumoHCHPChart"), { ssr: false, loading: () => <ChartSkeleton /> });
+const CostoEvolucionChart = dynamic(() => import("@/components/CostoEvolucionChart"), { ssr: false, loading: () => <ChartSkeleton /> });
 
 export default function HistorialPage() {
   const { getByYear, getTarifa } = useEnergy();
@@ -23,7 +25,7 @@ export default function HistorialPage() {
     <div className="space-y-7 animate-fade-in">
 
       {/* ── Page Header ── */}
-      <div className="flex items-start justify-between gap-4 flex-wrap">
+      <div className="flex items-start justify-between gap-4 flex-wrap animate-slide-up" style={{ animationDelay: "0ms" }}>
         <div>
           <div className="flex items-center gap-2 mb-1">
             <span className="badge bg-slate-100 text-slate-600 border border-slate-200">
@@ -66,7 +68,7 @@ export default function HistorialPage() {
       </div>
 
       {/* ── Tariff info strip ── */}
-      <div className="flex flex-wrap gap-4 p-4 bg-white rounded-2xl border border-slate-100 shadow-card items-center">
+      <div className="flex flex-wrap gap-4 p-4 bg-white rounded-2xl border border-slate-100 shadow-card items-center animate-slide-up" style={{ animationDelay: "50ms" }}>
         <div className="flex items-center gap-2">
           <div className="w-2 h-2 rounded-full bg-slate-300" />
           <span className="text-xs text-slate-400 font-medium">Tarifas {año}:</span>
@@ -98,7 +100,7 @@ export default function HistorialPage() {
 
       {/* ── Content ── */}
       {datos.length === 0 ? (
-        <div className="bg-white rounded-2xl border border-slate-100 shadow-card p-16 text-center">
+        <div className="bg-white rounded-2xl border border-slate-100 shadow-card p-16 text-center animate-slide-up" style={{ animationDelay: "100ms" }}>
           <div className="w-16 h-16 rounded-2xl bg-slate-50 flex items-center justify-center mx-auto mb-4">
             <FileX className="w-8 h-8 text-slate-300" />
           </div>
@@ -109,11 +111,19 @@ export default function HistorialPage() {
         </div>
       ) : (
         <>
-          <div className="grid grid-cols-1 xl:grid-cols-2 gap-5">
-            <ConsumoHCHPChart data={datos} title={`Consumo HC/HP — ${año}`} />
-            <CostoEvolucionChart data={datos} title={`Evolución de costes — ${año} (€)`} />
+          <div className="grid grid-cols-1 xl:grid-cols-2 gap-5 animate-slide-up" style={{ animationDelay: "100ms" }}>
+            <Suspense fallback={<ChartSkeleton />}>
+              <ConsumoHCHPChart data={datos} title={`Consumo HC/HP — ${año}`} />
+            </Suspense>
+            <Suspense fallback={<ChartSkeleton />}>
+              <CostoEvolucionChart data={datos} title={`Evolución de costes — ${año} (€)`} />
+            </Suspense>
           </div>
-          <TablaConsumo data={datos} />
+          <div className="animate-slide-up" style={{ animationDelay: "150ms" }}>
+            <Suspense fallback={<TableSkeleton rows={5} />}>
+              <TablaConsumo data={datos} />
+            </Suspense>
+          </div>
         </>
       )}
     </div>

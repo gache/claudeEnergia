@@ -1,9 +1,10 @@
 "use client";
 
-import { useState } from "react";
+import { useState, Suspense } from "react";
 import { Save, Calculator, CheckCircle, AlertCircle, ChevronDown } from "lucide-react";
 import { useEnergy } from "@/lib/EnergyContext";
 import { MESES, calcularKPI, ANOS_DISPONIBLES } from "@/lib/data";
+import KPISkeleton from "@/components/KPISkeleton";
 
 export default function RegistroPage() {
   const { addOrUpdate, kpiFor, getTarifa } = useEnergy();
@@ -22,14 +23,21 @@ export default function RegistroPage() {
   const preview      = hc > 0 || hp > 0 ? calcularKPI({ mes, año, hc, hp }, tarifaMes) : null;
   const existing     = kpiFor(mes, año);
   const hasValues    = hc > 0 || hp > 0;
+
+  const hcError = hcStr && (hc < 0 || !Number.isFinite(hc));
+  const hpError = hpStr && (hp < 0 || !Number.isFinite(hp));
+  const hasErrors = hcError || hpError;
+
   const saveBtnClass = saved
     ? "bg-savings-600 text-white shadow-sm"
-    : hasValues
-      ? "bg-brand-600 hover:bg-brand-700 text-white shadow-sm hover:shadow-md"
-      : "bg-slate-100 text-slate-400 cursor-not-allowed";
+    : hasErrors
+      ? "bg-red-100 text-red-500 cursor-not-allowed"
+      : hasValues
+        ? "bg-brand-600 hover:bg-brand-700 text-white shadow-sm hover:shadow-md"
+        : "bg-slate-100 text-slate-400 cursor-not-allowed";
 
   function handleSave() {
-    if (!hasValues) return;
+    if (!hasValues || hasErrors) return;
     addOrUpdate({ mes, año, hc, hp });
     setSaved(true);
     setTimeout(() => setSaved(false), 3000);
@@ -53,7 +61,7 @@ export default function RegistroPage() {
     <div className="space-y-7 max-w-2xl animate-fade-in">
 
       {/* ── Header ── */}
-      <div>
+      <div className="animate-slide-up" style={{ animationDelay: "0ms" }}>
         <div className="flex items-center gap-2 mb-1">
           <span className="badge bg-brand-50 text-brand-700 border border-brand-100">
             {MESES[mes - 1]} {año}
@@ -71,7 +79,7 @@ export default function RegistroPage() {
       </div>
 
       {/* ── Form card ── */}
-      <div className="bg-white rounded-2xl shadow-card-md border border-slate-100 overflow-hidden">
+      <div className="bg-white rounded-2xl shadow-card-md border border-slate-100 overflow-hidden animate-slide-up" style={{ animationDelay: "50ms" }}>
 
         {/* Form top accent */}
         <div className="h-1 bg-gradient-to-r from-hc-500 via-brand-500 to-hp-500" />
@@ -145,16 +153,23 @@ export default function RegistroPage() {
                 placeholder="Ej. 120"
                 value={hcStr}
                 onChange={e => { setHcStr(e.target.value); setSaved(false); }}
-                className="input-hc font-mono text-base"
+                className={`input-hc font-mono text-base ${hcError ? "border-red-500 bg-red-50" : ""}`}
               />
-              <p className="text-xs text-hc-400 mt-1.5 font-mono">
-                Tarifa: {tarifaMes.hc.toFixed(5)} €/kWh
-                {hc > 0 && (
-                  <span className="ml-2 text-hc-600 font-semibold">
-                    → {(hc * tarifaMes.hc).toFixed(3)} €
-                  </span>
-                )}
-              </p>
+              {hcError && (
+                <p className="text-xs text-red-600 mt-1.5 font-semibold">
+                  ⚠ Debe ser un número válido y no negativo
+                </p>
+              )}
+              {!hcError && (
+                <p className="text-xs text-hc-400 mt-1.5 font-mono">
+                  Tarifa: {tarifaMes.hc.toFixed(5)} €/kWh
+                  {hc > 0 && (
+                    <span className="ml-2 text-hc-600 font-semibold">
+                      → {(hc * tarifaMes.hc).toFixed(3)} €
+                    </span>
+                  )}
+                </p>
+              )}
             </div>
             <div>
               <label className="block text-xs font-semibold uppercase tracking-wider text-hp-600 mb-2">
@@ -167,43 +182,63 @@ export default function RegistroPage() {
                 placeholder="Ej. 133"
                 value={hpStr}
                 onChange={e => { setHpStr(e.target.value); setSaved(false); }}
-                className="input-hp font-mono text-base"
+                className={`input-hp font-mono text-base ${hpError ? "border-red-500 bg-red-50" : ""}`}
               />
-              <p className="text-xs text-hp-400 mt-1.5 font-mono">
-                Tarifa: {tarifaMes.hp.toFixed(5)} €/kWh
-                {hp > 0 && (
-                  <span className="ml-2 text-hp-600 font-semibold">
-                    → {(hp * tarifaMes.hp).toFixed(3)} €
-                  </span>
-                )}
-              </p>
+              {hpError && (
+                <p className="text-xs text-red-600 mt-1.5 font-semibold">
+                  ⚠ Debe ser un número válido y no negativo
+                </p>
+              )}
+              {!hpError && (
+                <p className="text-xs text-hp-400 mt-1.5 font-mono">
+                  Tarifa: {tarifaMes.hp.toFixed(5)} €/kWh
+                  {hp > 0 && (
+                    <span className="ml-2 text-hp-600 font-semibold">
+                      → {(hp * tarifaMes.hp).toFixed(3)} €
+                    </span>
+                  )}
+                </p>
+              )}
             </div>
           </div>
 
           {/* Save button */}
-          <button
-            onClick={handleSave}
-            disabled={!hasValues}
-            className={`w-full flex items-center justify-center gap-2.5 px-5 py-3.5 rounded-xl font-semibold text-sm transition-all duration-200 min-h-[48px] ${saveBtnClass}`}
-          >
-            {saved ? (
-              <>
-                <CheckCircle className="w-4.5 h-4.5 w-[18px] h-[18px]" />
-                ¡Guardado correctamente!
-              </>
-            ) : (
-              <>
-                <Save className="w-4 h-4" />
-                {existing ? "Actualizar registro" : "Guardar registro"}
-              </>
+          <div>
+            <button
+              onClick={handleSave}
+              disabled={Boolean(!hasValues || hasErrors)}
+              className={`w-full flex items-center justify-center gap-2.5 px-5 py-3.5 rounded-xl font-semibold text-sm transition-all duration-200 min-h-[48px] ${saveBtnClass}`}
+            >
+              {saved ? (
+                <>
+                  <CheckCircle className="w-4.5 h-4.5 w-[18px] h-[18px]" />
+                  ¡Guardado correctamente!
+                </>
+              ) : hasErrors ? (
+                <>
+                  <AlertCircle className="w-4 h-4" />
+                  Corrige los errores antes de guardar
+                </>
+              ) : (
+                <>
+                  <Save className="w-4 h-4" />
+                  {existing ? "Actualizar registro" : "Guardar registro"}
+                </>
+              )}
+            </button>
+            {hasErrors && (
+              <p className="text-xs text-red-600 mt-2 text-center font-semibold">
+                Los valores deben ser números no negativos válidos
+              </p>
             )}
-          </button>
+          </div>
         </div>
       </div>
 
       {/* ── Live KPI preview ── */}
-      {preview && (
-        <div className="bg-white rounded-2xl shadow-card-md border border-slate-100 overflow-hidden">
+      <Suspense fallback={<KPISkeleton count={9} />}>
+        {preview && (
+          <div className="bg-white rounded-2xl shadow-card-md border border-slate-100 overflow-hidden animate-slide-up" style={{ animationDelay: "100ms" }}>
           <div className="px-5 py-3.5 border-b border-slate-100 flex items-center gap-2">
             <div className="w-6 h-6 rounded-lg bg-brand-50 flex items-center justify-center">
               <Calculator className="w-3.5 h-3.5 text-brand-600" />
@@ -311,7 +346,8 @@ export default function RegistroPage() {
             </div>
           </div>
         </div>
-      )}
+        )}
+      </Suspense>
     </div>
   );
 }
