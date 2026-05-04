@@ -4,6 +4,7 @@ import dynamic from "next/dynamic";
 import { Zap, TrendingDown, TrendingUp, Minus, BarChart3, PenLine } from "lucide-react";
 import { useEnergy } from "@/lib/EnergyContext";
 import { MESES } from "@/lib/data";
+import { HASyncStatus } from "@/components/HASyncStatus";
 
 const ConsumoHCHPChart = dynamic(() => import("@/components/ConsumoHCHPChart"), { ssr: false });
 const CostoEvolucionChart = dynamic(() => import("@/components/CostoEvolucionChart"), { ssr: false });
@@ -185,6 +186,11 @@ export default function DashboardPage() {
             </p>
           </div>
         </div>
+      </div>
+
+      {/* ── Home Assistant Sync Status ── */}
+      <div className="animate-slide-up" style={{ animationDelay: "50ms" }}>
+        <HASyncStatus />
       </div>
 
       {/* ── 1. CONSUMO HC, HP, TOTAL, DIFERENCIA ── */}
