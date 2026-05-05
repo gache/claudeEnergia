@@ -285,9 +285,15 @@ export default function DashboardPage() {
         </div>
       </div>
 
-      {/* ── 3. COMPARACIÓN ÚLTIMOS 3 MESES ── */}
+      {/* ── 3. GRÁFICO DE CONSUMO HC/HP 2026 ── */}
+      <div className="grid grid-cols-1 xl:grid-cols-2 gap-5 animate-slide-up" style={{ animationDelay: "350ms" }}>
+        <ConsumoHCHPChart data={kpis2026} title="Consumo HC/HP mensual 2026" />
+        <CostoEvolucionChart data={kpis2026} title="Evolución de costes — 2026 (€)" />
+      </div>
+
+      {/* ── 4. COMPARACIÓN ÚLTIMOS 3 MESES ── */}
       {last3Months.length > 0 && (
-        <div className="bg-white/70 backdrop-blur-md rounded-2xl shadow-card-md border border-slate-100/40 overflow-hidden animate-slide-up hover:shadow-card-lg transition-shadow duration-300" style={{ animationDelay: "350ms" }}>
+        <div className="bg-white/70 backdrop-blur-md rounded-2xl shadow-card-md border border-slate-100/40 overflow-hidden animate-slide-up hover:shadow-card-lg transition-shadow duration-300" style={{ animationDelay: "400ms" }}>
           <div className="px-6 py-4 border-b border-slate-100">
             <h2 className="text-lg font-bold text-slate-900">Últimos 3 meses — 2026 vs 2025</h2>
           </div>
@@ -311,7 +317,7 @@ export default function DashboardPage() {
                   const varHP = prev ? Math.round(((d.hp - prev.hp) / prev.hp) * 100) : null;
                   const varPct = prev ? Math.round(((d.total - prev.total) / prev.total) * 100) : null;
                   return (
-                    <tr key={d.mes} className="border-b border-slate-50 hover:bg-slate-50/70 transition-colors animate-slide-up" style={{ animationDelay: `${375 + idx * 25}ms` }}>
+                    <tr key={d.mes} className="border-b border-slate-50 hover:bg-slate-50/70 transition-colors animate-slide-up" style={{ animationDelay: `${425 + idx * 25}ms` }}>
                       <td className="px-6 py-3 font-semibold text-slate-700">{MESES[d.mes - 1]}</td>
                       <td className="px-4 py-3 text-right font-mono text-hc-600 font-semibold">{d.hc.toFixed(3)}</td>
                       <td className={`px-4 py-3 text-right font-semibold ${
@@ -339,12 +345,6 @@ export default function DashboardPage() {
           </div>
         </div>
       )}
-
-      {/* ── 4. GRÁFICO DE CONSUMO HC/HP 2026 ── */}
-      <div className="grid grid-cols-1 xl:grid-cols-2 gap-5 animate-slide-up" style={{ animationDelay: "400ms" }}>
-        <ConsumoHCHPChart data={kpis2026} title="Consumo HC/HP mensual 2026" />
-        <CostoEvolucionChart data={kpis2026} title="Evolución de costes — 2026 (€)" />
-      </div>
 
     </div>
   );
