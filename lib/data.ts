@@ -86,23 +86,4 @@ export function calcularTotales(data: KPIMensual[]) {
   );
 }
 
-export const datosIniciales: RegistroMensual[] = [
-  // 2025 — año completo
-  { mes: 1,  año: 2025, hc: 180, hp: 241 },
-  { mes: 2,  año: 2025, hc: 165, hp: 209 },
-  { mes: 3,  año: 2025, hc: 145, hp: 153 },
-  { mes: 4,  año: 2025, hc: 120, hp: 147 },
-  { mes: 5,  año: 2025, hc: 105, hp: 128 },
-  { mes: 6,  año: 2025, hc: 98,  hp: 116 },
-  { mes: 7,  año: 2025, hc: 91,  hp: 108 },
-  { mes: 8,  año: 2025, hc: 95,  hp: 112 },
-  { mes: 9,  año: 2025, hc: 110, hp: 135 },
-  { mes: 10, año: 2025, hc: 138, hp: 172 },
-  { mes: 11, año: 2025, hc: 162, hp: 207 },
-  { mes: 12, año: 2025, hc: 187, hp: 248 },
-  // 2026 — Ene–Abr
-  { mes: 1,  año: 2026, hc: 172, hp: 228 },
-  { mes: 2,  año: 2026, hc: 158, hp: 196 },
-  { mes: 3,  año: 2026, hc: 138, hp: 141 },
-  { mes: 4,  año: 2026, hc: 112, hp: 133 },
-];
+export const datosIniciales: RegistroMensual[] = [];
