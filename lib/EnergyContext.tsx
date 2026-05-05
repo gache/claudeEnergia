@@ -1,7 +1,7 @@
 "use client";
 
 import { createContext, useContext, useState, useEffect, useRef, ReactNode } from "react";
-import { doc, setDoc, getDoc, serverTimestamp, collection, getDocs, onSnapshot } from "firebase/firestore";
+import { doc, setDoc, getDoc, serverTimestamp, collection, getDocs } from "firebase/firestore";
 import {
   RegistroMensual, KPIMensual, TarifaMensual,
   calcularKPI, datosIniciales, TARIFAS_INICIALES, TARIFA_HC, TARIFA_HP,
@@ -44,11 +44,9 @@ export function EnergyProvider({ children }: { children: ReactNode }) {
     setHydrated(true);
   }, []);
 
-  // Cargar datos de Firestore y escuchar cambios en tiempo real
+  // Cargar datos de Firestore UNA SOLA VEZ (no listener continuo)
   useEffect(() => {
     if (!hydrated) return;
-
-    let unsubscribe: (() => void) | null = null;
 
     const initializeFirestore = async () => {
       try {
@@ -89,35 +87,26 @@ export function EnergyProvider({ children }: { children: ReactNode }) {
             updatedAt: serverTimestamp(),
           };
           await setDoc(docRef, initialData);
+        } else {
+          // Cargar datos del documento existente (una sola vez)
+          const data = snap.data();
+          const registros = data.registros || datosIniciales;
+          const tarifas = data.tarifas || TARIFAS_INICIALES;
+
+          setRegistros(registros);
+          setTarifas(tarifas);
+          localStorage.setItem(KEY_REGISTROS, JSON.stringify(registros));
+          localStorage.setItem(KEY_TARIFAS, JSON.stringify(tarifas));
         }
-
-        // Configurar listener en tiempo real
-        unsubscribe = onSnapshot(docRef, (snap) => {
-          if (snap.exists()) {
-            const data = snap.data();
-            const registros = data.registros || datosIniciales;
-            const tarifas = data.tarifas || TARIFAS_INICIALES;
-
-            setRegistros(registros);
-            setTarifas(tarifas);
-            localStorage.setItem(KEY_REGISTROS, JSON.stringify(registros));
-            localStorage.setItem(KEY_TARIFAS, JSON.stringify(tarifas));
-          }
-        });
       } catch (error) {
         console.error("Error initializing Firestore:", error);
       }
     };
 
     initializeFirestore();
-
-    // Limpiar listener al desmontar
-    return () => {
-      if (unsubscribe) unsubscribe();
-    };
   }, [hydrated]);
 
-  // Guardar en Firestore con debounce (máx 1 vez cada 5 segundos para reducir cuota)
+  // Guardar en Firestore con debounce agresivo (máx 1 vez cada 60 segundos para minimizar cuota)
   useEffect(() => {
     if (!hydrated) return;
 
@@ -132,10 +121,11 @@ export function EnergyProvider({ children }: { children: ReactNode }) {
           tarifas,
           updatedAt: serverTimestamp(),
         });
+        console.log("💾 Datos guardados en Firestore");
       } catch (error) {
         console.error("Error saving to Firestore:", error);
       }
-    }, 5000);
+    }, 60000);
 
     return () => {
       if (saveTimeoutRef.current) clearTimeout(saveTimeoutRef.current);
