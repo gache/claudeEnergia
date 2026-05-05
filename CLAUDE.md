@@ -180,26 +180,3 @@ Tokens personalizados en `tailwind.config.ts`:
 ## Datos Iniciales
 
 Registros de consumo y tarifas por defecto están sedeados en `lib/data.ts` (`datosIniciales`, `TARIFAS_INICIALES`). Estos se cargan si el documento Firestore no existe.
-
-## Integración Home Assistant
-
-Se puede sincronizar datos de consumo eléctrico desde Home Assistant automáticamente.
-
-### Estructura
-
-- `lib/homeassistant.ts` — Cliente API de Home Assistant
-- `lib/useHASync.ts` — Hook React para sincronización periódica
-- `app/api/ha-sync/route.ts` — Endpoint que lee de HA y actualiza Firestore
-- `components/HASyncStatus.tsx` — Widget UI para mostrar estado
-
-### Configuración
-
-Agregar a `.env.local`:
-```
-HA_BASE_URL=http://homeassistant.local:8123
-HA_TOKEN=your_long_lived_token_here
-HA_SENSOR_HC=sensor.energia_hc
-HA_SENSOR_HP=sensor.energia_hp
-```
-
-Ver `docs/HOME_ASSISTANT_INTEGRATION.md` para detalles completos.
