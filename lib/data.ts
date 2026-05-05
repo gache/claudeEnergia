@@ -12,15 +12,7 @@ export type TarifaMensual = {
   hp: number;
 };
 
-export const TARIFAS_INICIALES: TarifaMensual[] = [
-  { año: 2022, mes: 1, hc: 0.1441,  hp: 0.2175  },
-  { año: 2023, mes: 1, hc: 0.1628,  hp: 0.2381  },
-  { año: 2024, mes: 1, hc: 0.1756,  hp: 0.2543  },
-  { año: 2025, mes: 1, hc: 0.1854,  hp: 0.2689  },
-  { año: 2025, mes: 2, hc: 0.16991, hp: 0.25162 },
-  { año: 2025, mes: 3, hc: 0.19008, hp: 0.27436 },
-  { año: 2026, mes: 1, hc: 0.19008, hp: 0.27436 },
-];
+export const TARIFAS_INICIALES: TarifaMensual[] = [];
 
 export type RegistroMensual = {
   mes: number;
