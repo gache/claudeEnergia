@@ -1,0 +1,19 @@
+[     588ms] [LOG] Firebase Config Keys: {apiKey: ✓ AIzaSyDAdu..., authDomain: claudeenergia.firebaseapp.com, projectId: claudeenergia} @ https://claude-energia.vercel.app/_next/static/chunks/834-6265e5cf1ce98ea8.js:0
+[     663ms] [ERROR] Failed to load resource: the server responded with a status of 404 () @ https://claude-energia.vercel.app/favicon.ico:0
+[    1146ms] [ERROR] Failed to load resource: the server responded with a status of 400 () @ https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyDAduWriAvCW2PaiKCnwnVwZTzjaAKO7uo:0
+[    1146ms] [ERROR] Anonymous sign-in error: FirebaseError: Firebase: Error (auth/admin-restricted-operation).
+    at g (https://claude-energia.vercel.app/_next/static/chunks/4ea34a6d-909c959f79fe4e90.js:1:1113)
+    at d (https://claude-energia.vercel.app/_next/static/chunks/4ea34a6d-909c959f79fe4e90.js:1:673)
+    at A (https://claude-energia.vercel.app/_next/static/chunks/4ea34a6d-909c959f79fe4e90.js:1:6749)
+    at async O (https://claude-energia.vercel.app/_next/static/chunks/4ea34a6d-909c959f79fe4e90.js:1:6883)
+    at async e5 (https://claude-energia.vercel.app/_next/static/chunks/4ea34a6d-909c959f79fe4e90.js:1:49700)
+    at async https://claude-energia.vercel.app/_next/static/chunks/834-6265e5cf1ce98ea8.js:1:415 @ https://claude-energia.vercel.app/_next/static/chunks/117-c3e3950ff94c68a5.js:0
+[   33373ms] [LOG] Firebase Config Keys: {apiKey: ✓ AIzaSyDAdu..., authDomain: claudeenergia.firebaseapp.com, projectId: claudeenergia} @ https://claude-energia.vercel.app/_next/static/chunks/app/layout-3601d9bfb2c6766b.js:0
+[   33761ms] [ERROR] Failed to load resource: the server responded with a status of 400 () @ https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyDAduWriAvCW2PaiKCnwnVwZTzjaAKO7uo:0
+[   33765ms] [ERROR] Anonymous sign-in error: FirebaseError: Firebase: Error (auth/admin-restricted-operation).
+    at g (https://claude-energia.vercel.app/_next/static/chunks/4ea34a6d-909c959f79fe4e90.js:1:1113)
+    at d (https://claude-energia.vercel.app/_next/static/chunks/4ea34a6d-909c959f79fe4e90.js:1:673)
+    at A (https://claude-energia.vercel.app/_next/static/chunks/4ea34a6d-909c959f79fe4e90.js:1:6749)
+    at async O (https://claude-energia.vercel.app/_next/static/chunks/4ea34a6d-909c959f79fe4e90.js:1:6883)
+    at async e5 (https://claude-energia.vercel.app/_next/static/chunks/4ea34a6d-909c959f79fe4e90.js:1:49700)
+    at async https://claude-energia.vercel.app/_next/static/chunks/app/layout-3601d9bfb2c6766b.js:1:11896 @ https://claude-energia.vercel.app/_next/static/chunks/117-c3e3950ff94c68a5.js:0

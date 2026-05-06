@@ -1,0 +1,4 @@
+[    4096ms] [ERROR] Failed to load resource: the server responded with a status of 400 () @ https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyDAduWriAvCW2PaiKCnwnVwZTzjaAKO7uo:0
+[   11647ms] [ERROR] Failed to load resource: the server responded with a status of 400 () @ https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyDAduWriAvCW2PaiKCnwnVwZTzjaAKO7uo:0
+[  913322ms] [ERROR] Failed to load resource: the server responded with a status of 400 () @ https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyDAduWriAvCW2PaiKCnwnVwZTzjaAKO7uo:0
+[  930380ms] [ERROR] Failed to load resource: the server responded with a status of 400 () @ https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyDAduWriAvCW2PaiKCnwnVwZTzjaAKO7uo:0

@@ -181,7 +181,7 @@ export default function DashboardPage() {
           <div>
             <p className="text-[11px] font-semibold text-slate-400 uppercase tracking-wide">Total mes</p>
             <p className="text-base font-bold text-slate-800 leading-none tabular-nums">
-              {actual.total} kWh · {actual.costoTotal.toFixed(3)} €
+              {actual.total.toFixed(3)} kWh · {actual.costoTotal.toFixed(3)} €
             </p>
           </div>
         </div>
@@ -191,7 +191,7 @@ export default function DashboardPage() {
       <div className="grid grid-cols-2 xl:grid-cols-4 gap-4">
         <KpiCard
           label="Consumo HC"
-          value={String(actual.hc)}
+          value={actual.hc.toFixed(3)}
           unit="kWh"
           subLabel={`${actual.costoHC.toFixed(3)} €`}
           trend={varTotalHC}
@@ -201,7 +201,7 @@ export default function DashboardPage() {
         />
         <KpiCard
           label="Consumo HP"
-          value={String(actual.hp)}
+          value={actual.hp.toFixed(3)}
           unit="kWh"
           subLabel={`${actual.costoHP.toFixed(3)} €`}
           trend={varTotalHP}
@@ -211,7 +211,7 @@ export default function DashboardPage() {
         />
         <KpiCard
           label="Consumo Total"
-          value={String(actual.total)}
+          value={actual.total.toFixed(3)}
           unit="kWh"
           subLabel={`${actual.costoTotal.toFixed(3)} €`}
           trend={varTotal}

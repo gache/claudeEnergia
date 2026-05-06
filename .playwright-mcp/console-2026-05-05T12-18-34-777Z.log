@@ -1,0 +1,79 @@
+[     193ms] [ERROR] Failed to load resource: net::ERR_FAILED @ https://vercel.com/_next/static/chunks/1s18xp2lry3lr.css?dpl=dpl_8gKoJWuWZMS8KZhZtFtEcaEyeaka:0
+[     629ms] [LOG] %c
+▲
+
+    ____                               _ __
+   / __ \________  ____ _____ ___     (_) /_
+  / / / / ___/ _ \/ __ `/ __ `__ \   / / __/
+ / /_/ / /  /  __/ /_/ / / / / / /  / / /__
+/_____/_/   \___/\__,_/_/ /_/ /_/  /_/\__( )
+   _____ __    _          _ __           |/
+  / ___// /_  (_)___     (_) /_
+  \__ \/ __ \/ / __ \   / / __/
+ ___/ / / / / / /_/ /  / / /_
+/____/_/ /_/_/ .___/  /_/\__/
+            /_/
+  
+
+Hello!
+
+- Open Source https://vercel.com/oss
+- Careers https://vercel.com/careers
+- Status https://vercel-status.com
+
+ font-family: "Geist Mono", monospace; white-space: pre; line-height: 1; @ https://vercel.com/_next/static/chunks/1l29vw7u8_irq.js?dpl=dpl_8gKoJWuWZMS8KZhZtFtEcaEyeaka:78
+[     688ms] [WARNING] iso_swr: SSR fetch failed for "/api/v2/teams/ericks-projects-22f99440" {error: iso_swr_fetch_error, message: The request is missing an authentication token} @ https://vercel.com/ericks-projects-22f99440/claude-energia:543
+[     689ms] [WARNING] iso_swr: SSR fetch failed for "/v1/dashboard/projects/claude-energia?teamId=ericks-projects-22f99440" {error: iso_swr_fetch_error, message: The request is missing an authentication token} @ https://vercel.com/ericks-projects-22f99440/claude-energia:543
+[     689ms] [WARNING] iso_swr: SSR fetch failed for "/api/v8/projects?includePermissions=false&latestDeployments=0&limit=10&search=&slug=ericks-projects-22f99440" {error: iso_swr_fetch_error, message: The request is missing an authentication token} @ https://vercel.com/ericks-projects-22f99440/claude-energia:543
+[     726ms] [WARNING] iso_swr: SSR fetch failed for "/api/v6/deployments?limit=10&projectId=claude-energia&rollbackCandidate=true&teamId=ericks-projects-22f99440" {error: iso_swr_fetch_error, message: The request is missing an authentication token} @ https://vercel.com/ericks-projects-22f99440/claude-energia:622
+[     759ms] [WARNING] iso_swr: SSR fetch failed for "/api/v9/projects/claude-energia?activeBranches=1&latestDeployments=1&rollbackInfo=true&teamId=ericks-projects-22f99440" {error: iso_swr_fetch_error, message: The request is missing an authentication token} @ https://vercel.com/ericks-projects-22f99440/claude-energia:712
+[     759ms] [WARNING] iso_swr: SSR fetch failed for "/dashboard/projects/claude-energia/production-checklist?teamId=ericks-projects-22f99440" {error: iso_swr_fetch_error, message: The request is missing an authentication token} @ https://vercel.com/ericks-projects-22f99440/claude-energia:712
+[     780ms] [WARNING] iso_swr: SSR fetch failed for "/api/v6/deployments?limit=10&projectId=claude-energia&state=INITIALIZING%2CREADY%2CERROR%2CBUILDING%2CQUEUED&target=preview&teamId=ericks-projects-22f99440" {error: iso_swr_fetch_error, message: The request is missing an authentication token} @ https://vercel.com/ericks-projects-22f99440/claude-energia:791
+[     931ms] [WARNING] iso_swr[warn] [client] fallback error for key: "/api/v2/teams/ericks-projects-22f99440" {error: iso_swr_fetch_error, message: The request is missing an authentication token} @ https://vercel.com/_next/static/chunks/24_dmmrwuu7j9.js?dpl=dpl_8gKoJWuWZMS8KZhZtFtEcaEyeaka:6
+[    1114ms] [WARNING] iso_swr[warn] [client] fallback error for key: "/v1/dashboard/projects/claude-energia?teamId=ericks-projects-22f99440" {error: iso_swr_fetch_error, message: The request is missing an authentication token} @ https://vercel.com/_next/static/chunks/24_dmmrwuu7j9.js?dpl=dpl_8gKoJWuWZMS8KZhZtFtEcaEyeaka:6
+[    1471ms] [ERROR] Failed to load resource: the server responded with a status of 403 () @ https://vercel.com/api/v1/dashboard/projects/claude-energia?teamId=ericks-projects-22f99440:0
+[    1471ms] [ERROR] Failed to load resource: the server responded with a status of 403 () @ https://vercel.com/api/v1/notifications/push:0
+[    1471ms] [ERROR] Failed to load resource: the server responded with a status of 403 () @ https://vercel.com/api/jwt:0
+[    1472ms] [ERROR] Failed to load resource: the server responded with a status of 403 () @ https://vercel.com/api/dashboard/projects/claude-energia/activity?teamId=ericks-projects-22f99440:0
+[    1590ms] [ERROR] The script resource is behind a redirect, which is disallowed. @ :0
+[    1604ms] [LOG] Ignored request error TypeError: A network error has occurred. Please check your connection and try again.
+    at w (https://vercel.com/_next/static/chunks/3bu6p50wjgjya.js?dpl=dpl_8gKoJWuWZMS8KZhZtFtEcaEyeaka:21:6217)
+    at async revalidateIfStale (https://vercel.com/_next/static/chunks/1lk1fimefa0uv.js?dpl=dpl_8gKoJWuWZMS8KZhZtFtEcaEyeaka:3:86526)
+    at async https://vercel.com/_next/static/chunks/2auu5cqbre464.js?dpl=dpl_8gKoJWuWZMS8KZhZtFtEcaEyeaka:2:15384 @ https://vercel.com/_next/static/chunks/1f0olro97h-z_.js?dpl=dpl_8gKoJWuWZMS8KZhZtFtEcaEyeaka:4
+[    1605ms] [LOG] Ignored request error TypeError: A network error has occurred. Please check your connection and try again.
+    at w (https://vercel.com/_next/static/chunks/3bu6p50wjgjya.js?dpl=dpl_8gKoJWuWZMS8KZhZtFtEcaEyeaka:21:6217)
+    at async ei (https://vercel.com/_next/static/chunks/1lk1fimefa0uv.js?dpl=dpl_8gKoJWuWZMS8KZhZtFtEcaEyeaka:3:4533)
+    at async https://vercel.com/_next/static/chunks/2auu5cqbre464.js?dpl=dpl_8gKoJWuWZMS8KZhZtFtEcaEyeaka:2:15384 @ https://vercel.com/_next/static/chunks/1f0olro97h-z_.js?dpl=dpl_8gKoJWuWZMS8KZhZtFtEcaEyeaka:4
+[    1649ms] [LOG] %c
+▲
+
+ _____ _              _                    _   _             __
+|_   _| |__   ___    / \   __ _  ___ _ __ | |_(_) ___       / /
+  | | | '_ \ / _ \  / _ \ / _` |/ _ \ '_ \| __| |/ __|     / /
+  | | | | | |  __/ / ___ \ (_| |  __/ | | | |_| | (__     /_/
+  |_| |_| |_|\___|/_/   \_\__, |\___|_| |_|\__|_|\___|    (_)
+                           |___/
+ ___        __               _                   _                 _
+|_ _|_ __  / _|_ __ __ _ ___| |_ _ __ _   _  ___| |_ _   _ _ __ ___
+ | || '_ \| |_| '__/ _` / __| __| '__| | | |/ __| __| | | | '__/ _ \
+ | || | | |  _| | | (_| \__ \ |_| |  | |_| | (__| |_| |_| | | |  __/
+|___|_| |_|_| |_|  \__,_|___/\__|_|   \__,_|\___|\__|\__,_|_|  \___|
+  
+
+Hello!
+
+- Open Source https://vercel.com/oss
+- Careers https://vercel.com/careers
+- Status https://vercel-status.com
+
+ font-family: "Geist Mono", monospace; white-space: pre; line-height: 1; @ https://vercel.com/_next/static/chunks/1l29vw7u8_irq.js?dpl=dpl_8gKoJWuWZMS8KZhZtFtEcaEyeaka:78
+[    2297ms] [WARNING] [GSI_LOGGER]: Your client application uses one of the Google One Tap prompt UI status methods that may stop functioning when FedCM becomes mandatory. Refer to the migration guide to update your code accordingly and opt-in to FedCM to test your changes. Learn more: https://developers.google.com/identity/gsi/web/guides/fedcm-migration?s=dc#display_moment and https://developers.google.com/identity/gsi/web/guides/fedcm-migration?s=dc#skipped_moment @ https://accounts.google.com/gsi/client:84
+[    2311ms] [ERROR] Not signed in with the identity provider. @ https://vercel.com/login?next=%2Fericks-projects-22f99440%2Fclaude-energia:0
+[    2409ms] [WARNING] Deprecated API for given entry type. @ https://vercel.com/_next/static/chunks/24660xudx800e.js?dpl=dpl_8gKoJWuWZMS8KZhZtFtEcaEyeaka:18
+[    2537ms] [ERROR] Failed to load resource: the server responded with a status of 403 () @ https://vercel.com/api/jwt:0
+[    5651ms] [WARNING] The resource https://vercel.com/_next/static/media/adobe-light.406_7oryl71va.svg?dpl=dpl_8gKoJWuWZMS8KZhZtFtEcaEyeaka was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally. @ https://vercel.com/login?next=%2Fericks-projects-22f99440%2Fclaude-energia:0
+[    5651ms] [WARNING] The resource https://vercel.com/_next/static/media/ebay-dark.34mho2a18qqlt.svg?dpl=dpl_8gKoJWuWZMS8KZhZtFtEcaEyeaka was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally. @ https://vercel.com/login?next=%2Fericks-projects-22f99440%2Fclaude-energia:0
+[    5651ms] [WARNING] The resource https://vercel.com/_next/static/media/ebay-light.3ft_ki8203ov0.svg?dpl=dpl_8gKoJWuWZMS8KZhZtFtEcaEyeaka was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally. @ https://vercel.com/login?next=%2Fericks-projects-22f99440%2Fclaude-energia:0
+[    5651ms] [WARNING] The resource https://vercel.com/_next/static/chunks/09f00n8m302ia.css?dpl=dpl_8gKoJWuWZMS8KZhZtFtEcaEyeaka was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally. @ https://vercel.com/login?next=%2Fericks-projects-22f99440%2Fclaude-energia:0
+[    5651ms] [WARNING] The resource https://vercel.com/_next/static/media/stripe-light.2l_1jctpe6k_4.svg?dpl=dpl_8gKoJWuWZMS8KZhZtFtEcaEyeaka was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally. @ https://vercel.com/login?next=%2Fericks-projects-22f99440%2Fclaude-energia:0
+[    5651ms] [WARNING] The resource https://vercel.com/_next/static/media/stripe-dark.16ozjth2vgb_3.svg?dpl=dpl_8gKoJWuWZMS8KZhZtFtEcaEyeaka was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally. @ https://vercel.com/login?next=%2Fericks-projects-22f99440%2Fclaude-energia:0
