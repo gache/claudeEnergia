@@ -174,7 +174,7 @@ export default function Navbar() {
             <div className="w-8 h-8 rounded-xl bg-gradient-to-br from-brand-500 to-brand-700 flex items-center justify-center shadow-lg shadow-brand-600/40">
               <Zap className="w-4 h-4 text-white" />
             </div>
-            <span className="text-[15px] font-bold text-white leading-none tracking-tight">
+            <span className="text-[15px] font-bold text-white leading-none tracking-tight hidden sm:inline">
               claudeEnergía
             </span>
           </Link>
@@ -194,7 +194,7 @@ export default function Navbar() {
                   }`}
                 >
                   <Icon className="w-4 h-4 flex-shrink-0" />
-                  <span>{label}</span>
+                  <span className="hidden sm:inline">{label}</span>
                 </Link>
               );
             })}
@@ -211,7 +211,7 @@ export default function Navbar() {
               }`}
             >
               <TrendingUp className="w-4 h-4" />
-              <span>Tarifas</span>
+              <span className="hidden sm:inline">Tarifas</span>
               <ChevronDown className={`w-3.5 h-3.5 transition-transform duration-200 ${tarifasOpen ? "rotate-180" : ""}`} />
             </button>
 
