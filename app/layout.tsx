@@ -1,8 +1,7 @@
 import type { Metadata } from "next";
 import { Outfit, Space_Mono, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
-import Sidebar from "@/components/Sidebar";
-import MobileNav from "@/components/MobileNav";
+import Navbar from "@/components/Navbar";
 import { EnergyProvider } from "@/lib/EnergyContext";
 import { AuthProvider } from "@/lib/AuthContext";
 import ProtectedLayout from "@/components/ProtectedLayout";
@@ -37,13 +36,12 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="es" className={`${outfit.variable} ${spaceMono.variable} ${jetbrainsMono.variable}`}>
-      <body className="flex min-h-screen bg-gradient-subtle antialiased flex-col md:flex-row" style={{ backgroundColor: "#fafbfc" }}>
+      <body className="flex flex-col min-h-screen antialiased" style={{ backgroundColor: "#fafbfc" }}>
         <AuthProvider>
           <EnergyProvider>
             <ProtectedLayout>
-              <MobileNav />
-              <Sidebar />
-              <main className="flex-1 overflow-auto">
+              <Navbar />
+              <main className="flex-1">
                 <div className="p-4 sm:p-6 lg:p-8 max-w-[1600px] mx-auto">
                   {children}
                 </div>
