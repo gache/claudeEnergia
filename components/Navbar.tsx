@@ -175,7 +175,7 @@ export default function Navbar() {
               <Zap className="w-4 h-4 text-white" />
             </div>
             <span className="text-[15px] font-bold text-white leading-none tracking-tight hidden sm:inline">
-              claudeEnergía
+              Energía
             </span>
           </Link>
 

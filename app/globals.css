@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 /* ── Google Fonts ─────────────────────────────────────────────────── */
-@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Space+Mono:wght@400;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Mono:wght@400;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap');
 
 /* ── CSS Design Tokens ───────────────────────────────────────────── */
 :root {
@@ -97,8 +97,8 @@ body {
 
   /* Section header */
   .section-title {
-    @apply text-lg font-semibold text-slate-800;
-    font-family: var(--font-sora, "Sora"), var(--font-inter, "Inter"), sans-serif;
+    @apply text-xl font-black text-slate-900 tracking-tight;
+    font-family: var(--font-jakarta, sans-serif);
   }
 
   /* Mono numbers */

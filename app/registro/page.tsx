@@ -58,11 +58,11 @@ export default function RegistroPage() {
   }
 
   return (
-    <div className="space-y-7 max-w-2xl animate-fade-in">
+    <div className="space-y-7 max-w-2xl mx-auto animate-fade-in">
 
       {/* ── Header ── */}
-      <div className="animate-slide-up" style={{ animationDelay: "0ms" }}>
-        <div className="flex items-center gap-2 mb-1">
+      <div className="animate-slide-up text-center" style={{ animationDelay: "0ms" }}>
+        <div className="flex items-center justify-center gap-2 mb-1">
           <span className="badge bg-brand-50 text-brand-700 border border-brand-100">
             {MESES[mes - 1]} {año}
           </span>

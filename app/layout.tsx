@@ -1,16 +1,16 @@
 import type { Metadata } from "next";
-import { Outfit, Space_Mono, JetBrains_Mono } from "next/font/google";
+import { Plus_Jakarta_Sans, Space_Mono, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import { EnergyProvider } from "@/lib/EnergyContext";
 import { AuthProvider } from "@/lib/AuthContext";
 import ProtectedLayout from "@/components/ProtectedLayout";
 
-const outfit = Outfit({
+const jakarta = Plus_Jakarta_Sans({
   subsets: ["latin"],
-  variable: "--font-outfit",
+  variable: "--font-jakarta",
   display: "swap",
-  weight: ["300", "400", "500", "600", "700", "800", "900"],
+  weight: ["300", "400", "500", "600", "700", "800"],
 });
 
 const spaceMono = Space_Mono({
@@ -35,7 +35,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="es" className={`${outfit.variable} ${spaceMono.variable} ${jetbrainsMono.variable}`}>
+    <html lang="es" className={`${jakarta.variable} ${spaceMono.variable} ${jetbrainsMono.variable}`}>
       <body className="flex flex-col min-h-screen antialiased" style={{ backgroundColor: "#fafbfc" }}>
         <AuthProvider>
           <EnergyProvider>

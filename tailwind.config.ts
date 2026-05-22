@@ -86,7 +86,7 @@ const config: Config = {
         },
       },
       fontFamily: {
-        sans: ["Outfit", "system-ui", "-apple-system", "BlinkMacSystemFont", "Segoe UI", "sans-serif"],
+        sans: ["Plus Jakarta Sans", "system-ui", "-apple-system", "BlinkMacSystemFont", "Segoe UI", "sans-serif"],
         display: ["Geist Mono", "JetBrains Mono", "system-ui", "monospace"],
         mono: ["JetBrains Mono", "var(--font-jetbrains)", "Fira Code", "ui-monospace", "monospace"],
       },
