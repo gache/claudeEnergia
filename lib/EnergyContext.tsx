@@ -13,8 +13,9 @@ const KEY_REGISTROS = "energia-registros-v1";
 const KEY_TARIFAS   = "energia-tarifas-v2";
 
 type EnergyContextType = {
-  registros: RegistroMensual[];
-  tarifas:   TarifaMensual[];
+  registros:  RegistroMensual[];
+  tarifas:    TarifaMensual[];
+  syncStatus: "loading" | "ok" | "error";
   addOrUpdate: (r: RegistroMensual) => void;
   setTarifa:   (año: number, mes: number, hc: number, hp: number) => void;
   getTarifa:   (año: number, mes: number) => { hc: number; hp: number };
@@ -29,6 +30,7 @@ export function EnergyProvider({ children }: { children: ReactNode }) {
   const [registros, setRegistros] = useState<RegistroMensual[]>(datosIniciales);
   const [tarifas,   setTarifas]   = useState<TarifaMensual[]>(TARIFAS_INICIALES);
   const [hydrated,  setHydrated]  = useState(false);
+  const [syncStatus, setSyncStatus] = useState<"loading" | "ok" | "error">("loading");
   const saveTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
   useEffect(() => {
@@ -98,8 +100,10 @@ export function EnergyProvider({ children }: { children: ReactNode }) {
           localStorage.setItem(KEY_REGISTROS, JSON.stringify(registros));
           localStorage.setItem(KEY_TARIFAS, JSON.stringify(tarifas));
         }
+        setSyncStatus("ok");
       } catch (error) {
         console.error("Error initializing Firestore:", error);
+        setSyncStatus("error");
       }
     };
 
@@ -186,7 +190,7 @@ export function EnergyProvider({ children }: { children: ReactNode }) {
   }
 
   return (
-    <EnergyContext.Provider value={{ registros, tarifas, addOrUpdate, setTarifa, getTarifa, getByYear, kpiFor }}>
+    <EnergyContext.Provider value={{ registros, tarifas, syncStatus, addOrUpdate, setTarifa, getTarifa, getByYear, kpiFor }}>
       {children}
     </EnergyContext.Provider>
   );

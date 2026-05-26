@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Plus_Jakarta_Sans, Space_Mono, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
+import SyncStatusBanner from "@/components/SyncStatusBanner";
 import { EnergyProvider } from "@/lib/EnergyContext";
 import { AuthProvider } from "@/lib/AuthContext";
 import ProtectedLayout from "@/components/ProtectedLayout";
@@ -40,6 +41,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <AuthProvider>
           <EnergyProvider>
             <ProtectedLayout>
+              <SyncStatusBanner />
               <Navbar />
               <main className="flex-1">
                 <div className="p-4 sm:p-6 lg:p-8 max-w-[1600px] mx-auto">

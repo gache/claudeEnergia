@@ -1,0 +1,327 @@
+[     308ms] [INFO] %cDownload the React DevTools for a better development experience: https://reactjs.org/link/react-devtools font-weight:bold @ webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/react-dom/cjs/react-dom.development.js:38559
+[     348ms] [LOG] Firebase Config Keys: {apiKey: ✓ AIzaSyDAdu..., authDomain: claudeenergia.firebaseapp.com, projectId: claudeenergia} @ webpack-internal:///(app-pages-browser)/./lib/firebase.ts:30
+[     615ms] [ERROR] Failed to load resource: the server responded with a status of 400 () @ https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyDAduWriAvCW2PaiKCnwnVwZTzjaAKO7uo:0
+[     615ms] [ERROR] Failed to load resource: the server responded with a status of 400 () @ https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyDAduWriAvCW2PaiKCnwnVwZTzjaAKO7uo:0
+[     616ms] [ERROR] Anonymous sign-in error: FirebaseError: Firebase: Error (auth/admin-restricted-operation).
+    at createErrorInternal (webpack-internal:///(app-pages-browser)/./node_modules/firebase/node_modules/@firebase/auth/dist/esm/index-568d0403.js:624:41)
+    at _fail (webpack-internal:///(app-pages-browser)/./node_modules/firebase/node_modules/@firebase/auth/dist/esm/index-568d0403.js:589:11)
+    at _performFetchWithErrorHandling (webpack-internal:///(app-pages-browser)/./node_modules/firebase/node_modules/@firebase/auth/dist/esm/index-568d0403.js:1086:17)
+    at async _performSignInRequest (webpack-internal:///(app-pages-browser)/./node_modules/firebase/node_modules/@firebase/auth/dist/esm/index-568d0403.js:1101:28)
+    at async signInAnonymously (webpack-internal:///(app-pages-browser)/./node_modules/firebase/node_modules/@firebase/auth/dist/esm/index-568d0403.js:5761:22)
+    at async initAuth (webpack-internal:///(app-pages-browser)/./lib/AuthContext.tsx:29:21) @ webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/app-index.js:32
+[     623ms] [ERROR] Anonymous sign-in error: FirebaseError: Firebase: Error (auth/admin-restricted-operation).
+    at createErrorInternal (webpack-internal:///(app-pages-browser)/./node_modules/firebase/node_modules/@firebase/auth/dist/esm/index-568d0403.js:624:41)
+    at _fail (webpack-internal:///(app-pages-browser)/./node_modules/firebase/node_modules/@firebase/auth/dist/esm/index-568d0403.js:589:11)
+    at _performFetchWithErrorHandling (webpack-internal:///(app-pages-browser)/./node_modules/firebase/node_modules/@firebase/auth/dist/esm/index-568d0403.js:1086:17)
+    at async _performSignInRequest (webpack-internal:///(app-pages-browser)/./node_modules/firebase/node_modules/@firebase/auth/dist/esm/index-568d0403.js:1101:28)
+    at async signInAnonymously (webpack-internal:///(app-pages-browser)/./node_modules/firebase/node_modules/@firebase/auth/dist/esm/index-568d0403.js:5761:22)
+    at async initAuth (webpack-internal:///(app-pages-browser)/./lib/AuthContext.tsx:29:21) @ webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/app-index.js:32
+[   60759ms] [LOG] 💾 Datos guardados en Firestore @ webpack-internal:///(app-pages-browser)/./lib/EnergyContext.tsx:111
+[  345480ms] [LOG] [Fast Refresh] rebuilding @ webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/components/react-dev-overlay/app/hot-reloader-client.js:186
+[  346093ms] [ERROR] ./components/Navbar.tsx
+Error: Failed to read source code from /Users/erickfranco/claudeEnergia/components/Navbar.tsx
+
+Caused by:
+    No such file or directory (os error 2)
+
+Import trace for requested module:
+./components/Navbar.tsx @ webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/app-index.js:32
+[  346126ms] [LOG] [Fast Refresh] rebuilding @ webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/components/react-dev-overlay/app/hot-reloader-client.js:186
+[  346834ms] [LOG] [Fast Refresh] done in 709ms @ webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/components/react-dev-overlay/app/hot-reloader-client.js:43
+[  393419ms] [LOG] [Fast Refresh] rebuilding @ webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/components/react-dev-overlay/app/hot-reloader-client.js:186
+[  393763ms] [LOG] [Fast Refresh] done in 343ms @ webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/components/react-dev-overlay/app/hot-reloader-client.js:43
+[  484562ms] [LOG] [Fast Refresh] rebuilding @ webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/components/react-dev-overlay/app/hot-reloader-client.js:186
+[  485037ms] [LOG] [Fast Refresh] done in 474ms @ webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/components/react-dev-overlay/app/hot-reloader-client.js:43
+[  485102ms] Error: MobileNav is not defined
+    at RootLayout (webpack-internal:///(rsc)/./app/layout.tsx:51:105)
+    at eC (/Users/erickfranco/claudeEnergia/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:265189)
+    at e (/Users/erickfranco/claudeEnergia/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:269321)
+    at eL (/Users/erickfranco/claudeEnergia/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:269809)
+    at eJ (/Users/erickfranco/claudeEnergia/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:275773)
+    at eR (/Users/erickfranco/claudeEnergia/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:266017)
+    at eC (/Users/erickfranco/claudeEnergia/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:265059)
+    at e (/Users/erickfranco/claudeEnergia/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:269321)
+    at eL (/Users/erickfranco/claudeEnergia/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:269809)
+    at /Users/erickfranco/claudeEnergia/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:267040
+    at Array.toJSON (/Users/erickfranco/claudeEnergia/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:267504)
+    at stringify (<anonymous>)
+    at eJ (/Users/erickfranco/claudeEnergia/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:275872)
+    at eV (/Users/erickfranco/claudeEnergia/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:276390)
+    at AsyncLocalStorage.run (node:internal/async_local_storage/async_context_frame:63:14)
+    at Timeout._onTimeout (/Users/erickfranco/claudeEnergia/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:284753)
+    at listOnTimeout (node:internal/timers:605:17)
+    at process.processTimers (node:internal/timers:541:7)
+[  485103ms] Error: MobileNav is not defined
+    at RootLayout (webpack-internal:///(rsc)/./app/layout.tsx:51:105)
+    at eC (/Users/erickfranco/claudeEnergia/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:265189)
+    at e (/Users/erickfranco/claudeEnergia/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:269321)
+    at eL (/Users/erickfranco/claudeEnergia/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:269809)
+    at eJ (/Users/erickfranco/claudeEnergia/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:275773)
+    at eR (/Users/erickfranco/claudeEnergia/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:266017)
+    at eC (/Users/erickfranco/claudeEnergia/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:265059)
+    at e (/Users/erickfranco/claudeEnergia/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:269321)
+    at eL (/Users/erickfranco/claudeEnergia/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:269809)
+    at /Users/erickfranco/claudeEnergia/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:267040
+    at Array.toJSON (/Users/erickfranco/claudeEnergia/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:267504)
+    at stringify (<anonymous>)
+    at eJ (/Users/erickfranco/claudeEnergia/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:275872)
+    at eV (/Users/erickfranco/claudeEnergia/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:276390)
+    at AsyncLocalStorage.run (node:internal/async_local_storage/async_context_frame:63:14)
+    at Timeout._onTimeout (/Users/erickfranco/claudeEnergia/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:284753)
+    at listOnTimeout (node:internal/timers:605:17)
+    at process.processTimers (node:internal/timers:541:7)
+[  485104ms] Error: MobileNav is not defined
+    at RootLayout (webpack-internal:///(rsc)/./app/layout.tsx:51:105)
+    at eC (/Users/erickfranco/claudeEnergia/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:265189)
+    at e (/Users/erickfranco/claudeEnergia/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:269321)
+    at eL (/Users/erickfranco/claudeEnergia/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:269809)
+    at eJ (/Users/erickfranco/claudeEnergia/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:275773)
+    at eR (/Users/erickfranco/claudeEnergia/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:266017)
+    at eC (/Users/erickfranco/claudeEnergia/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:265059)
+    at e (/Users/erickfranco/claudeEnergia/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:269321)
+    at eL (/Users/erickfranco/claudeEnergia/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:269809)
+    at /Users/erickfranco/claudeEnergia/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:267040
+    at Array.toJSON (/Users/erickfranco/claudeEnergia/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:267504)
+    at stringify (<anonymous>)
+    at eJ (/Users/erickfranco/claudeEnergia/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:275872)
+    at eV (/Users/erickfranco/claudeEnergia/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:276390)
+    at AsyncLocalStorage.run (node:internal/async_local_storage/async_context_frame:63:14)
+    at Timeout._onTimeout (/Users/erickfranco/claudeEnergia/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:284753)
+    at listOnTimeout (node:internal/timers:605:17)
+    at process.processTimers (node:internal/timers:541:7)
+[  485107ms] Error: MobileNav is not defined
+    at RootLayout (webpack-internal:///(rsc)/./app/layout.tsx:51:105)
+    at eC (/Users/erickfranco/claudeEnergia/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:265189)
+    at e (/Users/erickfranco/claudeEnergia/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:269321)
+    at eL (/Users/erickfranco/claudeEnergia/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:269809)
+    at eJ (/Users/erickfranco/claudeEnergia/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:275773)
+    at eR (/Users/erickfranco/claudeEnergia/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:266017)
+    at eC (/Users/erickfranco/claudeEnergia/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:265059)
+    at e (/Users/erickfranco/claudeEnergia/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:269321)
+    at eL (/Users/erickfranco/claudeEnergia/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:269809)
+    at /Users/erickfranco/claudeEnergia/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:267040
+    at Array.toJSON (/Users/erickfranco/claudeEnergia/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:267504)
+    at stringify (<anonymous>)
+    at eJ (/Users/erickfranco/claudeEnergia/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:275872)
+    at eV (/Users/erickfranco/claudeEnergia/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:276390)
+    at AsyncLocalStorage.run (node:internal/async_local_storage/async_context_frame:63:14)
+    at Timeout._onTimeout (/Users/erickfranco/claudeEnergia/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:284753)
+    at listOnTimeout (node:internal/timers:605:17)
+    at process.processTimers (node:internal/timers:541:7)
+[  485107ms] Error: MobileNav is not defined
+    at RootLayout (webpack-internal:///(rsc)/./app/layout.tsx:51:105)
+    at eC (/Users/erickfranco/claudeEnergia/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:265189)
+    at e (/Users/erickfranco/claudeEnergia/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:269321)
+    at eL (/Users/erickfranco/claudeEnergia/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:269809)
+    at eJ (/Users/erickfranco/claudeEnergia/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:275773)
+    at eR (/Users/erickfranco/claudeEnergia/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:266017)
+    at eC (/Users/erickfranco/claudeEnergia/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:265059)
+    at e (/Users/erickfranco/claudeEnergia/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:269321)
+    at eL (/Users/erickfranco/claudeEnergia/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:269809)
+    at /Users/erickfranco/claudeEnergia/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:267040
+    at Array.toJSON (/Users/erickfranco/claudeEnergia/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:267504)
+    at stringify (<anonymous>)
+    at eJ (/Users/erickfranco/claudeEnergia/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:275872)
+    at eV (/Users/erickfranco/claudeEnergia/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:276390)
+    at AsyncLocalStorage.run (node:internal/async_local_storage/async_context_frame:63:14)
+    at Timeout._onTimeout (/Users/erickfranco/claudeEnergia/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:284753)
+    at listOnTimeout (node:internal/timers:605:17)
+    at process.processTimers (node:internal/timers:541:7)
+[  485108ms] Error: MobileNav is not defined
+    at RootLayout (webpack-internal:///(rsc)/./app/layout.tsx:51:105)
+    at eC (/Users/erickfranco/claudeEnergia/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:265189)
+    at e (/Users/erickfranco/claudeEnergia/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:269321)
+    at eL (/Users/erickfranco/claudeEnergia/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:269809)
+    at eJ (/Users/erickfranco/claudeEnergia/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:275773)
+    at eR (/Users/erickfranco/claudeEnergia/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:266017)
+    at eC (/Users/erickfranco/claudeEnergia/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:265059)
+    at e (/Users/erickfranco/claudeEnergia/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:269321)
+    at eL (/Users/erickfranco/claudeEnergia/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:269809)
+    at /Users/erickfranco/claudeEnergia/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:267040
+    at Array.toJSON (/Users/erickfranco/claudeEnergia/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:267504)
+    at stringify (<anonymous>)
+    at eJ (/Users/erickfranco/claudeEnergia/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:275872)
+    at eV (/Users/erickfranco/claudeEnergia/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:276390)
+    at AsyncLocalStorage.run (node:internal/async_local_storage/async_context_frame:63:14)
+    at Timeout._onTimeout (/Users/erickfranco/claudeEnergia/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:284753)
+    at listOnTimeout (node:internal/timers:605:17)
+    at process.processTimers (node:internal/timers:541:7)
+[  485114ms] [ERROR] The above error occurred in the <NotFoundErrorBoundary> component:
+
+    at RedirectErrorBoundary (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/components/redirect-boundary.js:74:9)
+    at RedirectBoundary (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/components/redirect-boundary.js:82:11)
+    at NotFoundErrorBoundary (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/components/not-found-boundary.js:76:9)
+    at NotFoundBoundary (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/components/not-found-boundary.js:84:11)
+    at DevRootNotFoundBoundary (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/components/dev-root-not-found-boundary.js:33:11)
+    at ReactDevOverlay (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/components/react-dev-overlay/app/ReactDevOverlay.js:87:9)
+    at HotReload (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/components/react-dev-overlay/app/hot-reloader-client.js:321:11)
+    at Router (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/components/app-router.js:207:11)
+    at ErrorBoundaryHandler (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/components/error-boundary.js:113:9)
+    at ErrorBoundary (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/components/error-boundary.js:160:11)
+    at AppRouter (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/components/app-router.js:585:13)
+    at ServerRoot (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/app-index.js:112:27)
+    at Root (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/app-index.js:117:11)
+
+React will try to recreate this component tree from scratch using the error boundary you provided, ReactDevOverlay. @ webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/app-index.js:32
+[  493762ms] [LOG] [Fast Refresh] rebuilding @ webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/components/react-dev-overlay/app/hot-reloader-client.js:186
+[  494149ms] Error: MobileNav is not defined
+    at RootLayout (webpack-internal:///(rsc)/./app/layout.tsx:51:105)
+    at eC (/Users/erickfranco/claudeEnergia/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:265189)
+    at e (/Users/erickfranco/claudeEnergia/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:269321)
+    at eL (/Users/erickfranco/claudeEnergia/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:269809)
+    at eJ (/Users/erickfranco/claudeEnergia/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:275773)
+    at eR (/Users/erickfranco/claudeEnergia/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:266017)
+    at eC (/Users/erickfranco/claudeEnergia/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:265059)
+    at e (/Users/erickfranco/claudeEnergia/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:269321)
+    at eL (/Users/erickfranco/claudeEnergia/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:269809)
+    at /Users/erickfranco/claudeEnergia/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:267040
+    at Array.toJSON (/Users/erickfranco/claudeEnergia/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:267504)
+    at stringify (<anonymous>)
+    at eJ (/Users/erickfranco/claudeEnergia/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:275872)
+    at eV (/Users/erickfranco/claudeEnergia/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:276390)
+    at AsyncLocalStorage.run (node:internal/async_local_storage/async_context_frame:63:14)
+    at Timeout._onTimeout (/Users/erickfranco/claudeEnergia/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:284753)
+    at listOnTimeout (node:internal/timers:605:17)
+    at process.processTimers (node:internal/timers:541:7)
+[  494150ms] Error: MobileNav is not defined
+    at RootLayout (webpack-internal:///(rsc)/./app/layout.tsx:51:105)
+    at eC (/Users/erickfranco/claudeEnergia/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:265189)
+    at e (/Users/erickfranco/claudeEnergia/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:269321)
+    at eL (/Users/erickfranco/claudeEnergia/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:269809)
+    at eJ (/Users/erickfranco/claudeEnergia/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:275773)
+    at eR (/Users/erickfranco/claudeEnergia/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:266017)
+    at eC (/Users/erickfranco/claudeEnergia/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:265059)
+    at e (/Users/erickfranco/claudeEnergia/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:269321)
+    at eL (/Users/erickfranco/claudeEnergia/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:269809)
+    at /Users/erickfranco/claudeEnergia/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:267040
+    at Array.toJSON (/Users/erickfranco/claudeEnergia/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:267504)
+    at stringify (<anonymous>)
+    at eJ (/Users/erickfranco/claudeEnergia/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:275872)
+    at eV (/Users/erickfranco/claudeEnergia/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:276390)
+    at AsyncLocalStorage.run (node:internal/async_local_storage/async_context_frame:63:14)
+    at Timeout._onTimeout (/Users/erickfranco/claudeEnergia/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:284753)
+    at listOnTimeout (node:internal/timers:605:17)
+    at process.processTimers (node:internal/timers:541:7)
+[  494150ms] Error: MobileNav is not defined
+    at RootLayout (webpack-internal:///(rsc)/./app/layout.tsx:51:105)
+    at eC (/Users/erickfranco/claudeEnergia/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:265189)
+    at e (/Users/erickfranco/claudeEnergia/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:269321)
+    at eL (/Users/erickfranco/claudeEnergia/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:269809)
+    at eJ (/Users/erickfranco/claudeEnergia/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:275773)
+    at eR (/Users/erickfranco/claudeEnergia/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:266017)
+    at eC (/Users/erickfranco/claudeEnergia/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:265059)
+    at e (/Users/erickfranco/claudeEnergia/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:269321)
+    at eL (/Users/erickfranco/claudeEnergia/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:269809)
+    at /Users/erickfranco/claudeEnergia/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:267040
+    at Array.toJSON (/Users/erickfranco/claudeEnergia/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:267504)
+    at stringify (<anonymous>)
+    at eJ (/Users/erickfranco/claudeEnergia/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:275872)
+    at eV (/Users/erickfranco/claudeEnergia/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:276390)
+    at AsyncLocalStorage.run (node:internal/async_local_storage/async_context_frame:63:14)
+    at Timeout._onTimeout (/Users/erickfranco/claudeEnergia/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:284753)
+    at listOnTimeout (node:internal/timers:605:17)
+    at process.processTimers (node:internal/timers:541:7)
+[  494150ms] Error: MobileNav is not defined
+    at RootLayout (webpack-internal:///(rsc)/./app/layout.tsx:51:105)
+    at eC (/Users/erickfranco/claudeEnergia/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:265189)
+    at e (/Users/erickfranco/claudeEnergia/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:269321)
+    at eL (/Users/erickfranco/claudeEnergia/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:269809)
+    at eJ (/Users/erickfranco/claudeEnergia/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:275773)
+    at eR (/Users/erickfranco/claudeEnergia/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:266017)
+    at eC (/Users/erickfranco/claudeEnergia/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:265059)
+    at e (/Users/erickfranco/claudeEnergia/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:269321)
+    at eL (/Users/erickfranco/claudeEnergia/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:269809)
+    at /Users/erickfranco/claudeEnergia/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:267040
+    at Array.toJSON (/Users/erickfranco/claudeEnergia/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:267504)
+    at stringify (<anonymous>)
+    at eJ (/Users/erickfranco/claudeEnergia/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:275872)
+    at eV (/Users/erickfranco/claudeEnergia/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:276390)
+    at AsyncLocalStorage.run (node:internal/async_local_storage/async_context_frame:63:14)
+    at Timeout._onTimeout (/Users/erickfranco/claudeEnergia/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:284753)
+    at listOnTimeout (node:internal/timers:605:17)
+    at process.processTimers (node:internal/timers:541:7)
+[  494150ms] Error: MobileNav is not defined
+    at RootLayout (webpack-internal:///(rsc)/./app/layout.tsx:51:105)
+    at eC (/Users/erickfranco/claudeEnergia/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:265189)
+    at e (/Users/erickfranco/claudeEnergia/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:269321)
+    at eL (/Users/erickfranco/claudeEnergia/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:269809)
+    at eJ (/Users/erickfranco/claudeEnergia/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:275773)
+    at eR (/Users/erickfranco/claudeEnergia/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:266017)
+    at eC (/Users/erickfranco/claudeEnergia/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:265059)
+    at e (/Users/erickfranco/claudeEnergia/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:269321)
+    at eL (/Users/erickfranco/claudeEnergia/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:269809)
+    at /Users/erickfranco/claudeEnergia/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:267040
+    at Array.toJSON (/Users/erickfranco/claudeEnergia/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:267504)
+    at stringify (<anonymous>)
+    at eJ (/Users/erickfranco/claudeEnergia/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:275872)
+    at eV (/Users/erickfranco/claudeEnergia/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:276390)
+    at AsyncLocalStorage.run (node:internal/async_local_storage/async_context_frame:63:14)
+    at Timeout._onTimeout (/Users/erickfranco/claudeEnergia/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:284753)
+    at listOnTimeout (node:internal/timers:605:17)
+    at process.processTimers (node:internal/timers:541:7)
+[  494150ms] Error: MobileNav is not defined
+    at RootLayout (webpack-internal:///(rsc)/./app/layout.tsx:51:105)
+    at eC (/Users/erickfranco/claudeEnergia/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:265189)
+    at e (/Users/erickfranco/claudeEnergia/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:269321)
+    at eL (/Users/erickfranco/claudeEnergia/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:269809)
+    at eJ (/Users/erickfranco/claudeEnergia/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:275773)
+    at eR (/Users/erickfranco/claudeEnergia/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:266017)
+    at eC (/Users/erickfranco/claudeEnergia/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:265059)
+    at e (/Users/erickfranco/claudeEnergia/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:269321)
+    at eL (/Users/erickfranco/claudeEnergia/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:269809)
+    at /Users/erickfranco/claudeEnergia/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:267040
+    at Array.toJSON (/Users/erickfranco/claudeEnergia/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:267504)
+    at stringify (<anonymous>)
+    at eJ (/Users/erickfranco/claudeEnergia/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:275872)
+    at eV (/Users/erickfranco/claudeEnergia/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:276390)
+    at AsyncLocalStorage.run (node:internal/async_local_storage/async_context_frame:63:14)
+    at Timeout._onTimeout (/Users/erickfranco/claudeEnergia/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:35:284753)
+    at listOnTimeout (node:internal/timers:605:17)
+    at process.processTimers (node:internal/timers:541:7)
+[  494117ms] [ERROR] The above error occurred in the <NotFoundErrorBoundary> component:
+
+    at RedirectErrorBoundary (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/components/redirect-boundary.js:74:9)
+    at RedirectBoundary (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/components/redirect-boundary.js:82:11)
+    at NotFoundErrorBoundary (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/components/not-found-boundary.js:76:9)
+    at NotFoundBoundary (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/components/not-found-boundary.js:84:11)
+    at DevRootNotFoundBoundary (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/components/dev-root-not-found-boundary.js:33:11)
+    at ReactDevOverlay (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/components/react-dev-overlay/app/ReactDevOverlay.js:87:9)
+    at HotReload (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/components/react-dev-overlay/app/hot-reloader-client.js:321:11)
+    at Router (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/components/app-router.js:207:11)
+    at ErrorBoundaryHandler (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/components/error-boundary.js:113:9)
+    at ErrorBoundary (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/components/error-boundary.js:160:11)
+    at AppRouter (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/components/app-router.js:585:13)
+    at ServerRoot (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/app-index.js:112:27)
+    at Root (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/app-index.js:117:11)
+
+React will try to recreate this component tree from scratch using the error boundary you provided, ReactDevOverlay. @ webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/app-index.js:32
+[  494122ms] [WARNING] [Fast Refresh] performing full reload because your application had an unrecoverable error @ webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/components/react-dev-overlay/app/hot-reloader-client.js:114
+[  494871ms] [INFO] %cDownload the React DevTools for a better development experience: https://reactjs.org/link/react-devtools font-weight:bold @ webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/react-dom/cjs/react-dom.development.js:38559
+[  494959ms] [LOG] Firebase Config Keys: {apiKey: ✓ AIzaSyDAdu..., authDomain: claudeenergia.firebaseapp.com, projectId: claudeenergia} @ webpack-internal:///(app-pages-browser)/./lib/firebase.ts:30
+[  495307ms] [ERROR] Failed to load resource: the server responded with a status of 400 () @ https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyDAduWriAvCW2PaiKCnwnVwZTzjaAKO7uo:0
+[  495308ms] [ERROR] Anonymous sign-in error: FirebaseError: Firebase: Error (auth/admin-restricted-operation).
+    at createErrorInternal (webpack-internal:///(app-pages-browser)/./node_modules/firebase/node_modules/@firebase/auth/dist/esm/index-568d0403.js:624:41)
+    at _fail (webpack-internal:///(app-pages-browser)/./node_modules/firebase/node_modules/@firebase/auth/dist/esm/index-568d0403.js:589:11)
+    at _performFetchWithErrorHandling (webpack-internal:///(app-pages-browser)/./node_modules/firebase/node_modules/@firebase/auth/dist/esm/index-568d0403.js:1086:17)
+    at async _performSignInRequest (webpack-internal:///(app-pages-browser)/./node_modules/firebase/node_modules/@firebase/auth/dist/esm/index-568d0403.js:1101:28)
+    at async signInAnonymously (webpack-internal:///(app-pages-browser)/./node_modules/firebase/node_modules/@firebase/auth/dist/esm/index-568d0403.js:5761:22)
+    at async initAuth (webpack-internal:///(app-pages-browser)/./lib/AuthContext.tsx:29:21) @ webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/app-index.js:32
+[  495480ms] [ERROR] Failed to load resource: the server responded with a status of 400 () @ https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyDAduWriAvCW2PaiKCnwnVwZTzjaAKO7uo:0
+[  495483ms] [ERROR] Anonymous sign-in error: FirebaseError: Firebase: Error (auth/admin-restricted-operation).
+    at createErrorInternal (webpack-internal:///(app-pages-browser)/./node_modules/firebase/node_modules/@firebase/auth/dist/esm/index-568d0403.js:624:41)
+    at _fail (webpack-internal:///(app-pages-browser)/./node_modules/firebase/node_modules/@firebase/auth/dist/esm/index-568d0403.js:589:11)
+    at _performFetchWithErrorHandling (webpack-internal:///(app-pages-browser)/./node_modules/firebase/node_modules/@firebase/auth/dist/esm/index-568d0403.js:1086:17)
+    at async _performSignInRequest (webpack-internal:///(app-pages-browser)/./node_modules/firebase/node_modules/@firebase/auth/dist/esm/index-568d0403.js:1101:28)
+    at async signInAnonymously (webpack-internal:///(app-pages-browser)/./node_modules/firebase/node_modules/@firebase/auth/dist/esm/index-568d0403.js:5761:22)
+    at async initAuth (webpack-internal:///(app-pages-browser)/./lib/AuthContext.tsx:29:21) @ webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/app-index.js:32
+[  555388ms] [LOG] 💾 Datos guardados en Firestore @ webpack-internal:///(app-pages-browser)/./lib/EnergyContext.tsx:111
+[  613112ms] [LOG] [Fast Refresh] rebuilding @ webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/components/react-dev-overlay/app/hot-reloader-client.js:186
+[  613631ms] [LOG] [Fast Refresh] done in 520ms @ webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/components/react-dev-overlay/app/hot-reloader-client.js:43
+[  620529ms] [LOG] [Fast Refresh] rebuilding @ webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/components/react-dev-overlay/app/hot-reloader-client.js:186
+[  620739ms] [LOG] [Fast Refresh] done in 210ms @ webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/components/react-dev-overlay/app/hot-reloader-client.js:43
+[  627055ms] [LOG] [Fast Refresh] rebuilding @ webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/components/react-dev-overlay/app/hot-reloader-client.js:186
+[  627412ms] [LOG] [Fast Refresh] done in 357ms @ webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/components/react-dev-overlay/app/hot-reloader-client.js:43
+[  640147ms] [LOG] [Fast Refresh] rebuilding @ webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/components/react-dev-overlay/app/hot-reloader-client.js:186
+[  640455ms] [LOG] [Fast Refresh] done in 309ms @ webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/components/react-dev-overlay/app/hot-reloader-client.js:43
+[  701714ms] [LOG] [Fast Refresh] rebuilding @ webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/components/react-dev-overlay/app/hot-reloader-client.js:186
+[  701885ms] [LOG] [Fast Refresh] done in 171ms @ webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/components/react-dev-overlay/app/hot-reloader-client.js:43
