@@ -87,11 +87,11 @@ function KpiCard({
   } as React.CSSProperties;
 
   return (
-    <div className={`${cfg.bg} ${cfg.border} rounded-2xl shadow-card-md p-5 hover:shadow-card-xl transition-all duration-300 hover:scale-[1.02] hover:-translate-y-1 group animate-slide-up`} style={delayStyle}>
+    <div className={`${cfg.bg} ${cfg.border} rounded-2xl shadow-card-md p-5 hover:shadow-card-xl transition-shadow duration-300 group animate-slide-up cursor-pointer`} style={delayStyle}>
       <div className="flex items-start justify-between mb-3">
         <p className={`text-sm font-bold uppercase tracking-widest ${cfg.labelColor}`} style={{ fontFamily: "var(--font-jakarta, sans-serif)" }}>{label}</p>
         {Icon && (
-          <div className={`w-8 h-8 rounded-lg ${cfg.iconBg} flex items-center justify-center flex-shrink-0 transition-all duration-300 group-hover:scale-110 group-hover:-rotate-6`}>
+          <div className={`w-8 h-8 rounded-lg ${cfg.iconBg} flex items-center justify-center flex-shrink-0 transition-all duration-300`}>
             <Icon className={`w-4 h-4 ${cfg.iconColor}`} />
           </div>
         )}
@@ -271,7 +271,7 @@ export default function DashboardPage() {
               <h2 className="text-xl font-black text-slate-900 mb-5 tracking-tight" style={{ fontFamily: "var(--font-jakarta, sans-serif)" }}>Participación del consumo</h2>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div className="rounded-xl bg-hc-50 border border-hc-200/60 p-5 animate-slide-up hover:shadow-md hover:scale-[1.01] transition-all duration-300" style={{ animationDelay: "150ms" }}>
+                <div className="rounded-xl bg-hc-50 border border-hc-200/60 p-5 animate-slide-up hover:shadow-md transition-shadow duration-300" style={{ animationDelay: "150ms" }}>
                   <p className="text-xs font-bold text-hc-600 uppercase tracking-wider mb-4">HC — Heures Creuses</p>
                   <p className="text-5xl font-black text-hc-700 tabular-nums mb-1" style={{ fontFamily: "var(--font-space-mono, monospace), sans-serif" }}>
                     {actual.pctHC.toFixed(1)}%
@@ -282,7 +282,7 @@ export default function DashboardPage() {
                   </div>
                 </div>
 
-                <div className="rounded-xl bg-hp-50 border border-hp-200/60 p-5 animate-slide-up hover:shadow-md hover:scale-[1.01] transition-all duration-300" style={{ animationDelay: "225ms" }}>
+                <div className="rounded-xl bg-hp-50 border border-hp-200/60 p-5 animate-slide-up hover:shadow-md transition-shadow duration-300" style={{ animationDelay: "225ms" }}>
                   <p className="text-xs font-bold text-hp-600 uppercase tracking-wider mb-4">HP — Heures Pleines</p>
                   <p className="text-5xl font-black text-hp-700 tabular-nums mb-1" style={{ fontFamily: "var(--font-space-mono, monospace), sans-serif" }}>
                     {actual.pctHP.toFixed(1)}%
@@ -311,7 +311,7 @@ export default function DashboardPage() {
               <h2 className="text-xl font-black text-slate-900 mb-5 tracking-tight" style={{ fontFamily: "var(--font-jakarta, sans-serif)" }}>Desglose del costo</h2>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div className="rounded-xl bg-hc-50 border border-hc-200/60 p-5 animate-slide-up hover:shadow-md hover:scale-[1.01] transition-all duration-300" style={{ animationDelay: "250ms" }}>
+                <div className="rounded-xl bg-hc-50 border border-hc-200/60 p-5 animate-slide-up hover:shadow-md transition-shadow duration-300" style={{ animationDelay: "250ms" }}>
                   <p className="text-xs font-bold text-hc-600 uppercase tracking-wider mb-4">HC — Coste</p>
                   <p className="text-5xl font-black text-hc-700 tabular-nums mb-1" style={{ fontFamily: "var(--font-space-mono, monospace), sans-serif" }}>
                     {actual.costoHC.toFixed(3)}<span className="text-2xl font-bold ml-1">€</span>
@@ -322,7 +322,7 @@ export default function DashboardPage() {
                   </div>
                 </div>
 
-                <div className="rounded-xl bg-hp-50 border border-hp-200/60 p-5 animate-slide-up hover:shadow-md hover:scale-[1.01] transition-all duration-300" style={{ animationDelay: "325ms" }}>
+                <div className="rounded-xl bg-hp-50 border border-hp-200/60 p-5 animate-slide-up hover:shadow-md transition-shadow duration-300" style={{ animationDelay: "325ms" }}>
                   <p className="text-xs font-bold text-hp-600 uppercase tracking-wider mb-4">HP — Coste</p>
                   <p className="text-5xl font-black text-hp-700 tabular-nums mb-1" style={{ fontFamily: "var(--font-space-mono, monospace), sans-serif" }}>
                     {actual.costoHP.toFixed(3)}<span className="text-2xl font-bold ml-1">€</span>

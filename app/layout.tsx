@@ -37,7 +37,7 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="es" className={`${jakarta.variable} ${spaceMono.variable} ${jetbrainsMono.variable}`}>
-      <body className="flex flex-col min-h-screen antialiased" style={{ backgroundColor: "#fafbfc" }}>
+      <body className="flex flex-col min-h-screen antialiased" style={{ backgroundColor: "#F0F4F8" }}>
         <AuthProvider>
           <EnergyProvider>
             <ProtectedLayout>

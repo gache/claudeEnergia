@@ -4,18 +4,17 @@ import { useState, useRef, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import {
-  Zap, LayoutDashboard, History, BarChart2, PenLine, Calculator,
+  Zap, LayoutDashboard, History, BarChart2, PenLine,
   TrendingUp, Pencil, Check, X, ChevronDown,
 } from "lucide-react";
 import { useEnergy } from "@/lib/EnergyContext";
 import { ANOS_DISPONIBLES, MESES } from "@/lib/data";
 
 const nav = [
-  { href: "/",             label: "Dashboard",   icon: LayoutDashboard },
-  { href: "/historial",    label: "Historial",   icon: History },
-  { href: "/comparativa",  label: "Comparativa", icon: BarChart2 },
-  { href: "/calculadora",  label: "Simulador",   icon: Calculator },
-  { href: "/registro",     label: "Registrar",   icon: PenLine },
+  { href: "/",            label: "Dashboard",   icon: LayoutDashboard },
+  { href: "/historial",   label: "Historial",   icon: History },
+  { href: "/comparativa", label: "Comparativa", icon: BarChart2 },
+  { href: "/registro",    label: "Registrar",   icon: PenLine },
 ];
 
 function TarifasPanel() {

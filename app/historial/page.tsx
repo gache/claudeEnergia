@@ -83,7 +83,7 @@ export default function HistorialPage() {
               {año} · {totalKwh.toFixed(3)} kWh consumidos · {totalCosto.toFixed(3)} € facturado
             </p>
           ) : (
-            <p className="text-slate-400 text-sm mt-1">{año} — sin registros disponibles</p>
+            <p className="text-slate-500 text-sm mt-1">{año} — sin registros disponibles</p>
           )}
         </div>
 
@@ -97,12 +97,12 @@ export default function HistorialPage() {
               Exportar CSV
             </button>
           )}
-          <span className="text-xs font-semibold text-slate-400 uppercase tracking-wider">Año:</span>
+          <span className="text-xs font-semibold text-slate-500 uppercase tracking-wider">Año:</span>
           {ANOS_DISPONIBLES.map(y => (
             <button
               key={y}
               onClick={() => setAño(y)}
-              className={`min-h-[40px] px-4 py-2 rounded-xl text-sm font-semibold transition-all duration-150 ${
+              className={`min-h-[40px] px-4 py-2 rounded-xl text-sm font-semibold transition-all duration-150 cursor-pointer ${
                 año === y
                   ? "bg-brand-600 text-white shadow-sm"
                   : "bg-white border border-slate-200 text-slate-600 hover:bg-slate-50 hover:border-slate-300"
@@ -118,7 +118,7 @@ export default function HistorialPage() {
       <div className="flex flex-wrap gap-4 p-4 bg-white/70 backdrop-blur-md rounded-2xl border border-slate-100/40 shadow-card hover:shadow-card-md transition-shadow duration-300 items-center animate-slide-up" style={{ animationDelay: "50ms" }}>
         <div className="flex items-center gap-2">
           <div className="w-2 h-2 rounded-full bg-slate-300" />
-          <span className="text-xs text-slate-400 font-medium">Tarifas {año}:</span>
+          <span className="text-xs text-slate-500 font-medium">Tarifas {año}:</span>
         </div>
         <div className="flex items-center gap-2">
           <div className="w-2 h-2 rounded-full bg-hc-500" />
@@ -129,7 +129,7 @@ export default function HistorialPage() {
           <span className="text-xs font-semibold text-hp-700 font-mono">HP {tarifa.hp.toFixed(3)} €/kWh</span>
         </div>
         <div className="h-4 w-px bg-slate-200" />
-        <span className="text-xs text-slate-400 font-mono">
+        <span className="text-xs text-slate-500 font-mono">
           Ratio HP/HC: {(tarifa.hp / tarifa.hc).toFixed(3)}×
         </span>
         {datos.length > 0 && (
@@ -214,7 +214,7 @@ export default function HistorialPage() {
             <FileX className="w-8 h-8 text-slate-300" />
           </div>
           <p className="text-slate-600 font-semibold text-base">Sin datos para {año}</p>
-          <p className="text-slate-400 text-sm mt-1">
+          <p className="text-slate-500 text-sm mt-1">
             Ve a <a href="/registro" className="text-brand-600 font-semibold hover:underline">Registrar</a> para añadir consumo.
           </p>
         </div>

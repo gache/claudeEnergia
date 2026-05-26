@@ -8,7 +8,7 @@
 /* ── CSS Design Tokens ───────────────────────────────────────────── */
 :root {
   /* Surfaces */
-  --bg-page:       #f1f5f9;
+  --bg-page:       #eef2f7;
   --bg-card:       #ffffff;
   --bg-sidebar:    #0f1f45;
 
@@ -91,7 +91,7 @@ body {
     font-family: var(--font-sora, "Sora"), var(--font-inter, "Inter"), sans-serif;
   }
   .kpi-label {
-    @apply text-xs font-semibold uppercase tracking-widest text-slate-400;
+    @apply text-xs font-semibold uppercase tracking-widest text-slate-500;
     font-family: var(--font-sora, "Sora"), var(--font-inter, "Inter"), sans-serif;
   }
 
@@ -140,17 +140,16 @@ body {
   /* Buttons */
   .btn-primary {
     @apply inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl
-           font-semibold text-sm text-white bg-brand-600
+           font-semibold text-sm text-white bg-brand-600 cursor-pointer
            hover:bg-brand-700 active:bg-brand-800
-           transition-all duration-150 shadow-sm
-           disabled:opacity-40 disabled:cursor-not-allowed disabled:shadow-none
-           hover:scale-[1.02] active:scale-[0.98];
+           transition-all duration-150 shadow-sm hover:shadow-md
+           disabled:opacity-40 disabled:cursor-not-allowed disabled:shadow-none;
   }
   .btn-secondary {
     @apply inline-flex items-center justify-center gap-2 px-4 py-2 rounded-xl
-           font-semibold text-sm text-slate-600 bg-white
-           border border-slate-200 hover:bg-slate-50 hover:border-slate-300
-           transition-all duration-150 hover:scale-[1.01];
+           font-semibold text-sm text-slate-600 bg-white cursor-pointer
+           border border-slate-200 hover:bg-slate-50 hover:border-slate-300 hover:shadow-sm
+           transition-all duration-150;
   }
 
   /* Table */

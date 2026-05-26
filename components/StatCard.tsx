@@ -35,14 +35,14 @@ export default function StatCard({
   return (
     <div
       className={`bg-white/70 backdrop-blur-md rounded-2xl shadow-card-md ${cfg.border} p-5
-        hover:shadow-card-xl transition-all duration-300 hover:scale-[1.02] hover:-translate-y-1 group
+        hover:shadow-card-xl transition-shadow duration-300 group cursor-pointer
         animate-slide-up ${cfg.glowShadow}`}
       style={delayStyle}
     >
       <div className="flex items-start justify-between mb-3">
-        <p className="text-[11px] font-semibold uppercase tracking-widest text-slate-400">{titulo}</p>
+        <p className="text-[11px] font-semibold uppercase tracking-widest text-slate-500">{titulo}</p>
         <div className={`w-8 h-8 rounded-lg ${cfg.iconBg} ${colorIcono ?? cfg.iconColor} flex items-center justify-center flex-shrink-0
-          transition-all duration-300 group-hover:scale-110 group-hover:-rotate-6`}>
+          transition-all duration-300`}>
           <Icono className="w-4 h-4" />
         </div>
       </div>
@@ -50,11 +50,11 @@ export default function StatCard({
       <p className="text-[28px] font-bold tabular-nums tracking-tight text-slate-800 leading-none font-display
         group-hover:text-slate-900 transition-colors">
         {valor}
-        {unidad && <span className="text-sm font-normal text-slate-400 ml-1.5">{unidad}</span>}
+        {unidad && <span className="text-sm font-normal text-slate-500 ml-1.5">{unidad}</span>}
       </p>
 
       {subLabel && (
-        <p className="text-xs text-slate-400 mt-1">{subLabel}</p>
+        <p className="text-xs text-slate-500 mt-1">{subLabel}</p>
       )}
 
       {variacion !== undefined && (
