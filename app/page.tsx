@@ -136,7 +136,6 @@ export default function DashboardPage() {
   let displayMonth = currentMonth;
   let actual = kpiFor(displayMonth, 2026);
 
-  // Si no hay datos para el mes actual, mostrar el último mes disponible
   if (!actual && kpis2026.length > 0) {
     displayMonth = kpis2026[kpis2026.length - 1].mes;
     actual = kpiFor(displayMonth, 2026);
@@ -180,6 +179,9 @@ export default function DashboardPage() {
 
   const mesActual = MESES[displayMonth - 1];
   const last3Months = kpis2026.slice(-3);
+  const pctCostoHC = actual.costoTotal > 0 ? (actual.costoHC / actual.costoTotal) * 100 : 0;
+  const pctCostoHP = actual.costoTotal > 0 ? (actual.costoHP / actual.costoTotal) * 100 : 0;
+  const kpis2025ByMes = new Map(kpis2025.map(p => [p.mes, p]));
 
   return (
     <div className="space-y-7 animate-fade-in">
@@ -261,11 +263,7 @@ export default function DashboardPage() {
       </div>
 
       {/* ── 2 & 3. PARTICIPACIÓN + DESGLOSE DE COSTO ── */}
-      {(() => {
-        const pctCostoHC = actual.costoTotal > 0 ? (actual.costoHC / actual.costoTotal) * 100 : 0;
-        const pctCostoHP = actual.costoTotal > 0 ? (actual.costoHP / actual.costoTotal) * 100 : 0;
-        return (
-          <div className="grid grid-cols-1 xl:grid-cols-2 gap-5">
+      <div className="grid grid-cols-1 xl:grid-cols-2 gap-5">
             {/* Participación del consumo */}
             <div className="bg-white rounded-2xl shadow-card-md border border-slate-100/40 p-6 animate-slide-up hover:shadow-card-lg transition-shadow duration-300" style={{ animationDelay: "100ms" }}>
               <h2 className="text-xl font-black text-slate-900 mb-5 tracking-tight" style={{ fontFamily: "var(--font-jakarta, sans-serif)" }}>Participación del consumo</h2>
@@ -346,9 +344,7 @@ export default function DashboardPage() {
                 </div>
               </div>
             </div>
-          </div>
-        );
-      })()}
+      </div>
 
       {/* ── 4. GRÁFICO DE CONSUMO HC/HP 2026 ── */}
       <div className="grid grid-cols-1 xl:grid-cols-2 gap-5 animate-slide-up" style={{ animationDelay: "350ms" }}>
@@ -356,7 +352,7 @@ export default function DashboardPage() {
         <CostoEvolucionChart data={kpis2026} title="Evolución de costes — 2026 (€)" />
       </div>
 
-      {/* ── 4. COMPARACIÓN ÚLTIMOS 3 MESES ── */}
+      {/* ── 5. COMPARACIÓN ÚLTIMOS 3 MESES ── */}
       {last3Months.length > 0 && (
         <div className="bg-white rounded-2xl shadow-card-md border border-slate-100/40 overflow-hidden animate-slide-up hover:shadow-card-lg transition-shadow duration-300" style={{ animationDelay: "400ms" }}>
           <div className="px-6 py-4 border-b border-slate-100">
@@ -377,7 +373,7 @@ export default function DashboardPage() {
               </thead>
               <tbody>
                 {last3Months.map((d, idx) => {
-                  const prev = kpis2025.find(p => p.mes === d.mes);
+                  const prev = kpis2025ByMes.get(d.mes);
                   const varHC = prev ? Math.round(((d.hc - prev.hc) / prev.hc) * 100) : null;
                   const varHP = prev ? Math.round(((d.hp - prev.hp) / prev.hp) * 100) : null;
                   const varPct = prev ? Math.round(((d.total - prev.total) / prev.total) * 100) : null;
@@ -386,21 +382,21 @@ export default function DashboardPage() {
                       <td className="px-6 py-3 font-semibold text-slate-700">{MESES[d.mes - 1]}</td>
                       <td className="px-4 py-3 text-right font-mono text-hc-600 font-semibold">{d.hc.toFixed(3)}</td>
                       <td className={`px-4 py-3 text-right font-semibold ${
-                        varHC ? (varHC < 0 ? "text-savings-600" : "text-red-500") : "text-slate-400"
+                        varHC !== null ? (varHC < 0 ? "text-savings-600" : "text-red-500") : "text-slate-400"
                       }`}>
-                        {varHC ? `${varHC > 0 ? "+" : ""}${varHC}%` : "—"}
+                        {varHC !== null ? `${varHC > 0 ? "+" : ""}${varHC}%` : "—"}
                       </td>
                       <td className="px-4 py-3 text-right font-mono text-hp-600 font-semibold">{d.hp.toFixed(3)}</td>
                       <td className={`px-4 py-3 text-right font-semibold ${
-                        varHP ? (varHP < 0 ? "text-savings-600" : "text-red-500") : "text-slate-400"
+                        varHP !== null ? (varHP < 0 ? "text-savings-600" : "text-red-500") : "text-slate-400"
                       }`}>
-                        {varHP ? `${varHP > 0 ? "+" : ""}${varHP}%` : "—"}
+                        {varHP !== null ? `${varHP > 0 ? "+" : ""}${varHP}%` : "—"}
                       </td>
                       <td className="px-4 py-3 text-right font-mono text-slate-800 font-semibold">{d.total.toFixed(3)}</td>
                       <td className={`px-5 py-3 text-right font-semibold ${
-                        varPct ? (varPct < 0 ? "text-savings-600" : "text-red-500") : "text-slate-400"
+                        varPct !== null ? (varPct < 0 ? "text-savings-600" : "text-red-500") : "text-slate-400"
                       }`}>
-                        {varPct ? `${varPct > 0 ? "+" : ""}${varPct}%` : "—"}
+                        {varPct !== null ? `${varPct > 0 ? "+" : ""}${varPct}%` : "—"}
                       </td>
                     </tr>
                   );

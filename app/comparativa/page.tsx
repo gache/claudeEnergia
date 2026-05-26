@@ -1,28 +1,15 @@
 "use client";
 
 import dynamic from "next/dynamic";
-import { useState, Suspense } from "react";
+import { useState, Suspense, useMemo } from "react";
 import { ArrowRight, Award } from "lucide-react";
 import { useEnergy } from "@/lib/EnergyContext";
 import { MESES, ANOS_DISPONIBLES } from "@/lib/data";
 import ChartSkeleton from "@/components/ChartSkeleton";
 import TableSkeleton from "@/components/TableSkeleton";
+import VarBadge from "@/components/VarBadge";
 
 const ComparativaChart = dynamic(() => import("@/components/ComparativaChart"), { ssr: false, loading: () => <ChartSkeleton /> });
-
-function VarBadge({ pct }: { pct: number | null }) {
-  if (pct === null) return <span className="text-slate-300 text-xs">—</span>;
-  const up = pct > 0;
-  return (
-    <span className={`inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-bold tracking-wide ${
-      up
-        ? "bg-red-50 text-red-600 border border-red-100"
-        : "bg-savings-50 text-savings-700 border border-savings-100"
-    }`}>
-      {up ? "▲" : "▼"} {Math.abs(pct).toFixed(1)}%
-    </span>
-  );
-}
 
 function SummaryKPI({
   label, value, subLabel, good,
@@ -70,42 +57,57 @@ export default function ComparativaPage() {
   const k1 = getByYear(year1);
   const k2 = getByYear(year2);
 
-  const comparData = k2.map(d2 => {
-    const d1 = k1.find(d => d.mes === d2.mes);
-    return {
-      mes:    d2.mes,
-      total1: d1?.total      ?? 0,
-      total2: d2.total,
-      costo1: d1?.costoTotal ?? 0,
-      costo2: d2.costoTotal,
-    };
-  });
+  const comparData = useMemo(() => {
+    const k1ByMes = new Map(k1.map(d => [d.mes, d]));
+    return k2.map(d2 => {
+      const d1 = k1ByMes.get(d2.mes);
+      return {
+        mes:    d2.mes,
+        total1: d1?.total      ?? 0,
+        total2: d2.total,
+        costo1: d1?.costoTotal ?? 0,
+        costo2: d2.costoTotal,
+      };
+    });
+  }, [k1, k2]);
 
-  const paired = comparData.filter(d => d.total1 > 0);
+  const paired = useMemo(() => comparData.filter(d => d.total1 > 0), [comparData]);
 
-  const avgVarConsumo = paired.length > 0
-    ? paired.reduce((a, d) => a + ((d.total2 - d.total1) / d.total1) * 100, 0) / paired.length
-    : null;
-
-  const avgVarCosto = paired.length > 0
-    ? paired.reduce((a, d) => a + ((d.costo2 - d.costo1) / d.costo1) * 100, 0) / paired.length
-    : null;
-
-  const bestMonth = paired.reduce(
-    (best, d) => {
-      const v = ((d.total2 - d.total1) / d.total1) * 100;
-      return v < best.v ? { mes: d.mes, v } : best;
-    },
-    { mes: 0, v: Infinity }
+  const avgVarConsumo = useMemo(
+    () => paired.length > 0
+      ? paired.reduce((a, d) => a + ((d.total2 - d.total1) / d.total1) * 100, 0) / paired.length
+      : null,
+    [paired]
   );
 
-  const chartData = comparData.map(d => ({
-    mes:       d.mes,
-    total2025: d.total1,
-    total2026: d.total2,
-    costo2025: d.costo1,
-    costo2026: d.costo2,
-  }));
+  const avgVarCosto = useMemo(
+    () => paired.length > 0
+      ? paired.reduce((a, d) => a + ((d.costo2 - d.costo1) / d.costo1) * 100, 0) / paired.length
+      : null,
+    [paired]
+  );
+
+  const bestMonth = useMemo(
+    () => paired.reduce(
+      (best, d) => {
+        const v = ((d.total2 - d.total1) / d.total1) * 100;
+        return v < best.v ? { mes: d.mes, v } : best;
+      },
+      { mes: 0, v: Infinity }
+    ),
+    [paired]
+  );
+
+  const chartData = useMemo(
+    () => comparData.map(d => ({
+      mes:       d.mes,
+      total2025: d.total1,
+      total2026: d.total2,
+      costo2025: d.costo1,
+      costo2026: d.costo2,
+    })),
+    [comparData]
+  );
 
   return (
     <div className="space-y-7 animate-fade-in">

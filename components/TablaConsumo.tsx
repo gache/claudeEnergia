@@ -1,23 +1,12 @@
 "use client";
 
 import { KPIMensual, MESES, fmt, calcularTotales } from "@/lib/data";
+import VarBadge from "@/components/VarBadge";
 
 type Props = {
   data: KPIMensual[];
   showVarPct?: boolean;
 };
-
-function VarBadge({ pct }: { pct: number | null }) {
-  if (pct === null) return <span className="text-slate-300 text-xs">—</span>;
-  const up = pct > 0;
-  return (
-    <span className={`inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-bold tracking-wide ${
-      up ? "bg-red-50 text-red-600 border border-red-100" : "bg-savings-50 text-savings-700 border border-savings-100"
-    }`}>
-      {up ? "▲" : "▼"} {Math.abs(pct).toFixed(1)}%
-    </span>
-  );
-}
 
 function SplitBar({ pctHC, pctHP }: { pctHC: number; pctHP: number }) {
   return (
