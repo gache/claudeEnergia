@@ -130,8 +130,9 @@ export default function DashboardPage() {
   const { kpiFor, getByYear } = useEnergy();
 
   const currentMonth = new Date().getMonth() + 1;
-  const kpis2026 = getByYear(2026);
-  const kpis2025 = getByYear(2025);
+  const thisYear = new Date().getFullYear();
+  const kpis2026 = getByYear(thisYear);
+  const kpis2025 = getByYear(thisYear - 1);
 
   let displayMonth = currentMonth;
   let actual = kpiFor(displayMonth, 2026);
@@ -150,7 +151,7 @@ export default function DashboardPage() {
           <Zap className="w-10 h-10 text-slate-300" />
         </div>
         <div>
-          <p className="text-slate-700 font-semibold text-lg">Sin datos para {MESES[displayMonth - 1]} 2026</p>
+          <p className="text-slate-700 font-semibold text-lg">Sin datos para {MESES[displayMonth - 1]} {thisYear}</p>
           <p className="text-slate-400 text-sm mt-1">Ve a Registrar para añadir consumo.</p>
         </div>
         <a
@@ -173,6 +174,9 @@ export default function DashboardPage() {
   const varTotal = anterior
     ? Math.round(((actual.total - anterior.total) / anterior.total) * 100)
     : undefined;
+  const varCosto = anterior
+    ? Math.round(((actual.costoTotal - anterior.costoTotal) / anterior.costoTotal) * 100)
+    : undefined;
   const varDif = anterior && anterior.difHCHP !== 0
     ? Math.round(((Math.abs(actual.difHCHP) - Math.abs(anterior.difHCHP)) / Math.abs(anterior.difHCHP)) * 100)
     : undefined;
@@ -189,7 +193,7 @@ export default function DashboardPage() {
       {/* ── Page Header ── */}
       <div className="flex flex-col gap-1">
         <p className="text-xs font-semibold text-slate-400 uppercase tracking-widest" style={{ fontFamily: "var(--font-space-mono, monospace)" }}>
-          {mesActual} 2026
+          {mesActual} {thisYear}
         </p>
         <h1 className="text-3xl font-black text-slate-900 leading-tight tracking-tight" style={{ fontFamily: "var(--font-jakarta, sans-serif)" }}>
           Dashboard Energético
@@ -255,7 +259,7 @@ export default function DashboardPage() {
           value={actual.costoTotal.toFixed(3)}
           unit="€"
           subLabel={`${actual.total.toFixed(3)} kWh`}
-          trend={varTotal}
+          trend={varCosto}
           accent="emerald"
           icon={Wallet}
           delay={300}
@@ -348,15 +352,15 @@ export default function DashboardPage() {
 
       {/* ── 4. GRÁFICO DE CONSUMO HC/HP 2026 ── */}
       <div className="grid grid-cols-1 xl:grid-cols-2 gap-5 animate-slide-up" style={{ animationDelay: "350ms" }}>
-        <ConsumoHCHPChart data={kpis2026} title="Consumo HC/HP mensual 2026" />
-        <CostoEvolucionChart data={kpis2026} title="Evolución de costes — 2026 (€)" />
+        <ConsumoHCHPChart data={kpis2026} title={`Consumo HC/HP mensual ${thisYear}`} />
+        <CostoEvolucionChart data={kpis2026} title={`Evolución de costes — ${thisYear} (€)`} />
       </div>
 
       {/* ── 5. COMPARACIÓN ÚLTIMOS 3 MESES ── */}
       {last3Months.length > 0 && (
         <div className="bg-white rounded-2xl shadow-card-md border border-slate-100/40 overflow-hidden animate-slide-up hover:shadow-card-lg transition-shadow duration-300" style={{ animationDelay: "400ms" }}>
           <div className="px-6 py-4 border-b border-slate-100">
-            <h2 className="text-xl font-black text-slate-900 tracking-tight" style={{ fontFamily: "var(--font-jakarta, sans-serif)" }}>Últimos 3 meses — 2026 vs 2025</h2>
+            <h2 className="text-xl font-black text-slate-900 tracking-tight" style={{ fontFamily: "var(--font-jakarta, sans-serif)" }}>Últimos 3 meses — {thisYear} vs {thisYear - 1}</h2>
           </div>
           <div className="overflow-x-auto">
             <table className="w-full text-sm min-w-[600px]">

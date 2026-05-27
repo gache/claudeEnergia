@@ -2,8 +2,13 @@ export const TARIFA_HC = 0.19008; // €/kWh — default 2026
 export const TARIFA_HP = 0.27436; // €/kWh — default 2026
 
 export const MESES = ["Ene","Feb","Mar","Abr","May","Jun","Jul","Ago","Sep","Oct","Nov","Dic"];
-export const ANOS_DISPONIBLES = [2022, 2023, 2024, 2025, 2026] as const;
-export type AnoDisponible = (typeof ANOS_DISPONIBLES)[number];
+export const ANOS_DISPONIBLES: number[] = (() => {
+  const years = [2022, 2023, 2024, 2025, 2026];
+  const current = new Date().getFullYear();
+  if (current > 2026) years.push(current);
+  return years;
+})();
+export type AnoDisponible = number;
 
 export type TarifaMensual = {
   año: number;

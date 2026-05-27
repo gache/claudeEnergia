@@ -16,7 +16,8 @@ type EnergyContextType = {
   registros:  RegistroMensual[];
   tarifas:    TarifaMensual[];
   syncStatus: "loading" | "ok" | "error";
-  addOrUpdate: (r: RegistroMensual) => void;
+  addOrUpdate:    (r: RegistroMensual) => void;
+  removeRegistro: (mes: number, año: number) => void;
   setTarifa:   (año: number, mes: number, hc: number, hp: number) => void;
   getTarifa:   (año: number, mes: number) => { hc: number; hp: number };
   getByYear:   (año: number) => KPIMensual[];
@@ -26,7 +27,7 @@ type EnergyContextType = {
 const EnergyContext = createContext<EnergyContextType | null>(null);
 
 export function EnergyProvider({ children }: { children: ReactNode }) {
-  const { user } = useAuth();
+  useAuth();
   const [registros, setRegistros] = useState<RegistroMensual[]>(datosIniciales);
   const [tarifas,   setTarifas]   = useState<TarifaMensual[]>(TARIFAS_INICIALES);
   const [hydrated,  setHydrated]  = useState(false);
@@ -155,6 +156,10 @@ export function EnergyProvider({ children }: { children: ReactNode }) {
     });
   }
 
+  function removeRegistro(mes: number, año: number) {
+    setRegistros(prev => prev.filter(x => !(x.mes === mes && x.año === año)));
+  }
+
   function setTarifa(año: number, mes: number, hc: number, hp: number) {
     setTarifas(prev => {
       const idx = prev.findIndex(t => t.año === año && t.mes === mes);
@@ -190,7 +195,7 @@ export function EnergyProvider({ children }: { children: ReactNode }) {
   }
 
   return (
-    <EnergyContext.Provider value={{ registros, tarifas, syncStatus, addOrUpdate, setTarifa, getTarifa, getByYear, kpiFor }}>
+    <EnergyContext.Provider value={{ registros, tarifas, syncStatus, addOrUpdate, removeRegistro, setTarifa, getTarifa, getByYear, kpiFor }}>
       {children}
     </EnergyContext.Provider>
   );

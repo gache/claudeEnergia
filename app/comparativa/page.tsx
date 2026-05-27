@@ -137,7 +137,7 @@ export default function ComparativaPage() {
                          focus:outline-none focus:ring-2 focus:ring-brand-400/30 focus:border-brand-400
                          min-h-[36px]"
             >
-              {ANOS_DISPONIBLES.map(y => (
+              {ANOS_DISPONIBLES.filter(y => y !== year2).map(y => (
                 <option key={y} value={y}>{y}</option>
               ))}
             </select>
@@ -152,7 +152,7 @@ export default function ComparativaPage() {
                          focus:outline-none focus:ring-2 focus:ring-brand-400/30 focus:border-brand-400
                          min-h-[36px]"
             >
-              {ANOS_DISPONIBLES.map(y => (
+              {ANOS_DISPONIBLES.filter(y => y !== year1).map(y => (
                 <option key={y} value={y}>{y}</option>
               ))}
             </select>

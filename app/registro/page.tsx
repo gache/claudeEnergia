@@ -1,13 +1,13 @@
 "use client";
 
 import { useState, Suspense } from "react";
-import { Save, Calculator, CheckCircle, AlertCircle, ChevronDown } from "lucide-react";
+import { Save, Calculator, CheckCircle, AlertCircle, ChevronDown, Trash2 } from "lucide-react";
 import { useEnergy } from "@/lib/EnergyContext";
 import { MESES, calcularKPI, ANOS_DISPONIBLES } from "@/lib/data";
 import KPISkeleton from "@/components/KPISkeleton";
 
 export default function RegistroPage() {
-  const { addOrUpdate, kpiFor, getTarifa } = useEnergy();
+  const { addOrUpdate, removeRegistro, kpiFor, getTarifa } = useEnergy();
 
   const currentMonth = new Date().getMonth() + 1;
   const [año, setAño]     = useState(2026);
@@ -15,6 +15,7 @@ export default function RegistroPage() {
   const [hcStr, setHcStr] = useState("");
   const [hpStr, setHpStr] = useState("");
   const [saved, setSaved] = useState(false);
+  const [confirmDelete, setConfirmDelete] = useState(false);
 
   const hc = parseFloat(hcStr) || 0;
   const hp = parseFloat(hpStr) || 0;
@@ -55,6 +56,16 @@ export default function RegistroPage() {
     setHcStr("");
     setHpStr("");
     setSaved(false);
+    setConfirmDelete(false);
+  }
+
+  function handleDelete() {
+    if (!confirmDelete) { setConfirmDelete(true); return; }
+    removeRegistro(mes, año);
+    setHcStr("");
+    setHpStr("");
+    setSaved(false);
+    setConfirmDelete(false);
   }
 
   return (
@@ -202,8 +213,8 @@ export default function RegistroPage() {
             </div>
           </div>
 
-          {/* Save button */}
-          <div>
+          {/* Save / Delete buttons */}
+          <div className="space-y-2">
             <button
               onClick={handleSave}
               disabled={Boolean(!hasValues || hasErrors)}
@@ -211,7 +222,7 @@ export default function RegistroPage() {
             >
               {saved ? (
                 <>
-                  <CheckCircle className="w-4.5 h-4.5 w-[18px] h-[18px]" />
+                  <CheckCircle className="w-[18px] h-[18px]" />
                   ¡Guardado correctamente!
                 </>
               ) : hasErrors ? (
@@ -226,6 +237,21 @@ export default function RegistroPage() {
                 </>
               )}
             </button>
+
+            {existing && (
+              <button
+                onClick={handleDelete}
+                className={`w-full flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl font-semibold text-sm transition-all duration-200 min-h-[40px] ${
+                  confirmDelete
+                    ? "bg-red-600 text-white hover:bg-red-700"
+                    : "bg-red-50 text-red-600 border border-red-200 hover:bg-red-100"
+                }`}
+              >
+                <Trash2 className="w-3.5 h-3.5" />
+                {confirmDelete ? "¿Confirmar eliminación?" : `Eliminar registro ${MESES[mes - 1]} ${año}`}
+              </button>
+            )}
+
             {hasErrors && (
               <p className="text-xs text-red-600 mt-2 text-center font-semibold">
                 Los valores deben ser números no negativos válidos
