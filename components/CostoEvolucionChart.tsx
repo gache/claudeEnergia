@@ -89,7 +89,7 @@ export default function CostoEvolucionChart({ data, title = "Evolución del cost
             strokeWidth={2.5}
             dot={{ r: 4, fill: "#06b6d4", strokeWidth: 0 }}
             activeDot={{ r: 6, fill: "#06b6d4" }}
-            animationDuration={800}
+            animationDuration={1100}
             animationEasing="ease-out"
           />
           <Line
@@ -99,7 +99,7 @@ export default function CostoEvolucionChart({ data, title = "Evolución del cost
             strokeWidth={2.5}
             dot={{ r: 4, fill: "#ef4444", strokeWidth: 0 }}
             activeDot={{ r: 6, fill: "#ef4444" }}
-            animationDuration={800}
+            animationDuration={1100}
             animationEasing="ease-out"
           />
           <Line
@@ -110,7 +110,7 @@ export default function CostoEvolucionChart({ data, title = "Evolución del cost
             strokeDasharray="6 3"
             dot={{ r: 3, fill: "#8b5cf6", strokeWidth: 0 }}
             activeDot={{ r: 5, fill: "#8b5cf6" }}
-            animationDuration={800}
+            animationDuration={1100}
             animationEasing="ease-out"
           />
         </LineChart>
