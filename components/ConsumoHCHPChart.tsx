@@ -122,7 +122,7 @@ export default function ConsumoHCHPChart({ data, title = "Consumo HC / HP (kWh)"
             fill="url(#gradHC)"
             dot={<CustomDot />}
             activeDot={{ r: 6, fill: "#0096c7", stroke: "#fff", strokeWidth: 2 }}
-            animationDuration={500}
+            animationDuration={800}
             animationEasing="ease-out"
           />
           <Area
@@ -134,7 +134,7 @@ export default function ConsumoHCHPChart({ data, title = "Consumo HC / HP (kWh)"
             fill="url(#gradHP)"
             dot={<CustomDot />}
             activeDot={{ r: 6, fill: "#ef4444", stroke: "#fff", strokeWidth: 2 }}
-            animationDuration={500}
+            animationDuration={800}
             animationEasing="ease-out"
           />
           <Area
@@ -147,7 +147,7 @@ export default function ConsumoHCHPChart({ data, title = "Consumo HC / HP (kWh)"
             fill="url(#gradTotal)"
             dot={<CustomDot />}
             activeDot={{ r: 5, fill: "#8b5cf6", stroke: "#fff", strokeWidth: 2 }}
-            animationDuration={500}
+            animationDuration={800}
             animationEasing="ease-out"
           />
         </AreaChart>

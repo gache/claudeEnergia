@@ -111,8 +111,8 @@ export default function ComparativaChart({ data, mode, title, year1 = 2025, year
             content={(props) => <CustomTooltip {...props} mode={mode} year1={year1} year2={year2} />}
             cursor={{ fill: "rgba(0,0,0,.03)" }}
           />
-          <Bar dataKey={String(year1)} fill={colors[String(year1)]} radius={[4, 4, 0, 0]} animationDuration={500} animationEasing="ease-out" />
-          <Bar dataKey={String(year2)} fill={colors[String(year2)]} radius={[4, 4, 0, 0]} animationDuration={500} animationEasing="ease-out" />
+          <Bar dataKey={String(year1)} fill={colors[String(year1)]} radius={[4, 4, 0, 0]} animationDuration={800} animationEasing="ease-out" />
+          <Bar dataKey={String(year2)} fill={colors[String(year2)]} radius={[4, 4, 0, 0]} animationDuration={800} animationEasing="ease-out" />
         </BarChart>
       </ResponsiveContainer>
       </div>
