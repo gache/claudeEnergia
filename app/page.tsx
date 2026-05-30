@@ -135,14 +135,14 @@ export default function DashboardPage() {
   const kpis2025 = getByYear(thisYear - 1);
 
   let displayMonth = currentMonth;
-  let actual = kpiFor(displayMonth, 2026);
+  let actual = kpiFor(displayMonth, thisYear);
 
   if (!actual && kpis2026.length > 0) {
     displayMonth = kpis2026[kpis2026.length - 1].mes;
-    actual = kpiFor(displayMonth, 2026);
+    actual = kpiFor(displayMonth, thisYear);
   }
 
-  const anterior = kpiFor(displayMonth, 2025);
+  const anterior = kpiFor(displayMonth, thisYear - 1);
 
   if (!actual) {
     return (
@@ -192,7 +192,7 @@ export default function DashboardPage() {
 
       {/* ── Page Header ── */}
       <div className="flex flex-col gap-1">
-        <p className="text-xs font-semibold text-slate-400 uppercase tracking-widest" style={{ fontFamily: "var(--font-space-mono, monospace)" }}>
+        <p className="text-xs font-semibold text-slate-500 uppercase tracking-widest" style={{ fontFamily: "var(--font-space-mono, monospace)" }}>
           {mesActual} {thisYear}
         </p>
         <h1 className="text-3xl font-black text-slate-900 leading-tight tracking-tight" style={{ fontFamily: "var(--font-jakarta, sans-serif)" }}>
@@ -362,17 +362,18 @@ export default function DashboardPage() {
           <div className="px-6 py-4 border-b border-slate-100">
             <h2 className="text-xl font-black text-slate-900 tracking-tight" style={{ fontFamily: "var(--font-jakarta, sans-serif)" }}>Últimos 3 meses — {thisYear} vs {thisYear - 1}</h2>
           </div>
-          <div className="overflow-x-auto">
+          <div className="relative">
+            <div className="overflow-x-auto">
             <table className="w-full text-sm min-w-[600px]">
               <thead>
                 <tr className="bg-slate-50/60 border-b border-slate-100/50">
                   <th className="text-left px-6 py-3 text-xs font-semibold uppercase tracking-wider text-slate-500">Mes</th>
-                  <th className="text-right px-4 py-3 text-xs font-semibold uppercase tracking-wider text-hc-600">HC 2026</th>
-                  <th className="text-right px-4 py-3 text-xs font-semibold uppercase tracking-wider text-hc-400">HC Var%</th>
-                  <th className="text-right px-4 py-3 text-xs font-semibold uppercase tracking-wider text-hp-600">HP 2026</th>
-                  <th className="text-right px-4 py-3 text-xs font-semibold uppercase tracking-wider text-hp-400">HP Var%</th>
-                  <th className="text-right px-4 py-3 text-xs font-semibold uppercase tracking-wider text-slate-600">Total 2026</th>
-                  <th className="text-right px-5 py-3 text-xs font-semibold uppercase tracking-wider text-slate-400">Total Var%</th>
+                  <th className="text-right px-4 py-3 text-xs font-semibold uppercase tracking-wider text-hc-600">HC {thisYear}</th>
+                  <th className="text-right px-4 py-3 text-xs font-semibold uppercase tracking-wider text-hc-600">HC Var%</th>
+                  <th className="text-right px-4 py-3 text-xs font-semibold uppercase tracking-wider text-hp-600">HP {thisYear}</th>
+                  <th className="text-right px-4 py-3 text-xs font-semibold uppercase tracking-wider text-hp-600">HP Var%</th>
+                  <th className="text-right px-4 py-3 text-xs font-semibold uppercase tracking-wider text-slate-600">Total {thisYear}</th>
+                  <th className="text-right px-5 py-3 text-xs font-semibold uppercase tracking-wider text-slate-500">Total Var%</th>
                 </tr>
               </thead>
               <tbody>
@@ -407,6 +408,9 @@ export default function DashboardPage() {
                 })}
               </tbody>
             </table>
+            </div>
+            {/* Scroll fade indicator for tablet */}
+            <div className="xl:hidden pointer-events-none absolute right-0 top-0 bottom-0 w-8 bg-gradient-to-l from-white to-transparent rounded-r-2xl" aria-hidden="true" />
           </div>
         </div>
       )}

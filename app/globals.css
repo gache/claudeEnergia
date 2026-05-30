@@ -199,6 +199,23 @@ body {
 .animate-fade-in  { animation: fadeIn  0.3s ease-out; }
 .animate-slide-up { animation: slideUp 0.3s ease-out; }
 
+/* ── Reduced motion ──────────────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  .animate-fade-in,
+  .animate-slide-up {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+  .skeleton {
+    animation: none;
+    background: #f1f5f9;
+  }
+  html {
+    scroll-behavior: auto;
+  }
+}
+
 /* Loading skeleton */
 .skeleton {
   background: linear-gradient(90deg, #f1f5f9 25%, #e2e8f0 50%, #f1f5f9 75%);

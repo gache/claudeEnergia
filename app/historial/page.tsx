@@ -171,13 +171,13 @@ export default function HistorialPage() {
             </span>
           </div>
           <div className="p-5 grid grid-cols-2 sm:grid-cols-4 gap-4">
-            <div className="rounded-xl bg-brand-50 border border-brand-100 p-4">
-              <p className="text-[10px] font-bold uppercase tracking-widest text-brand-400 mb-1.5">Total kWh proyectado</p>
-              <p className="text-xl font-bold text-brand-700 tabular-nums">
+            <div className="rounded-xl bg-slate-50 border border-slate-200 p-4">
+              <p className="text-[10px] font-bold uppercase tracking-widest text-slate-500 mb-1.5">Total kWh proyectado</p>
+              <p className="text-xl font-bold text-slate-700 tabular-nums">
                 {proyKwh.toFixed(1)}
-                <span className="text-xs font-normal ml-1 text-brand-400">kWh</span>
+                <span className="text-xs font-normal ml-1 text-slate-500">kWh</span>
               </p>
-              <p className="text-[10px] text-brand-400 mt-1">actual {totalKwh.toFixed(1)} + {mesesRestantes}m est.</p>
+              <p className="text-[10px] text-slate-500 mt-1">actual {totalKwh.toFixed(1)} + {mesesRestantes}m est.</p>
             </div>
             <div className="rounded-xl bg-violet-50 border border-violet-100 p-4">
               <p className="text-[10px] font-bold uppercase tracking-widest text-violet-400 mb-1.5">Coste total proyectado</p>

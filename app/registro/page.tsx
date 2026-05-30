@@ -92,8 +92,11 @@ export default function RegistroPage() {
       {/* ── Form card ── */}
       <div className="bg-white/70 backdrop-blur-md rounded-2xl shadow-card-md border border-slate-100/40 overflow-hidden animate-slide-up hover:shadow-card-lg transition-shadow duration-300" style={{ animationDelay: "50ms" }}>
 
-        {/* Form top accent */}
-        <div className="h-1 bg-gradient-to-r from-hc-500 via-brand-500 to-hp-500 opacity-80" />
+        {/* Form top accent — HC left, HP right */}
+        <div className="h-1 flex">
+          <div className="flex-1 bg-hc-500" aria-hidden="true" />
+          <div className="flex-1 bg-hp-500" aria-hidden="true" />
+        </div>
 
         <div className="p-6 space-y-5">
           {/* Year / Month selectors */}
@@ -154,10 +157,11 @@ export default function RegistroPage() {
           {/* HC / HP inputs */}
           <div className="grid grid-cols-2 gap-4">
             <div>
-              <label className="block text-xs font-semibold uppercase tracking-wider text-hc-600 mb-2">
+              <label htmlFor="input-hc" className="block text-xs font-semibold uppercase tracking-wider text-hc-600 mb-2">
                 HC — Heures Creuses
               </label>
               <input
+                id="input-hc"
                 type="number"
                 min="0"
                 step="0.1"
@@ -183,10 +187,11 @@ export default function RegistroPage() {
               )}
             </div>
             <div>
-              <label className="block text-xs font-semibold uppercase tracking-wider text-hp-600 mb-2">
+              <label htmlFor="input-hp" className="block text-xs font-semibold uppercase tracking-wider text-hp-600 mb-2">
                 HP — Heures Pleines
               </label>
               <input
+                id="input-hp"
                 type="number"
                 min="0"
                 step="0.1"

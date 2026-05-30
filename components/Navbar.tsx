@@ -165,6 +165,14 @@ export default function Navbar() {
   }, []);
 
   return (
+    <>
+    {/* Skip to main content — visible on keyboard focus */}
+    <a
+      href="#main-content"
+      className="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-[100] focus:px-4 focus:py-2 focus:bg-brand-600 focus:text-white focus:rounded-xl focus:text-sm focus:font-semibold focus:shadow-lg"
+    >
+      Saltar al contenido principal
+    </a>
     <header className="sticky top-0 z-50 w-full" style={{ background: "linear-gradient(180deg, #0f1f45 0%, #0a1628 100%)" }}>
       <div className="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center h-14 gap-6">
@@ -187,6 +195,8 @@ export default function Navbar() {
                 <Link
                   key={href}
                   href={href}
+                  aria-label={label}
+                  aria-current={active ? "page" : undefined}
                   className={`flex items-center gap-2 px-3 py-1.5 rounded-xl text-sm font-medium transition-all duration-150 min-h-[36px] ${
                     active
                       ? "bg-brand-600 text-white shadow-md"
@@ -228,5 +238,6 @@ export default function Navbar() {
         </div>
       </div>
     </header>
+    </>
   );
 }

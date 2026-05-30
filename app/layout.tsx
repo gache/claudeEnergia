@@ -43,7 +43,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             <ProtectedLayout>
               <SyncStatusBanner />
               <Navbar />
-              <main className="flex-1">
+              <main id="main-content" className="flex-1">
                 <div className="p-4 sm:p-6 lg:p-8 max-w-[1600px] mx-auto">
                   {children}
                 </div>

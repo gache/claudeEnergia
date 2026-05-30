@@ -21,8 +21,10 @@ export default function MobileNav() {
       {/* Hamburger button */}
       <button
         onClick={() => setOpen(!open)}
+        aria-label={open ? "Cerrar menú" : "Abrir menú"}
+        aria-expanded={open}
+        aria-controls="mobile-nav-drawer"
         className="md:hidden fixed top-4 right-4 z-50 w-10 h-10 rounded-lg bg-brand-600 text-white flex items-center justify-center shadow-lg hover:bg-brand-700 transition-colors"
-        title={open ? "Cerrar menú" : "Abrir menú"}
       >
         {open ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
       </button>
@@ -37,7 +39,7 @@ export default function MobileNav() {
           />
 
           {/* Drawer */}
-          <div className="md:hidden fixed left-0 top-0 h-screen w-64 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 z-40 shadow-2xl flex flex-col overflow-y-auto">
+          <div id="mobile-nav-drawer" role="dialog" aria-label="Menú de navegación" className="md:hidden fixed left-0 top-0 h-screen w-64 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 z-40 shadow-2xl flex flex-col overflow-y-auto">
             {/* Close button (mobile) */}
             <div className="h-16 flex items-center px-5 border-b border-white/10">
               <p className="text-sm font-bold text-white">Navegación</p>

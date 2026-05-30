@@ -76,6 +76,8 @@ export default function ConsumoHCHPChart({ data, title = "Consumo HC / HP (kWh)"
         <h2 className="section-title">{title}</h2>
         <p className="text-xs text-slate-400 mt-0.5">Evolución mensual HC (fuera punta) y HP (punta)</p>
       </div>
+      <div className="overflow-x-auto -mx-1">
+      <div className="min-w-[300px]">
       <ResponsiveContainer width="100%" height={260}>
         <AreaChart data={chartData} margin={{ top: 8, right: 8, bottom: 0, left: 0 }}>
           <defs>
@@ -150,6 +152,37 @@ export default function ConsumoHCHPChart({ data, title = "Consumo HC / HP (kWh)"
           />
         </AreaChart>
       </ResponsiveContainer>
+      </div>
+      </div>
+
+      {/* Accessible data table */}
+      <details className="mt-3">
+        <summary className="text-xs text-slate-400 cursor-pointer hover:text-slate-600 transition-colors select-none w-fit">
+          Ver datos en tabla
+        </summary>
+        <div className="mt-2 overflow-x-auto">
+          <table className="w-full text-xs" aria-label={title}>
+            <thead>
+              <tr className="border-b border-slate-100">
+                <th className="text-left py-1.5 pr-3 text-slate-500 font-semibold">Mes</th>
+                <th className="text-right py-1.5 px-2 text-hc-600 font-semibold">HC (kWh)</th>
+                <th className="text-right py-1.5 px-2 text-red-600 font-semibold">HP (kWh)</th>
+                <th className="text-right py-1.5 pl-2 text-violet-600 font-semibold">Total (kWh)</th>
+              </tr>
+            </thead>
+            <tbody>
+              {chartData.map(row => (
+                <tr key={row.mes} className="border-b border-slate-50">
+                  <td className="py-1 pr-3 text-slate-600">{row.mes}</td>
+                  <td className="py-1 px-2 text-right font-mono text-hc-700">{row.HC.toFixed(3)}</td>
+                  <td className="py-1 px-2 text-right font-mono text-red-700">{row.HP.toFixed(3)}</td>
+                  <td className="py-1 pl-2 text-right font-mono text-violet-700">{row.Total.toFixed(3)}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </details>
     </div>
   );
 }
