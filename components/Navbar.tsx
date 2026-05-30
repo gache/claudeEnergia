@@ -197,7 +197,7 @@ export default function Navbar() {
                   href={href}
                   aria-label={label}
                   aria-current={active ? "page" : undefined}
-                  className={`flex items-center gap-2 px-3 py-1.5 rounded-xl text-sm font-medium transition-all duration-150 min-h-[36px] ${
+                  className={`flex items-center gap-2 px-3 py-1.5 rounded-xl text-sm font-medium transition-all duration-150 min-h-[36px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-400 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-900 ${
                     active
                       ? "bg-brand-600 text-white shadow-md"
                       : "text-slate-400 hover:bg-white/10 hover:text-slate-100"

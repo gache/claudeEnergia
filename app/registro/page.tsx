@@ -163,20 +163,24 @@ export default function RegistroPage() {
               <input
                 id="input-hc"
                 type="number"
+                inputMode="decimal"
                 min="0"
                 step="0.1"
                 placeholder="Ej. 120"
                 value={hcStr}
                 onChange={e => { setHcStr(e.target.value); setSaved(false); }}
+                aria-invalid={hcError ? "true" : "false"}
+                aria-describedby={hcError ? "error-hc" : undefined}
                 className={`input-hc font-mono text-base ${hcError ? "border-red-500 bg-red-50" : ""}`}
               />
               {hcError && (
-                <p className="text-xs text-red-600 mt-1.5 font-semibold">
-                  ⚠ Debe ser un número válido y no negativo
+                <p id="error-hc" role="alert" className="text-xs text-red-600 mt-1.5 font-semibold flex items-center gap-1">
+                  <AlertCircle className="w-3 h-3 flex-shrink-0" />
+                  Debe ser un número válido y no negativo
                 </p>
               )}
               {!hcError && (
-                <p className="text-xs text-hc-400 mt-1.5 font-mono">
+                <p className="text-xs text-hc-600 mt-1.5 font-mono">
                   Tarifa: {tarifaMes.hc.toFixed(5)} €/kWh
                   {hc > 0 && (
                     <span className="ml-2 text-hc-600 font-semibold">
@@ -193,20 +197,24 @@ export default function RegistroPage() {
               <input
                 id="input-hp"
                 type="number"
+                inputMode="decimal"
                 min="0"
                 step="0.1"
                 placeholder="Ej. 133"
                 value={hpStr}
                 onChange={e => { setHpStr(e.target.value); setSaved(false); }}
+                aria-invalid={hpError ? "true" : "false"}
+                aria-describedby={hpError ? "error-hp" : undefined}
                 className={`input-hp font-mono text-base ${hpError ? "border-red-500 bg-red-50" : ""}`}
               />
               {hpError && (
-                <p className="text-xs text-red-600 mt-1.5 font-semibold">
-                  ⚠ Debe ser un número válido y no negativo
+                <p id="error-hp" role="alert" className="text-xs text-red-600 mt-1.5 font-semibold flex items-center gap-1">
+                  <AlertCircle className="w-3 h-3 flex-shrink-0" />
+                  Debe ser un número válido y no negativo
                 </p>
               )}
               {!hpError && (
-                <p className="text-xs text-hp-400 mt-1.5 font-mono">
+                <p className="text-xs text-hp-600 mt-1.5 font-mono">
                   Tarifa: {tarifaMes.hp.toFixed(5)} €/kWh
                   {hp > 0 && (
                     <span className="ml-2 text-hp-600 font-semibold">

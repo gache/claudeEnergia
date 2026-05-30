@@ -211,7 +211,7 @@ export default function HistorialPage() {
       {datos.length === 0 ? (
         <div className="bg-white/70 backdrop-blur-md rounded-2xl border border-slate-100/40 shadow-card hover:shadow-card-md transition-shadow duration-300 p-16 text-center animate-slide-up" style={{ animationDelay: "100ms" }}>
           <div className="w-16 h-16 rounded-2xl bg-slate-50 flex items-center justify-center mx-auto mb-4">
-            <FileX className="w-8 h-8 text-slate-300" />
+            <FileX className="w-8 h-8 text-slate-400" />
           </div>
           <p className="text-slate-600 font-semibold text-base">Sin datos para {año}</p>
           <p className="text-slate-500 text-sm mt-1">
