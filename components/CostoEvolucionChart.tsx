@@ -56,7 +56,7 @@ export default function CostoEvolucionChart({ data, title = "Evolución del cost
     <div className="bg-white/70 backdrop-blur-md rounded-2xl shadow-card-md border border-slate-100/40 p-6 hover:shadow-card-lg transition-shadow duration-300">
       <div className="mb-5">
         <h2 className="section-title">{title}</h2>
-        <p className="text-xs text-slate-400 mt-0.5">Líneas de coste HC (cian), HP (naranja) y total (violeta)</p>
+        <p className="text-xs text-slate-400 mt-0.5">Líneas de coste HC (cian), HP (rojo) y total (violeta)</p>
       </div>
       <div className="overflow-x-auto -mx-1">
       <div className="min-w-[300px]">
@@ -89,6 +89,8 @@ export default function CostoEvolucionChart({ data, title = "Evolución del cost
             strokeWidth={2.5}
             dot={{ r: 4, fill: "#06b6d4", strokeWidth: 0 }}
             activeDot={{ r: 6, fill: "#06b6d4" }}
+            animationDuration={500}
+            animationEasing="ease-out"
           />
           <Line
             type="monotone"
@@ -97,6 +99,8 @@ export default function CostoEvolucionChart({ data, title = "Evolución del cost
             strokeWidth={2.5}
             dot={{ r: 4, fill: "#ef4444", strokeWidth: 0 }}
             activeDot={{ r: 6, fill: "#ef4444" }}
+            animationDuration={500}
+            animationEasing="ease-out"
           />
           <Line
             type="monotone"
@@ -106,6 +110,8 @@ export default function CostoEvolucionChart({ data, title = "Evolución del cost
             strokeDasharray="6 3"
             dot={{ r: 3, fill: "#8b5cf6", strokeWidth: 0 }}
             activeDot={{ r: 5, fill: "#8b5cf6" }}
+            animationDuration={500}
+            animationEasing="ease-out"
           />
         </LineChart>
       </ResponsiveContainer>

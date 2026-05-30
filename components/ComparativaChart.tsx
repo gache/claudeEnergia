@@ -89,8 +89,10 @@ export default function ComparativaChart({ data, mode, title, year1 = 2025, year
           </div>
         </div>
       </div>
+      <div className="overflow-x-auto -mx-1">
+      <div className="min-w-[500px]">
       <ResponsiveContainer width="100%" height={260}>
-        <BarChart data={chartData} barSize={18} barGap={3}>
+        <BarChart data={chartData} maxBarSize={18} barGap={3}>
           <CartesianGrid strokeDasharray="3 3" stroke="#e2e8f0" vertical={false} />
           <XAxis
             dataKey="mes"
@@ -109,15 +111,48 @@ export default function ComparativaChart({ data, mode, title, year1 = 2025, year
             content={(props) => <CustomTooltip {...props} mode={mode} year1={year1} year2={year2} />}
             cursor={{ fill: "rgba(0,0,0,.03)" }}
           />
-          <Legend
-            wrapperStyle={{ fontSize: 12, fontWeight: 500, paddingTop: 16 }}
-            iconType="circle"
-            iconSize={8}
-          />
-          <Bar dataKey={String(year1)} fill={colors[String(year1)]} radius={[4, 4, 0, 0]} />
-          <Bar dataKey={String(year2)} fill={colors[String(year2)]} radius={[4, 4, 0, 0]} />
+          <Bar dataKey={String(year1)} fill={colors[String(year1)]} radius={[4, 4, 0, 0]} animationDuration={500} animationEasing="ease-out" />
+          <Bar dataKey={String(year2)} fill={colors[String(year2)]} radius={[4, 4, 0, 0]} animationDuration={500} animationEasing="ease-out" />
         </BarChart>
       </ResponsiveContainer>
+      </div>
+      </div>
+
+      {/* Accessible data table */}
+      <details className="mt-3">
+        <summary className="text-xs text-slate-400 cursor-pointer hover:text-slate-600 transition-colors select-none w-fit">
+          Ver datos en tabla
+        </summary>
+        <div className="mt-2 overflow-x-auto">
+          <table className="w-full text-xs" aria-label={title ?? defaultTitle}>
+            <thead>
+              <tr className="border-b border-slate-100">
+                <th className="text-left py-1.5 pr-3 text-slate-500 font-semibold">Mes</th>
+                <th className="text-right py-1.5 px-2 text-slate-500 font-semibold">{year1}{unit}</th>
+                <th className="text-right py-1.5 px-2 text-brand-600 font-semibold">{year2}{unit}</th>
+                <th className="text-right py-1.5 pl-2 text-slate-500 font-semibold">Variación</th>
+              </tr>
+            </thead>
+            <tbody>
+              {chartData.map(row => {
+                const v1 = row[String(year1)] as number;
+                const v2 = row[String(year2)] as number;
+                const varPct = v1 > 0 ? ((v2 - v1) / v1) * 100 : null;
+                return (
+                  <tr key={row.mes} className="border-b border-slate-50">
+                    <td className="py-1 pr-3 text-slate-600">{row.mes}</td>
+                    <td className="py-1 px-2 text-right font-mono text-slate-500">{typeof v1 === "number" ? v1.toFixed(mode === "costo" ? 3 : 1) : "—"}</td>
+                    <td className="py-1 px-2 text-right font-mono text-brand-700">{typeof v2 === "number" ? v2.toFixed(mode === "costo" ? 3 : 1) : "—"}</td>
+                    <td className={`py-1 pl-2 text-right font-mono font-semibold ${varPct === null ? "text-slate-400" : varPct < 0 ? "text-savings-600" : "text-red-500"}`}>
+                      {varPct === null ? "—" : `${varPct > 0 ? "+" : ""}${varPct.toFixed(1)}%`}
+                    </td>
+                  </tr>
+                );
+              })}
+            </tbody>
+          </table>
+        </div>
+      </details>
     </div>
   );
 }
