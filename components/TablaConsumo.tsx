@@ -44,19 +44,19 @@ export default function TablaConsumo({ data, showVarPct = true }: Props) {
       </div>
 
       <div className="overflow-x-auto">
-        <table className="w-full text-sm min-w-[820px]">
-          <thead>
+        <table className="w-full text-sm min-w-[820px]" aria-label="Detalle mensual de consumo energético">
+          <thead className="sticky top-0 z-10">
             <tr>
-              <th className="text-left px-6 py-3 text-[10px] font-bold uppercase tracking-widest text-slate-400 bg-slate-50/80 border-b border-slate-100">Mes</th>
-              <th className="text-right px-4 py-3 text-[10px] font-bold uppercase tracking-widest text-hc-500 bg-hc-50/50 border-b border-slate-100">HC kWh</th>
-              <th className="text-right px-4 py-3 text-[10px] font-bold uppercase tracking-widest text-hp-500 bg-hp-50/50 border-b border-slate-100">HP kWh</th>
-              <th className="text-right px-4 py-3 text-[10px] font-bold uppercase tracking-widest text-slate-500 bg-slate-50/80 border-b border-slate-100">Total kWh</th>
-              <th className="text-right px-4 py-3 text-[10px] font-bold uppercase tracking-widest text-hc-500 bg-hc-50/50 border-b border-slate-100">€ HC</th>
-              <th className="text-right px-4 py-3 text-[10px] font-bold uppercase tracking-widest text-hp-500 bg-hp-50/50 border-b border-slate-100">€ HP</th>
-              <th className="text-right px-4 py-3 text-[10px] font-bold uppercase tracking-widest text-slate-600 bg-slate-50/80 border-b border-slate-100">€ Total</th>
-              <th className="text-center px-4 py-3 text-[10px] font-bold uppercase tracking-widest text-slate-400 bg-slate-50/80 border-b border-slate-100">HC / HP</th>
+              <th scope="col" className="text-left px-6 py-3 text-[10px] font-bold uppercase tracking-widest text-slate-500 bg-slate-50/80 border-b border-slate-100">Mes</th>
+              <th scope="col" className="text-right px-4 py-3 text-[10px] font-bold uppercase tracking-widest text-hc-600 bg-hc-50/50 border-b border-slate-100">HC kWh</th>
+              <th scope="col" className="text-right px-4 py-3 text-[10px] font-bold uppercase tracking-widest text-hp-600 bg-hp-50/50 border-b border-slate-100">HP kWh</th>
+              <th scope="col" className="text-right px-4 py-3 text-[10px] font-bold uppercase tracking-widest text-slate-500 bg-slate-50/80 border-b border-slate-100">Total kWh</th>
+              <th scope="col" className="text-right px-4 py-3 text-[10px] font-bold uppercase tracking-widest text-hc-600 bg-hc-50/50 border-b border-slate-100">€ HC</th>
+              <th scope="col" className="text-right px-4 py-3 text-[10px] font-bold uppercase tracking-widest text-hp-600 bg-hp-50/50 border-b border-slate-100">€ HP</th>
+              <th scope="col" className="text-right px-4 py-3 text-[10px] font-bold uppercase tracking-widest text-slate-600 bg-slate-50/80 border-b border-slate-100">€ Total</th>
+              <th scope="col" className="text-center px-4 py-3 text-[10px] font-bold uppercase tracking-widest text-slate-500 bg-slate-50/80 border-b border-slate-100">HC / HP</th>
               {showVarPct && (
-                <th className="text-right px-6 py-3 text-[10px] font-bold uppercase tracking-widest text-slate-400 bg-slate-50/80 border-b border-slate-100">Var%</th>
+                <th scope="col" className="text-right px-6 py-3 text-[10px] font-bold uppercase tracking-widest text-slate-500 bg-slate-50/80 border-b border-slate-100">Var%</th>
               )}
             </tr>
           </thead>
@@ -150,7 +150,7 @@ export default function TablaConsumo({ data, showVarPct = true }: Props) {
                 <SplitBar pctHC={avgPctHC} pctHP={avgPctHP} />
               </td>
               {showVarPct && (
-                <td className="px-6 py-4 text-right text-slate-300 font-mono text-xs">—</td>
+                <td className="px-6 py-4 text-right text-slate-400 font-mono text-xs">—</td>
               )}
             </tr>
           </tfoot>

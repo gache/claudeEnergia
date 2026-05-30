@@ -364,16 +364,16 @@ export default function DashboardPage() {
           </div>
           <div className="relative">
             <div className="overflow-x-auto">
-            <table className="w-full text-sm min-w-[600px]">
+            <table className="w-full text-sm min-w-[600px]" aria-label={`Comparativa últimos 3 meses ${thisYear} vs ${thisYear - 1}`}>
               <thead>
                 <tr className="bg-slate-50/60 border-b border-slate-100/50">
-                  <th className="text-left px-6 py-3 text-xs font-semibold uppercase tracking-wider text-slate-500">Mes</th>
-                  <th className="text-right px-4 py-3 text-xs font-semibold uppercase tracking-wider text-hc-600">HC {thisYear}</th>
-                  <th className="text-right px-4 py-3 text-xs font-semibold uppercase tracking-wider text-hc-600">HC Var%</th>
-                  <th className="text-right px-4 py-3 text-xs font-semibold uppercase tracking-wider text-hp-600">HP {thisYear}</th>
-                  <th className="text-right px-4 py-3 text-xs font-semibold uppercase tracking-wider text-hp-600">HP Var%</th>
-                  <th className="text-right px-4 py-3 text-xs font-semibold uppercase tracking-wider text-slate-600">Total {thisYear}</th>
-                  <th className="text-right px-5 py-3 text-xs font-semibold uppercase tracking-wider text-slate-500">Total Var%</th>
+                  <th scope="col" className="text-left px-6 py-3 text-xs font-semibold uppercase tracking-wider text-slate-500">Mes</th>
+                  <th scope="col" className="text-right px-4 py-3 text-xs font-semibold uppercase tracking-wider text-hc-600">HC {thisYear}</th>
+                  <th scope="col" className="text-right px-4 py-3 text-xs font-semibold uppercase tracking-wider text-hc-600">HC Var%</th>
+                  <th scope="col" className="text-right px-4 py-3 text-xs font-semibold uppercase tracking-wider text-hp-600">HP {thisYear}</th>
+                  <th scope="col" className="text-right px-4 py-3 text-xs font-semibold uppercase tracking-wider text-hp-600">HP Var%</th>
+                  <th scope="col" className="text-right px-4 py-3 text-xs font-semibold uppercase tracking-wider text-slate-600">Total {thisYear}</th>
+                  <th scope="col" className="text-right px-5 py-3 text-xs font-semibold uppercase tracking-wider text-slate-500">Total Var%</th>
                 </tr>
               </thead>
               <tbody>

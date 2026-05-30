@@ -231,16 +231,16 @@ export default function ComparativaPage() {
           </div>
 
           <div className="overflow-x-auto">
-            <table className="w-full text-sm min-w-[680px]">
+            <table className="w-full text-sm min-w-[680px]" aria-label={`Comparativa de consumo y coste ${year1} vs ${year2}`}>
               <thead>
                 <tr>
-                  <th className="text-left px-6 py-3 text-[10px] font-bold uppercase tracking-widest text-slate-400 bg-slate-50/80 border-b border-slate-100">Mes</th>
-                  <th className="text-right px-4 py-3 text-[10px] font-bold uppercase tracking-widest text-slate-400 bg-slate-50/60 border-b border-slate-100">kWh {year1}</th>
-                  <th className="text-right px-4 py-3 text-[10px] font-bold uppercase tracking-widest text-brand-600 bg-brand-50/40 border-b border-slate-100">kWh {year2}</th>
-                  <th className="text-right px-4 py-3 text-[10px] font-bold uppercase tracking-widest text-slate-400 bg-slate-50/80 border-b border-slate-100">Var%</th>
-                  <th className="text-right px-4 py-3 text-[10px] font-bold uppercase tracking-widest text-slate-400 bg-slate-50/60 border-b border-slate-100">€ {year1}</th>
-                  <th className="text-right px-4 py-3 text-[10px] font-bold uppercase tracking-widest text-brand-600 bg-brand-50/40 border-b border-slate-100">€ {year2}</th>
-                  <th className="text-right px-6 py-3 text-[10px] font-bold uppercase tracking-widest text-slate-400 bg-slate-50/80 border-b border-slate-100">Var%</th>
+                  <th scope="col" className="text-left px-6 py-3 text-[10px] font-bold uppercase tracking-widest text-slate-500 bg-slate-50/80 border-b border-slate-100">Mes</th>
+                  <th scope="col" className="text-right px-4 py-3 text-[10px] font-bold uppercase tracking-widest text-slate-500 bg-slate-50/60 border-b border-slate-100">kWh {year1}</th>
+                  <th scope="col" className="text-right px-4 py-3 text-[10px] font-bold uppercase tracking-widest text-brand-600 bg-brand-50/40 border-b border-slate-100">kWh {year2}</th>
+                  <th scope="col" className="text-right px-4 py-3 text-[10px] font-bold uppercase tracking-widest text-slate-500 bg-slate-50/80 border-b border-slate-100">Var% Consumo</th>
+                  <th scope="col" className="text-right px-4 py-3 text-[10px] font-bold uppercase tracking-widest text-slate-500 bg-slate-50/60 border-b border-slate-100">€ {year1}</th>
+                  <th scope="col" className="text-right px-4 py-3 text-[10px] font-bold uppercase tracking-widest text-brand-600 bg-brand-50/40 border-b border-slate-100">€ {year2}</th>
+                  <th scope="col" className="text-right px-6 py-3 text-[10px] font-bold uppercase tracking-widest text-slate-500 bg-slate-50/80 border-b border-slate-100">Var% Coste</th>
                 </tr>
               </thead>
               <tbody>
@@ -259,7 +259,7 @@ export default function ComparativaPage() {
                           <span className="font-bold text-slate-800">{MESES[d.mes - 1]}</span>
                         </div>
                       </td>
-                      <td className="px-4 py-3.5 text-right font-mono text-slate-400 tabular-nums bg-slate-50/30 group-hover:bg-slate-50/60 transition-colors">
+                      <td className="px-4 py-3.5 text-right font-mono text-slate-500 tabular-nums bg-slate-50/30 group-hover:bg-slate-50/60 transition-colors">
                         {d.total1 ? d.total1.toFixed(3) : "—"}
                       </td>
                       <td className="px-4 py-3.5 text-right font-mono font-bold text-slate-800 tabular-nums bg-brand-50/20 group-hover:bg-brand-50/40 transition-colors">
