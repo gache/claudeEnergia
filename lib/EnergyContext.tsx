@@ -38,10 +38,13 @@ export function EnergyProvider({ children }: { children: ReactNode }) {
     try {
       const storedR = localStorage.getItem(KEY_REGISTROS);
       if (storedR) setRegistros(JSON.parse(storedR));
+    } catch {
+      localStorage.removeItem(KEY_REGISTROS);
+    }
+    try {
       const storedT = localStorage.getItem(KEY_TARIFAS);
       if (storedT) setTarifas(JSON.parse(storedT));
     } catch {
-      localStorage.removeItem(KEY_REGISTROS);
       localStorage.removeItem(KEY_TARIFAS);
     }
     setHydrated(true);
@@ -58,7 +61,7 @@ export function EnergyProvider({ children }: { children: ReactNode }) {
         const snap = await getDoc(docRef);
 
         if (!snap.exists()) {
-          // Intenta migrar datos de /users (datos antiguos de Google Login)
+          let migrated = false;
           try {
             const usersSnapshot = await getDocs(collection(db, "users"));
             if (!usersSnapshot.empty) {
@@ -77,19 +80,21 @@ export function EnergyProvider({ children }: { children: ReactNode }) {
                   updatedAt: serverTimestamp(),
                 });
                 console.log("✅ Datos migrados de Google account a /familias/hogar");
+                migrated = true;
               }
             }
           } catch (migrationError) {
             console.log("No legacy data found, using initial data");
           }
 
-          // Si no hay datos antiguos, crear documento inicial
-          const initialData = {
-            registros: datosIniciales,
-            tarifas: TARIFAS_INICIALES,
-            updatedAt: serverTimestamp(),
-          };
-          await setDoc(docRef, initialData);
+          if (!migrated) {
+            const initialData = {
+              registros: datosIniciales,
+              tarifas: TARIFAS_INICIALES,
+              updatedAt: serverTimestamp(),
+            };
+            await setDoc(docRef, initialData);
+          }
         } else {
           // Cargar datos del documento existente (una sola vez)
           const data = snap.data();
@@ -127,8 +132,10 @@ export function EnergyProvider({ children }: { children: ReactNode }) {
           updatedAt: serverTimestamp(),
         });
         console.log("💾 Datos guardados en Firestore");
+        setSyncStatus("ok");
       } catch (error) {
         console.error("Error saving to Firestore:", error);
+        setSyncStatus("error");
       }
     }, 60000);
 

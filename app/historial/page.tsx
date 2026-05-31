@@ -37,7 +37,7 @@ function exportCSV(datos: KPIMensual[], año: number) {
 
 export default function HistorialPage() {
   const { getByYear, getTarifa } = useEnergy();
-  const [año, setAño] = useState(2026);
+  const [año, setAño] = useState(new Date().getFullYear());
 
   const datos        = getByYear(año);
   const tarifa       = getTarifa(año, 1);
@@ -130,7 +130,7 @@ export default function HistorialPage() {
         </div>
         <div className="h-4 w-px bg-slate-200" />
         <span className="text-xs text-slate-500 font-mono">
-          Ratio HP/HC: {(tarifa.hp / tarifa.hc).toFixed(3)}×
+          Ratio HP/HC: {tarifa.hc > 0 ? (tarifa.hp / tarifa.hc).toFixed(3) : "—"}×
         </span>
         {datos.length > 0 && (
           <>

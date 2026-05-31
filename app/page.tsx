@@ -165,16 +165,16 @@ export default function DashboardPage() {
     );
   }
 
-  const varTotalHC = anterior
+  const varTotalHC = anterior && anterior.hc !== 0
     ? Math.round(((actual.hc - anterior.hc) / anterior.hc) * 100)
     : undefined;
-  const varTotalHP = anterior
+  const varTotalHP = anterior && anterior.hp !== 0
     ? Math.round(((actual.hp - anterior.hp) / anterior.hp) * 100)
     : undefined;
-  const varTotal = anterior
+  const varTotal = anterior && anterior.total !== 0
     ? Math.round(((actual.total - anterior.total) / anterior.total) * 100)
     : undefined;
-  const varCosto = anterior
+  const varCosto = anterior && anterior.costoTotal !== 0
     ? Math.round(((actual.costoTotal - anterior.costoTotal) / anterior.costoTotal) * 100)
     : undefined;
   const varDif = anterior && anterior.difHCHP !== 0

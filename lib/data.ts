@@ -50,7 +50,7 @@ export function calcularKPI(
   const pctHC     = total > 0 ? (r.hc / total) * 100 : 0;
   const pctHP     = total > 0 ? (r.hp / total) * 100 : 0;
   const difHCHP   = r.hp - r.hc;      // positivo = HP domina; negativo = HC domina
-  const ventajaHC = r.hc >= r.hp;     // true → HC consume más = tarifa barata domina
+  const ventajaHC = total > 0 && r.hc >= r.hp;
   return {
     ...r, total, costoHC, costoHP, costoTotal, pctHC, pctHP, difHCHP, ventajaHC,
     tarifaHC: tarifa.hc, tarifaHP: tarifa.hp,

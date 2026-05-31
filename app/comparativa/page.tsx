@@ -82,7 +82,7 @@ export default function ComparativaPage() {
 
   const avgVarCosto = useMemo(
     () => paired.length > 0
-      ? paired.reduce((a, d) => a + ((d.costo2 - d.costo1) / d.costo1) * 100, 0) / paired.length
+      ? paired.reduce((a, d) => a + (d.costo1 !== 0 ? ((d.costo2 - d.costo1) / d.costo1) * 100 : 0), 0) / paired.length
       : null,
     [paired]
   );

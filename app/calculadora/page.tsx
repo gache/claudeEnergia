@@ -25,7 +25,7 @@ export default function CalculadoraPage() {
   const { kpiFor, getTarifa } = useEnergy();
 
   const currentMonth = new Date().getMonth() + 1;
-  const [año, setAño]   = useState(2026);
+  const [año, setAño]   = useState(new Date().getFullYear());
   const [mes, setMes]   = useState(currentMonth);
   const [hcStr, setHcStr] = useState("");
   const [hpStr, setHpStr] = useState("");
