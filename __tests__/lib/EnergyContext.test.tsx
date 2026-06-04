@@ -104,4 +104,67 @@ describe('EnergyContext', () => {
     expect(kpi?.total).toBe(300)
     expect(kpi?.ventajaHC).toBe(false)
   })
+
+  it('removeRegistro removes record matching mes+año', async () => {
+    const stored = [
+      { mes: 1, año: 2026, hc: 100, hp: 200 },
+      { mes: 2, año: 2026, hc: 50, hp: 80 },
+    ]
+    localStorage.setItem('energia-registros-v1', JSON.stringify(stored))
+    const { result } = renderHook(() => useEnergy(), { wrapper })
+    await act(async () => { await Promise.resolve() })
+    await act(async () => { result.current.removeRegistro(1, 2026) })
+    expect(result.current.registros.find(r => r.mes === 1 && r.año === 2026)).toBeUndefined()
+    expect(result.current.registros).toHaveLength(1)
+    expect(result.current.registros[0].mes).toBe(2)
+  })
+
+  it('removeRegistro no-ops when record does not exist', async () => {
+    const stored = [{ mes: 3, año: 2026, hc: 100, hp: 200 }]
+    localStorage.setItem('energia-registros-v1', JSON.stringify(stored))
+    const { result } = renderHook(() => useEnergy(), { wrapper })
+    await act(async () => { await Promise.resolve() })
+    await act(async () => { result.current.removeRegistro(99, 2026) })
+    expect(result.current.registros).toHaveLength(1)
+  })
+
+  it('setTarifa adds a new tarifa', async () => {
+    const { result } = renderHook(() => useEnergy(), { wrapper })
+    await act(async () => { await Promise.resolve() })
+    await act(async () => { result.current.setTarifa(2026, 1, 0.18, 0.26) })
+    expect(result.current.getTarifa(2026, 1)).toEqual({ hc: 0.18, hp: 0.26 })
+  })
+
+  it('setTarifa overwrites existing tarifa with same año+mes', async () => {
+    const stored = [{ año: 2026, mes: 1, hc: 0.18, hp: 0.26 }]
+    localStorage.setItem('energia-tarifas-v2', JSON.stringify(stored))
+    const { result } = renderHook(() => useEnergy(), { wrapper })
+    await act(async () => { await Promise.resolve() })
+    await act(async () => { result.current.setTarifa(2026, 1, 0.20, 0.30) })
+    expect(result.current.getTarifa(2026, 1)).toEqual({ hc: 0.20, hp: 0.30 })
+    expect(result.current.tarifas.filter(t => t.año === 2026 && t.mes === 1)).toHaveLength(1)
+  })
+
+  it('getByYear returns KPIs for requested year only, sorted by mes', async () => {
+    const stored = [
+      { mes: 3, año: 2026, hc: 100, hp: 200 },
+      { mes: 1, año: 2026, hc: 50,  hp: 80  },
+      { mes: 6, año: 2025, hc: 200, hp: 300 }, // different year — excluded
+    ]
+    localStorage.setItem('energia-registros-v1', JSON.stringify(stored))
+    const { result } = renderHook(() => useEnergy(), { wrapper })
+    await act(async () => { await Promise.resolve() })
+    const kpis = result.current.getByYear(2026)
+    expect(kpis).toHaveLength(2)
+    expect(kpis[0].mes).toBe(1)   // sorted ascending
+    expect(kpis[1].mes).toBe(3)
+    expect(kpis[0].total).toBe(130)  // 50+80
+    expect(kpis[1].total).toBe(300)  // 100+200
+  })
+
+  it('getByYear returns empty array when no records for year', async () => {
+    const { result } = renderHook(() => useEnergy(), { wrapper })
+    await act(async () => { await Promise.resolve() })
+    expect(result.current.getByYear(2099)).toEqual([])
+  })
 })
