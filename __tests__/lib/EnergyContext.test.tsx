@@ -2,6 +2,7 @@ import { describe, it, expect, beforeEach, afterEach, vi } from 'vitest'
 import { renderHook, act } from '@testing-library/react'
 import { ReactNode } from 'react'
 import { EnergyProvider, useEnergy } from '@/lib/EnergyContext'
+import { getDoc, setDoc } from 'firebase/firestore'
 
 vi.mock('@/lib/firebase', () => ({
   getDb: () => ({}),
@@ -166,5 +167,120 @@ describe('EnergyContext', () => {
     const { result } = renderHook(() => useEnergy(), { wrapper })
     await act(async () => { await Promise.resolve() })
     expect(result.current.getByYear(2099)).toEqual([])
+  })
+
+  it('starts with syncStatus "loading"', () => {
+    const { result } = renderHook(() => useEnergy(), { wrapper })
+    expect(result.current.syncStatus).toBe('loading')
+  })
+
+  it('sets syncStatus to "ok" after successful Firestore init', async () => {
+    const { result } = renderHook(() => useEnergy(), { wrapper })
+    await act(async () => { await Promise.resolve() })
+    await act(async () => { await Promise.resolve() })
+    expect(result.current.syncStatus).toBe('ok')
+  })
+
+  it('handles corrupt localStorage registros gracefully', async () => {
+    localStorage.setItem('energia-registros-v1', 'not-valid-json{{{')
+    const { result } = renderHook(() => useEnergy(), { wrapper })
+    await act(async () => { await Promise.resolve() })
+    // Must survive corrupt data — registros stays a valid array
+    expect(Array.isArray(result.current.registros)).toBe(true)
+    // Parse error clears the key; localStorage save effect then writes [] back
+    const stored = localStorage.getItem('energia-registros-v1')
+    expect(stored).not.toBe('not-valid-json{{{')
+  })
+
+  it('handles corrupt localStorage tarifas gracefully', async () => {
+    localStorage.setItem('energia-tarifas-v2', '[[[[invalid')
+    const { result } = renderHook(() => useEnergy(), { wrapper })
+    await act(async () => { await Promise.resolve() })
+    expect(Array.isArray(result.current.tarifas)).toBe(true)
+    const stored = localStorage.getItem('energia-tarifas-v2')
+    expect(stored).not.toBe('[[[[invalid')
+  })
+
+  it('loads registros and tarifas from Firestore when document exists', async () => {
+    vi.mocked(getDoc).mockResolvedValueOnce({
+      exists: () => true,
+      data: () => ({
+        registros: [{ mes: 5, año: 2026, hc: 50, hp: 80 }],
+        tarifas: [{ año: 2026, mes: 1, hc: 0.18, hp: 0.26 }],
+      }),
+    } as ReturnType<typeof getDoc> extends Promise<infer R> ? R : never)
+    const { result } = renderHook(() => useEnergy(), { wrapper })
+    await act(async () => { await Promise.resolve() })
+    await act(async () => { await Promise.resolve() })
+    expect(result.current.registros).toContainEqual(
+      expect.objectContaining({ mes: 5, hc: 50, hp: 80 })
+    )
+    expect(result.current.syncStatus).toBe('ok')
+  })
+
+  it('sets syncStatus to "error" when Firestore init throws', async () => {
+    vi.mocked(getDoc).mockRejectedValueOnce(new Error('Network error'))
+    const { result } = renderHook(() => useEnergy(), { wrapper })
+    await act(async () => { await Promise.resolve() })
+    await act(async () => { await Promise.resolve() })
+    expect(result.current.syncStatus).toBe('error')
+  })
+
+  it('persists registros to localStorage immediately on state change', async () => {
+    const { result } = renderHook(() => useEnergy(), { wrapper })
+    await act(async () => { await Promise.resolve() })
+    await act(async () => {
+      result.current.addOrUpdate({ mes: 7, año: 2026, hc: 75, hp: 125 })
+    })
+    const stored = JSON.parse(localStorage.getItem('energia-registros-v1') || '[]')
+    expect(stored).toContainEqual(expect.objectContaining({ mes: 7, hc: 75, hp: 125 }))
+  })
+
+  it('triggers Firestore save after 60s debounce', async () => {
+    vi.mocked(getDoc).mockResolvedValueOnce({
+      exists: () => true,
+      data: () => ({ registros: [], tarifas: [] }),
+    } as ReturnType<typeof getDoc> extends Promise<infer R> ? R : never)
+    const { result } = renderHook(() => useEnergy(), { wrapper })
+    await act(async () => { await Promise.resolve() })
+    await act(async () => { await Promise.resolve() })
+    vi.mocked(setDoc).mockClear()
+
+    await act(async () => {
+      result.current.addOrUpdate({ mes: 8, año: 2026, hc: 60, hp: 90 })
+    })
+    expect(vi.mocked(setDoc)).not.toHaveBeenCalled()
+
+    await act(async () => { await vi.runAllTimersAsync() })
+    expect(vi.mocked(setDoc)).toHaveBeenCalled()
+  })
+
+  it('sets syncStatus to "error" when debounce Firestore save fails', async () => {
+    vi.mocked(getDoc).mockResolvedValueOnce({
+      exists: () => true,
+      data: () => ({ registros: [], tarifas: [] }),
+    } as ReturnType<typeof getDoc> extends Promise<infer R> ? R : never)
+    vi.mocked(setDoc).mockRejectedValueOnce(new Error('Save failed'))
+
+    const { result } = renderHook(() => useEnergy(), { wrapper })
+    await act(async () => { await Promise.resolve() })
+    await act(async () => { await Promise.resolve() })
+
+    await act(async () => {
+      result.current.addOrUpdate({ mes: 9, año: 2026, hc: 40, hp: 60 })
+    })
+    await act(async () => { await vi.runAllTimersAsync() })
+
+    expect(result.current.syncStatus).toBe('error')
+  })
+
+  it('getTarifa returns hardcoded defaults when no candidates match', async () => {
+    // Request tarifa for year before all stored tarifas → no candidates
+    const tarifas = [{ año: 2025, mes: 1, hc: 0.15, hp: 0.25 }]
+    localStorage.setItem('energia-tarifas-v2', JSON.stringify(tarifas))
+    const { result } = renderHook(() => useEnergy(), { wrapper })
+    await act(async () => { await Promise.resolve() })
+    // Year 2000 is before 2025 → filter yields nothing → returns hardcoded defaults
+    expect(result.current.getTarifa(2000, 1)).toEqual({ hc: 0.19008, hp: 0.27436 })
   })
 })
