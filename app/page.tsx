@@ -15,28 +15,28 @@ const accentConfig: Record<KpiAccent, {
   border: string; bg: string; valueColor: string; labelColor: string; iconBg: string; iconColor: string;
 }> = {
   brand: {
-    border: "border border-indigo-200/40",
+    border: "border border-brand-200/40",
     bg: "bg-white",
-    valueColor: "text-indigo-700",
+    valueColor: "text-brand-700",
     labelColor: "text-slate-600",
-    iconBg: "bg-indigo-100/60",
-    iconColor: "text-indigo-600",
+    iconBg: "bg-brand-100/60",
+    iconColor: "text-brand-600",
   },
   hc: {
-    border: "border border-cyan-200/50",
-    bg: "bg-cyan-50",
-    valueColor: "text-cyan-700",
-    labelColor: "text-cyan-600",
-    iconBg: "bg-cyan-100/70",
-    iconColor: "text-cyan-600",
+    border: "border border-hc-200/50",
+    bg: "bg-hc-50",
+    valueColor: "text-hc-700",
+    labelColor: "text-hc-600",
+    iconBg: "bg-hc-100/70",
+    iconColor: "text-hc-600",
   },
   hp: {
-    border: "border border-amber-200/50",
-    bg: "bg-amber-50",
-    valueColor: "text-amber-700",
-    labelColor: "text-amber-600",
-    iconBg: "bg-amber-100/70",
-    iconColor: "text-amber-600",
+    border: "border border-hp-200/50",
+    bg: "bg-hp-50",
+    valueColor: "text-hp-700",
+    labelColor: "text-hp-600",
+    iconBg: "bg-hp-100/70",
+    iconColor: "text-hp-600",
   },
   violet: {
     border: "border border-violet-200/40",
@@ -77,10 +77,10 @@ function KpiCard({
   const up   = (trend ?? 0) > 0;
   const down = (trend ?? 0) < 0;
   const resolvedColor = trendColor === "green"
-    ? "text-emerald-600"
+    ? "text-savings-600"
     : trendColor === "red"
       ? "text-red-500"
-      : down ? "text-emerald-600" : up ? "text-red-500" : "text-slate-400";
+      : down ? "text-savings-600" : up ? "text-red-500" : "text-slate-400";
 
   const delayStyle = {
     animationDelay: `${delay}ms`,
@@ -199,12 +199,12 @@ export default function DashboardPage() {
           Dashboard Energético
         </h1>
         <div className="flex items-center gap-3 mt-1 flex-wrap">
-          <span className="inline-flex items-center gap-1.5 text-xs font-semibold text-cyan-700 bg-cyan-50 border border-cyan-200 px-2.5 py-1 rounded-lg">
-            <span className="w-1.5 h-1.5 rounded-full bg-cyan-500 inline-block" />
+          <span className="inline-flex items-center gap-1.5 text-xs font-semibold text-hc-700 bg-hc-50 border border-hc-200 px-2.5 py-1 rounded-lg">
+            <span className="w-1.5 h-1.5 rounded-full bg-hc-500 inline-block" />
             HC {actual.tarifaHC.toFixed(3)} €/kWh
           </span>
-          <span className="inline-flex items-center gap-1.5 text-xs font-semibold text-amber-700 bg-amber-50 border border-amber-200 px-2.5 py-1 rounded-lg">
-            <span className="w-1.5 h-1.5 rounded-full bg-amber-500 inline-block" />
+          <span className="inline-flex items-center gap-1.5 text-xs font-semibold text-hp-700 bg-hp-50 border border-hp-200 px-2.5 py-1 rounded-lg">
+            <span className="w-1.5 h-1.5 rounded-full bg-hp-500 inline-block" />
             HP {actual.tarifaHP.toFixed(3)} €/kWh
           </span>
         </div>
@@ -273,37 +273,37 @@ export default function DashboardPage() {
               <h2 className="text-xl font-black text-slate-900 mb-5 tracking-tight" style={{ fontFamily: "var(--font-jakarta, sans-serif)" }}>Participación del consumo</h2>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div className="rounded-xl bg-cyan-50 border border-cyan-200/60 p-5 animate-slide-up hover:shadow-sm transition-shadow duration-300" style={{ animationDelay: "150ms" }}>
-                  <p className="text-xs font-bold text-cyan-600 uppercase tracking-wider mb-4">HC — Heures Creuses</p>
-                  <p className="text-5xl font-black text-cyan-700 tabular-nums mb-1" style={{ fontFamily: "var(--font-space-mono, monospace), sans-serif" }}>
+                <div className="rounded-xl bg-hc-50 border border-hc-200/60 p-5 animate-slide-up hover:shadow-sm transition-shadow duration-300" style={{ animationDelay: "150ms" }}>
+                  <p className="text-xs font-bold text-hc-600 uppercase tracking-wider mb-4">HC — Heures Creuses</p>
+                  <p className="text-5xl font-black text-hc-700 tabular-nums mb-1" style={{ fontFamily: "var(--font-space-mono, monospace), sans-serif" }}>
                     {actual.pctHC.toFixed(1)}%
                   </p>
-                  <p className="text-sm font-semibold text-cyan-600 mb-3">{actual.hc} kWh</p>
-                  <div className="h-2 rounded-full bg-cyan-100 overflow-hidden">
-                    <div className="h-full bg-cyan-500 transition-all duration-1000 origin-left" style={{ width: `${actual.pctHC}%` }} />
+                  <p className="text-sm font-semibold text-hc-600 mb-3">{actual.hc} kWh</p>
+                  <div className="h-2 rounded-full bg-hc-100 overflow-hidden">
+                    <div className="h-full bg-hc-500 transition-all duration-1000 origin-left" style={{ width: `${actual.pctHC}%` }} />
                   </div>
                 </div>
 
-                <div className="rounded-xl bg-amber-50 border border-amber-200/60 p-5 animate-slide-up hover:shadow-sm transition-shadow duration-300" style={{ animationDelay: "225ms" }}>
-                  <p className="text-xs font-bold text-amber-600 uppercase tracking-wider mb-4">HP — Heures Pleines</p>
-                  <p className="text-5xl font-black text-amber-700 tabular-nums mb-1" style={{ fontFamily: "var(--font-space-mono, monospace), sans-serif" }}>
+                <div className="rounded-xl bg-hp-50 border border-hp-200/60 p-5 animate-slide-up hover:shadow-sm transition-shadow duration-300" style={{ animationDelay: "225ms" }}>
+                  <p className="text-xs font-bold text-hp-600 uppercase tracking-wider mb-4">HP — Heures Pleines</p>
+                  <p className="text-5xl font-black text-hp-700 tabular-nums mb-1" style={{ fontFamily: "var(--font-space-mono, monospace), sans-serif" }}>
                     {actual.pctHP.toFixed(1)}%
                   </p>
-                  <p className="text-sm font-semibold text-amber-600 mb-3">{actual.hp} kWh</p>
-                  <div className="h-2 rounded-full bg-amber-100 overflow-hidden">
-                    <div className="h-full bg-amber-500 transition-all duration-1000 origin-left" style={{ width: `${actual.pctHP}%` }} />
+                  <p className="text-sm font-semibold text-hp-600 mb-3">{actual.hp} kWh</p>
+                  <div className="h-2 rounded-full bg-hp-100 overflow-hidden">
+                    <div className="h-full bg-hp-500 transition-all duration-1000 origin-left" style={{ width: `${actual.pctHP}%` }} />
                   </div>
                 </div>
               </div>
 
               <div className="mt-6 animate-slide-up" style={{ animationDelay: "300ms" }}>
                 <div className="flex h-3 rounded-full overflow-hidden bg-slate-200 gap-0.5">
-                  <div className="bg-cyan-500 transition-all duration-1000 rounded-l-full origin-left" style={{ width: `${actual.pctHC}%` }} />
-                  <div className="bg-amber-500 transition-all duration-1000 rounded-r-full origin-right" style={{ width: `${actual.pctHP}%` }} />
+                  <div className="bg-hc-500 transition-all duration-1000 rounded-l-full origin-left" style={{ width: `${actual.pctHC}%` }} />
+                  <div className="bg-hp-500 transition-all duration-1000 rounded-r-full origin-right" style={{ width: `${actual.pctHP}%` }} />
                 </div>
                 <div className="flex justify-between text-xs font-bold mt-2">
-                  <span className="text-cyan-600">HC {actual.pctHC.toFixed(1)}%</span>
-                  <span className="text-amber-600">HP {actual.pctHP.toFixed(1)}%</span>
+                  <span className="text-hc-600">HC {actual.pctHC.toFixed(1)}%</span>
+                  <span className="text-hp-600">HP {actual.pctHP.toFixed(1)}%</span>
                 </div>
               </div>
             </div>
@@ -313,38 +313,38 @@ export default function DashboardPage() {
               <h2 className="text-xl font-black text-slate-900 mb-5 tracking-tight" style={{ fontFamily: "var(--font-jakarta, sans-serif)" }}>Desglose del costo</h2>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div className="rounded-xl bg-cyan-50 border border-cyan-200/60 p-5 animate-slide-up hover:shadow-sm transition-shadow duration-300" style={{ animationDelay: "250ms" }}>
-                  <p className="text-xs font-bold text-cyan-600 uppercase tracking-wider mb-4">HC — Coste</p>
-                  <p className="text-5xl font-black text-cyan-700 tabular-nums mb-1" style={{ fontFamily: "var(--font-space-mono, monospace), sans-serif" }}>
+                <div className="rounded-xl bg-hc-50 border border-hc-200/60 p-5 animate-slide-up hover:shadow-sm transition-shadow duration-300" style={{ animationDelay: "250ms" }}>
+                  <p className="text-xs font-bold text-hc-600 uppercase tracking-wider mb-4">HC — Coste</p>
+                  <p className="text-5xl font-black text-hc-700 tabular-nums mb-1" style={{ fontFamily: "var(--font-space-mono, monospace), sans-serif" }}>
                     {actual.costoHC.toFixed(3)}<span className="text-2xl font-bold ml-1">€</span>
                   </p>
-                  <p className="text-sm font-semibold text-cyan-600 mb-3">{pctCostoHC.toFixed(1)}% del costo total</p>
-                  <div className="h-2 rounded-full bg-cyan-100 overflow-hidden">
-                    <div className="h-full bg-cyan-500 transition-all duration-1000 origin-left" style={{ width: `${pctCostoHC}%` }} />
+                  <p className="text-sm font-semibold text-hc-600 mb-3">{pctCostoHC.toFixed(1)}% del costo total</p>
+                  <div className="h-2 rounded-full bg-hc-100 overflow-hidden">
+                    <div className="h-full bg-hc-500 transition-all duration-1000 origin-left" style={{ width: `${pctCostoHC}%` }} />
                   </div>
                 </div>
 
-                <div className="rounded-xl bg-amber-50 border border-amber-200/60 p-5 animate-slide-up hover:shadow-sm transition-shadow duration-300" style={{ animationDelay: "325ms" }}>
-                  <p className="text-xs font-bold text-amber-600 uppercase tracking-wider mb-4">HP — Coste</p>
-                  <p className="text-5xl font-black text-amber-700 tabular-nums mb-1" style={{ fontFamily: "var(--font-space-mono, monospace), sans-serif" }}>
+                <div className="rounded-xl bg-hp-50 border border-hp-200/60 p-5 animate-slide-up hover:shadow-sm transition-shadow duration-300" style={{ animationDelay: "325ms" }}>
+                  <p className="text-xs font-bold text-hp-600 uppercase tracking-wider mb-4">HP — Coste</p>
+                  <p className="text-5xl font-black text-hp-700 tabular-nums mb-1" style={{ fontFamily: "var(--font-space-mono, monospace), sans-serif" }}>
                     {actual.costoHP.toFixed(3)}<span className="text-2xl font-bold ml-1">€</span>
                   </p>
-                  <p className="text-sm font-semibold text-amber-600 mb-3">{pctCostoHP.toFixed(1)}% del costo total</p>
-                  <div className="h-2 rounded-full bg-amber-100 overflow-hidden">
-                    <div className="h-full bg-amber-500 transition-all duration-1000 origin-left" style={{ width: `${pctCostoHP}%` }} />
+                  <p className="text-sm font-semibold text-hp-600 mb-3">{pctCostoHP.toFixed(1)}% del costo total</p>
+                  <div className="h-2 rounded-full bg-hp-100 overflow-hidden">
+                    <div className="h-full bg-hp-500 transition-all duration-1000 origin-left" style={{ width: `${pctCostoHP}%` }} />
                   </div>
                 </div>
               </div>
 
               <div className="mt-6 animate-slide-up" style={{ animationDelay: "400ms" }}>
                 <div className="flex h-3 rounded-full overflow-hidden bg-slate-200 gap-0.5">
-                  <div className="bg-cyan-500 transition-all duration-1000 rounded-l-full origin-left" style={{ width: `${pctCostoHC}%` }} />
-                  <div className="bg-amber-500 transition-all duration-1000 rounded-r-full origin-right" style={{ width: `${pctCostoHP}%` }} />
+                  <div className="bg-hc-500 transition-all duration-1000 rounded-l-full origin-left" style={{ width: `${pctCostoHC}%` }} />
+                  <div className="bg-hp-500 transition-all duration-1000 rounded-r-full origin-right" style={{ width: `${pctCostoHP}%` }} />
                 </div>
                 <div className="flex justify-between text-xs font-bold mt-2">
-                  <span className="text-cyan-600">HC {pctCostoHC.toFixed(1)}%</span>
+                  <span className="text-hc-600">HC {pctCostoHC.toFixed(1)}%</span>
                   <span className="text-slate-500 tabular-nums">Total: {actual.costoTotal.toFixed(3)} €</span>
-                  <span className="text-amber-600">HP {pctCostoHP.toFixed(1)}%</span>
+                  <span className="text-hp-600">HP {pctCostoHP.toFixed(1)}%</span>
                 </div>
               </div>
             </div>
@@ -368,10 +368,10 @@ export default function DashboardPage() {
               <thead>
                 <tr className="bg-slate-50/60 border-b border-slate-100/50">
                   <th scope="col" className="text-left px-6 py-3 text-xs font-semibold uppercase tracking-wider text-slate-500">Mes</th>
-                  <th scope="col" className="text-right px-4 py-3 text-xs font-semibold uppercase tracking-wider text-cyan-600">HC {thisYear}</th>
-                  <th scope="col" className="text-right px-4 py-3 text-xs font-semibold uppercase tracking-wider text-cyan-600">HC Var%</th>
-                  <th scope="col" className="text-right px-4 py-3 text-xs font-semibold uppercase tracking-wider text-amber-600">HP {thisYear}</th>
-                  <th scope="col" className="text-right px-4 py-3 text-xs font-semibold uppercase tracking-wider text-amber-600">HP Var%</th>
+                  <th scope="col" className="text-right px-4 py-3 text-xs font-semibold uppercase tracking-wider text-hc-600">HC {thisYear}</th>
+                  <th scope="col" className="text-right px-4 py-3 text-xs font-semibold uppercase tracking-wider text-hc-600">HC Var%</th>
+                  <th scope="col" className="text-right px-4 py-3 text-xs font-semibold uppercase tracking-wider text-hp-600">HP {thisYear}</th>
+                  <th scope="col" className="text-right px-4 py-3 text-xs font-semibold uppercase tracking-wider text-hp-600">HP Var%</th>
                   <th scope="col" className="text-right px-4 py-3 text-xs font-semibold uppercase tracking-wider text-slate-600">Total {thisYear}</th>
                   <th scope="col" className="text-right px-5 py-3 text-xs font-semibold uppercase tracking-wider text-slate-500">Total Var%</th>
                 </tr>
@@ -385,21 +385,21 @@ export default function DashboardPage() {
                   return (
                     <tr key={d.mes} className="border-b border-slate-50 hover:bg-slate-50/70 transition-colors animate-slide-up" style={{ animationDelay: `${425 + idx * 25}ms` }}>
                       <td className="px-6 py-3 font-semibold text-slate-700">{MESES[d.mes - 1]}</td>
-                      <td className="px-4 py-3 text-right font-mono text-cyan-600 font-semibold">{d.hc.toFixed(3)}</td>
+                      <td className="px-4 py-3 text-right font-mono text-hc-600 font-semibold">{d.hc.toFixed(3)}</td>
                       <td className={`px-4 py-3 text-right font-semibold ${
-                        varHC !== null ? (varHC < 0 ? "text-emerald-600" : "text-red-500") : "text-slate-400"
+                        varHC !== null ? (varHC < 0 ? "text-savings-600" : "text-red-500") : "text-slate-400"
                       }`}>
                         {varHC !== null ? `${varHC > 0 ? "+" : ""}${varHC}%` : "—"}
                       </td>
-                      <td className="px-4 py-3 text-right font-mono text-amber-600 font-semibold">{d.hp.toFixed(3)}</td>
+                      <td className="px-4 py-3 text-right font-mono text-hp-600 font-semibold">{d.hp.toFixed(3)}</td>
                       <td className={`px-4 py-3 text-right font-semibold ${
-                        varHP !== null ? (varHP < 0 ? "text-emerald-600" : "text-red-500") : "text-slate-400"
+                        varHP !== null ? (varHP < 0 ? "text-savings-600" : "text-red-500") : "text-slate-400"
                       }`}>
                         {varHP !== null ? `${varHP > 0 ? "+" : ""}${varHP}%` : "—"}
                       </td>
                       <td className="px-4 py-3 text-right font-mono text-slate-800 font-semibold">{d.total.toFixed(3)}</td>
                       <td className={`px-5 py-3 text-right font-semibold ${
-                        varPct !== null ? (varPct < 0 ? "text-emerald-600" : "text-red-500") : "text-slate-400"
+                        varPct !== null ? (varPct < 0 ? "text-savings-600" : "text-red-500") : "text-slate-400"
                       }`}>
                         {varPct !== null ? `${varPct > 0 ? "+" : ""}${varPct}%` : "—"}
                       </td>

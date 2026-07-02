@@ -7,9 +7,9 @@ import { MESES, ANOS_DISPONIBLES, TARIFA_HC, TARIFA_HP } from "@/lib/data";
 
 function ResultRow({ label, value, unit, highlight }: { label: string; value: string; unit: string; highlight?: "green" | "red" | "blue" }) {
   const colorMap = {
-    green: "text-emerald-700",
-    red:   "text-amber-700",
-    blue:  "text-indigo-700",
+    green: "text-savings-700",
+    red:   "text-hp-700",
+    blue:  "text-brand-700",
   };
   return (
     <div className="flex items-center justify-between py-2.5 border-b border-slate-50 last:border-0">
@@ -77,7 +77,7 @@ export default function CalculadoraPage() {
       {/* ── Header ── */}
       <div className="animate-slide-up text-center" style={{ animationDelay: "0ms" }}>
         <div className="flex items-center justify-center gap-2 mb-1">
-          <span className="badge bg-indigo-50 text-indigo-700 border border-indigo-100">Simulador</span>
+          <span className="badge bg-brand-50 text-brand-700 border border-brand-100">Simulador</span>
           <span className="badge bg-slate-100 text-slate-600 border border-slate-200">Análisis what-if</span>
         </div>
         <h1 className="text-2xl font-bold text-slate-900 leading-tight">Calculadora de consumo</h1>
@@ -88,7 +88,7 @@ export default function CalculadoraPage() {
 
       {/* ── Input card ── */}
       <div className="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden animate-slide-up" style={{ animationDelay: "50ms" }}>
-        <div className="h-1 bg-indigo-700" />
+        <div className="h-1 bg-blue-700" />
         <div className="p-6 space-y-5">
 
           {/* Year / Month */}
@@ -124,29 +124,29 @@ export default function CalculadoraPage() {
           {/* HC / HP inputs */}
           <div className="grid grid-cols-2 gap-4">
             <div>
-              <label className="block text-xs font-semibold uppercase tracking-wider text-cyan-600 mb-2">HC — kWh</label>
+              <label className="block text-xs font-semibold uppercase tracking-wider text-hc-600 mb-2">HC — kWh</label>
               <input
                 type="number" min="0" step="0.1" placeholder="Ej. 120"
                 value={hcStr}
                 onChange={e => setHcStr(e.target.value)}
                 className="input-hc font-mono text-base"
               />
-              <p className="text-xs text-cyan-400 mt-1.5 font-mono">
+              <p className="text-xs text-hc-400 mt-1.5 font-mono">
                 {currentTarifa.hc.toFixed(5)} €/kWh
-                {hc > 0 && <span className="ml-2 text-cyan-600 font-semibold">→ {(hc * currentTarifa.hc).toFixed(3)} €</span>}
+                {hc > 0 && <span className="ml-2 text-hc-600 font-semibold">→ {(hc * currentTarifa.hc).toFixed(3)} €</span>}
               </p>
             </div>
             <div>
-              <label className="block text-xs font-semibold uppercase tracking-wider text-amber-600 mb-2">HP — kWh</label>
+              <label className="block text-xs font-semibold uppercase tracking-wider text-hp-600 mb-2">HP — kWh</label>
               <input
                 type="number" min="0" step="0.1" placeholder="Ej. 133"
                 value={hpStr}
                 onChange={e => setHpStr(e.target.value)}
                 className="input-hp font-mono text-base"
               />
-              <p className="text-xs text-amber-400 mt-1.5 font-mono">
+              <p className="text-xs text-hp-400 mt-1.5 font-mono">
                 {currentTarifa.hp.toFixed(5)} €/kWh
-                {hp > 0 && <span className="ml-2 text-amber-600 font-semibold">→ {(hp * currentTarifa.hp).toFixed(3)} €</span>}
+                {hp > 0 && <span className="ml-2 text-hp-600 font-semibold">→ {(hp * currentTarifa.hp).toFixed(3)} €</span>}
               </p>
             </div>
           </div>
@@ -158,7 +158,7 @@ export default function CalculadoraPage() {
           {/* ── Coste actual ── */}
           <div className="bg-white rounded-xl shadow-sm border border-slate-100 overflow-hidden animate-slide-up" style={{ animationDelay: "80ms" }}>
             <div className="px-5 py-3.5 border-b border-slate-100 flex items-center gap-2">
-              <Zap className="w-4 h-4 text-indigo-500" />
+              <Zap className="w-4 h-4 text-brand-500" />
               <h2 className="section-title text-base">Coste actual</h2>
               <span className="ml-auto text-xs text-slate-400 font-mono">
                 Tarifas {MESES[mes - 1]} {año}
@@ -178,7 +178,7 @@ export default function CalculadoraPage() {
           {hp > 0 && (
             <div className="bg-white rounded-xl shadow-sm border border-slate-100 overflow-hidden animate-slide-up" style={{ animationDelay: "100ms" }}>
               <div className="px-5 py-3.5 border-b border-slate-100 flex items-center gap-2">
-                <TrendingDown className="w-4 h-4 text-emerald-600" />
+                <TrendingDown className="w-4 h-4 text-savings-600" />
                 <h2 className="section-title text-base">Desplazamiento de carga HP → HC</h2>
               </div>
               <div className="p-5 space-y-5">
@@ -193,7 +193,7 @@ export default function CalculadoraPage() {
                     type="range" min={0} max={hp} step={0.5}
                     value={shift}
                     onChange={e => setShift(parseFloat(e.target.value))}
-                    className="w-full accent-emerald-600 cursor-pointer"
+                    className="w-full accent-savings-600 cursor-pointer"
                   />
                   <div className="flex justify-between mt-1">
                     <span className="text-[10px] text-slate-400">0 kWh</span>
@@ -202,28 +202,28 @@ export default function CalculadoraPage() {
                 </div>
 
                 <div className="grid grid-cols-2 gap-4">
-                  <div className="rounded-xl bg-cyan-50 border border-cyan-100 p-4">
-                    <p className="text-[10px] font-bold uppercase tracking-widest text-cyan-400 mb-1.5">HC resultante</p>
-                    <p className="text-xl font-bold text-cyan-700 tabular-nums">
-                      {hcShifted.toFixed(3)} <span className="text-xs font-normal text-cyan-400">kWh</span>
+                  <div className="rounded-xl bg-hc-50 border border-hc-100 p-4">
+                    <p className="text-[10px] font-bold uppercase tracking-widest text-hc-400 mb-1.5">HC resultante</p>
+                    <p className="text-xl font-bold text-hc-700 tabular-nums">
+                      {hcShifted.toFixed(3)} <span className="text-xs font-normal text-hc-400">kWh</span>
                     </p>
                   </div>
-                  <div className="rounded-xl bg-amber-50 border border-amber-100 p-4">
-                    <p className="text-[10px] font-bold uppercase tracking-widest text-amber-400 mb-1.5">HP resultante</p>
-                    <p className="text-xl font-bold text-amber-700 tabular-nums">
-                      {hpShifted.toFixed(3)} <span className="text-xs font-normal text-amber-400">kWh</span>
+                  <div className="rounded-xl bg-hp-50 border border-hp-100 p-4">
+                    <p className="text-[10px] font-bold uppercase tracking-widest text-hp-400 mb-1.5">HP resultante</p>
+                    <p className="text-xl font-bold text-hp-700 tabular-nums">
+                      {hpShifted.toFixed(3)} <span className="text-xs font-normal text-hp-400">kWh</span>
                     </p>
                   </div>
                 </div>
 
                 <div className={`rounded-xl p-4 border flex items-center justify-between ${
-                  ahorro > 0 ? "bg-emerald-50 border-emerald-200" : "bg-slate-50 border-slate-200"
+                  ahorro > 0 ? "bg-savings-50 border-savings-200" : "bg-slate-50 border-slate-200"
                 }`}>
                   <div>
-                    <p className={`text-[10px] font-bold uppercase tracking-widest mb-1 ${ahorro > 0 ? "text-emerald-500" : "text-slate-400"}`}>
+                    <p className={`text-[10px] font-bold uppercase tracking-widest mb-1 ${ahorro > 0 ? "text-savings-500" : "text-slate-400"}`}>
                       {ahorro > 0 ? "Ahorro estimado" : "Sin ahorro"}
                     </p>
-                    <p className={`text-2xl font-bold tabular-nums ${ahorro > 0 ? "text-emerald-700" : "text-slate-400"}`}>
+                    <p className={`text-2xl font-bold tabular-nums ${ahorro > 0 ? "text-savings-700" : "text-slate-400"}`}>
                       {ahorro > 0 ? "-" : ""}{Math.abs(ahorro).toFixed(3)} €
                     </p>
                     <p className="text-xs text-slate-400 mt-1">
@@ -232,8 +232,8 @@ export default function CalculadoraPage() {
                   </div>
                   {ahorro > 0 && (
                     <div className="text-right">
-                      <p className="text-xs text-emerald-600 font-semibold">Anual estimado</p>
-                      <p className="text-lg font-bold text-emerald-700">{(ahorro * 12).toFixed(2)} €</p>
+                      <p className="text-xs text-savings-600 font-semibold">Anual estimado</p>
+                      <p className="text-lg font-bold text-savings-700">{(ahorro * 12).toFixed(2)} €</p>
                     </div>
                   )}
                 </div>
@@ -253,7 +253,7 @@ export default function CalculadoraPage() {
               </p>
               <div className="grid grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-xs font-semibold uppercase tracking-wider text-cyan-600 mb-2">
+                  <label className="block text-xs font-semibold uppercase tracking-wider text-hc-600 mb-2">
                     Tarifa HC simulada (€/kWh)
                   </label>
                   <input
@@ -265,7 +265,7 @@ export default function CalculadoraPage() {
                   <p className="text-[10px] text-slate-400 mt-1">Actual: {currentTarifa.hc.toFixed(5)} €/kWh</p>
                 </div>
                 <div>
-                  <label className="block text-xs font-semibold uppercase tracking-wider text-amber-600 mb-2">
+                  <label className="block text-xs font-semibold uppercase tracking-wider text-hp-600 mb-2">
                     Tarifa HP simulada (€/kWh)
                   </label>
                   <input
@@ -279,16 +279,16 @@ export default function CalculadoraPage() {
               </div>
 
               <div className={`rounded-xl p-4 border flex items-center justify-between ${
-                difTarifa < 0 ? "bg-emerald-50 border-emerald-200" : difTarifa > 0 ? "bg-red-50 border-red-200" : "bg-slate-50 border-slate-200"
+                difTarifa < 0 ? "bg-savings-50 border-savings-200" : difTarifa > 0 ? "bg-red-50 border-red-200" : "bg-slate-50 border-slate-200"
               }`}>
                 <div>
                   <p className={`text-[10px] font-bold uppercase tracking-widest mb-1 ${
-                    difTarifa < 0 ? "text-emerald-500" : difTarifa > 0 ? "text-red-500" : "text-slate-400"
+                    difTarifa < 0 ? "text-savings-500" : difTarifa > 0 ? "text-red-500" : "text-slate-400"
                   }`}>
                     {difTarifa < 0 ? "Ahorro con tarifa simulada" : difTarifa > 0 ? "Coste adicional" : "Sin diferencia"}
                   </p>
                   <p className={`text-2xl font-bold tabular-nums ${
-                    difTarifa < 0 ? "text-emerald-700" : difTarifa > 0 ? "text-red-600" : "text-slate-400"
+                    difTarifa < 0 ? "text-savings-700" : difTarifa > 0 ? "text-red-600" : "text-slate-400"
                   }`}>
                     {difTarifa > 0 ? "+" : ""}{difTarifa.toFixed(3)} €
                   </p>
@@ -298,8 +298,8 @@ export default function CalculadoraPage() {
                 </div>
                 {difTarifa !== 0 && (
                   <div className="text-right">
-                    <p className={`text-xs font-semibold ${difTarifa < 0 ? "text-emerald-600" : "text-red-500"}`}>Anual estimado</p>
-                    <p className={`text-lg font-bold ${difTarifa < 0 ? "text-emerald-700" : "text-red-600"}`}>
+                    <p className={`text-xs font-semibold ${difTarifa < 0 ? "text-savings-600" : "text-red-500"}`}>Anual estimado</p>
+                    <p className={`text-lg font-bold ${difTarifa < 0 ? "text-savings-700" : "text-red-600"}`}>
                       {difTarifa > 0 ? "+" : ""}{(difTarifa * 12).toFixed(2)} €
                     </p>
                   </div>

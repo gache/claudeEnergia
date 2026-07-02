@@ -20,17 +20,17 @@ function SummaryKPI({
   return (
     <div className={`rounded-xl p-5 border shadow-sm hover:shadow-sm transition-shadow duration-300 ${
       isGood
-        ? "bg-emerald-50/60 border-emerald-200/60"
+        ? "bg-savings-50/60 border-savings-200/60"
         : isBad
           ? "bg-red-50/60 border-red-200/60"
-          : "bg-indigo-50/60 border-indigo-200/60"
+          : "bg-brand-50/60 border-brand-200/60"
     }`}>
       <p className={`text-[11px] font-semibold uppercase tracking-widest mb-2 ${
-        isGood ? "text-emerald-500" : isBad ? "text-red-500" : "text-indigo-500"
+        isGood ? "text-savings-500" : isBad ? "text-red-500" : "text-brand-500"
       }`}>{label}</p>
 
       <p className={`text-3xl font-bold tabular-nums leading-none ${
-        isGood ? "text-emerald-700" : isBad ? "text-red-600" : "text-indigo-700"
+        isGood ? "text-savings-700" : isBad ? "text-red-600" : "text-brand-700"
       }`}>
         {value ?? "—"}
       </p>
@@ -116,7 +116,7 @@ export default function ComparativaPage() {
       <div className="flex items-start justify-between gap-4 flex-wrap animate-slide-up" style={{ animationDelay: "0ms" }}>
         <div>
           <div className="flex items-center gap-2 mb-1">
-            <span className="badge bg-indigo-50 text-indigo-700 border border-indigo-100">
+            <span className="badge bg-brand-50 text-brand-700 border border-brand-100">
               Análisis interanual
             </span>
           </div>
@@ -134,7 +134,7 @@ export default function ComparativaPage() {
               value={year1}
               onChange={e => setYear1(+e.target.value)}
               className="px-3 py-1.5 border border-slate-200 rounded-xl text-sm font-semibold text-slate-700 bg-slate-50
-                         focus:outline-none focus:ring-2 focus:ring-indigo-400/30 focus:border-indigo-400
+                         focus:outline-none focus:ring-2 focus:ring-brand-400/30 focus:border-brand-400
                          min-h-[36px]"
             >
               {ANOS_DISPONIBLES.filter(y => y !== year2).map(y => (
@@ -149,7 +149,7 @@ export default function ComparativaPage() {
               value={year2}
               onChange={e => setYear2(+e.target.value)}
               className="px-3 py-1.5 border border-slate-200 rounded-xl text-sm font-semibold text-slate-700 bg-slate-50
-                         focus:outline-none focus:ring-2 focus:ring-indigo-400/30 focus:border-indigo-400
+                         focus:outline-none focus:ring-2 focus:ring-brand-400/30 focus:border-brand-400
                          min-h-[36px]"
             >
               {ANOS_DISPONIBLES.filter(y => y !== year1).map(y => (
@@ -174,12 +174,12 @@ export default function ComparativaPage() {
           subLabel={`${year2} vs ${year1} · impacto económico`}
           good={avgVarCosto !== null ? avgVarCosto < 0 : undefined}
         />
-        <div className="rounded-xl p-5 border border-indigo-200 bg-indigo-50 shadow-sm">
+        <div className="rounded-xl p-5 border border-brand-200 bg-brand-50 shadow-sm">
           <div className="flex items-center gap-1.5 mb-2">
-            <Award className="w-3.5 h-3.5 text-indigo-500" />
-            <p className="text-[11px] font-semibold uppercase tracking-widest text-indigo-500">Mejor mes</p>
+            <Award className="w-3.5 h-3.5 text-brand-500" />
+            <p className="text-[11px] font-semibold uppercase tracking-widest text-brand-500">Mejor mes</p>
           </div>
-          <p className="text-3xl font-bold text-indigo-700 leading-none">
+          <p className="text-3xl font-bold text-brand-700 leading-none">
             {bestMonth.mes > 0 ? MESES[bestMonth.mes - 1] : "—"}
           </p>
           <p className="text-xs text-slate-400 mt-2">
@@ -221,7 +221,7 @@ export default function ComparativaPage() {
             <div className="flex items-center gap-3">
               <div className="flex gap-1">
                 <div className="w-2.5 h-2.5 rounded-full bg-slate-300" />
-                <div className="w-2.5 h-2.5 rounded-full bg-indigo-500" />
+                <div className="w-2.5 h-2.5 rounded-full bg-brand-500" />
               </div>
               <h2 className="section-title">Tabla comparativa — {year1} vs {year2}</h2>
             </div>
@@ -236,10 +236,10 @@ export default function ComparativaPage() {
                 <tr>
                   <th scope="col" className="text-left px-6 py-3 text-[10px] font-bold uppercase tracking-widest text-slate-500 bg-slate-50/80 border-b border-slate-100">Mes</th>
                   <th scope="col" className="text-right px-4 py-3 text-[10px] font-bold uppercase tracking-widest text-slate-500 bg-slate-50/60 border-b border-slate-100">kWh {year1}</th>
-                  <th scope="col" className="text-right px-4 py-3 text-[10px] font-bold uppercase tracking-widest text-indigo-600 bg-indigo-50/40 border-b border-slate-100">kWh {year2}</th>
+                  <th scope="col" className="text-right px-4 py-3 text-[10px] font-bold uppercase tracking-widest text-brand-600 bg-brand-50/40 border-b border-slate-100">kWh {year2}</th>
                   <th scope="col" className="text-right px-4 py-3 text-[10px] font-bold uppercase tracking-widest text-slate-500 bg-slate-50/80 border-b border-slate-100">Var% Consumo</th>
                   <th scope="col" className="text-right px-4 py-3 text-[10px] font-bold uppercase tracking-widest text-slate-500 bg-slate-50/60 border-b border-slate-100">€ {year1}</th>
-                  <th scope="col" className="text-right px-4 py-3 text-[10px] font-bold uppercase tracking-widest text-indigo-600 bg-indigo-50/40 border-b border-slate-100">€ {year2}</th>
+                  <th scope="col" className="text-right px-4 py-3 text-[10px] font-bold uppercase tracking-widest text-brand-600 bg-brand-50/40 border-b border-slate-100">€ {year2}</th>
                   <th scope="col" className="text-right px-6 py-3 text-[10px] font-bold uppercase tracking-widest text-slate-500 bg-slate-50/80 border-b border-slate-100">Var% Coste</th>
                 </tr>
               </thead>
@@ -254,7 +254,7 @@ export default function ComparativaPage() {
                       <td className="px-6 py-3.5">
                         <div className="flex items-center gap-3">
                           <div className={`w-1 h-6 rounded-full flex-shrink-0 ${
-                            improved ? "bg-emerald-400" : worsened ? "bg-red-400" : "bg-slate-200"
+                            improved ? "bg-savings-400" : worsened ? "bg-red-400" : "bg-slate-200"
                           }`} />
                           <span className="font-bold text-slate-800">{MESES[d.mes - 1]}</span>
                         </div>
@@ -262,7 +262,7 @@ export default function ComparativaPage() {
                       <td className="px-4 py-3.5 text-right font-mono text-slate-500 tabular-nums bg-slate-50/30 group-hover:bg-slate-50/60 transition-colors">
                         {d.total1 ? d.total1.toFixed(3) : "—"}
                       </td>
-                      <td className="px-4 py-3.5 text-right font-mono font-bold text-slate-800 tabular-nums bg-indigo-50/20 group-hover:bg-indigo-50/40 transition-colors">
+                      <td className="px-4 py-3.5 text-right font-mono font-bold text-slate-800 tabular-nums bg-brand-50/20 group-hover:bg-brand-50/40 transition-colors">
                         {d.total2.toFixed(3)}
                       </td>
                       <td className="px-4 py-3.5 text-right">
@@ -271,7 +271,7 @@ export default function ComparativaPage() {
                       <td className="px-4 py-3.5 text-right font-mono text-slate-400 tabular-nums text-xs bg-slate-50/30 group-hover:bg-slate-50/60 transition-colors">
                         {d.costo1 ? d.costo1.toFixed(3) : "—"}
                       </td>
-                      <td className="px-4 py-3.5 text-right font-mono font-semibold text-slate-700 tabular-nums text-xs bg-indigo-50/20 group-hover:bg-indigo-50/40 transition-colors">
+                      <td className="px-4 py-3.5 text-right font-mono font-semibold text-slate-700 tabular-nums text-xs bg-brand-50/20 group-hover:bg-brand-50/40 transition-colors">
                         {d.costo2.toFixed(3)}
                       </td>
                       <td className="px-6 py-3.5 text-right">
@@ -290,14 +290,14 @@ export default function ComparativaPage() {
                     <td className="px-4 py-4 text-right font-mono font-bold text-slate-400 tabular-nums bg-slate-50/30">
                       {paired.reduce((a, d) => a + d.total1, 0).toFixed(3)}
                     </td>
-                    <td className="px-4 py-4 text-right font-mono font-bold text-slate-900 tabular-nums bg-indigo-50/30">
+                    <td className="px-4 py-4 text-right font-mono font-bold text-slate-900 tabular-nums bg-brand-50/30">
                       {paired.reduce((a, d) => a + d.total2, 0).toFixed(3)}
                     </td>
                     <td className="px-4 py-4 text-right"><VarBadge pct={avgVarConsumo} /></td>
                     <td className="px-4 py-4 text-right font-mono font-bold text-slate-400 tabular-nums text-xs bg-slate-50/30">
                       {paired.reduce((a, d) => a + d.costo1, 0).toFixed(3)}
                     </td>
-                    <td className="px-4 py-4 text-right font-mono font-bold text-slate-900 tabular-nums text-xs bg-indigo-50/30">
+                    <td className="px-4 py-4 text-right font-mono font-bold text-slate-900 tabular-nums text-xs bg-brand-50/30">
                       {paired.reduce((a, d) => a + d.costo2, 0).toFixed(3)}
                     </td>
                     <td className="px-6 py-4 text-right"><VarBadge pct={avgVarCosto} /></td>

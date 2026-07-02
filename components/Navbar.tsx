@@ -64,7 +64,7 @@ function TarifasPanel() {
             onClick={() => { setSelectedAño(año); setDraft(null); }}
             className={`px-2 py-0.5 rounded text-[10px] font-bold transition-colors ${
               selectedAño === año
-                ? "bg-indigo-700 text-white"
+                ? "bg-blue-700 text-white"
                 : "bg-white border border-slate-200 text-slate-600 hover:bg-slate-50"
             }`}
           >
@@ -83,7 +83,7 @@ function TarifasPanel() {
               onClick={() => { setSelectedMes(mes); setDraft(null); }}
               className={`py-0.5 rounded text-[9px] font-semibold transition-colors ${
                 selectedMes === mes
-                  ? "bg-indigo-600 text-white"
+                  ? "bg-blue-600 text-white"
                   : "bg-white border border-slate-200 text-slate-500 hover:bg-slate-50"
               }`}
             >
@@ -106,15 +106,15 @@ function TarifasPanel() {
             />
           </div>
           <div>
-            <label className="text-[9px] font-bold uppercase tracking-widest text-amber-700 block mb-1">HP €/kWh</label>
+            <label className="text-[9px] font-bold uppercase tracking-widest text-red-700 block mb-1">HP €/kWh</label>
             <input
               type="number" step="0.00001" min="0" value={draft.hp}
               onChange={e => setDraft(d => d ? { ...d, hp: e.target.value } : d)}
-              className="w-full bg-white border border-slate-200 rounded px-2.5 py-1.5 text-xs font-mono text-amber-700 focus:outline-none focus:border-amber-400"
+              className="w-full bg-white border border-slate-200 rounded px-2.5 py-1.5 text-xs font-mono text-red-700 focus:outline-none focus:border-red-400"
             />
           </div>
           <div className="flex gap-2 pt-1">
-            <button onClick={saveEdit} className="flex-1 flex items-center justify-center gap-1 py-1.5 rounded bg-indigo-700 hover:bg-indigo-600 text-white text-[10px] font-semibold transition-colors min-h-[32px]">
+            <button onClick={saveEdit} className="flex-1 flex items-center justify-center gap-1 py-1.5 rounded bg-blue-700 hover:bg-blue-600 text-white text-[10px] font-semibold transition-colors min-h-[32px]">
               <Check className="w-3 h-3" /> Guardar
             </button>
             <button onClick={() => setDraft(null)} className="flex-1 flex items-center justify-center gap-1 py-1.5 rounded bg-slate-100 hover:bg-slate-200 text-slate-600 text-[10px] font-semibold transition-colors min-h-[32px]">
@@ -134,10 +134,10 @@ function TarifasPanel() {
           </div>
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-2">
-              <div className="w-2 h-2 rounded-full bg-amber-500 flex-shrink-0" />
+              <div className="w-2 h-2 rounded-full bg-red-500 flex-shrink-0" />
               <span className="text-xs text-slate-500 font-medium">HP</span>
             </div>
-            <span className="text-xs font-semibold text-amber-700 font-mono">{tarifa.hp.toFixed(5)} €/kWh</span>
+            <span className="text-xs font-semibold text-red-700 font-mono">{tarifa.hp.toFixed(5)} €/kWh</span>
           </div>
           <div className="pt-2 mt-1 border-t border-slate-200 flex items-center justify-between">
             <span className="text-[10px] text-slate-400">Ratio HP/HC</span>
@@ -169,7 +169,7 @@ export default function Navbar() {
     {/* Skip to main content — visible on keyboard focus */}
     <a
       href="#main-content"
-      className="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-[100] focus:px-4 focus:py-2 focus:bg-indigo-700 focus:text-white focus:rounded-xl focus:text-sm focus:font-semibold focus:shadow-sm"
+      className="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-[100] focus:px-4 focus:py-2 focus:bg-blue-700 focus:text-white focus:rounded-xl focus:text-sm focus:font-semibold focus:shadow-sm"
     >
       Saltar al contenido principal
     </a>
@@ -179,7 +179,7 @@ export default function Navbar() {
 
           {/* Brand */}
           <Link href="/" className="flex items-center gap-2.5 flex-shrink-0 mr-2">
-            <div className="w-8 h-8 rounded flex items-center justify-center bg-indigo-700">
+            <div className="w-8 h-8 rounded flex items-center justify-center bg-blue-700">
               <Zap className="w-4 h-4 text-white" />
             </div>
             <span className="text-[15px] font-bold text-slate-900 leading-none tracking-tight hidden sm:inline">
@@ -197,9 +197,9 @@ export default function Navbar() {
                   href={href}
                   aria-label={label}
                   aria-current={active ? "page" : undefined}
-                  className={`flex items-center gap-2 px-3 py-1.5 rounded-lg text-sm font-medium transition-colors duration-150 min-h-[36px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-400 focus-visible:ring-offset-2 ${
+                  className={`flex items-center gap-2 px-3 py-1.5 rounded-lg text-sm font-medium transition-colors duration-150 min-h-[36px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-400 focus-visible:ring-offset-2 ${
                     active
-                      ? "bg-indigo-50 text-indigo-700"
+                      ? "bg-blue-50 text-blue-700"
                       : "text-slate-600 hover:bg-slate-50 hover:text-slate-900"
                   }`}
                 >
@@ -216,7 +216,7 @@ export default function Navbar() {
               onClick={() => setTarifasOpen(o => !o)}
               className={`flex items-center gap-2 px-3 py-1.5 rounded-lg text-sm font-medium transition-colors duration-150 min-h-[36px] ${
                 tarifasOpen
-                  ? "bg-indigo-50 text-indigo-700"
+                  ? "bg-blue-50 text-blue-700"
                   : "text-slate-600 hover:bg-slate-50 hover:text-slate-900"
               }`}
             >

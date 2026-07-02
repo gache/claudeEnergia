@@ -13,11 +13,11 @@ type Props = {
 };
 
 const accentMap: Record<string, { iconBg: string; iconColor: string; border: string; glowShadow: string }> = {
-  brand:   { iconBg: "bg-indigo-100/60", iconColor: "text-indigo-600", border: "border border-indigo-200/40", glowShadow: "group-hover:shadow-glow-brand" },
-  hc:      { iconBg: "bg-cyan-100/70",    iconColor: "text-cyan-600",    border: "border border-cyan-200/50", glowShadow: "group-hover:shadow-glow-hc" },
-  hp:      { iconBg: "bg-amber-100/70",    iconColor: "text-amber-600",    border: "border border-amber-200/50", glowShadow: "group-hover:shadow-glow-hp" },
+  brand:   { iconBg: "bg-brand-100/60", iconColor: "text-brand-600", border: "border border-brand-200/40", glowShadow: "group-hover:shadow-glow-brand" },
+  hc:      { iconBg: "bg-hc-100/70",    iconColor: "text-hc-600",    border: "border border-hc-200/50", glowShadow: "group-hover:shadow-glow-hc" },
+  hp:      { iconBg: "bg-hp-100/70",    iconColor: "text-hp-600",    border: "border border-hp-200/50", glowShadow: "group-hover:shadow-glow-hp" },
   violet:  { iconBg: "bg-violet-100/60", iconColor: "text-violet-600", border: "border border-violet-200/40", glowShadow: "group-hover:shadow-violet-500/20" },
-  savings: { iconBg: "bg-emerald-100/60", iconColor: "text-emerald-600", border: "border border-emerald-200/40", glowShadow: "group-hover:shadow-green-500/20" },
+  savings: { iconBg: "bg-savings-100/60", iconColor: "text-savings-600", border: "border border-savings-200/40", glowShadow: "group-hover:shadow-green-500/20" },
 };
 
 export default function StatCard({
@@ -60,7 +60,7 @@ export default function StatCard({
       {variacion !== undefined && (
         <div className={`flex items-center gap-1 mt-3 pt-3 border-t border-slate-50 text-xs font-semibold
           transition-all duration-300 group-hover:gap-2 ${
-            baja ? "text-emerald-600" : sube ? "text-red-500" : "text-slate-400"
+            baja ? "text-savings-600" : sube ? "text-red-500" : "text-slate-400"
           }`}>
           {baja
             ? <TrendingDown className="w-3.5 h-3.5 transition-transform group-hover:-translate-y-0.5" />

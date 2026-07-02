@@ -38,24 +38,24 @@ function CustomTooltip({ active, payload, label }: any) {
       <div className="space-y-2">
         <div className="flex items-center justify-between gap-4">
           <div className="flex items-center gap-2">
-            <div className="w-2.5 h-2.5 rounded-full bg-cyan-500" />
+            <div className="w-2.5 h-2.5 rounded-full bg-hc-500" />
             <span className="text-xs text-slate-500">HC</span>
           </div>
-          <span className="text-sm font-bold text-cyan-700 tabular-nums">{hc.toFixed(3)} kWh</span>
+          <span className="text-sm font-bold text-hc-700 tabular-nums">{hc.toFixed(3)} kWh</span>
         </div>
         <div className="flex items-center justify-between gap-4">
           <div className="flex items-center gap-2">
-            <div className="w-2.5 h-2.5 rounded-full bg-amber-500" />
+            <div className="w-2.5 h-2.5 rounded-full bg-red-500" />
             <span className="text-xs text-slate-500">HP</span>
           </div>
-          <span className="text-sm font-bold text-amber-700 tabular-nums">{hp.toFixed(3)} kWh</span>
+          <span className="text-sm font-bold text-hp-700 tabular-nums">{hp.toFixed(3)} kWh</span>
         </div>
         <div className="pt-2 mt-1 border-t border-slate-100 flex items-center justify-between gap-4">
           <div className="flex items-center gap-2">
-            <div className="w-2.5 h-2.5 rounded-full bg-indigo-500" />
+            <div className="w-2.5 h-2.5 rounded-full bg-violet-500" />
             <span className="text-xs font-semibold text-slate-500">Total</span>
           </div>
-          <span className="text-sm font-bold text-indigo-700 tabular-nums">{total.toFixed(3)} kWh</span>
+          <span className="text-sm font-bold text-violet-700 tabular-nums">{total.toFixed(3)} kWh</span>
         </div>
       </div>
     </div>
@@ -82,16 +82,16 @@ export default function ConsumoHCHPChart({ data, title = "Consumo HC / HP (kWh)"
         <AreaChart data={chartData} margin={{ top: 8, right: 8, bottom: 0, left: 0 }}>
           <defs>
             <linearGradient id="gradHC" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="5%"  stopColor="#0891b2" stopOpacity={0.18} />
-              <stop offset="95%" stopColor="#0891b2" stopOpacity={0.01} />
+              <stop offset="5%"  stopColor="#0096c7" stopOpacity={0.18} />
+              <stop offset="95%" stopColor="#0096c7" stopOpacity={0.01} />
             </linearGradient>
             <linearGradient id="gradHP" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="5%"  stopColor="#d97706" stopOpacity={0.18} />
-              <stop offset="95%" stopColor="#d97706" stopOpacity={0.01} />
+              <stop offset="5%"  stopColor="#ef4444" stopOpacity={0.18} />
+              <stop offset="95%" stopColor="#ef4444" stopOpacity={0.01} />
             </linearGradient>
             <linearGradient id="gradTotal" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="5%"  stopColor="#6366f1" stopOpacity={0.12} />
-              <stop offset="95%" stopColor="#6366f1" stopOpacity={0.01} />
+              <stop offset="5%"  stopColor="#8b5cf6" stopOpacity={0.12} />
+              <stop offset="95%" stopColor="#8b5cf6" stopOpacity={0.01} />
             </linearGradient>
           </defs>
           <CartesianGrid strokeDasharray="3 3" stroke="#e2e8f0" vertical={false} />
@@ -117,11 +117,11 @@ export default function ConsumoHCHPChart({ data, title = "Consumo HC / HP (kWh)"
             type="monotone"
             dataKey="HC"
             name="HC (Heures Creuses)"
-            stroke="#0891b2"
+            stroke="#0096c7"
             strokeWidth={2.5}
             fill="url(#gradHC)"
             dot={<CustomDot />}
-            activeDot={{ r: 6, fill: "#0891b2", stroke: "#fff", strokeWidth: 2 }}
+            activeDot={{ r: 6, fill: "#0096c7", stroke: "#fff", strokeWidth: 2 }}
             animationDuration={1100}
             animationEasing="ease-out"
           />
@@ -129,11 +129,11 @@ export default function ConsumoHCHPChart({ data, title = "Consumo HC / HP (kWh)"
             type="monotone"
             dataKey="HP"
             name="HP (Heures Pleines)"
-            stroke="#d97706"
+            stroke="#ef4444"
             strokeWidth={2.5}
             fill="url(#gradHP)"
             dot={<CustomDot />}
-            activeDot={{ r: 6, fill: "#d97706", stroke: "#fff", strokeWidth: 2 }}
+            activeDot={{ r: 6, fill: "#ef4444", stroke: "#fff", strokeWidth: 2 }}
             animationDuration={1100}
             animationEasing="ease-out"
           />
@@ -141,12 +141,12 @@ export default function ConsumoHCHPChart({ data, title = "Consumo HC / HP (kWh)"
             type="monotone"
             dataKey="Total"
             name="Total"
-            stroke="#6366f1"
+            stroke="#8b5cf6"
             strokeWidth={2}
             strokeDasharray="5 3"
             fill="url(#gradTotal)"
             dot={<CustomDot />}
-            activeDot={{ r: 5, fill: "#6366f1", stroke: "#fff", strokeWidth: 2 }}
+            activeDot={{ r: 5, fill: "#8b5cf6", stroke: "#fff", strokeWidth: 2 }}
             animationDuration={1100}
             animationEasing="ease-out"
           />
@@ -165,18 +165,18 @@ export default function ConsumoHCHPChart({ data, title = "Consumo HC / HP (kWh)"
             <thead>
               <tr className="border-b border-slate-100">
                 <th className="text-left py-1.5 pr-3 text-slate-500 font-semibold">Mes</th>
-                <th className="text-right py-1.5 px-2 text-cyan-600 font-semibold">HC (kWh)</th>
-                <th className="text-right py-1.5 px-2 text-amber-600 font-semibold">HP (kWh)</th>
-                <th className="text-right py-1.5 pl-2 text-indigo-600 font-semibold">Total (kWh)</th>
+                <th className="text-right py-1.5 px-2 text-hc-600 font-semibold">HC (kWh)</th>
+                <th className="text-right py-1.5 px-2 text-red-600 font-semibold">HP (kWh)</th>
+                <th className="text-right py-1.5 pl-2 text-violet-600 font-semibold">Total (kWh)</th>
               </tr>
             </thead>
             <tbody>
               {chartData.map(row => (
                 <tr key={row.mes} className="border-b border-slate-50">
                   <td className="py-1 pr-3 text-slate-600">{row.mes}</td>
-                  <td className="py-1 px-2 text-right font-mono text-cyan-700">{row.HC.toFixed(3)}</td>
-                  <td className="py-1 px-2 text-right font-mono text-amber-700">{row.HP.toFixed(3)}</td>
-                  <td className="py-1 pl-2 text-right font-mono text-indigo-700">{row.Total.toFixed(3)}</td>
+                  <td className="py-1 px-2 text-right font-mono text-hc-700">{row.HC.toFixed(3)}</td>
+                  <td className="py-1 px-2 text-right font-mono text-red-700">{row.HP.toFixed(3)}</td>
+                  <td className="py-1 pl-2 text-right font-mono text-violet-700">{row.Total.toFixed(3)}</td>
                 </tr>
               ))}
             </tbody>

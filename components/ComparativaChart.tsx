@@ -45,7 +45,7 @@ function CustomTooltip({ active, payload, label, mode, year1, year2 }: any) {
           <div className="pt-2 mt-1 border-t border-slate-100 flex justify-between gap-4">
             <span className="text-xs text-slate-400">Variación</span>
             <span className={`text-xs font-bold tabular-nums ${
-              payload[1].value < payload[0].value ? "text-emerald-600" : "text-red-500"
+              payload[1].value < payload[0].value ? "text-savings-600" : "text-red-500"
             }`}>
               {payload[1].value < payload[0].value ? "" : "+"}
               {(((payload[1].value - payload[0].value) / payload[0].value) * 100).toFixed(1)}%
@@ -71,7 +71,7 @@ export default function ComparativaChart({ data, mode, title, year1 = 2025, year
 
   const colors = {
     [String(year1)]: "#94a3b8",
-    [String(year2)]: "#6366f1",
+    [String(year2)]: "#3b82f6",
   };
 
   return (
@@ -84,7 +84,7 @@ export default function ComparativaChart({ data, mode, title, year1 = 2025, year
             <span className="text-xs text-slate-400 font-medium">{year1} (base)</span>
           </div>
           <div className="flex items-center gap-1.5">
-            <div className="w-3 h-3 rounded-sm bg-indigo-500" />
+            <div className="w-3 h-3 rounded-sm bg-brand-500" />
             <span className="text-xs text-slate-400 font-medium">{year2} (actual)</span>
           </div>
         </div>
@@ -129,7 +129,7 @@ export default function ComparativaChart({ data, mode, title, year1 = 2025, year
               <tr className="border-b border-slate-100">
                 <th className="text-left py-1.5 pr-3 text-slate-500 font-semibold">Mes</th>
                 <th className="text-right py-1.5 px-2 text-slate-500 font-semibold">{year1}{unit}</th>
-                <th className="text-right py-1.5 px-2 text-indigo-600 font-semibold">{year2}{unit}</th>
+                <th className="text-right py-1.5 px-2 text-brand-600 font-semibold">{year2}{unit}</th>
                 <th className="text-right py-1.5 pl-2 text-slate-500 font-semibold">Variación</th>
               </tr>
             </thead>
@@ -142,8 +142,8 @@ export default function ComparativaChart({ data, mode, title, year1 = 2025, year
                   <tr key={row.mes} className="border-b border-slate-50">
                     <td className="py-1 pr-3 text-slate-600">{row.mes}</td>
                     <td className="py-1 px-2 text-right font-mono text-slate-500">{typeof v1 === "number" ? v1.toFixed(mode === "costo" ? 3 : 1) : "—"}</td>
-                    <td className="py-1 px-2 text-right font-mono text-indigo-700">{typeof v2 === "number" ? v2.toFixed(mode === "costo" ? 3 : 1) : "—"}</td>
-                    <td className={`py-1 pl-2 text-right font-mono font-semibold ${varPct === null ? "text-slate-400" : varPct < 0 ? "text-emerald-600" : "text-red-500"}`}>
+                    <td className="py-1 px-2 text-right font-mono text-brand-700">{typeof v2 === "number" ? v2.toFixed(mode === "costo" ? 3 : 1) : "—"}</td>
+                    <td className={`py-1 pl-2 text-right font-mono font-semibold ${varPct === null ? "text-slate-400" : varPct < 0 ? "text-savings-600" : "text-red-500"}`}>
                       {varPct === null ? "—" : `${varPct > 0 ? "+" : ""}${varPct.toFixed(1)}%`}
                     </td>
                   </tr>
