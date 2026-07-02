@@ -15,9 +15,9 @@ function CustomTooltip({ active, payload, label }: any) {
   if (!active || !payload?.length) return null;
 
   const items = [
-    { key: "Coste HC", color: "#06b6d4", unit: "€" },
-    { key: "Coste HP", color: "#ef4444", unit: "€" },
-    { key: "Total",    color: "#8b5cf6", unit: "€" },
+    { key: "Coste HC", color: "#0891b2", unit: "€" },
+    { key: "Coste HP", color: "#d97706", unit: "€" },
+    { key: "Total",    color: "#6366f1", unit: "€" },
   ];
 
   return (
@@ -56,7 +56,7 @@ export default function CostoEvolucionChart({ data, title = "Evolución del cost
     <div className="bg-white rounded-xl shadow-sm border border-slate-200 p-6 hover:shadow-sm transition-shadow duration-300">
       <div className="mb-5">
         <h2 className="section-title">{title}</h2>
-        <p className="text-xs text-slate-400 mt-0.5">Líneas de coste HC (cian), HP (rojo) y total (violeta)</p>
+        <p className="text-xs text-slate-400 mt-0.5">Líneas de coste HC (cian), HP (ámbar) y total (índigo)</p>
       </div>
       <div className="overflow-x-auto -mx-1">
       <div className="min-w-[300px]">
@@ -85,31 +85,31 @@ export default function CostoEvolucionChart({ data, title = "Evolución del cost
           <Line
             type="monotone"
             dataKey="Coste HC"
-            stroke="#06b6d4"
+            stroke="#0891b2"
             strokeWidth={2.5}
-            dot={{ r: 4, fill: "#06b6d4", strokeWidth: 0 }}
-            activeDot={{ r: 6, fill: "#06b6d4" }}
+            dot={{ r: 4, fill: "#0891b2", strokeWidth: 0 }}
+            activeDot={{ r: 6, fill: "#0891b2" }}
             animationDuration={1100}
             animationEasing="ease-out"
           />
           <Line
             type="monotone"
             dataKey="Coste HP"
-            stroke="#ef4444"
+            stroke="#d97706"
             strokeWidth={2.5}
-            dot={{ r: 4, fill: "#ef4444", strokeWidth: 0 }}
-            activeDot={{ r: 6, fill: "#ef4444" }}
+            dot={{ r: 4, fill: "#d97706", strokeWidth: 0 }}
+            activeDot={{ r: 6, fill: "#d97706" }}
             animationDuration={1100}
             animationEasing="ease-out"
           />
           <Line
             type="monotone"
             dataKey="Total"
-            stroke="#8b5cf6"
+            stroke="#6366f1"
             strokeWidth={2}
             strokeDasharray="6 3"
-            dot={{ r: 3, fill: "#8b5cf6", strokeWidth: 0 }}
-            activeDot={{ r: 5, fill: "#8b5cf6" }}
+            dot={{ r: 3, fill: "#6366f1", strokeWidth: 0 }}
+            activeDot={{ r: 5, fill: "#6366f1" }}
             animationDuration={1100}
             animationEasing="ease-out"
           />
@@ -129,8 +129,8 @@ export default function CostoEvolucionChart({ data, title = "Evolución del cost
               <tr className="border-b border-slate-100">
                 <th className="text-left py-1.5 pr-3 text-slate-500 font-semibold">Mes</th>
                 <th className="text-right py-1.5 px-2 text-cyan-600 font-semibold">Coste HC (€)</th>
-                <th className="text-right py-1.5 px-2 text-red-600 font-semibold">Coste HP (€)</th>
-                <th className="text-right py-1.5 pl-2 text-violet-600 font-semibold">Total (€)</th>
+                <th className="text-right py-1.5 px-2 text-amber-600 font-semibold">Coste HP (€)</th>
+                <th className="text-right py-1.5 pl-2 text-indigo-600 font-semibold">Total (€)</th>
               </tr>
             </thead>
             <tbody>
@@ -138,8 +138,8 @@ export default function CostoEvolucionChart({ data, title = "Evolución del cost
                 <tr key={row.mes} className="border-b border-slate-50">
                   <td className="py-1 pr-3 text-slate-600">{row.mes}</td>
                   <td className="py-1 px-2 text-right font-mono text-cyan-700">{row["Coste HC"].toFixed(3)}</td>
-                  <td className="py-1 px-2 text-right font-mono text-red-700">{row["Coste HP"].toFixed(3)}</td>
-                  <td className="py-1 pl-2 text-right font-mono text-violet-700">{row["Total"].toFixed(3)}</td>
+                  <td className="py-1 px-2 text-right font-mono text-amber-700">{row["Coste HP"].toFixed(3)}</td>
+                  <td className="py-1 pl-2 text-right font-mono text-indigo-700">{row["Total"].toFixed(3)}</td>
                 </tr>
               ))}
             </tbody>

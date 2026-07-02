@@ -11,12 +11,12 @@ type Props = {
 function SplitBar({ pctHC, pctHP }: { pctHC: number; pctHP: number }) {
   return (
     <div className="flex items-center gap-1.5">
-      <span className="text-[10px] font-bold text-hc-600 tabular-nums w-8 text-right">{pctHC.toFixed(0)}%</span>
+      <span className="text-[10px] font-bold text-cyan-600 tabular-nums w-8 text-right">{pctHC.toFixed(0)}%</span>
       <div className="flex h-1.5 w-16 rounded-full overflow-hidden bg-slate-100">
-        <div className="bg-hc-400 transition-all duration-500" style={{ width: `${pctHC}%` }} />
-        <div className="bg-hp-400 transition-all duration-500" style={{ width: `${pctHP}%` }} />
+        <div className="bg-cyan-400 transition-all duration-500" style={{ width: `${pctHC}%` }} />
+        <div className="bg-amber-400 transition-all duration-500" style={{ width: `${pctHP}%` }} />
       </div>
-      <span className="text-[10px] font-bold text-hp-600 tabular-nums w-8">{pctHP.toFixed(0)}%</span>
+      <span className="text-[10px] font-bold text-amber-600 tabular-nums w-8">{pctHP.toFixed(0)}%</span>
     </div>
   );
 }
@@ -33,8 +33,8 @@ export default function TablaConsumo({ data, showVarPct = true }: Props) {
       <div className="px-6 py-4 border-b border-slate-100 flex items-center justify-between">
         <div className="flex items-center gap-3">
           <div className="flex gap-1">
-            <div className="w-2.5 h-2.5 rounded-full bg-hc-400" />
-            <div className="w-2.5 h-2.5 rounded-full bg-hp-400" />
+            <div className="w-2.5 h-2.5 rounded-full bg-cyan-400" />
+            <div className="w-2.5 h-2.5 rounded-full bg-amber-400" />
           </div>
           <h3 className="section-title">Detalle mensual</h3>
         </div>
@@ -48,11 +48,11 @@ export default function TablaConsumo({ data, showVarPct = true }: Props) {
           <thead className="sticky top-0 z-10">
             <tr>
               <th scope="col" className="text-left px-6 py-3 text-[10px] font-bold uppercase tracking-widest text-slate-500 bg-slate-50/80 border-b border-slate-100">Mes</th>
-              <th scope="col" className="text-right px-4 py-3 text-[10px] font-bold uppercase tracking-widest text-hc-600 bg-hc-50/50 border-b border-slate-100">HC kWh</th>
-              <th scope="col" className="text-right px-4 py-3 text-[10px] font-bold uppercase tracking-widest text-hp-600 bg-hp-50/50 border-b border-slate-100">HP kWh</th>
+              <th scope="col" className="text-right px-4 py-3 text-[10px] font-bold uppercase tracking-widest text-cyan-600 bg-cyan-50/50 border-b border-slate-100">HC kWh</th>
+              <th scope="col" className="text-right px-4 py-3 text-[10px] font-bold uppercase tracking-widest text-amber-600 bg-amber-50/50 border-b border-slate-100">HP kWh</th>
               <th scope="col" className="text-right px-4 py-3 text-[10px] font-bold uppercase tracking-widest text-slate-500 bg-slate-50/80 border-b border-slate-100">Total kWh</th>
-              <th scope="col" className="text-right px-4 py-3 text-[10px] font-bold uppercase tracking-widest text-hc-600 bg-hc-50/50 border-b border-slate-100">€ HC</th>
-              <th scope="col" className="text-right px-4 py-3 text-[10px] font-bold uppercase tracking-widest text-hp-600 bg-hp-50/50 border-b border-slate-100">€ HP</th>
+              <th scope="col" className="text-right px-4 py-3 text-[10px] font-bold uppercase tracking-widest text-cyan-600 bg-cyan-50/50 border-b border-slate-100">€ HC</th>
+              <th scope="col" className="text-right px-4 py-3 text-[10px] font-bold uppercase tracking-widest text-amber-600 bg-amber-50/50 border-b border-slate-100">€ HP</th>
               <th scope="col" className="text-right px-4 py-3 text-[10px] font-bold uppercase tracking-widest text-slate-600 bg-slate-50/80 border-b border-slate-100">€ Total</th>
               <th scope="col" className="text-center px-4 py-3 text-[10px] font-bold uppercase tracking-widest text-slate-500 bg-slate-50/80 border-b border-slate-100">HC / HP</th>
               {showVarPct && (
@@ -73,11 +73,11 @@ export default function TablaConsumo({ data, showVarPct = true }: Props) {
                   {/* Month cell with colored left accent */}
                   <td className="px-6 py-3.5">
                     <div className="flex items-center gap-3">
-                      <div className={`w-1 h-6 rounded-full flex-shrink-0 ${isHC ? "bg-hc-400" : "bg-hp-400"}`} />
+                      <div className={`w-1 h-6 rounded-full flex-shrink-0 ${isHC ? "bg-cyan-400" : "bg-amber-400"}`} />
                       <div>
                         <span className="font-bold text-slate-800">{MESES[d.mes - 1]}</span>
                         <span className={`ml-2 text-[10px] font-bold px-1.5 py-0.5 rounded-full ${
-                          isHC ? "bg-hc-50 text-hc-600" : "bg-hp-50 text-hp-600"
+                          isHC ? "bg-cyan-50 text-cyan-600" : "bg-amber-50 text-amber-600"
                         }`}>
                           {isHC ? "HC" : "HP"}
                         </span>
@@ -86,10 +86,10 @@ export default function TablaConsumo({ data, showVarPct = true }: Props) {
                   </td>
 
                   {/* kWh columns */}
-                  <td className="px-4 py-3.5 text-right font-mono font-semibold text-hc-700 tabular-nums bg-hc-50/20 group-hover:bg-hc-50/40 transition-colors">
+                  <td className="px-4 py-3.5 text-right font-mono font-semibold text-cyan-700 tabular-nums bg-cyan-50/20 group-hover:bg-cyan-50/40 transition-colors">
                     {d.hc.toFixed(3)}
                   </td>
-                  <td className="px-4 py-3.5 text-right font-mono font-semibold text-hp-700 tabular-nums bg-hp-50/20 group-hover:bg-hp-50/40 transition-colors">
+                  <td className="px-4 py-3.5 text-right font-mono font-semibold text-amber-700 tabular-nums bg-amber-50/20 group-hover:bg-amber-50/40 transition-colors">
                     {d.hp.toFixed(3)}
                   </td>
                   <td className="px-4 py-3.5 text-right font-mono font-bold text-slate-800 tabular-nums">
@@ -97,10 +97,10 @@ export default function TablaConsumo({ data, showVarPct = true }: Props) {
                   </td>
 
                   {/* Cost columns */}
-                  <td className="px-4 py-3.5 text-right font-mono text-hc-600 tabular-nums text-xs bg-hc-50/20 group-hover:bg-hc-50/40 transition-colors">
+                  <td className="px-4 py-3.5 text-right font-mono text-cyan-600 tabular-nums text-xs bg-cyan-50/20 group-hover:bg-cyan-50/40 transition-colors">
                     {fmt(d.costoHC)}
                   </td>
-                  <td className="px-4 py-3.5 text-right font-mono text-hp-600 tabular-nums text-xs bg-hp-50/20 group-hover:bg-hp-50/40 transition-colors">
+                  <td className="px-4 py-3.5 text-right font-mono text-amber-600 tabular-nums text-xs bg-amber-50/20 group-hover:bg-amber-50/40 transition-colors">
                     {fmt(d.costoHP)}
                   </td>
                   <td className="px-4 py-3.5 text-right font-mono font-bold text-slate-700 tabular-nums text-xs">
@@ -128,19 +128,19 @@ export default function TablaConsumo({ data, showVarPct = true }: Props) {
               <td className="px-6 py-4">
                 <span className="text-[10px] font-bold uppercase tracking-widest text-slate-400">Acumulado</span>
               </td>
-              <td className="px-4 py-4 text-right font-mono font-bold text-hc-700 tabular-nums bg-hc-50/30">
+              <td className="px-4 py-4 text-right font-mono font-bold text-cyan-700 tabular-nums bg-cyan-50/30">
                 {totalHC.toFixed(3)}
               </td>
-              <td className="px-4 py-4 text-right font-mono font-bold text-hp-700 tabular-nums bg-hp-50/30">
+              <td className="px-4 py-4 text-right font-mono font-bold text-amber-700 tabular-nums bg-amber-50/30">
                 {totalHP.toFixed(3)}
               </td>
               <td className="px-4 py-4 text-right font-mono font-bold text-slate-900 tabular-nums">
                 {totalKwh.toFixed(3)}
               </td>
-              <td className="px-4 py-4 text-right font-mono font-bold text-hc-700 tabular-nums text-xs bg-hc-50/30">
+              <td className="px-4 py-4 text-right font-mono font-bold text-cyan-700 tabular-nums text-xs bg-cyan-50/30">
                 {fmt(totalCostoHC)}
               </td>
-              <td className="px-4 py-4 text-right font-mono font-bold text-hp-700 tabular-nums text-xs bg-hp-50/30">
+              <td className="px-4 py-4 text-right font-mono font-bold text-amber-700 tabular-nums text-xs bg-amber-50/30">
                 {fmt(totalCostoHP)}
               </td>
               <td className="px-4 py-4 text-right font-mono font-bold text-slate-900 tabular-nums text-xs">

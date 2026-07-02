@@ -104,7 +104,7 @@ export default function HistorialPage() {
               onClick={() => setAño(y)}
               className={`min-h-[40px] px-4 py-2 rounded-xl text-sm font-semibold transition-all duration-150 cursor-pointer ${
                 año === y
-                  ? "bg-brand-600 text-white shadow-sm"
+                  ? "bg-indigo-600 text-white shadow-sm"
                   : "bg-white border border-slate-200 text-slate-600 hover:bg-slate-50 hover:border-slate-300"
               }`}
             >
@@ -121,12 +121,12 @@ export default function HistorialPage() {
           <span className="text-xs text-slate-500 font-medium">Tarifas {año}:</span>
         </div>
         <div className="flex items-center gap-2">
-          <div className="w-2 h-2 rounded-full bg-hc-500" />
-          <span className="text-xs font-semibold text-hc-700 font-mono">HC {tarifa.hc.toFixed(3)} €/kWh</span>
+          <div className="w-2 h-2 rounded-full bg-cyan-500" />
+          <span className="text-xs font-semibold text-cyan-700 font-mono">HC {tarifa.hc.toFixed(3)} €/kWh</span>
         </div>
         <div className="flex items-center gap-2">
-          <div className="w-2 h-2 rounded-full bg-hp-500" />
-          <span className="text-xs font-semibold text-hp-700 font-mono">HP {tarifa.hp.toFixed(3)} €/kWh</span>
+          <div className="w-2 h-2 rounded-full bg-amber-500" />
+          <span className="text-xs font-semibold text-amber-700 font-mono">HP {tarifa.hp.toFixed(3)} €/kWh</span>
         </div>
         <div className="h-4 w-px bg-slate-200" />
         <span className="text-xs text-slate-500 font-mono">
@@ -136,10 +136,10 @@ export default function HistorialPage() {
           <>
             <div className="h-4 w-px bg-slate-200" />
             <span className="text-xs text-slate-500 font-mono">
-              HC total: <span className="font-semibold text-hc-700">{totalHC.toFixed(3)} kWh</span>
+              HC total: <span className="font-semibold text-cyan-700">{totalHC.toFixed(3)} kWh</span>
             </span>
             <span className="text-xs text-slate-500 font-mono">
-              HP total: <span className="font-semibold text-hp-700">{totalHP.toFixed(3)} kWh</span>
+              HP total: <span className="font-semibold text-amber-700">{totalHP.toFixed(3)} kWh</span>
             </span>
           </>
         )}
@@ -164,7 +164,7 @@ export default function HistorialPage() {
       {showProjection && (
         <div className="bg-white rounded-xl shadow-sm border border-slate-100 overflow-hidden animate-slide-up" style={{ animationDelay: "80ms" }}>
           <div className="px-5 py-3.5 border-b border-slate-100 flex items-center gap-2">
-            <TrendingUp className="w-4 h-4 text-brand-500" />
+            <TrendingUp className="w-4 h-4 text-indigo-500" />
             <h2 className="section-title text-base">Proyección fin de año {año}</h2>
             <span className="ml-auto badge bg-slate-50 text-slate-500 border border-slate-200 text-[10px]">
               Basado en {datos.length} mes{datos.length !== 1 ? "es" : ""} · promedio extrapolado
@@ -179,29 +179,29 @@ export default function HistorialPage() {
               </p>
               <p className="text-[10px] text-slate-500 mt-1">actual {totalKwh.toFixed(1)} + {mesesRestantes}m est.</p>
             </div>
-            <div className="rounded-xl bg-violet-50 border border-violet-100 p-4">
-              <p className="text-[10px] font-bold uppercase tracking-widest text-violet-400 mb-1.5">Coste total proyectado</p>
-              <p className="text-xl font-bold text-violet-700 tabular-nums">
+            <div className="rounded-xl bg-indigo-50 border border-indigo-100 p-4">
+              <p className="text-[10px] font-bold uppercase tracking-widest text-indigo-400 mb-1.5">Coste total proyectado</p>
+              <p className="text-xl font-bold text-indigo-700 tabular-nums">
                 {proyCosto.toFixed(2)}
-                <span className="text-xs font-normal ml-1 text-violet-400">€</span>
+                <span className="text-xs font-normal ml-1 text-indigo-400">€</span>
               </p>
-              <p className="text-[10px] text-violet-400 mt-1">actual {totalCosto.toFixed(2)} €</p>
+              <p className="text-[10px] text-indigo-400 mt-1">actual {totalCosto.toFixed(2)} €</p>
             </div>
-            <div className="rounded-xl bg-hc-50 border border-hc-100 p-4">
-              <p className="text-[10px] font-bold uppercase tracking-widest text-hc-400 mb-1.5">HC proyectado</p>
-              <p className="text-xl font-bold text-hc-700 tabular-nums">
+            <div className="rounded-xl bg-cyan-50 border border-cyan-100 p-4">
+              <p className="text-[10px] font-bold uppercase tracking-widest text-cyan-400 mb-1.5">HC proyectado</p>
+              <p className="text-xl font-bold text-cyan-700 tabular-nums">
                 {proyHC.toFixed(1)}
-                <span className="text-xs font-normal ml-1 text-hc-400">kWh</span>
+                <span className="text-xs font-normal ml-1 text-cyan-400">kWh</span>
               </p>
-              <p className="text-[10px] text-hc-400 mt-1">actual {totalHC.toFixed(1)} kWh</p>
+              <p className="text-[10px] text-cyan-400 mt-1">actual {totalHC.toFixed(1)} kWh</p>
             </div>
-            <div className="rounded-xl bg-hp-50 border border-hp-100 p-4">
-              <p className="text-[10px] font-bold uppercase tracking-widest text-hp-400 mb-1.5">HP proyectado</p>
-              <p className="text-xl font-bold text-hp-700 tabular-nums">
+            <div className="rounded-xl bg-amber-50 border border-amber-100 p-4">
+              <p className="text-[10px] font-bold uppercase tracking-widest text-amber-400 mb-1.5">HP proyectado</p>
+              <p className="text-xl font-bold text-amber-700 tabular-nums">
                 {proyHP.toFixed(1)}
-                <span className="text-xs font-normal ml-1 text-hp-400">kWh</span>
+                <span className="text-xs font-normal ml-1 text-amber-400">kWh</span>
               </p>
-              <p className="text-[10px] text-hp-400 mt-1">actual {totalHP.toFixed(1)} kWh</p>
+              <p className="text-[10px] text-amber-400 mt-1">actual {totalHP.toFixed(1)} kWh</p>
             </div>
           </div>
         </div>
@@ -215,7 +215,7 @@ export default function HistorialPage() {
           </div>
           <p className="text-slate-600 font-semibold text-base">Sin datos para {año}</p>
           <p className="text-slate-500 text-sm mt-1">
-            Ve a <a href="/registro" className="text-brand-600 font-semibold hover:underline">Registrar</a> para añadir consumo.
+            Ve a <a href="/registro" className="text-indigo-600 font-semibold hover:underline">Registrar</a> para añadir consumo.
           </p>
         </div>
       ) : (

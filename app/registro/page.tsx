@@ -30,11 +30,11 @@ export default function RegistroPage() {
   const hasErrors = hcError || hpError;
 
   const saveBtnClass = saved
-    ? "bg-savings-600 text-white shadow-sm"
+    ? "bg-emerald-600 text-white shadow-sm"
     : hasErrors
       ? "bg-red-100 text-red-500 cursor-not-allowed"
       : hasValues
-        ? "bg-brand-600 hover:bg-brand-700 text-white shadow-sm hover:shadow-sm"
+        ? "bg-indigo-600 hover:bg-indigo-700 text-white shadow-sm hover:shadow-sm"
         : "bg-slate-100 text-slate-400 cursor-not-allowed";
 
   function handleSave() {
@@ -74,7 +74,7 @@ export default function RegistroPage() {
       {/* ── Header ── */}
       <div className="animate-slide-up text-center" style={{ animationDelay: "0ms" }}>
         <div className="flex items-center justify-center gap-2 mb-1">
-          <span className="badge bg-brand-50 text-brand-700 border border-brand-100">
+          <span className="badge bg-indigo-50 text-indigo-700 border border-indigo-100">
             {MESES[mes - 1]} {año}
           </span>
           {existing && (
@@ -94,8 +94,8 @@ export default function RegistroPage() {
 
         {/* Form top accent — HC left, HP right */}
         <div className="h-1 flex">
-          <div className="flex-1 bg-hc-500" aria-hidden="true" />
-          <div className="flex-1 bg-hp-500" aria-hidden="true" />
+          <div className="flex-1 bg-cyan-500" aria-hidden="true" />
+          <div className="flex-1 bg-amber-500" aria-hidden="true" />
         </div>
 
         <div className="p-6 space-y-5">
@@ -157,7 +157,7 @@ export default function RegistroPage() {
           {/* HC / HP inputs */}
           <div className="grid grid-cols-2 gap-4">
             <div>
-              <label htmlFor="input-hc" className="block text-xs font-semibold uppercase tracking-wider text-hc-600 mb-2">
+              <label htmlFor="input-hc" className="block text-xs font-semibold uppercase tracking-wider text-cyan-600 mb-2">
                 HC — Heures Creuses
               </label>
               <input
@@ -180,10 +180,10 @@ export default function RegistroPage() {
                 </p>
               )}
               {!hcError && (
-                <p className="text-xs text-hc-600 mt-1.5 font-mono">
+                <p className="text-xs text-cyan-600 mt-1.5 font-mono">
                   Tarifa: {tarifaMes.hc.toFixed(5)} €/kWh
                   {hc > 0 && (
-                    <span className="ml-2 text-hc-600 font-semibold">
+                    <span className="ml-2 text-cyan-600 font-semibold">
                       → {(hc * tarifaMes.hc).toFixed(3)} €
                     </span>
                   )}
@@ -191,7 +191,7 @@ export default function RegistroPage() {
               )}
             </div>
             <div>
-              <label htmlFor="input-hp" className="block text-xs font-semibold uppercase tracking-wider text-hp-600 mb-2">
+              <label htmlFor="input-hp" className="block text-xs font-semibold uppercase tracking-wider text-amber-600 mb-2">
                 HP — Heures Pleines
               </label>
               <input
@@ -214,10 +214,10 @@ export default function RegistroPage() {
                 </p>
               )}
               {!hpError && (
-                <p className="text-xs text-hp-600 mt-1.5 font-mono">
+                <p className="text-xs text-amber-600 mt-1.5 font-mono">
                   Tarifa: {tarifaMes.hp.toFixed(5)} €/kWh
                   {hp > 0 && (
-                    <span className="ml-2 text-hp-600 font-semibold">
+                    <span className="ml-2 text-amber-600 font-semibold">
                       → {(hp * tarifaMes.hp).toFixed(3)} €
                     </span>
                   )}
@@ -279,8 +279,8 @@ export default function RegistroPage() {
         {preview && (
           <div className="bg-white rounded-xl shadow-sm border border-slate-100 overflow-hidden animate-slide-up" style={{ animationDelay: "100ms" }}>
           <div className="px-5 py-3.5 border-b border-slate-100 flex items-center gap-2">
-            <div className="w-6 h-6 rounded-lg bg-brand-50 flex items-center justify-center">
-              <Calculator className="w-3.5 h-3.5 text-brand-600" />
+            <div className="w-6 h-6 rounded-lg bg-indigo-50 flex items-center justify-center">
+              <Calculator className="w-3.5 h-3.5 text-indigo-600" />
             </div>
             <span className="text-sm font-semibold text-slate-700">
               Vista previa — {MESES[mes - 1]} {año}
@@ -291,75 +291,75 @@ export default function RegistroPage() {
           </div>
 
           <div className="p-5 grid grid-cols-2 sm:grid-cols-3 gap-3">
-            <div className="bg-hc-50 rounded-xl p-4 border border-hc-100">
-              <p className="text-[10px] font-bold uppercase tracking-widest text-hc-400 mb-1.5">Consumo HC</p>
-              <p className="text-xl font-bold text-hc-700 tabular-nums">
+            <div className="bg-cyan-50 rounded-xl p-4 border border-cyan-100">
+              <p className="text-[10px] font-bold uppercase tracking-widest text-cyan-400 mb-1.5">Consumo HC</p>
+              <p className="text-xl font-bold text-cyan-700 tabular-nums">
                 {preview.hc.toFixed(3)}
-                <span className="text-xs font-normal ml-1 text-hc-400">kWh</span>
+                <span className="text-xs font-normal ml-1 text-cyan-400">kWh</span>
               </p>
             </div>
 
-            <div className="bg-hp-50 rounded-xl p-4 border border-hp-100">
-              <p className="text-[10px] font-bold uppercase tracking-widest text-hp-400 mb-1.5">Consumo HP</p>
-              <p className="text-xl font-bold text-hp-700 tabular-nums">
+            <div className="bg-amber-50 rounded-xl p-4 border border-amber-100">
+              <p className="text-[10px] font-bold uppercase tracking-widest text-amber-400 mb-1.5">Consumo HP</p>
+              <p className="text-xl font-bold text-amber-700 tabular-nums">
                 {preview.hp.toFixed(3)}
-                <span className="text-xs font-normal ml-1 text-hp-400">kWh</span>
+                <span className="text-xs font-normal ml-1 text-amber-400">kWh</span>
               </p>
             </div>
 
-            <div className="bg-brand-50 rounded-xl p-4 border border-brand-100">
-              <p className="text-[10px] font-bold uppercase tracking-widest text-brand-400 mb-1.5">Consumo total</p>
-              <p className="text-xl font-bold text-brand-700 tabular-nums">
+            <div className="bg-indigo-50 rounded-xl p-4 border border-indigo-100">
+              <p className="text-[10px] font-bold uppercase tracking-widest text-indigo-400 mb-1.5">Consumo total</p>
+              <p className="text-xl font-bold text-indigo-700 tabular-nums">
                 {preview.total.toFixed(3)}
-                <span className="text-xs font-normal ml-1 text-brand-400">kWh</span>
+                <span className="text-xs font-normal ml-1 text-indigo-400">kWh</span>
               </p>
             </div>
 
-            <div className="bg-hc-50 rounded-xl p-4 border border-hc-100">
-              <p className="text-[10px] font-bold uppercase tracking-widest text-hc-400 mb-1.5">Coste HC</p>
-              <p className="text-xl font-bold text-hc-700 tabular-nums">
+            <div className="bg-cyan-50 rounded-xl p-4 border border-cyan-100">
+              <p className="text-[10px] font-bold uppercase tracking-widest text-cyan-400 mb-1.5">Coste HC</p>
+              <p className="text-xl font-bold text-cyan-700 tabular-nums">
                 {preview.costoHC.toFixed(3)}
-                <span className="text-xs font-normal ml-1 text-hc-400">€</span>
+                <span className="text-xs font-normal ml-1 text-cyan-400">€</span>
               </p>
             </div>
 
-            <div className="bg-hp-50 rounded-xl p-4 border border-hp-100">
-              <p className="text-[10px] font-bold uppercase tracking-widest text-hp-400 mb-1.5">Coste HP</p>
-              <p className="text-xl font-bold text-hp-700 tabular-nums">
+            <div className="bg-amber-50 rounded-xl p-4 border border-amber-100">
+              <p className="text-[10px] font-bold uppercase tracking-widest text-amber-400 mb-1.5">Coste HP</p>
+              <p className="text-xl font-bold text-amber-700 tabular-nums">
                 {preview.costoHP.toFixed(3)}
-                <span className="text-xs font-normal ml-1 text-hp-400">€</span>
+                <span className="text-xs font-normal ml-1 text-amber-400">€</span>
               </p>
             </div>
 
-            <div className="bg-violet-50 rounded-xl p-4 border border-violet-100">
-              <p className="text-[10px] font-bold uppercase tracking-widest text-violet-400 mb-1.5">Coste total</p>
-              <p className="text-xl font-bold text-violet-700 tabular-nums">
+            <div className="bg-indigo-50 rounded-xl p-4 border border-indigo-100">
+              <p className="text-[10px] font-bold uppercase tracking-widest text-indigo-400 mb-1.5">Coste total</p>
+              <p className="text-xl font-bold text-indigo-700 tabular-nums">
                 {preview.costoTotal.toFixed(3)}
-                <span className="text-xs font-normal ml-1 text-violet-400">€</span>
+                <span className="text-xs font-normal ml-1 text-indigo-400">€</span>
               </p>
             </div>
 
             <div className="bg-slate-50 rounded-xl p-4 border border-slate-100">
               <p className="text-[10px] font-bold uppercase tracking-widest text-slate-400 mb-1.5">% HC / % HP</p>
               <p className="text-xl font-bold tabular-nums">
-                <span className="text-hc-600">{preview.pctHC.toFixed(1)}%</span>
+                <span className="text-cyan-600">{preview.pctHC.toFixed(1)}%</span>
                 <span className="text-slate-300 mx-1">/</span>
-                <span className="text-hp-600">{preview.pctHP.toFixed(1)}%</span>
+                <span className="text-amber-600">{preview.pctHP.toFixed(1)}%</span>
               </p>
             </div>
 
             <div className={`rounded-xl p-4 border ${
               preview.difHCHP > 0
                 ? "bg-red-50 border-red-100"
-                : "bg-hc-50 border-hc-100"
+                : "bg-cyan-50 border-cyan-100"
             }`}>
               <p className={`text-[10px] font-bold uppercase tracking-widest mb-1.5 ${
-                preview.difHCHP > 0 ? "text-red-400" : "text-hc-400"
+                preview.difHCHP > 0 ? "text-red-400" : "text-cyan-400"
               }`}>
                 Dif. HP − HC
               </p>
               <p className={`text-xl font-bold tabular-nums ${
-                preview.difHCHP > 0 ? "text-red-600" : "text-hc-700"
+                preview.difHCHP > 0 ? "text-red-600" : "text-cyan-700"
               }`}>
                 {Math.abs(preview.difHCHP).toFixed(3)}
                 <span className="text-xs font-normal ml-1 opacity-60">kWh</span>
@@ -371,17 +371,17 @@ export default function RegistroPage() {
           <div className="px-5 pb-5">
             <div className="flex h-2 rounded-full overflow-hidden bg-slate-100 gap-0.5">
               <div
-                className="bg-hc-500 rounded-l-full transition-all duration-500"
+                className="bg-cyan-500 rounded-l-full transition-all duration-500"
                 style={{ width: `${preview.pctHC}%` }}
               />
               <div
-                className="bg-hp-500 rounded-r-full transition-all duration-500"
+                className="bg-amber-500 rounded-r-full transition-all duration-500"
                 style={{ width: `${preview.pctHP}%` }}
               />
             </div>
             <div className="flex justify-between mt-1.5">
-              <span className="text-xs text-hc-600 font-semibold">HC {preview.pctHC.toFixed(1)}%</span>
-              <span className="text-xs text-hp-600 font-semibold">HP {preview.pctHP.toFixed(1)}%</span>
+              <span className="text-xs text-cyan-600 font-semibold">HC {preview.pctHC.toFixed(1)}%</span>
+              <span className="text-xs text-amber-600 font-semibold">HP {preview.pctHP.toFixed(1)}%</span>
             </div>
           </div>
         </div>
