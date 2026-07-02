@@ -27,7 +27,7 @@ export default function TablaConsumo({ data, showVarPct = true }: Props) {
   const avgPctHP = data.length > 0 ? sumPctHP / data.length : 0;
 
   return (
-    <div className="bg-white rounded-xl shadow-sm border border-slate-100 overflow-hidden hover:shadow-sm transition-shadow duration-300">
+    <div className="bg-white rounded-2xl shadow-card-md border border-slate-100 overflow-hidden hover:shadow-card-lg transition-shadow duration-300">
 
       {/* Header */}
       <div className="px-6 py-4 border-b border-slate-100 flex items-center justify-between">
@@ -124,7 +124,7 @@ export default function TablaConsumo({ data, showVarPct = true }: Props) {
 
           {/* Totals footer */}
           <tfoot>
-            <tr className="border-t-2 border-slate-200 bg-slate-50">
+            <tr className="border-t-2 border-slate-200 bg-gradient-to-r from-slate-50 to-white">
               <td className="px-6 py-4">
                 <span className="text-[10px] font-bold uppercase tracking-widest text-slate-400">Acumulado</span>
               </td>

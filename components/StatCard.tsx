@@ -34,8 +34,8 @@ export default function StatCard({
 
   return (
     <div
-      className={`bg-white rounded-xl shadow-sm ${cfg.border} p-5
-        hover:shadow-sm transition-shadow duration-300 group cursor-pointer
+      className={`bg-white/70 backdrop-blur-md rounded-2xl shadow-card-md ${cfg.border} p-5
+        hover:shadow-card-xl transition-shadow duration-300 group cursor-pointer
         animate-slide-up ${cfg.glowShadow}`}
       style={delayStyle}
     >

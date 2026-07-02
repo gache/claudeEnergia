@@ -2,7 +2,7 @@
 
 export default function ChartSkeleton() {
   return (
-    <div className="bg-white rounded-xl shadow-sm border border-slate-100 p-6 animate-pulse">
+    <div className="bg-white rounded-2xl shadow-card-md border border-slate-100 p-6 animate-pulse">
       <div className="mb-6">
         <div className="h-5 bg-slate-200 rounded w-48 mb-2" />
         <div className="h-3 bg-slate-100 rounded w-64" />
@@ -10,7 +10,7 @@ export default function ChartSkeleton() {
 
       <div className="flex items-end gap-3 justify-center h-64">
         {[...Array(5)].map((_, i) => (
-          <div key={i} className="flex-1 bg-slate-200 rounded-t"
+          <div key={i} className="flex-1 bg-gradient-to-t from-slate-200 to-slate-100 rounded-t"
             style={{ height: `${40 + (i % 3) * 30}%` }} />
         ))}
       </div>

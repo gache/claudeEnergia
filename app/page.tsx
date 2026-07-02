@@ -87,7 +87,7 @@ function KpiCard({
   } as React.CSSProperties;
 
   return (
-    <div className={`${cfg.bg} ${cfg.border} rounded-xl shadow-sm p-5 hover:shadow-sm transition-shadow duration-300 group animate-slide-up cursor-pointer`} style={delayStyle}>
+    <div className={`${cfg.bg} ${cfg.border} rounded-2xl shadow-card-md p-5 hover:shadow-card-xl transition-shadow duration-300 group animate-slide-up cursor-pointer`} style={delayStyle}>
       <div className="flex items-start justify-between mb-3">
         <p className={`text-sm font-bold uppercase tracking-widest ${cfg.labelColor}`} style={{ fontFamily: "var(--font-jakarta, sans-serif)" }}>{label}</p>
         {Icon && (
@@ -147,7 +147,7 @@ export default function DashboardPage() {
   if (!actual) {
     return (
       <div className="flex flex-col items-center justify-center py-32 text-center space-y-4">
-        <div className="w-20 h-20 rounded-xl bg-slate-100 flex items-center justify-center">
+        <div className="w-20 h-20 rounded-2xl bg-slate-100 flex items-center justify-center">
           <Zap className="w-10 h-10 text-slate-300" />
         </div>
         <div>
@@ -269,11 +269,11 @@ export default function DashboardPage() {
       {/* ── 2 & 3. PARTICIPACIÓN + DESGLOSE DE COSTO ── */}
       <div className="grid grid-cols-1 xl:grid-cols-2 gap-5">
             {/* Participación del consumo */}
-            <div className="bg-white rounded-xl shadow-sm border border-slate-200 p-6 animate-slide-up hover:shadow-sm transition-shadow duration-300" style={{ animationDelay: "100ms" }}>
+            <div className="bg-white rounded-2xl shadow-card-md border border-slate-100/40 p-6 animate-slide-up hover:shadow-card-lg transition-shadow duration-300" style={{ animationDelay: "100ms" }}>
               <h2 className="text-xl font-black text-slate-900 mb-5 tracking-tight" style={{ fontFamily: "var(--font-jakarta, sans-serif)" }}>Participación del consumo</h2>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div className="rounded-xl bg-hc-50 border border-hc-200/60 p-5 animate-slide-up hover:shadow-sm transition-shadow duration-300" style={{ animationDelay: "150ms" }}>
+                <div className="rounded-xl bg-hc-50 border border-hc-200/60 p-5 animate-slide-up hover:shadow-md transition-shadow duration-300" style={{ animationDelay: "150ms" }}>
                   <p className="text-xs font-bold text-hc-600 uppercase tracking-wider mb-4">HC — Heures Creuses</p>
                   <p className="text-5xl font-black text-hc-700 tabular-nums mb-1" style={{ fontFamily: "var(--font-space-mono, monospace), sans-serif" }}>
                     {actual.pctHC.toFixed(1)}%
@@ -284,7 +284,7 @@ export default function DashboardPage() {
                   </div>
                 </div>
 
-                <div className="rounded-xl bg-hp-50 border border-hp-200/60 p-5 animate-slide-up hover:shadow-sm transition-shadow duration-300" style={{ animationDelay: "225ms" }}>
+                <div className="rounded-xl bg-hp-50 border border-hp-200/60 p-5 animate-slide-up hover:shadow-md transition-shadow duration-300" style={{ animationDelay: "225ms" }}>
                   <p className="text-xs font-bold text-hp-600 uppercase tracking-wider mb-4">HP — Heures Pleines</p>
                   <p className="text-5xl font-black text-hp-700 tabular-nums mb-1" style={{ fontFamily: "var(--font-space-mono, monospace), sans-serif" }}>
                     {actual.pctHP.toFixed(1)}%
@@ -309,11 +309,11 @@ export default function DashboardPage() {
             </div>
 
             {/* Desglose del costo */}
-            <div className="bg-white rounded-xl shadow-sm border border-slate-200 p-6 animate-slide-up hover:shadow-sm transition-shadow duration-300" style={{ animationDelay: "200ms" }}>
+            <div className="bg-white rounded-2xl shadow-card-md border border-slate-100/40 p-6 animate-slide-up hover:shadow-card-lg transition-shadow duration-300" style={{ animationDelay: "200ms" }}>
               <h2 className="text-xl font-black text-slate-900 mb-5 tracking-tight" style={{ fontFamily: "var(--font-jakarta, sans-serif)" }}>Desglose del costo</h2>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div className="rounded-xl bg-hc-50 border border-hc-200/60 p-5 animate-slide-up hover:shadow-sm transition-shadow duration-300" style={{ animationDelay: "250ms" }}>
+                <div className="rounded-xl bg-hc-50 border border-hc-200/60 p-5 animate-slide-up hover:shadow-md transition-shadow duration-300" style={{ animationDelay: "250ms" }}>
                   <p className="text-xs font-bold text-hc-600 uppercase tracking-wider mb-4">HC — Coste</p>
                   <p className="text-5xl font-black text-hc-700 tabular-nums mb-1" style={{ fontFamily: "var(--font-space-mono, monospace), sans-serif" }}>
                     {actual.costoHC.toFixed(3)}<span className="text-2xl font-bold ml-1">€</span>
@@ -324,7 +324,7 @@ export default function DashboardPage() {
                   </div>
                 </div>
 
-                <div className="rounded-xl bg-hp-50 border border-hp-200/60 p-5 animate-slide-up hover:shadow-sm transition-shadow duration-300" style={{ animationDelay: "325ms" }}>
+                <div className="rounded-xl bg-hp-50 border border-hp-200/60 p-5 animate-slide-up hover:shadow-md transition-shadow duration-300" style={{ animationDelay: "325ms" }}>
                   <p className="text-xs font-bold text-hp-600 uppercase tracking-wider mb-4">HP — Coste</p>
                   <p className="text-5xl font-black text-hp-700 tabular-nums mb-1" style={{ fontFamily: "var(--font-space-mono, monospace), sans-serif" }}>
                     {actual.costoHP.toFixed(3)}<span className="text-2xl font-bold ml-1">€</span>
@@ -358,7 +358,7 @@ export default function DashboardPage() {
 
       {/* ── 5. COMPARACIÓN ÚLTIMOS 3 MESES ── */}
       {last3Months.length > 0 && (
-        <div className="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden animate-slide-up hover:shadow-sm transition-shadow duration-300" style={{ animationDelay: "400ms" }}>
+        <div className="bg-white rounded-2xl shadow-card-md border border-slate-100/40 overflow-hidden animate-slide-up hover:shadow-card-lg transition-shadow duration-300" style={{ animationDelay: "400ms" }}>
           <div className="px-6 py-4 border-b border-slate-100">
             <h2 className="text-xl font-black text-slate-900 tracking-tight" style={{ fontFamily: "var(--font-jakarta, sans-serif)" }}>Últimos 3 meses — {thisYear} vs {thisYear - 1}</h2>
           </div>
@@ -410,7 +410,7 @@ export default function DashboardPage() {
             </table>
             </div>
             {/* Scroll fade indicator for tablet */}
-            <div className="xl:hidden pointer-events-none absolute right-0 top-0 bottom-0 w-8 bg-gradient-to-l from-white to-transparent rounded-r-xl" aria-hidden="true" />
+            <div className="xl:hidden pointer-events-none absolute right-0 top-0 bottom-0 w-8 bg-gradient-to-l from-white to-transparent rounded-r-2xl" aria-hidden="true" />
           </div>
         </div>
       )}
