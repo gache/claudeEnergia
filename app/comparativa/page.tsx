@@ -18,7 +18,7 @@ function SummaryKPI({
   const isBad     = good === false;
 
   return (
-    <div className={`rounded-2xl p-5 border shadow-card-md backdrop-blur-sm hover:shadow-card-lg transition-shadow duration-300 ${
+    <div className={`rounded-xl p-5 border shadow-sm hover:shadow-sm transition-shadow duration-300 ${
       isGood
         ? "bg-savings-50/60 border-savings-200/60"
         : isBad
@@ -127,7 +127,7 @@ export default function ComparativaPage() {
         </div>
 
         {/* Year pickers */}
-        <div className="flex items-center gap-3 bg-white/70 backdrop-blur-md border border-slate-200/60 rounded-2xl px-4 py-3 shadow-card hover:shadow-card-md transition-shadow duration-300 flex-wrap">
+        <div className="flex items-center gap-3 bg-white border border-slate-200 rounded-xl px-4 py-3 shadow-sm hover:shadow-sm transition-shadow duration-300 flex-wrap">
           <div className="flex items-center gap-2">
             <span className="text-[10px] font-bold text-slate-500 uppercase tracking-widest">Base</span>
             <select
@@ -174,7 +174,7 @@ export default function ComparativaPage() {
           subLabel={`${year2} vs ${year1} · impacto económico`}
           good={avgVarCosto !== null ? avgVarCosto < 0 : undefined}
         />
-        <div className="rounded-2xl p-5 border border-brand-200 bg-gradient-to-br from-brand-50 to-blue-50 shadow-card-md">
+        <div className="rounded-xl p-5 border border-brand-200 bg-brand-50 shadow-sm">
           <div className="flex items-center gap-1.5 mb-2">
             <Award className="w-3.5 h-3.5 text-brand-500" />
             <p className="text-[11px] font-semibold uppercase tracking-widest text-brand-500">Mejor mes</p>
@@ -214,7 +214,7 @@ export default function ComparativaPage() {
 
       {/* ── Detail table ── */}
       <Suspense fallback={<TableSkeleton rows={5} />}>
-        <div className="bg-white rounded-2xl shadow-card-md border border-slate-100 overflow-hidden animate-slide-up" style={{ animationDelay: "150ms" }}>
+        <div className="bg-white rounded-xl shadow-sm border border-slate-100 overflow-hidden animate-slide-up" style={{ animationDelay: "150ms" }}>
 
           {/* Header */}
           <div className="px-6 py-4 border-b border-slate-100 flex items-center justify-between">
@@ -283,7 +283,7 @@ export default function ComparativaPage() {
               </tbody>
               {paired.length > 0 && (
                 <tfoot>
-                  <tr className="border-t-2 border-slate-200 bg-gradient-to-r from-slate-50 to-white">
+                  <tr className="border-t-2 border-slate-200 bg-slate-50">
                     <td className="px-6 py-4">
                       <span className="text-[10px] font-bold uppercase tracking-widest text-slate-400">Acumulado</span>
                     </td>

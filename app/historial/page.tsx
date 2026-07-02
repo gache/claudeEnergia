@@ -115,7 +115,7 @@ export default function HistorialPage() {
       </div>
 
       {/* ── Tariff info strip ── */}
-      <div className="flex flex-wrap gap-4 p-4 bg-white/70 backdrop-blur-md rounded-2xl border border-slate-100/40 shadow-card hover:shadow-card-md transition-shadow duration-300 items-center animate-slide-up" style={{ animationDelay: "50ms" }}>
+      <div className="flex flex-wrap gap-4 p-4 bg-white rounded-xl border border-slate-200 shadow-sm hover:shadow-sm transition-shadow duration-300 items-center animate-slide-up" style={{ animationDelay: "50ms" }}>
         <div className="flex items-center gap-2">
           <div className="w-2 h-2 rounded-full bg-slate-300" />
           <span className="text-xs text-slate-500 font-medium">Tarifas {año}:</span>
@@ -147,7 +147,7 @@ export default function HistorialPage() {
 
       {/* ── HP dominance alert ── */}
       {showHPAlert && (
-        <div className="flex items-start gap-3 bg-red-50 border border-red-200 rounded-2xl px-5 py-4 animate-slide-up" style={{ animationDelay: "75ms" }}>
+        <div className="flex items-start gap-3 bg-red-50 border border-red-200 rounded-xl px-5 py-4 animate-slide-up" style={{ animationDelay: "75ms" }}>
           <AlertTriangle className="w-4 h-4 text-red-500 flex-shrink-0 mt-0.5" />
           <div>
             <p className="text-sm font-semibold text-red-800">
@@ -162,7 +162,7 @@ export default function HistorialPage() {
 
       {/* ── Year-end projection ── */}
       {showProjection && (
-        <div className="bg-white rounded-2xl shadow-card-md border border-slate-100 overflow-hidden animate-slide-up" style={{ animationDelay: "80ms" }}>
+        <div className="bg-white rounded-xl shadow-sm border border-slate-100 overflow-hidden animate-slide-up" style={{ animationDelay: "80ms" }}>
           <div className="px-5 py-3.5 border-b border-slate-100 flex items-center gap-2">
             <TrendingUp className="w-4 h-4 text-brand-500" />
             <h2 className="section-title text-base">Proyección fin de año {año}</h2>
@@ -209,8 +209,8 @@ export default function HistorialPage() {
 
       {/* ── Content ── */}
       {datos.length === 0 ? (
-        <div className="bg-white/70 backdrop-blur-md rounded-2xl border border-slate-100/40 shadow-card hover:shadow-card-md transition-shadow duration-300 p-16 text-center animate-slide-up" style={{ animationDelay: "100ms" }}>
-          <div className="w-16 h-16 rounded-2xl bg-slate-50 flex items-center justify-center mx-auto mb-4">
+        <div className="bg-white rounded-xl border border-slate-200 shadow-sm hover:shadow-sm transition-shadow duration-300 p-16 text-center animate-slide-up" style={{ animationDelay: "100ms" }}>
+          <div className="w-16 h-16 rounded-xl bg-slate-50 flex items-center justify-center mx-auto mb-4">
             <FileX className="w-8 h-8 text-slate-400" />
           </div>
           <p className="text-slate-600 font-semibold text-base">Sin datos para {año}</p>

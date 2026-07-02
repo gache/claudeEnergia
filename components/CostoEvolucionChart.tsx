@@ -21,7 +21,7 @@ function CustomTooltip({ active, payload, label }: any) {
   ];
 
   return (
-    <div className="bg-white border border-slate-100 rounded-2xl shadow-card-lg p-4 min-w-[160px]">
+    <div className="bg-white border border-slate-100 rounded-xl shadow-sm p-4 min-w-[160px]">
       <p className="text-xs font-bold text-slate-600 uppercase tracking-wider mb-3">{label}</p>
       <div className="space-y-2">
         {items.map(item => {
@@ -53,7 +53,7 @@ export default function CostoEvolucionChart({ data, title = "Evolución del cost
   }));
 
   return (
-    <div className="bg-white/70 backdrop-blur-md rounded-2xl shadow-card-md border border-slate-100/40 p-6 hover:shadow-card-lg transition-shadow duration-300">
+    <div className="bg-white rounded-xl shadow-sm border border-slate-200 p-6 hover:shadow-sm transition-shadow duration-300">
       <div className="mb-5">
         <h2 className="section-title">{title}</h2>
         <p className="text-xs text-slate-400 mt-0.5">Líneas de coste HC (cian), HP (rojo) y total (violeta)</p>

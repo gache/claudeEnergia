@@ -34,7 +34,7 @@ export default function RegistroPage() {
     : hasErrors
       ? "bg-red-100 text-red-500 cursor-not-allowed"
       : hasValues
-        ? "bg-brand-600 hover:bg-brand-700 text-white shadow-sm hover:shadow-md"
+        ? "bg-brand-600 hover:bg-brand-700 text-white shadow-sm hover:shadow-sm"
         : "bg-slate-100 text-slate-400 cursor-not-allowed";
 
   function handleSave() {
@@ -90,7 +90,7 @@ export default function RegistroPage() {
       </div>
 
       {/* ── Form card ── */}
-      <div className="bg-white/70 backdrop-blur-md rounded-2xl shadow-card-md border border-slate-100/40 overflow-hidden animate-slide-up hover:shadow-card-lg transition-shadow duration-300" style={{ animationDelay: "50ms" }}>
+      <div className="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden animate-slide-up hover:shadow-sm transition-shadow duration-300" style={{ animationDelay: "50ms" }}>
 
         {/* Form top accent — HC left, HP right */}
         <div className="h-1 flex">
@@ -135,7 +135,7 @@ export default function RegistroPage() {
 
           {/* Existing entry notice */}
           {existing && (
-            <div className="flex items-start justify-between bg-amber-50/60 backdrop-blur-sm rounded-xl px-4 py-3 border border-amber-200/60 gap-3">
+            <div className="flex items-start justify-between bg-amber-50/60 rounded-xl px-4 py-3 border border-amber-200/60 gap-3">
               <div className="flex items-start gap-2">
                 <AlertCircle className="w-4 h-4 text-amber-500 flex-shrink-0 mt-0.5" />
                 <div>
@@ -277,7 +277,7 @@ export default function RegistroPage() {
       {/* ── Live KPI preview ── */}
       <Suspense fallback={<KPISkeleton count={9} />}>
         {preview && (
-          <div className="bg-white rounded-2xl shadow-card-md border border-slate-100 overflow-hidden animate-slide-up" style={{ animationDelay: "100ms" }}>
+          <div className="bg-white rounded-xl shadow-sm border border-slate-100 overflow-hidden animate-slide-up" style={{ animationDelay: "100ms" }}>
           <div className="px-5 py-3.5 border-b border-slate-100 flex items-center gap-2">
             <div className="w-6 h-6 rounded-lg bg-brand-50 flex items-center justify-center">
               <Calculator className="w-3.5 h-3.5 text-brand-600" />

@@ -2,7 +2,7 @@
 
 export default function TableSkeleton({ rows = 5 }: { rows?: number }) {
   return (
-    <div className="bg-white rounded-2xl shadow-card-md border border-slate-100 overflow-hidden animate-pulse">
+    <div className="bg-white rounded-xl shadow-sm border border-slate-100 overflow-hidden animate-pulse">
       <div className="px-6 py-4 border-b border-slate-100">
         <div className="h-5 bg-slate-200 rounded w-48" />
       </div>

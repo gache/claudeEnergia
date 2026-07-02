@@ -87,8 +87,8 @@ export default function CalculadoraPage() {
       </div>
 
       {/* ── Input card ── */}
-      <div className="bg-white/70 backdrop-blur-md rounded-2xl shadow-card-md border border-slate-100/40 overflow-hidden animate-slide-up" style={{ animationDelay: "50ms" }}>
-        <div className="h-1 bg-gradient-to-r from-hc-500 via-brand-500 to-hp-500 opacity-80" />
+      <div className="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden animate-slide-up" style={{ animationDelay: "50ms" }}>
+        <div className="h-1 bg-blue-700" />
         <div className="p-6 space-y-5">
 
           {/* Year / Month */}
@@ -156,7 +156,7 @@ export default function CalculadoraPage() {
       {hasValues && (
         <>
           {/* ── Coste actual ── */}
-          <div className="bg-white rounded-2xl shadow-card-md border border-slate-100 overflow-hidden animate-slide-up" style={{ animationDelay: "80ms" }}>
+          <div className="bg-white rounded-xl shadow-sm border border-slate-100 overflow-hidden animate-slide-up" style={{ animationDelay: "80ms" }}>
             <div className="px-5 py-3.5 border-b border-slate-100 flex items-center gap-2">
               <Zap className="w-4 h-4 text-brand-500" />
               <h2 className="section-title text-base">Coste actual</h2>
@@ -176,7 +176,7 @@ export default function CalculadoraPage() {
 
           {/* ── Simulador de desplazamiento de carga ── */}
           {hp > 0 && (
-            <div className="bg-white rounded-2xl shadow-card-md border border-slate-100 overflow-hidden animate-slide-up" style={{ animationDelay: "100ms" }}>
+            <div className="bg-white rounded-xl shadow-sm border border-slate-100 overflow-hidden animate-slide-up" style={{ animationDelay: "100ms" }}>
               <div className="px-5 py-3.5 border-b border-slate-100 flex items-center gap-2">
                 <TrendingDown className="w-4 h-4 text-savings-600" />
                 <h2 className="section-title text-base">Desplazamiento de carga HP → HC</h2>
@@ -242,7 +242,7 @@ export default function CalculadoraPage() {
           )}
 
           {/* ── Simulador de tarifas alternativas ── */}
-          <div className="bg-white rounded-2xl shadow-card-md border border-slate-100 overflow-hidden animate-slide-up" style={{ animationDelay: "120ms" }}>
+          <div className="bg-white rounded-xl shadow-sm border border-slate-100 overflow-hidden animate-slide-up" style={{ animationDelay: "120ms" }}>
             <div className="px-5 py-3.5 border-b border-slate-100 flex items-center gap-2">
               <ArrowRight className="w-4 h-4 text-violet-500" />
               <h2 className="section-title text-base">Simulador de tarifas alternativas</h2>
@@ -311,7 +311,7 @@ export default function CalculadoraPage() {
       )}
 
       {!hasValues && (
-        <div className="bg-white/70 rounded-2xl border border-slate-100/40 shadow-card p-12 text-center animate-slide-up" style={{ animationDelay: "80ms" }}>
+        <div className="bg-white rounded-xl border border-slate-200 shadow-sm p-12 text-center animate-slide-up" style={{ animationDelay: "80ms" }}>
           <Calculator className="w-10 h-10 text-slate-200 mx-auto mb-3" />
           <p className="text-slate-500 font-medium">Introduce valores de consumo para ver el análisis</p>
           {existing && (

@@ -27,7 +27,7 @@ function CustomTooltip({ active, payload, label, mode, year1, year2 }: any) {
   const unit = mode === "consumo" ? " kWh" : " €";
 
   return (
-    <div className="bg-white border border-slate-100 rounded-2xl shadow-card-lg p-4 min-w-[160px]">
+    <div className="bg-white border border-slate-100 rounded-xl shadow-sm p-4 min-w-[160px]">
       <p className="text-xs font-bold text-slate-600 uppercase tracking-wider mb-3">{label}</p>
       <div className="space-y-2">
         {payload.map((p: any) => (
@@ -75,7 +75,7 @@ export default function ComparativaChart({ data, mode, title, year1 = 2025, year
   };
 
   return (
-    <div className="bg-white rounded-2xl shadow-card-md border border-slate-100 p-6">
+    <div className="bg-white rounded-xl shadow-sm border border-slate-100 p-6">
       <div className="mb-5">
         <h2 className="section-title">{title ?? defaultTitle}</h2>
         <div className="flex items-center gap-3 mt-1.5">
