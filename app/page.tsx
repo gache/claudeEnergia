@@ -2,12 +2,35 @@
 
 import dynamic from "next/dynamic";
 import { useState } from "react";
-import { Zap, TrendingDown, TrendingUp, Minus, BarChart3, PenLine, Wallet, ArrowLeftRight } from "lucide-react";
+import { Zap, TrendingDown, TrendingUp, Minus, BarChart3, PenLine, Wallet, ArrowLeftRight, AlertTriangle, Leaf, DollarSign } from "lucide-react";
 import { useEnergy } from "@/lib/EnergyContext";
 import { MESES } from "@/lib/data";
 
 const ConsumoHCHPChart = dynamic(() => import("@/components/ConsumoHCHPChart"), { ssr: false });
 const CostoEvolucionChart = dynamic(() => import("@/components/CostoEvolucionChart"), { ssr: false });
+
+/* ── Sparkline ────────────────────────────────────────────────────── */
+function Sparkline({ values, color }: { values: number[]; color: string }) {
+  if (values.length < 2) return null;
+  const max = Math.max(...values);
+  const min = Math.min(...values);
+  const range = max - min || 1;
+  const bw = 5, gap = 2, h = 20;
+  const w = values.length * (bw + gap) - gap;
+  return (
+    <svg width={w} height={h} aria-hidden="true">
+      {values.map((v, i) => {
+        const bh = Math.max(2, ((v - min) / range) * (h - 2));
+        return (
+          <rect key={i} x={i * (bw + gap)} y={h - bh} width={bw} height={bh}
+            fill={color} rx={1}
+            opacity={i === values.length - 1 ? 0.9 : 0.25 + (i / (values.length - 1)) * 0.45}
+          />
+        );
+      })}
+    </svg>
+  );
+}
 
 /* ── KPI Card ─────────────────────────────────────────────────────── */
 type KpiAccent = "brand" | "hc" | "hp" | "violet" | "indigo" | "emerald";
@@ -25,7 +48,7 @@ const accentConfig: Record<KpiAccent, {
 
 function KpiCard({
   label, value, unit, subLabel, trend, trendColor, accent = "brand", icon: Icon, delay = 0,
-  prevMargin, marginUnit,
+  prevMargin, marginUnit, sparkline, sparklineColor, projected,
 }: {
   label: string; value: string; unit?: string; subLabel?: string;
   trend?: number; trendColor?: "green" | "red";
@@ -34,6 +57,9 @@ function KpiCard({
   delay?: number;
   prevMargin?: number;
   marginUnit?: string;
+  sparkline?: number[];
+  sparklineColor?: string;
+  projected?: string;
 }) {
   const cfg = accentConfig[accent];
   const up   = (trend ?? 0) > 0;
@@ -74,6 +100,16 @@ function KpiCard({
 
       {subLabel && (
         <p className="text-xs text-slate-600 mt-1 group-hover:text-slate-700 transition-colors">{subLabel}</p>
+      )}
+
+      {projected && (
+        <p className="text-[10px] text-slate-400 mt-0.5 font-mono">≈ {projected} fin de mes</p>
+      )}
+
+      {sparkline && sparkline.length >= 2 && (
+        <div className="mt-2.5">
+          <Sparkline values={sparkline} color={sparklineColor ?? "#6366f1"} />
+        </div>
       )}
 
       {trend !== undefined && (
@@ -291,6 +327,34 @@ export default function DashboardPage() {
   const pctCostoHC = display.costoTotal > 0 ? (display.costoHC / display.costoTotal) * 100 : 0;
   const pctCostoHP = display.costoTotal > 0 ? (display.costoHP / display.costoTotal) * 100 : 0;
 
+  // ── Projection (only in "mes" mode for current month) ─────────
+  const isCurrentPeriod = mode === "mes" && selectedMonth === currentMonth && selectedYear === thisYear;
+  const currentDay = new Date().getDate();
+  const daysInMonth = new Date(selectedYear, selectedMonth, 0).getDate();
+  const projFactor = isCurrentPeriod && currentDay > 0 && currentDay < daysInMonth ? daysInMonth / currentDay : null;
+  const projHC    = projFactor ? actual.hc * projFactor : null;
+  const projHP    = projFactor ? actual.hp * projFactor : null;
+  const projTotal = projFactor ? actual.total * projFactor : null;
+  const projCosto = projFactor ? actual.costoTotal * projFactor : null;
+
+  // ── Sparklines: last 6 months up to selected ──────────────────
+  const spark6 = kpisYear.filter(k => k.mes <= selectedMonth).slice(-6);
+  const sparkHC    = spark6.map(k => k.hc);
+  const sparkHP    = spark6.map(k => k.hp);
+  const sparkTotal = spark6.map(k => k.total);
+  const sparkCosto = spark6.map(k => k.costoTotal);
+
+  // ── Ahorro acumulado (always vs prev year, Jan–selectedMonth) ──
+  const accumCurr = kpisYear.filter(k => k.mes <= selectedMonth);
+  const accumPrev = kpisPrevYear.filter(k => k.mes <= selectedMonth);
+  const hasAhorro = accumPrev.length > 0;
+  const ahorroKwh = accumPrev.reduce((s, k) => s + k.total, 0) - accumCurr.reduce((s, k) => s + k.total, 0);
+  const ahorroEur = accumPrev.reduce((s, k) => s + k.costoTotal, 0) - accumCurr.reduce((s, k) => s + k.costoTotal, 0);
+
+  // ── Trend alert threshold ──────────────────────────────────────
+  const alertThreshold = 15;
+  const showAlert = (varTotal !== undefined && varTotal > alertThreshold) && displayPrev !== null;
+
   // Table: up to 3 months ending at selectedMonth
   const tableMonths   = kpisYear.filter(k => k.mes <= selectedMonth).slice(-3);
   const kpisPrevByMes = new Map(kpisPrevYear.map(p => [p.mes, p]));
@@ -335,6 +399,18 @@ export default function DashboardPage() {
         </div>
 
         {selectorRow}
+
+        {/* Trend alert */}
+        {showAlert && (
+          <div className="flex items-start gap-2.5 px-3 py-2.5 bg-amber-50 border border-amber-200 rounded-xl">
+            <AlertTriangle className="w-4 h-4 text-amber-600 mt-0.5 flex-shrink-0" />
+            <p className="text-sm font-semibold text-amber-800">
+              <span className="font-bold">{mesLabel} {selectedYear}:</span> consumo +{varTotal}% vs {selectedYear - 1}
+              {varTotalHC !== undefined && varTotalHC > alertThreshold && <span className="ml-2 text-amber-700">· HC +{varTotalHC}%</span>}
+              {varTotalHP !== undefined && varTotalHP > alertThreshold && <span className="ml-2 text-amber-700">· HP +{varTotalHP}%</span>}
+            </p>
+          </div>
+        )}
       </div>
 
       {/* ── 1. KPI CARDS ── */}
@@ -347,6 +423,9 @@ export default function DashboardPage() {
           trend={varTotalHC}
           prevMargin={displayPrev ? displayPrev.hc - display.hc : undefined}
           marginUnit="kWh"
+          sparkline={sparkHC}
+          sparklineColor="#3b82f6"
+          projected={projHC ? `${projHC.toFixed(0)} kWh` : undefined}
           accent="hc"
           icon={Zap}
           delay={0}
@@ -359,6 +438,9 @@ export default function DashboardPage() {
           trend={varTotalHP}
           prevMargin={displayPrev ? displayPrev.hp - display.hp : undefined}
           marginUnit="kWh"
+          sparkline={sparkHP}
+          sparklineColor="#dc2626"
+          projected={projHP ? `${projHP.toFixed(0)} kWh` : undefined}
           accent="hp"
           icon={Zap}
           delay={75}
@@ -371,6 +453,9 @@ export default function DashboardPage() {
           trend={varTotal}
           prevMargin={displayPrev ? displayPrev.total - display.total : undefined}
           marginUnit="kWh"
+          sparkline={sparkTotal}
+          sparklineColor="#6366f1"
+          projected={projTotal ? `${projTotal.toFixed(0)} kWh` : undefined}
           accent="indigo"
           icon={BarChart3}
           delay={150}
@@ -396,11 +481,56 @@ export default function DashboardPage() {
           trend={varCosto}
           prevMargin={displayPrev ? displayPrev.costoTotal - display.costoTotal : undefined}
           marginUnit="€"
+          sparkline={sparkCosto}
+          sparklineColor="#10b981"
+          projected={projCosto ? `${projCosto.toFixed(3)} €` : undefined}
           accent="emerald"
           icon={Wallet}
           delay={300}
         />
       </div>
+
+      {/* ── 1b. AHORRO ACUMULADO ── */}
+      {hasAhorro && (
+        <div className="grid grid-cols-2 gap-4 animate-slide-up" style={{ animationDelay: "325ms" }}>
+          <div className={`rounded-2xl border p-4 flex items-center gap-4 ${
+            ahorroKwh >= 0
+              ? "bg-emerald-50 border-emerald-200"
+              : "bg-red-50 border-red-200"
+          }`}>
+            <div className={`w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0 ${
+              ahorroKwh >= 0 ? "bg-emerald-100" : "bg-red-100"
+            }`}>
+              <Leaf className={`w-5 h-5 ${ahorroKwh >= 0 ? "text-emerald-600" : "text-red-500"}`} />
+            </div>
+            <div>
+              <p className="text-[10px] font-bold uppercase tracking-widest text-slate-500">Consumo Ene–{mesLabel}</p>
+              <p className={`text-xl font-black tabular-nums ${ahorroKwh >= 0 ? "text-emerald-700" : "text-red-600"}`}>
+                {ahorroKwh >= 0 ? "-" : "+"}{Math.abs(ahorroKwh).toFixed(0)} kWh
+              </p>
+              <p className="text-[11px] text-slate-500 font-medium">vs {selectedYear - 1}</p>
+            </div>
+          </div>
+          <div className={`rounded-2xl border p-4 flex items-center gap-4 ${
+            ahorroEur >= 0
+              ? "bg-emerald-50 border-emerald-200"
+              : "bg-red-50 border-red-200"
+          }`}>
+            <div className={`w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0 ${
+              ahorroEur >= 0 ? "bg-emerald-100" : "bg-red-100"
+            }`}>
+              <DollarSign className={`w-5 h-5 ${ahorroEur >= 0 ? "text-emerald-600" : "text-red-500"}`} />
+            </div>
+            <div>
+              <p className="text-[10px] font-bold uppercase tracking-widest text-slate-500">Ahorro Ene–{mesLabel}</p>
+              <p className={`text-xl font-black tabular-nums ${ahorroEur >= 0 ? "text-emerald-700" : "text-red-600"}`}>
+                {ahorroEur >= 0 ? "-" : "+"}{Math.abs(ahorroEur).toFixed(3)} €
+              </p>
+              <p className="text-[11px] text-slate-500 font-medium">vs {selectedYear - 1}</p>
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* ── 2 & 3. PARTICIPACIÓN + DESGLOSE DE COSTO ── */}
       <div className="grid grid-cols-1 xl:grid-cols-2 gap-5">
