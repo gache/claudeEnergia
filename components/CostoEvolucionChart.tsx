@@ -2,21 +2,22 @@
 
 import {
   LineChart, Line, XAxis, YAxis, CartesianGrid,
-  Tooltip, Legend, ResponsiveContainer,
+  Tooltip, Legend, ResponsiveContainer, ReferenceLine,
 } from "recharts";
 import { KPIMensual, MESES, fmtNum } from "@/lib/data";
 
 type Props = {
   data: KPIMensual[];
   title?: string;
+  highlightMonth?: number;
 };
 
 function CustomTooltip({ active, payload, label }: any) {
   if (!active || !payload?.length) return null;
 
   const items = [
-    { key: "Coste HC", color: "#06b6d4", unit: "€" },
-    { key: "Coste HP", color: "#ef4444", unit: "€" },
+    { key: "Coste HC", color: "#3b82f6", unit: "€" },
+    { key: "Coste HP", color: "#dc2626", unit: "€" },
     { key: "Total",    color: "#8b5cf6", unit: "€" },
   ];
 
@@ -44,7 +45,7 @@ function CustomTooltip({ active, payload, label }: any) {
   );
 }
 
-export default function CostoEvolucionChart({ data, title = "Evolución del coste (€)" }: Props) {
+export default function CostoEvolucionChart({ data, title = "Evolución del coste (€)", highlightMonth }: Props) {
   const chartData = data.map(d => ({
     mes:        MESES[d.mes - 1],
     "Coste HC": fmtNum(d.costoHC, 3),
@@ -77,6 +78,14 @@ export default function CostoEvolucionChart({ data, title = "Evolución del cost
             width={52}
           />
           <Tooltip content={<CustomTooltip />} cursor={{ stroke: "#e2e8f0", strokeWidth: 1 }} />
+          {highlightMonth !== undefined && (
+            <ReferenceLine
+              x={MESES[highlightMonth - 1]}
+              stroke="#6366f1"
+              strokeWidth={2}
+              strokeDasharray="5 3"
+            />
+          )}
           <Legend
             wrapperStyle={{ fontSize: 12, fontWeight: 500, paddingTop: 16 }}
             iconType="circle"
@@ -85,20 +94,20 @@ export default function CostoEvolucionChart({ data, title = "Evolución del cost
           <Line
             type="monotone"
             dataKey="Coste HC"
-            stroke="#06b6d4"
+            stroke="#3b82f6"
             strokeWidth={2.5}
-            dot={{ r: 4, fill: "#06b6d4", strokeWidth: 0 }}
-            activeDot={{ r: 6, fill: "#06b6d4" }}
+            dot={{ r: 4, fill: "#3b82f6", strokeWidth: 0 }}
+            activeDot={{ r: 6, fill: "#3b82f6" }}
             animationDuration={1100}
             animationEasing="ease-out"
           />
           <Line
             type="monotone"
             dataKey="Coste HP"
-            stroke="#ef4444"
+            stroke="#dc2626"
             strokeWidth={2.5}
-            dot={{ r: 4, fill: "#ef4444", strokeWidth: 0 }}
-            activeDot={{ r: 6, fill: "#ef4444" }}
+            dot={{ r: 4, fill: "#dc2626", strokeWidth: 0 }}
+            activeDot={{ r: 6, fill: "#dc2626" }}
             animationDuration={1100}
             animationEasing="ease-out"
           />

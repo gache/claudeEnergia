@@ -2,13 +2,14 @@
 
 import {
   AreaChart, Area, XAxis, YAxis, CartesianGrid,
-  Tooltip, Legend, ResponsiveContainer,
+  Tooltip, Legend, ResponsiveContainer, ReferenceLine,
 } from "recharts";
 import { KPIMensual, MESES } from "@/lib/data";
 
 type Props = {
   data: KPIMensual[];
   title?: string;
+  highlightMonth?: number;
 };
 
 function CustomDot(props: any) {
@@ -62,7 +63,7 @@ function CustomTooltip({ active, payload, label }: any) {
   );
 }
 
-export default function ConsumoHCHPChart({ data, title = "Consumo HC / HP (kWh)" }: Props) {
+export default function ConsumoHCHPChart({ data, title = "Consumo HC / HP (kWh)", highlightMonth }: Props) {
   const chartData = data.map(d => ({
     mes: MESES[d.mes - 1],
     HC: d.hc,
@@ -82,12 +83,12 @@ export default function ConsumoHCHPChart({ data, title = "Consumo HC / HP (kWh)"
         <AreaChart data={chartData} margin={{ top: 8, right: 8, bottom: 0, left: 0 }}>
           <defs>
             <linearGradient id="gradHC" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="5%"  stopColor="#0096c7" stopOpacity={0.18} />
-              <stop offset="95%" stopColor="#0096c7" stopOpacity={0.01} />
+              <stop offset="5%"  stopColor="#3b82f6" stopOpacity={0.18} />
+              <stop offset="95%" stopColor="#3b82f6" stopOpacity={0.01} />
             </linearGradient>
             <linearGradient id="gradHP" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="5%"  stopColor="#ef4444" stopOpacity={0.18} />
-              <stop offset="95%" stopColor="#ef4444" stopOpacity={0.01} />
+              <stop offset="5%"  stopColor="#dc2626" stopOpacity={0.18} />
+              <stop offset="95%" stopColor="#dc2626" stopOpacity={0.01} />
             </linearGradient>
             <linearGradient id="gradTotal" x1="0" y1="0" x2="0" y2="1">
               <stop offset="5%"  stopColor="#8b5cf6" stopOpacity={0.12} />
@@ -113,15 +114,24 @@ export default function ConsumoHCHPChart({ data, title = "Consumo HC / HP (kWh)"
             iconType="circle"
             iconSize={8}
           />
+          {highlightMonth !== undefined && (
+            <ReferenceLine
+              x={MESES[highlightMonth - 1]}
+              stroke="#6366f1"
+              strokeWidth={2}
+              strokeDasharray="5 3"
+              label={{ value: "◀", position: "insideTopRight", fontSize: 9, fill: "#6366f1", dy: -2 }}
+            />
+          )}
           <Area
             type="monotone"
             dataKey="HC"
             name="HC (Heures Creuses)"
-            stroke="#0096c7"
+            stroke="#3b82f6"
             strokeWidth={2.5}
             fill="url(#gradHC)"
             dot={<CustomDot />}
-            activeDot={{ r: 6, fill: "#0096c7", stroke: "#fff", strokeWidth: 2 }}
+            activeDot={{ r: 6, fill: "#3b82f6", stroke: "#fff", strokeWidth: 2 }}
             animationDuration={1100}
             animationEasing="ease-out"
           />
@@ -129,11 +139,11 @@ export default function ConsumoHCHPChart({ data, title = "Consumo HC / HP (kWh)"
             type="monotone"
             dataKey="HP"
             name="HP (Heures Pleines)"
-            stroke="#ef4444"
+            stroke="#dc2626"
             strokeWidth={2.5}
             fill="url(#gradHP)"
             dot={<CustomDot />}
-            activeDot={{ r: 6, fill: "#ef4444", stroke: "#fff", strokeWidth: 2 }}
+            activeDot={{ r: 6, fill: "#dc2626", stroke: "#fff", strokeWidth: 2 }}
             animationDuration={1100}
             animationEasing="ease-out"
           />
