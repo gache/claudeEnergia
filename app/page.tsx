@@ -136,7 +136,7 @@ function KpiCard({
   const delayStyle = { animationDelay: `${delay}ms` } as React.CSSProperties;
 
   return (
-    <div className={`${cfg.bg} ${cfg.border} rounded-2xl shadow-card-md p-5 hover:shadow-card-xl hover:-translate-y-0.5 transition-all duration-300 group animate-slide-up cursor-pointer`} style={delayStyle}>
+    <div className={`${cfg.bg} ${cfg.border} rounded-2xl shadow-card-md p-5 transition-all duration-300 group animate-slide-up`} style={delayStyle}>
       <div className="flex items-start justify-between mb-3">
         <p className={`text-sm font-bold uppercase tracking-widest ${cfg.labelColor}`} style={{ fontFamily: "var(--font-jakarta, sans-serif)" }}>{label}</p>
         {Icon && (
