@@ -1,7 +1,7 @@
 "use client";
 
 import dynamic from "next/dynamic";
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Zap, TrendingDown, TrendingUp, Minus, BarChart3, PenLine, Wallet, ArrowLeftRight, AlertTriangle, Leaf, DollarSign } from "lucide-react";
 import { useEnergy } from "@/lib/EnergyContext";
 import { MESES } from "@/lib/data";
@@ -9,6 +9,29 @@ import { MESES } from "@/lib/data";
 const ConsumoHCHPChart = dynamic(() => import("@/components/ConsumoHCHPChart"), { ssr: false });
 const CostoEvolucionChart = dynamic(() => import("@/components/CostoEvolucionChart"), { ssr: false });
 const DonutHCHP = dynamic(() => import("@/components/DonutHCHP"), { ssr: false });
+
+/* ── useCountUp ──────────────────────────────────────────────────── */
+function useCountUp(target: number, duration = 500): number {
+  const [val, setVal] = useState(target);
+  const raf = useRef<number>();
+  const prev = useRef(target);
+  useEffect(() => {
+    const from = prev.current;
+    if (from === target) return;
+    const start = performance.now();
+    const tick = (now: number) => {
+      const t = Math.min((now - start) / duration, 1);
+      const ease = 1 - Math.pow(1 - t, 3);
+      setVal(from + (target - from) * ease);
+      if (t < 1) raf.current = requestAnimationFrame(tick);
+      else { setVal(target); prev.current = target; }
+    };
+    raf.current = requestAnimationFrame(tick);
+    prev.current = target;
+    return () => { if (raf.current) cancelAnimationFrame(raf.current); };
+  }, [target, duration]);
+  return val;
+}
 
 /* ── MiniDonut ───────────────────────────────────────────────────── */
 function MiniDonut({ pct, color }: { pct: number; color: string }) {
@@ -74,7 +97,7 @@ const accentConfig: Record<KpiAccent, {
 
 function KpiCard({
   label, value, unit, subLabel, trend, trendColor, accent = "brand", icon: Icon, delay = 0,
-  prevMargin, marginUnit, sparkline, sparklineColor, projected,
+  prevMargin, marginUnit, sparkline, sparklineColor, projected, rawValue, decimals: dec = 3,
 }: {
   label: string; value: string; unit?: string; subLabel?: string;
   trend?: number; trendColor?: "green" | "red";
@@ -86,7 +109,11 @@ function KpiCard({
   sparkline?: number[];
   sparklineColor?: string;
   projected?: string;
+  rawValue?: number;
+  decimals?: number;
 }) {
+  const animated = useCountUp(rawValue ?? 0);
+  const displayValue = rawValue !== undefined ? animated.toFixed(dec) : value;
   const cfg = accentConfig[accent];
   const up   = (trend ?? 0) > 0;
   const down = (trend ?? 0) < 0;
@@ -109,7 +136,7 @@ function KpiCard({
   const delayStyle = { animationDelay: `${delay}ms` } as React.CSSProperties;
 
   return (
-    <div className={`${cfg.bg} ${cfg.border} rounded-2xl shadow-card-md p-5 hover:shadow-card-xl transition-shadow duration-300 group animate-slide-up cursor-pointer`} style={delayStyle}>
+    <div className={`${cfg.bg} ${cfg.border} rounded-2xl shadow-card-md p-5 hover:shadow-card-xl hover:-translate-y-0.5 transition-all duration-300 group animate-slide-up cursor-pointer`} style={delayStyle}>
       <div className="flex items-start justify-between mb-3">
         <p className={`text-sm font-bold uppercase tracking-widest ${cfg.labelColor}`} style={{ fontFamily: "var(--font-jakarta, sans-serif)" }}>{label}</p>
         {Icon && (
@@ -120,7 +147,7 @@ function KpiCard({
       </div>
 
       <p className={`text-[28px] font-bold tracking-tight leading-none tabular-nums transition-colors duration-300 ${valueCl}`}>
-        {value}
+        {displayValue}
         {unit && <span className="text-sm font-normal text-slate-500 ml-1.5">{unit}</span>}
       </p>
 
@@ -159,6 +186,12 @@ function KpiCard({
           }`}>
             {down ? "" : up ? "+" : ""}{Math.abs(trend)}%
           </span>
+        </div>
+      )}
+
+      {sparkline && sparkline.length >= 2 && sparklineColor && (
+        <div className="mt-3 pt-2 border-t border-slate-50">
+          <Sparkline values={sparkline} color={sparklineColor} />
         </div>
       )}
     </div>
@@ -482,7 +515,7 @@ export default function DashboardPage() {
       <div className="grid grid-cols-2 sm:grid-cols-3 xl:grid-cols-5 gap-4">
         <KpiCard
           label="Consumo HC"
-          value={display.hc.toFixed(3)}
+          value={display.hc.toFixed(3)} rawValue={display.hc}
           unit="kWh"
           subLabel={`${display.costoHC.toFixed(3)} €`}
           trend={varTotalHC}
@@ -497,7 +530,7 @@ export default function DashboardPage() {
         />
         <KpiCard
           label="Consumo HP"
-          value={display.hp.toFixed(3)}
+          value={display.hp.toFixed(3)} rawValue={display.hp}
           unit="kWh"
           subLabel={`${display.costoHP.toFixed(3)} €`}
           trend={varTotalHP}
@@ -512,7 +545,7 @@ export default function DashboardPage() {
         />
         <KpiCard
           label="Consumo Total"
-          value={display.total.toFixed(3)}
+          value={display.total.toFixed(3)} rawValue={display.total}
           unit="kWh"
           subLabel={`${display.costoTotal.toFixed(3)} €`}
           trend={varTotal}
@@ -527,7 +560,7 @@ export default function DashboardPage() {
         />
         <KpiCard
           label="Diferencia"
-          value={difActual.toFixed(3)}
+          value={difActual.toFixed(3)} rawValue={difActual}
           unit="kWh"
           subLabel={display.ventajaHC ? "Ventaja HC" : "Domina HP"}
           trend={varDif}
@@ -540,7 +573,7 @@ export default function DashboardPage() {
         />
         <KpiCard
           label="Costo Total"
-          value={display.costoTotal.toFixed(3)}
+          value={display.costoTotal.toFixed(3)} rawValue={display.costoTotal}
           unit="€"
           subLabel={`${display.total.toFixed(3)} kWh`}
           trend={varCosto}
@@ -570,7 +603,7 @@ export default function DashboardPage() {
       {/* ── 2. PARTICIPACIÓN + DESGLOSE DE COSTO ── */}
       <div className="grid grid-cols-1 xl:grid-cols-2 gap-5">
         {/* Participación del consumo */}
-        <div className="bg-white rounded-2xl shadow-card-md border border-slate-100/40 p-6 animate-slide-up hover:shadow-card-lg transition-shadow duration-300" style={{ animationDelay: "100ms" }}>
+        <div className="bg-white rounded-2xl shadow-card-md border border-slate-100/40 p-6 animate-slide-up hover:shadow-card-lg hover:-translate-y-0.5 transition-all duration-300" style={{ animationDelay: "100ms" }}>
           <h2 className="text-xl font-black text-slate-900 mb-5 tracking-tight" style={{ fontFamily: "var(--font-jakarta, sans-serif)" }}>Participación del consumo</h2>
           <DonutHCHP
             hcPct={display.pctHC} hpPct={display.pctHP}
@@ -580,7 +613,7 @@ export default function DashboardPage() {
         </div>
 
         {/* Desglose del costo */}
-        <div className="bg-white rounded-2xl shadow-card-md border border-slate-100/40 p-6 animate-slide-up hover:shadow-card-lg transition-shadow duration-300" style={{ animationDelay: "200ms" }}>
+        <div className="bg-white rounded-2xl shadow-card-md border border-slate-100/40 p-6 animate-slide-up hover:shadow-card-lg hover:-translate-y-0.5 transition-all duration-300" style={{ animationDelay: "200ms" }}>
           <h2 className="text-xl font-black text-slate-900 mb-5 tracking-tight" style={{ fontFamily: "var(--font-jakarta, sans-serif)" }}>Desglose del costo</h2>
           <DonutHCHP
             hcPct={pctCostoHC} hpPct={pctCostoHP}
