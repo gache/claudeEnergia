@@ -161,6 +161,11 @@ function KpiCard({
           </span>
         </div>
       )}
+      {sparkline && sparkline.length >= 2 && sparklineColor && (
+        <div className="mt-3 pt-2 border-t border-slate-50">
+          <Sparkline values={sparkline} color={sparklineColor} />
+        </div>
+      )}
     </div>
   );
 }
@@ -256,6 +261,9 @@ export default function DashboardPage() {
 
   const actual   = kpiFor(selectedMonth, selectedYear);
   const anterior = kpiFor(selectedMonth, selectedYear - 1);
+  const prevCalMes  = selectedMonth === 1 ? 12 : selectedMonth - 1;
+  const prevCalAño  = selectedMonth === 1 ? selectedYear - 1 : selectedYear;
+  const prevCalKpi  = kpiFor(prevCalMes, prevCalAño);
   const mesLabel = MESES[selectedMonth - 1];
 
   // ── Selector header (shared between empty & normal states) ──
@@ -575,7 +583,7 @@ export default function DashboardPage() {
           <DonutHCHP
             hcPct={display.pctHC} hpPct={display.pctHP}
             hcKwh={display.hc} hpKwh={display.hp}
-            total={display.total} layout="featured"
+            total={display.total} prevTotal={prevCalKpi?.total} layout="featured"
           />
         </div>
 
@@ -585,7 +593,7 @@ export default function DashboardPage() {
           <DonutHCHP
             hcPct={pctCostoHC} hpPct={pctCostoHP}
             hcKwh={display.costoHC} hpKwh={display.costoHP}
-            total={display.costoTotal} unit="€" decimals={3} totalDecimals={0} showUnitInline layout="featured"
+            total={display.costoTotal} unit="€" decimals={3} totalDecimals={0} showUnitInline prevTotal={prevCalKpi?.costoTotal} layout="featured"
           />
         </div>
       </div>
