@@ -22,7 +22,7 @@ export default function DonutHCHP({
   ];
 
   const chart = (
-    <div className="relative" style={{ height: layout === "featured" ? 160 : 180 }}>
+    <div className="relative" style={{ height: layout === "featured" ? 200 : 180 }}>
       <ResponsiveContainer width="100%" height="100%">
         <PieChart>
           <Pie
