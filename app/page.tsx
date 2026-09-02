@@ -189,11 +189,6 @@ function KpiCard({
         </div>
       )}
 
-      {sparkline && sparkline.length >= 2 && sparklineColor && (
-        <div className="mt-3 pt-2 border-t border-slate-50">
-          <Sparkline values={sparkline} color={sparklineColor} />
-        </div>
-      )}
     </div>
   );
 }
