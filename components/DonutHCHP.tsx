@@ -51,8 +51,14 @@ export default function DonutHCHP({
           />
         </PieChart>
       </ResponsiveContainer>
-      <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none">
-        <span className={`font-black text-slate-900 tabular-nums leading-none ${layout === "featured" ? "text-3xl" : "text-2xl"}`}>
+      <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none px-2">
+        <span className={`font-black text-slate-900 tabular-nums leading-none ${
+          (() => {
+            const len = total.toFixed(decimals).length;
+            if (layout === "featured") return len <= 4 ? "text-3xl" : len <= 6 ? "text-2xl" : len <= 8 ? "text-xl" : "text-base";
+            return len <= 4 ? "text-2xl" : len <= 6 ? "text-xl" : len <= 8 ? "text-lg" : "text-sm";
+          })()
+        }`}>
           {total.toFixed(decimals)}
         </span>
         <span className="text-xs text-slate-400 font-medium mt-0.5">{unit} total</span>
@@ -100,8 +106,13 @@ export default function DonutHCHP({
               contentStyle={{ borderRadius: 12, border: "none", boxShadow: "0 4px 16px rgba(0,0,0,.10)", fontSize: 12, padding: "8px 12px" }} />
           </PieChart>
         </ResponsiveContainer>
-        <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none">
-          <span className="text-2xl font-black text-slate-900 tabular-nums leading-none">{total.toFixed(decimals)}</span>
+        <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none px-2">
+          <span className={`font-black text-slate-900 tabular-nums leading-none ${
+            (() => {
+              const len = total.toFixed(decimals).length;
+              return len <= 4 ? "text-2xl" : len <= 6 ? "text-xl" : len <= 8 ? "text-lg" : "text-sm";
+            })()
+          }`}>{total.toFixed(decimals)}</span>
           <span className="text-xs text-slate-400 font-medium mt-0.5">{unit} total</span>
         </div>
       </div>
