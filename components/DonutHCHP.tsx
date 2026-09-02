@@ -22,7 +22,7 @@ export default function DonutHCHP({
   ];
 
   const chart = (
-    <div className="relative" style={{ height: layout === "featured" ? 200 : 180 }}>
+    <div className="relative" style={{ height: layout === "featured" ? 160 : 180 }}>
       <ResponsiveContainer width="100%" height="100%">
         <PieChart>
           <Pie
@@ -62,23 +62,23 @@ export default function DonutHCHP({
 
   if (layout === "featured") {
     return (
-      <div className="flex items-center gap-4">
+      <div className="flex items-center gap-2 sm:gap-4">
         {/* HC side */}
-        <div className="flex-1 text-center space-y-1">
+        <div className="flex-1 min-w-0 text-center space-y-1">
           <div className="w-3 h-3 rounded-full bg-blue-500 mx-auto mb-2" />
           <p className="text-[10px] font-bold uppercase tracking-wider text-hc-600">HC</p>
-          <p className="text-4xl font-black text-hc-700 tabular-nums leading-none">{hcPct.toFixed(1)}<span className="text-xl">%</span></p>
+          <p className="text-2xl sm:text-4xl font-black text-hc-700 tabular-nums leading-none">{hcPct.toFixed(1)}<span className="text-base sm:text-xl">%</span></p>
           <p className="text-xs font-mono text-hc-500">{hcKwh.toFixed(decimals)} {unit}</p>
         </div>
 
         {/* Donut */}
-        <div className="flex-shrink-0 w-[180px]">{chart}</div>
+        <div className="flex-shrink-0 w-[140px] sm:w-[180px]">{chart}</div>
 
         {/* HP side */}
-        <div className="flex-1 text-center space-y-1">
+        <div className="flex-1 min-w-0 text-center space-y-1">
           <div className="w-3 h-3 rounded-full bg-red-600 mx-auto mb-2" />
           <p className="text-[10px] font-bold uppercase tracking-wider text-hp-600">HP</p>
-          <p className="text-4xl font-black text-hp-700 tabular-nums leading-none">{hpPct.toFixed(1)}<span className="text-xl">%</span></p>
+          <p className="text-2xl sm:text-4xl font-black text-hp-700 tabular-nums leading-none">{hpPct.toFixed(1)}<span className="text-base sm:text-xl">%</span></p>
           <p className="text-xs font-mono text-hp-500">{hpKwh.toFixed(decimals)} {unit}</p>
         </div>
       </div>
