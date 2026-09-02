@@ -11,18 +11,14 @@ interface Props {
   decimals?: number;
   totalDecimals?: number;
   showUnitInline?: boolean;
-  prevTotal?: number;
   layout?: "default" | "featured";
 }
 
 export default function DonutHCHP({
   hcPct, hpPct, hcKwh, hpKwh, total,
-  unit = "kWh", decimals = 0, totalDecimals, showUnitInline = false, prevTotal, layout = "default",
+  unit = "kWh", decimals = 0, totalDecimals, showUnitInline = false, layout = "default",
 }: Props) {
   const centerDecimals = totalDecimals ?? decimals;
-  const delta = prevTotal !== undefined && prevTotal !== 0
-    ? Math.round(((total - prevTotal) / prevTotal) * 100)
-    : undefined;
   const data = [
     { name: "HC", value: parseFloat(hcPct.toFixed(1)) },
     { name: "HP", value: parseFloat(hpPct.toFixed(1)) },
@@ -69,11 +65,6 @@ export default function DonutHCHP({
           {total.toFixed(centerDecimals)}{showUnitInline ? unit : ""}
         </span>
         <span className="text-xs text-slate-400 font-medium mt-0.5">{showUnitInline ? "total" : `${unit} total`}</span>
-        {delta !== undefined && (
-          <span className={`text-[10px] font-bold mt-0.5 ${delta < 0 ? "text-emerald-500" : delta > 0 ? "text-red-500" : "text-slate-400"}`}>
-            {delta > 0 ? "↑" : delta < 0 ? "↓" : "–"}{Math.abs(delta)}%
-          </span>
-        )}
       </div>
     </div>
   );
@@ -126,11 +117,6 @@ export default function DonutHCHP({
             })()
           }`}>{total.toFixed(centerDecimals)}<span className="text-base font-bold">{showUnitInline ? unit : ""}</span></span>
           <span className="text-xs text-slate-400 font-medium mt-0.5">{showUnitInline ? "total" : `${unit} total`}</span>
-          {delta !== undefined && (
-            <span className={`text-[10px] font-bold mt-0.5 ${delta < 0 ? "text-emerald-500" : delta > 0 ? "text-red-500" : "text-slate-400"}`}>
-              {delta > 0 ? "↑" : delta < 0 ? "↓" : "–"}{Math.abs(delta)}%
-            </span>
-          )}
         </div>
       </div>
       <div className="w-full space-y-2.5 px-1">
