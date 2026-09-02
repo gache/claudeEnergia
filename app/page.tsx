@@ -585,7 +585,7 @@ export default function DashboardPage() {
           <DonutHCHP
             hcPct={pctCostoHC} hpPct={pctCostoHP}
             hcKwh={display.costoHC} hpKwh={display.costoHP}
-            total={display.costoTotal} unit="€" decimals={3} layout="featured"
+            total={display.costoTotal} unit="€" decimals={3} totalDecimals={0} showUnitInline layout="featured"
           />
         </div>
       </div>

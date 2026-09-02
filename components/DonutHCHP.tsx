@@ -9,13 +9,16 @@ interface Props {
   total: number;
   unit?: string;
   decimals?: number;
+  totalDecimals?: number;
+  showUnitInline?: boolean;
   layout?: "default" | "featured";
 }
 
 export default function DonutHCHP({
   hcPct, hpPct, hcKwh, hpKwh, total,
-  unit = "kWh", decimals = 0, layout = "default",
+  unit = "kWh", decimals = 0, totalDecimals, showUnitInline = false, layout = "default",
 }: Props) {
+  const centerDecimals = totalDecimals ?? decimals;
   const data = [
     { name: "HC", value: parseFloat(hcPct.toFixed(1)) },
     { name: "HP", value: parseFloat(hpPct.toFixed(1)) },
@@ -54,14 +57,14 @@ export default function DonutHCHP({
       <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none px-2">
         <span className={`font-black text-slate-900 tabular-nums leading-none ${
           (() => {
-            const len = total.toFixed(decimals).length;
+            const len = total.toFixed(centerDecimals).length;
             if (layout === "featured") return len <= 4 ? "text-3xl" : len <= 6 ? "text-2xl" : len <= 8 ? "text-xl" : "text-base";
             return len <= 4 ? "text-2xl" : len <= 6 ? "text-xl" : len <= 8 ? "text-lg" : "text-sm";
           })()
         }`}>
-          {total.toFixed(decimals)}
+          {total.toFixed(centerDecimals)}{showUnitInline ? unit : ""}
         </span>
-        <span className="text-xs text-slate-400 font-medium mt-0.5">{unit} total</span>
+        <span className="text-xs text-slate-400 font-medium mt-0.5">{showUnitInline ? "total" : `${unit} total`}</span>
       </div>
     </div>
   );
@@ -109,11 +112,11 @@ export default function DonutHCHP({
         <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none px-2">
           <span className={`font-black text-slate-900 tabular-nums leading-none ${
             (() => {
-              const len = total.toFixed(decimals).length;
+              const len = total.toFixed(centerDecimals).length;
               return len <= 4 ? "text-2xl" : len <= 6 ? "text-xl" : len <= 8 ? "text-lg" : "text-sm";
             })()
-          }`}>{total.toFixed(decimals)}</span>
-          <span className="text-xs text-slate-400 font-medium mt-0.5">{unit} total</span>
+          }`}>{total.toFixed(centerDecimals)}<span className="text-base font-bold">{showUnitInline ? unit : ""}</span></span>
+          <span className="text-xs text-slate-400 font-medium mt-0.5">{showUnitInline ? "total" : `${unit} total`}</span>
         </div>
       </div>
       <div className="w-full space-y-2.5 px-1">
