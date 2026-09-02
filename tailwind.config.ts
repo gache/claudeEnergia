@@ -36,20 +36,20 @@ const config: Config = {
           900: "#050d20",
           950: "#030810",
         },
-        // HC accent — professional cyan
+        // HC accent — executive light blue
         hc: {
-          50:  "#ecfbff",
-          100: "#d6f5ff",
-          200: "#b0ebff",
-          300: "#80deff",
-          400: "#00b4d8",
-          500: "#0096c7",
-          600: "#0077b6",
-          700: "#005fa3",
-          800: "#004a88",
-          900: "#003d6f",
+          50:  "#eff6ff",
+          100: "#dbeafe",
+          200: "#bfdbfe",
+          300: "#93c5fd",
+          400: "#60a5fa",
+          500: "#3b82f6",
+          600: "#2563eb",
+          700: "#1d4ed8",
+          800: "#1e40af",
+          900: "#1e3a8a",
         },
-        // HP accent — vibrant red
+        // HP accent — executive red
         hp: {
           50:  "#fef2f2",
           100: "#fee2e2",
@@ -95,7 +95,7 @@ const config: Config = {
         "card-md":   "0 4px 12px rgba(0,0,0,.08), 0 2px 6px rgba(0,0,0,.06)",
         "card-lg":   "0 10px 25px rgba(0,0,0,.1), 0 4px 12px rgba(0,0,0,.07)",
         "card-xl":   "0 20px 40px rgba(0,0,0,.12), 0 8px 16px rgba(0,0,0,.08)",
-        "glow-hc":   "0 0 24px rgba(0,180,216,.35), inset 0 1px 0 rgba(255,255,255,.2)",
+        "glow-hc":   "0 0 24px rgba(59,130,246,.35), inset 0 1px 0 rgba(255,255,255,.2)",
         "glow-hp":   "0 0 24px rgba(255,127,80,.30), inset 0 1px 0 rgba(255,255,255,.2)",
         "glow-brand":"0 0 24px rgba(15,76,117,.25), inset 0 1px 0 rgba(255,255,255,.15)",
       },
@@ -196,8 +196,8 @@ const config: Config = {
       },
       backgroundImage: {
         "gradient-brand":   "linear-gradient(135deg, #0f4c75 0%, #082d47 50%, #051f33 100%)",
-        "gradient-hc":      "linear-gradient(135deg, #00b4d8 0%, #0096c7 100%)",
-        "gradient-hp":      "linear-gradient(135deg, #ff7f50 0%, #e66a42 100%)",
+        "gradient-hc":      "linear-gradient(135deg, #93c5fd 0%, #3b82f6 100%)",
+        "gradient-hp":      "linear-gradient(135deg, #f87171 0%, #dc2626 100%)",
         "gradient-savings": "linear-gradient(135deg, #10b981 0%, #059669 100%)",
         "gradient-subtle":  "linear-gradient(to bottom, rgba(15,76,117,0.03) 0%, rgba(0,180,216,0.02) 100%)",
       },

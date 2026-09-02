@@ -8,7 +8,7 @@
 /* ── CSS Design Tokens ───────────────────────────────────────────── */
 :root {
   /* Surfaces */
-  --bg-page:       #eef2f7;
+  --bg-page:       #f8fafc;
   --bg-card:       #ffffff;
   --bg-sidebar:    #0f1f45;
 
@@ -18,8 +18,8 @@
   --text-muted:     #94a3b8;
 
   /* Brand accents */
-  --accent-hc:     #06b6d4;
-  --accent-hp:     #f59e0b;
+  --accent-hc:     #3b82f6;
+  --accent-hp:     #dc2626;
   --accent-total:  #8b5cf6;
 
   /* Borders */
@@ -111,10 +111,10 @@ body {
     @apply inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-semibold;
   }
   .badge-hc {
-    @apply badge bg-cyan-50 text-cyan-700 border border-cyan-200;
+    @apply badge bg-blue-50 text-blue-700 border border-blue-200;
   }
   .badge-hp {
-    @apply badge bg-amber-50 text-amber-700 border border-amber-200;
+    @apply badge bg-red-50 text-red-700 border border-red-200;
   }
   .badge-positive {
     @apply badge bg-red-50 text-red-600;

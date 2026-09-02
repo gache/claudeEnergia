@@ -10,9 +10,11 @@ type Props = {
   data: KPIMensual[];
   title?: string;
   highlightMonth?: number;
+  prevData?: KPIMensual[];
+  prevYear?: number;
 };
 
-function CustomTooltip({ active, payload, label }: any) {
+function CustomTooltip({ active, payload, label, prevYear }: any) {
   if (!active || !payload?.length) return null;
 
   const items = [
@@ -20,6 +22,7 @@ function CustomTooltip({ active, payload, label }: any) {
     { key: "Coste HP", color: "#dc2626", unit: "€" },
     { key: "Total",    color: "#8b5cf6", unit: "€" },
   ];
+  const totalPrev = payload.find((p: any) => p.dataKey === "Total_prev")?.value ?? null;
 
   return (
     <div className="bg-white border border-slate-100 rounded-2xl shadow-card-lg p-4 min-w-[160px]">
@@ -40,94 +43,80 @@ function CustomTooltip({ active, payload, label }: any) {
             </div>
           );
         })}
+        {totalPrev !== null && (
+          <div className="pt-2 mt-1 border-t border-slate-100">
+            <p className="text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-1">{prevYear}</p>
+            <div className="flex items-center justify-between gap-4">
+              <span className="text-xs text-slate-400">Total</span>
+              <span className="text-xs font-mono text-slate-400 tabular-nums">{totalPrev.toFixed(3)} €</span>
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );
 }
 
-export default function CostoEvolucionChart({ data, title = "Evolución del coste (€)", highlightMonth }: Props) {
+export default function CostoEvolucionChart({
+  data, title = "Evolución del coste (€)", highlightMonth, prevData, prevYear,
+}: Props) {
+  const prevByMes = prevData ? new Map(prevData.map(d => [d.mes, d])) : null;
+
   const chartData = data.map(d => ({
-    mes:        MESES[d.mes - 1],
-    "Coste HC": fmtNum(d.costoHC, 3),
-    "Coste HP": fmtNum(d.costoHP, 3),
-    "Total":    fmtNum(d.costoTotal, 3),
+    mes:          MESES[d.mes - 1],
+    "Coste HC":   fmtNum(d.costoHC, 3),
+    "Coste HP":   fmtNum(d.costoHP, 3),
+    "Total":      fmtNum(d.costoTotal, 3),
+    "Total_prev": prevByMes?.get(d.mes) ? fmtNum(prevByMes.get(d.mes)!.costoTotal, 3) : null,
   }));
+
+  const hasPrev = !!prevData && prevData.length > 0;
 
   return (
     <div className="bg-white/70 backdrop-blur-md rounded-2xl shadow-card-md border border-slate-100/40 p-6 hover:shadow-card-lg transition-shadow duration-300">
-      <div className="mb-5">
-        <h2 className="section-title">{title}</h2>
-        <p className="text-xs text-slate-400 mt-0.5">Líneas de coste HC (cian), HP (rojo) y total (violeta)</p>
+      <div className="mb-5 flex items-start justify-between gap-2">
+        <div>
+          <h2 className="section-title">{title}</h2>
+          <p className="text-xs text-slate-400 mt-0.5">Líneas de coste HC (azul), HP (rojo) y total (violeta)</p>
+        </div>
+        {hasPrev && (
+          <div className="flex items-center gap-1 text-[10px] font-bold text-slate-400 flex-shrink-0">
+            <span className="w-4 h-[1px] border-t-2 border-dashed border-slate-300 inline-block" />
+            <span>{prevYear}</span>
+          </div>
+        )}
       </div>
       <div className="overflow-x-auto -mx-1">
       <div className="min-w-[300px]">
       <ResponsiveContainer width="100%" height={260}>
         <LineChart data={chartData}>
           <CartesianGrid strokeDasharray="3 3" stroke="#e2e8f0" vertical={false} />
-          <XAxis
-            dataKey="mes"
-            tick={{ fontSize: 11, fill: "#94a3b8", fontWeight: 500 }}
-            axisLine={false}
-            tickLine={false}
-          />
-          <YAxis
-            tick={{ fontSize: 11, fill: "#94a3b8" }}
-            axisLine={false}
-            tickLine={false}
-            unit=" €"
-            width={52}
-          />
-          <Tooltip content={<CustomTooltip />} cursor={{ stroke: "#e2e8f0", strokeWidth: 1 }} />
+          <XAxis dataKey="mes" tick={{ fontSize: 11, fill: "#94a3b8", fontWeight: 500 }} axisLine={false} tickLine={false} />
+          <YAxis tick={{ fontSize: 11, fill: "#94a3b8" }} axisLine={false} tickLine={false} unit=" €" width={52} />
+          <Tooltip content={<CustomTooltip prevYear={prevYear} />} cursor={{ stroke: "#e2e8f0", strokeWidth: 1 }} />
           {highlightMonth !== undefined && (
-            <ReferenceLine
-              x={MESES[highlightMonth - 1]}
-              stroke="#6366f1"
-              strokeWidth={2}
-              strokeDasharray="5 3"
-            />
+            <ReferenceLine x={MESES[highlightMonth - 1]} stroke="#6366f1" strokeWidth={2} strokeDasharray="5 3" />
           )}
-          <Legend
-            wrapperStyle={{ fontSize: 12, fontWeight: 500, paddingTop: 16 }}
-            iconType="circle"
-            iconSize={8}
-          />
-          <Line
-            type="monotone"
-            dataKey="Coste HC"
-            stroke="#3b82f6"
-            strokeWidth={2.5}
-            dot={{ r: 4, fill: "#3b82f6", strokeWidth: 0 }}
-            activeDot={{ r: 6, fill: "#3b82f6" }}
-            animationDuration={1100}
-            animationEasing="ease-out"
-          />
-          <Line
-            type="monotone"
-            dataKey="Coste HP"
-            stroke="#dc2626"
-            strokeWidth={2.5}
-            dot={{ r: 4, fill: "#dc2626", strokeWidth: 0 }}
-            activeDot={{ r: 6, fill: "#dc2626" }}
-            animationDuration={1100}
-            animationEasing="ease-out"
-          />
-          <Line
-            type="monotone"
-            dataKey="Total"
-            stroke="#8b5cf6"
-            strokeWidth={2}
-            strokeDasharray="6 3"
-            dot={{ r: 3, fill: "#8b5cf6", strokeWidth: 0 }}
-            activeDot={{ r: 5, fill: "#8b5cf6" }}
-            animationDuration={1100}
-            animationEasing="ease-out"
-          />
+          <Legend wrapperStyle={{ fontSize: 12, fontWeight: 500, paddingTop: 16 }} iconType="circle" iconSize={8} />
+          {hasPrev && (
+            <Line type="monotone" dataKey="Total_prev" name={`Total ${prevYear}`}
+              stroke="#cbd5e1" strokeWidth={1.5} strokeDasharray="5 4"
+              dot={false} activeDot={{ r: 4, fill: "#cbd5e1" }} legendType="none" connectNulls />
+          )}
+          <Line type="monotone" dataKey="Coste HC" stroke="#3b82f6" strokeWidth={2.5}
+            dot={{ r: 4, fill: "#3b82f6", strokeWidth: 0 }} activeDot={{ r: 6, fill: "#3b82f6" }}
+            animationDuration={1100} animationEasing="ease-out" />
+          <Line type="monotone" dataKey="Coste HP" stroke="#dc2626" strokeWidth={2.5}
+            dot={{ r: 4, fill: "#dc2626", strokeWidth: 0 }} activeDot={{ r: 6, fill: "#dc2626" }}
+            animationDuration={1100} animationEasing="ease-out" />
+          <Line type="monotone" dataKey="Total" stroke="#8b5cf6" strokeWidth={2} strokeDasharray="6 3"
+            dot={{ r: 3, fill: "#8b5cf6", strokeWidth: 0 }} activeDot={{ r: 5, fill: "#8b5cf6" }}
+            animationDuration={1100} animationEasing="ease-out" />
         </LineChart>
       </ResponsiveContainer>
       </div>
       </div>
 
-      {/* Accessible data table */}
       <details className="mt-3">
         <summary className="text-xs text-slate-400 cursor-pointer hover:text-slate-600 transition-colors select-none w-fit">
           Ver datos en tabla

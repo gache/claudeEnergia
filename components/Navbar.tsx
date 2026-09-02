@@ -98,11 +98,11 @@ function TarifasPanel() {
         <div className="space-y-2">
           <p className="text-[9px] text-slate-500 font-mono">{MESES[selectedMes - 1]} {selectedAño}</p>
           <div>
-            <label className="text-[9px] font-bold uppercase tracking-widest text-cyan-400 block mb-1">HC €/kWh</label>
+            <label className="text-[9px] font-bold uppercase tracking-widest text-blue-400 block mb-1">HC €/kWh</label>
             <input
               type="number" step="0.00001" min="0" value={draft.hc}
               onChange={e => setDraft(d => d ? { ...d, hc: e.target.value } : d)}
-              className="w-full bg-white/10 border border-white/20 rounded-lg px-2.5 py-1.5 text-xs font-mono text-cyan-200 focus:outline-none focus:border-cyan-400/50"
+              className="w-full bg-white/10 border border-white/20 rounded-lg px-2.5 py-1.5 text-xs font-mono text-blue-200 focus:outline-none focus:border-blue-400/50"
             />
           </div>
           <div>
@@ -127,10 +127,10 @@ function TarifasPanel() {
           <p className="text-[9px] text-slate-500 font-mono">{MESES[selectedMes - 1]} {selectedAño}</p>
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-2">
-              <div className="w-2 h-2 rounded-full bg-cyan-400 flex-shrink-0" />
+              <div className="w-2 h-2 rounded-full bg-blue-400 flex-shrink-0" />
               <span className="text-xs text-slate-400 font-medium">HC</span>
             </div>
-            <span className="text-xs font-semibold text-cyan-300 font-mono">{tarifa.hc.toFixed(5)} €/kWh</span>
+            <span className="text-xs font-semibold text-blue-300 font-mono">{tarifa.hc.toFixed(5)} €/kWh</span>
           </div>
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-2">
@@ -188,7 +188,7 @@ export default function Navbar() {
           </Link>
 
           {/* Nav links */}
-          <nav className="flex items-center gap-1">
+          <nav className="flex items-center gap-1 ml-auto">
             {nav.map(({ href, label, icon: Icon }) => {
               const active = pathname === href;
               return (
@@ -211,7 +211,7 @@ export default function Navbar() {
           </nav>
 
           {/* Tarifas dropdown */}
-          <div className="ml-auto relative" ref={tarifasRef}>
+          <div className="relative ml-2" ref={tarifasRef}>
             <button
               onClick={() => setTarifasOpen(o => !o)}
               className={`flex items-center gap-2 px-3 py-1.5 rounded-xl text-sm font-medium transition-all duration-150 min-h-[36px] ${

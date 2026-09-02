@@ -2,15 +2,17 @@
 
 import dynamic from "next/dynamic";
 import { useState, Suspense } from "react";
-import { FileX, Download, TrendingUp, AlertTriangle } from "lucide-react";
+import { FileX, Download, AlertTriangle } from "lucide-react";
 import { useEnergy } from "@/lib/EnergyContext";
 import { ANOS_DISPONIBLES, MESES, calcularTotales, KPIMensual } from "@/lib/data";
 import ChartSkeleton from "@/components/ChartSkeleton";
 import TableSkeleton from "@/components/TableSkeleton";
+import HeatmapCosto from "@/components/HeatmapCosto";
 
 const TablaConsumo = dynamic(() => import("@/components/TablaConsumo"), { ssr: false });
 const ConsumoHCHPChart = dynamic(() => import("@/components/ConsumoHCHPChart"), { ssr: false, loading: () => <ChartSkeleton /> });
 const CostoEvolucionChart = dynamic(() => import("@/components/CostoEvolucionChart"), { ssr: false, loading: () => <ChartSkeleton /> });
+const EficienciaHCChart = dynamic(() => import("@/components/EficienciaHCChart"), { ssr: false, loading: () => <ChartSkeleton /> });
 
 function exportCSV(datos: KPIMensual[], año: number) {
   const headers = ["Mes", "HC (kWh)", "HP (kWh)", "Total (kWh)", "Coste HC (€)", "Coste HP (€)", "Coste Total (€)", "% HC", "% HP"];
@@ -40,21 +42,14 @@ export default function HistorialPage() {
   const [año, setAño] = useState(new Date().getFullYear());
 
   const datos        = getByYear(año);
+  const datosPrev    = getByYear(año - 1);
   const tarifa       = getTarifa(año, 1);
   const { totalKwh, totalCosto, totalHC, totalHP, ventajaMeses } = calcularTotales(datos);
   const hpMeses      = datos.length - ventajaMeses;
 
-  // Projection
-  const mesesRestantes = 12 - datos.length;
-  const showProjection = datos.length > 0 && datos.length < 12;
-  const avgKwh   = totalKwh / datos.length;
-  const avgCosto = totalCosto / datos.length;
-  const avgHC    = totalHC / datos.length;
-  const avgHP    = totalHP / datos.length;
-  const proyKwh   = totalKwh + avgKwh * mesesRestantes;
-  const proyCosto = totalCosto + avgCosto * mesesRestantes;
-  const proyHC    = totalHC + avgHC * mesesRestantes;
-  const proyHP    = totalHP + avgHP * mesesRestantes;
+  // Best / worst month
+  const mejorMes = datos.length > 0 ? datos.reduce((b, d) => d.costoTotal < b.costoTotal ? d : b) : null;
+  const peorMes  = datos.length > 0 ? datos.reduce((b, d) => d.costoTotal > b.costoTotal ? d : b) : null;
 
   // HP dominance alert
   const hpDominaCount = datos.filter(d => !d.ventajaHC).length;
@@ -147,7 +142,7 @@ export default function HistorialPage() {
 
       {/* ── HP dominance alert ── */}
       {showHPAlert && (
-        <div className="flex items-start gap-3 bg-red-50 border border-red-200 rounded-2xl px-5 py-4 animate-slide-up" style={{ animationDelay: "75ms" }}>
+        <div className="flex items-start gap-3 bg-red-50 border border-red-200 rounded-2xl px-5 py-4 animate-slide-up" style={{ animationDelay: "60ms" }}>
           <AlertTriangle className="w-4 h-4 text-red-500 flex-shrink-0 mt-0.5" />
           <div>
             <p className="text-sm font-semibold text-red-800">
@@ -160,49 +155,20 @@ export default function HistorialPage() {
         </div>
       )}
 
-      {/* ── Year-end projection ── */}
-      {showProjection && (
-        <div className="bg-white rounded-2xl shadow-card-md border border-slate-100 overflow-hidden animate-slide-up" style={{ animationDelay: "80ms" }}>
-          <div className="px-5 py-3.5 border-b border-slate-100 flex items-center gap-2">
-            <TrendingUp className="w-4 h-4 text-brand-500" />
-            <h2 className="section-title text-base">Proyección fin de año {año}</h2>
-            <span className="ml-auto badge bg-slate-50 text-slate-500 border border-slate-200 text-[10px]">
-              Basado en {datos.length} mes{datos.length !== 1 ? "es" : ""} · promedio extrapolado
-            </span>
+      {/* ── Best / worst month cards ── */}
+      {datos.length > 1 && mejorMes && peorMes && (
+        <div className="grid grid-cols-2 gap-4 animate-slide-up" style={{ animationDelay: "75ms" }}>
+          <div className="bg-white rounded-2xl border border-slate-100 p-4">
+            <p className="text-[10px] font-bold uppercase tracking-widest text-slate-400 mb-2">Mejor mes</p>
+            <p className="text-lg font-bold text-emerald-600 tabular-nums">{MESES[mejorMes.mes - 1]}</p>
+            <p className="text-sm font-semibold text-slate-700 tabular-nums mt-0.5">{mejorMes.costoTotal.toFixed(2)} €</p>
+            <p className="text-xs text-slate-400 mt-1">{mejorMes.total.toFixed(1)} kWh</p>
           </div>
-          <div className="p-5 grid grid-cols-2 sm:grid-cols-4 gap-4">
-            <div className="rounded-xl bg-slate-50 border border-slate-200 p-4">
-              <p className="text-[10px] font-bold uppercase tracking-widest text-slate-500 mb-1.5">Total kWh proyectado</p>
-              <p className="text-xl font-bold text-slate-700 tabular-nums">
-                {proyKwh.toFixed(1)}
-                <span className="text-xs font-normal ml-1 text-slate-500">kWh</span>
-              </p>
-              <p className="text-[10px] text-slate-500 mt-1">actual {totalKwh.toFixed(1)} + {mesesRestantes}m est.</p>
-            </div>
-            <div className="rounded-xl bg-violet-50 border border-violet-100 p-4">
-              <p className="text-[10px] font-bold uppercase tracking-widest text-violet-400 mb-1.5">Coste total proyectado</p>
-              <p className="text-xl font-bold text-violet-700 tabular-nums">
-                {proyCosto.toFixed(2)}
-                <span className="text-xs font-normal ml-1 text-violet-400">€</span>
-              </p>
-              <p className="text-[10px] text-violet-400 mt-1">actual {totalCosto.toFixed(2)} €</p>
-            </div>
-            <div className="rounded-xl bg-hc-50 border border-hc-100 p-4">
-              <p className="text-[10px] font-bold uppercase tracking-widest text-hc-400 mb-1.5">HC proyectado</p>
-              <p className="text-xl font-bold text-hc-700 tabular-nums">
-                {proyHC.toFixed(1)}
-                <span className="text-xs font-normal ml-1 text-hc-400">kWh</span>
-              </p>
-              <p className="text-[10px] text-hc-400 mt-1">actual {totalHC.toFixed(1)} kWh</p>
-            </div>
-            <div className="rounded-xl bg-hp-50 border border-hp-100 p-4">
-              <p className="text-[10px] font-bold uppercase tracking-widest text-hp-400 mb-1.5">HP proyectado</p>
-              <p className="text-xl font-bold text-hp-700 tabular-nums">
-                {proyHP.toFixed(1)}
-                <span className="text-xs font-normal ml-1 text-hp-400">kWh</span>
-              </p>
-              <p className="text-[10px] text-hp-400 mt-1">actual {totalHP.toFixed(1)} kWh</p>
-            </div>
+          <div className="bg-white rounded-2xl border border-slate-100 p-4">
+            <p className="text-[10px] font-bold uppercase tracking-widest text-slate-400 mb-2">Peor mes</p>
+            <p className="text-lg font-bold text-hp-600 tabular-nums">{MESES[peorMes.mes - 1]}</p>
+            <p className="text-sm font-semibold text-slate-700 tabular-nums mt-0.5">{peorMes.costoTotal.toFixed(2)} €</p>
+            <p className="text-xs text-slate-400 mt-1">{peorMes.total.toFixed(1)} kWh</p>
           </div>
         </div>
       )}
@@ -222,13 +188,21 @@ export default function HistorialPage() {
         <>
           <div className="grid grid-cols-1 xl:grid-cols-2 gap-5 animate-slide-up" style={{ animationDelay: "100ms" }}>
             <Suspense fallback={<ChartSkeleton />}>
-              <ConsumoHCHPChart data={datos} title={`Consumo HC/HP — ${año}`} />
+              <ConsumoHCHPChart data={datos} title={`Consumo HC/HP — ${año}`} prevData={datosPrev} prevYear={año - 1} />
             </Suspense>
             <Suspense fallback={<ChartSkeleton />}>
-              <CostoEvolucionChart data={datos} title={`Evolución de costes — ${año} (€)`} />
+              <CostoEvolucionChart data={datos} title={`Evolución de costes — ${año} (€)`} prevData={datosPrev} prevYear={año - 1} />
             </Suspense>
           </div>
           <div className="animate-slide-up" style={{ animationDelay: "150ms" }}>
+            <HeatmapCosto />
+          </div>
+          <div className="animate-slide-up" style={{ animationDelay: "200ms" }}>
+            <Suspense fallback={<ChartSkeleton />}>
+              <EficienciaHCChart data={datos} prevData={datosPrev} year={año} />
+            </Suspense>
+          </div>
+          <div className="animate-slide-up" style={{ animationDelay: "250ms" }}>
             <Suspense fallback={<TableSkeleton rows={5} />}>
               <TablaConsumo data={datos} />
             </Suspense>

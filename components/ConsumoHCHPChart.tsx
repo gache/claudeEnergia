@@ -10,28 +10,25 @@ type Props = {
   data: KPIMensual[];
   title?: string;
   highlightMonth?: number;
+  prevData?: KPIMensual[];
+  prevYear?: number;
 };
 
 function CustomDot(props: any) {
   const { cx, cy, stroke } = props;
   return (
-    <circle
-      cx={cx}
-      cy={cy}
-      r={4}
-      fill="#fff"
-      stroke={stroke}
-      strokeWidth={2.5}
-      style={{ filter: `drop-shadow(0 1px 4px ${stroke}55)` }}
-    />
+    <circle cx={cx} cy={cy} r={4} fill="#fff" stroke={stroke} strokeWidth={2.5}
+      style={{ filter: `drop-shadow(0 1px 4px ${stroke}55)` }} />
   );
 }
 
-function CustomTooltip({ active, payload, label }: any) {
+function CustomTooltip({ active, payload, label, prevYear }: any) {
   if (!active || !payload?.length) return null;
-  const hc    = payload.find((p: any) => p.dataKey === "HC")?.value ?? 0;
-  const hp    = payload.find((p: any) => p.dataKey === "HP")?.value ?? 0;
-  const total = hc + hp;
+  const hc      = payload.find((p: any) => p.dataKey === "HC")?.value ?? 0;
+  const hp      = payload.find((p: any) => p.dataKey === "HP")?.value ?? 0;
+  const total   = hc + hp;
+  const hcPrev  = payload.find((p: any) => p.dataKey === "HC_prev")?.value ?? null;
+  const hpPrev  = payload.find((p: any) => p.dataKey === "HP_prev")?.value ?? null;
 
   return (
     <div className="bg-white border border-slate-100 rounded-2xl shadow-card-lg p-4 min-w-[160px]">
@@ -58,24 +55,56 @@ function CustomTooltip({ active, payload, label }: any) {
           </div>
           <span className="text-sm font-bold text-violet-700 tabular-nums">{total.toFixed(3)} kWh</span>
         </div>
+        {(hcPrev !== null || hpPrev !== null) && (
+          <div className="pt-2 mt-1 border-t border-slate-100 space-y-1.5">
+            <p className="text-[10px] font-bold text-slate-400 uppercase tracking-wider">{prevYear}</p>
+            {hcPrev !== null && (
+              <div className="flex items-center justify-between gap-4">
+                <span className="text-xs text-slate-400">HC</span>
+                <span className="text-xs font-mono text-slate-400 tabular-nums">{hcPrev.toFixed(3)} kWh</span>
+              </div>
+            )}
+            {hpPrev !== null && (
+              <div className="flex items-center justify-between gap-4">
+                <span className="text-xs text-slate-400">HP</span>
+                <span className="text-xs font-mono text-slate-400 tabular-nums">{hpPrev.toFixed(3)} kWh</span>
+              </div>
+            )}
+          </div>
+        )}
       </div>
     </div>
   );
 }
 
-export default function ConsumoHCHPChart({ data, title = "Consumo HC / HP (kWh)", highlightMonth }: Props) {
+export default function ConsumoHCHPChart({
+  data, title = "Consumo HC / HP (kWh)", highlightMonth, prevData, prevYear,
+}: Props) {
+  const prevByMes = prevData ? new Map(prevData.map(d => [d.mes, d])) : null;
+
   const chartData = data.map(d => ({
-    mes: MESES[d.mes - 1],
-    HC: d.hc,
-    HP: d.hp,
-    Total: d.hc + d.hp,
+    mes:     MESES[d.mes - 1],
+    HC:      d.hc,
+    HP:      d.hp,
+    Total:   d.hc + d.hp,
+    HC_prev: prevByMes?.get(d.mes)?.hc ?? null,
+    HP_prev: prevByMes?.get(d.mes)?.hp ?? null,
   }));
+
+  const hasPrev = !!prevData && prevData.length > 0;
 
   return (
     <div className="bg-white/70 backdrop-blur-md rounded-2xl shadow-card-md border border-slate-100/40 p-6 hover:shadow-card-lg transition-shadow duration-300">
-      <div className="mb-5">
-        <h2 className="section-title">{title}</h2>
-        <p className="text-xs text-slate-400 mt-0.5">Evolución mensual HC (fuera punta) y HP (punta)</p>
+      <div className="mb-5 flex items-start justify-between gap-2">
+        <div>
+          <h2 className="section-title">{title}</h2>
+          <p className="text-xs text-slate-400 mt-0.5">Evolución mensual HC (fuera punta) y HP (punta)</p>
+        </div>
+        {hasPrev && (
+          <div className="flex items-center gap-3 text-[10px] font-bold text-slate-400 flex-shrink-0">
+            <span className="flex items-center gap-1"><span className="w-4 h-0.5 bg-slate-400 inline-block rounded" />{prevYear}</span>
+          </div>
+        )}
       </div>
       <div className="overflow-x-auto -mx-1">
       <div className="min-w-[300px]">
@@ -96,76 +125,41 @@ export default function ConsumoHCHPChart({ data, title = "Consumo HC / HP (kWh)"
             </linearGradient>
           </defs>
           <CartesianGrid strokeDasharray="3 3" stroke="#e2e8f0" vertical={false} />
-          <XAxis
-            dataKey="mes"
-            tick={{ fontSize: 11, fill: "#94a3b8", fontWeight: 500 }}
-            axisLine={false}
-            tickLine={false}
-          />
-          <YAxis
-            tick={{ fontSize: 11, fill: "#94a3b8" }}
-            axisLine={false}
-            tickLine={false}
-            width={40}
-          />
-          <Tooltip content={<CustomTooltip />} cursor={{ stroke: "#cbd5e1", strokeWidth: 1, strokeDasharray: "4 4" }} />
-          <Legend
-            wrapperStyle={{ fontSize: 12, fontWeight: 500, paddingTop: 16 }}
-            iconType="circle"
-            iconSize={8}
-          />
+          <XAxis dataKey="mes" tick={{ fontSize: 11, fill: "#94a3b8", fontWeight: 500 }} axisLine={false} tickLine={false} />
+          <YAxis tick={{ fontSize: 11, fill: "#94a3b8" }} axisLine={false} tickLine={false} width={40} />
+          <Tooltip content={<CustomTooltip prevYear={prevYear} />} cursor={{ stroke: "#cbd5e1", strokeWidth: 1, strokeDasharray: "4 4" }} />
+          <Legend wrapperStyle={{ fontSize: 12, fontWeight: 500, paddingTop: 16 }} iconType="circle" iconSize={8} />
           {highlightMonth !== undefined && (
-            <ReferenceLine
-              x={MESES[highlightMonth - 1]}
-              stroke="#6366f1"
-              strokeWidth={2}
-              strokeDasharray="5 3"
-              label={{ value: "◀", position: "insideTopRight", fontSize: 9, fill: "#6366f1", dy: -2 }}
-            />
+            <ReferenceLine x={MESES[highlightMonth - 1]} stroke="#6366f1" strokeWidth={2} strokeDasharray="5 3"
+              label={{ value: "◀", position: "insideTopRight", fontSize: 9, fill: "#6366f1", dy: -2 }} />
           )}
-          <Area
-            type="monotone"
-            dataKey="HC"
-            name="HC (Heures Creuses)"
-            stroke="#3b82f6"
-            strokeWidth={2.5}
-            fill="url(#gradHC)"
-            dot={<CustomDot />}
-            activeDot={{ r: 6, fill: "#3b82f6", stroke: "#fff", strokeWidth: 2 }}
-            animationDuration={1100}
-            animationEasing="ease-out"
-          />
-          <Area
-            type="monotone"
-            dataKey="HP"
-            name="HP (Heures Pleines)"
-            stroke="#dc2626"
-            strokeWidth={2.5}
-            fill="url(#gradHP)"
-            dot={<CustomDot />}
-            activeDot={{ r: 6, fill: "#dc2626", stroke: "#fff", strokeWidth: 2 }}
-            animationDuration={1100}
-            animationEasing="ease-out"
-          />
-          <Area
-            type="monotone"
-            dataKey="Total"
-            name="Total"
-            stroke="#8b5cf6"
-            strokeWidth={2}
-            strokeDasharray="5 3"
-            fill="url(#gradTotal)"
-            dot={<CustomDot />}
-            activeDot={{ r: 5, fill: "#8b5cf6", stroke: "#fff", strokeWidth: 2 }}
-            animationDuration={1100}
-            animationEasing="ease-out"
-          />
+          {hasPrev && (
+            <Area type="monotone" dataKey="HC_prev" name={`HC ${prevYear}`}
+              stroke="#94a3b8" strokeWidth={1.5} strokeDasharray="5 4" fill="none"
+              dot={false} activeDot={{ r: 4, fill: "#94a3b8" }} legendType="none" connectNulls />
+          )}
+          {hasPrev && (
+            <Area type="monotone" dataKey="HP_prev" name={`HP ${prevYear}`}
+              stroke="#cbd5e1" strokeWidth={1.5} strokeDasharray="5 4" fill="none"
+              dot={false} activeDot={{ r: 4, fill: "#cbd5e1" }} legendType="none" connectNulls />
+          )}
+          <Area type="monotone" dataKey="HC" name="HC (Heures Creuses)"
+            stroke="#3b82f6" strokeWidth={2.5} fill="url(#gradHC)"
+            dot={<CustomDot />} activeDot={{ r: 6, fill: "#3b82f6", stroke: "#fff", strokeWidth: 2 }}
+            animationDuration={1100} animationEasing="ease-out" />
+          <Area type="monotone" dataKey="HP" name="HP (Heures Pleines)"
+            stroke="#dc2626" strokeWidth={2.5} fill="url(#gradHP)"
+            dot={<CustomDot />} activeDot={{ r: 6, fill: "#dc2626", stroke: "#fff", strokeWidth: 2 }}
+            animationDuration={1100} animationEasing="ease-out" />
+          <Area type="monotone" dataKey="Total" name="Total"
+            stroke="#8b5cf6" strokeWidth={2} strokeDasharray="5 3" fill="url(#gradTotal)"
+            dot={<CustomDot />} activeDot={{ r: 5, fill: "#8b5cf6", stroke: "#fff", strokeWidth: 2 }}
+            animationDuration={1100} animationEasing="ease-out" />
         </AreaChart>
       </ResponsiveContainer>
       </div>
       </div>
 
-      {/* Accessible data table */}
       <details className="mt-3">
         <summary className="text-xs text-slate-400 cursor-pointer hover:text-slate-600 transition-colors select-none w-fit">
           Ver datos en tabla

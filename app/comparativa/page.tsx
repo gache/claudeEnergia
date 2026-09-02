@@ -9,35 +9,24 @@ import ChartSkeleton from "@/components/ChartSkeleton";
 import TableSkeleton from "@/components/TableSkeleton";
 import VarBadge from "@/components/VarBadge";
 
-const ComparativaChart = dynamic(() => import("@/components/ComparativaChart"), { ssr: false, loading: () => <ChartSkeleton /> });
+const ComparativaChart      = dynamic(() => import("@/components/ComparativaChart"),      { ssr: false, loading: () => <ChartSkeleton /> });
+const ComparativaHCHPChart  = dynamic(() => import("@/components/ComparativaHCHPChart"),  { ssr: false, loading: () => <ChartSkeleton /> });
 
 function SummaryKPI({
   label, value, subLabel, good,
 }: { label: string; value: string | null; subLabel?: string; good?: boolean }) {
-  const isGood    = good === true;
-  const isBad     = good === false;
+  const isGood = good === true;
+  const isBad  = good === false;
 
   return (
-    <div className={`rounded-2xl p-5 border shadow-card-md backdrop-blur-sm hover:shadow-card-lg transition-shadow duration-300 ${
-      isGood
-        ? "bg-savings-50/60 border-savings-200/60"
-        : isBad
-          ? "bg-red-50/60 border-red-200/60"
-          : "bg-brand-50/60 border-brand-200/60"
-    }`}>
-      <p className={`text-[11px] font-semibold uppercase tracking-widest mb-2 ${
-        isGood ? "text-savings-500" : isBad ? "text-red-500" : "text-brand-500"
-      }`}>{label}</p>
-
+    <div className="rounded-2xl p-5 border border-slate-100 bg-white shadow-card-md hover:shadow-card-lg transition-shadow duration-300">
+      <p className="text-[11px] font-semibold uppercase tracking-widest text-slate-400 mb-2">{label}</p>
       <p className={`text-3xl font-bold tabular-nums leading-none ${
-        isGood ? "text-savings-700" : isBad ? "text-red-600" : "text-brand-700"
+        isGood ? "text-emerald-700" : isBad ? "text-red-600" : "text-slate-800"
       }`}>
         {value ?? "—"}
       </p>
-
-      {subLabel && (
-        <p className="text-xs text-slate-500 mt-2">{subLabel}</p>
-      )}
+      {subLabel && <p className="text-xs text-slate-400 mt-2">{subLabel}</p>}
     </div>
   );
 }
@@ -67,6 +56,10 @@ export default function ComparativaPage() {
         total2: d2.total,
         costo1: d1?.costoTotal ?? 0,
         costo2: d2.costoTotal,
+        hc1:    d1?.hc         ?? 0,
+        hc2:    d2.hc,
+        hp1:    d1?.hp         ?? 0,
+        hp2:    d2.hp,
       };
     });
   }, [k1, k2]);
@@ -95,6 +88,38 @@ export default function ComparativaPage() {
       },
       { mes: 0, v: Infinity }
     ),
+    [paired]
+  );
+
+  const worstMonth = useMemo(
+    () => paired.reduce(
+      (worst, d) => {
+        const v = ((d.total2 - d.total1) / d.total1) * 100;
+        return v > worst.v ? { mes: d.mes, v } : worst;
+      },
+      { mes: 0, v: -Infinity }
+    ),
+    [paired]
+  );
+
+  const avgVarHC = useMemo(
+    () => paired.length > 0
+      ? paired.reduce((a, d) => a + (d.hc1 !== 0 ? ((d.hc2 - d.hc1) / d.hc1) * 100 : 0), 0) / paired.length
+      : null,
+    [paired]
+  );
+
+  const avgVarHP = useMemo(
+    () => paired.length > 0
+      ? paired.reduce((a, d) => a + (d.hp1 !== 0 ? ((d.hp2 - d.hp1) / d.hp1) * 100 : 0), 0) / paired.length
+      : null,
+    [paired]
+  );
+
+  const ahorroAbsoluto = useMemo(
+    () => paired.length > 0
+      ? paired.reduce((a, d) => a + d.costo1, 0) - paired.reduce((a, d) => a + d.costo2, 0)
+      : null,
     [paired]
   );
 
@@ -161,34 +186,60 @@ export default function ComparativaPage() {
       </div>
 
       {/* ── Summary KPIs ── */}
-      <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 animate-slide-up" style={{ animationDelay: "50ms" }}>
+      <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 animate-slide-up" style={{ animationDelay: "50ms" }}>
         <SummaryKPI
-          label="Variación media consumo"
-          value={avgVarConsumo !== null ? `${avgVarConsumo > 0 ? "+" : ""}${avgVarConsumo.toFixed(1)}%` : null}
-          subLabel={`${year2} vs ${year1} · ${paired.length} meses comparados`}
+          label="Var. media consumo"
+          value={avgVarConsumo !== null ? `${avgVarConsumo > 0 ? "+" : ""}${Math.abs(avgVarConsumo).toFixed(1)}%` : null}
+          subLabel={`${year2} vs ${year1} · ${paired.length}m`}
           good={avgVarConsumo !== null ? avgVarConsumo < 0 : undefined}
         />
         <SummaryKPI
-          label="Variación media coste"
-          value={avgVarCosto !== null ? `${avgVarCosto > 0 ? "+" : ""}${avgVarCosto.toFixed(1)}%` : null}
-          subLabel={`${year2} vs ${year1} · impacto económico`}
+          label="Var. media coste"
+          value={avgVarCosto !== null ? `${avgVarCosto > 0 ? "+" : ""}${Math.abs(avgVarCosto).toFixed(1)}%` : null}
+          subLabel="impacto económico"
           good={avgVarCosto !== null ? avgVarCosto < 0 : undefined}
         />
-        <div className="rounded-2xl p-5 border border-brand-200 bg-gradient-to-br from-brand-50 to-blue-50 shadow-card-md">
+        <div className="rounded-2xl p-5 border border-slate-100 bg-white shadow-card-md hover:shadow-card-lg transition-shadow duration-300">
           <div className="flex items-center gap-1.5 mb-2">
-            <Award className="w-3.5 h-3.5 text-brand-500" />
-            <p className="text-[11px] font-semibold uppercase tracking-widest text-brand-500">Mejor mes</p>
+            <Award className="w-3.5 h-3.5 text-emerald-500" />
+            <p className="text-[11px] font-semibold uppercase tracking-widest text-slate-400">Mejor mes</p>
           </div>
-          <p className="text-3xl font-bold text-brand-700 leading-none">
+          <p className="text-3xl font-bold text-emerald-700 leading-none">
             {bestMonth.mes > 0 ? MESES[bestMonth.mes - 1] : "—"}
           </p>
           <p className="text-xs text-slate-400 mt-2">
-            {bestMonth.v < Infinity
-              ? `${bestMonth.v.toFixed(1)}% vs ${year1} · mayor ahorro`
-              : "Sin datos suficientes"}
+            {bestMonth.v < Infinity ? `${bestMonth.v.toFixed(1)}% vs ${year1}` : "Sin datos"}
+          </p>
+        </div>
+        <div className="rounded-2xl p-5 border border-slate-100 bg-white shadow-card-md hover:shadow-card-lg transition-shadow duration-300">
+          <div className="flex items-center gap-1.5 mb-2">
+            <Award className="w-3.5 h-3.5 text-red-400" />
+            <p className="text-[11px] font-semibold uppercase tracking-widest text-slate-400">Peor mes</p>
+          </div>
+          <p className="text-3xl font-bold text-red-600 leading-none">
+            {worstMonth.mes > 0 ? MESES[worstMonth.mes - 1] : "—"}
+          </p>
+          <p className="text-xs text-slate-400 mt-2">
+            {worstMonth.v > -Infinity && worstMonth.mes > 0 ? `+${worstMonth.v.toFixed(1)}% vs ${year1}` : "Sin datos"}
           </p>
         </div>
       </div>
+
+      {/* ── Ahorro absoluto ── */}
+      {ahorroAbsoluto !== null && (
+        <div className="bg-white border border-slate-100 rounded-2xl p-5 shadow-card-md animate-slide-up flex items-center gap-4" style={{ animationDelay: "75ms" }}>
+          <div className={`w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0 ${ahorroAbsoluto >= 0 ? "bg-emerald-100" : "bg-red-100"}`}>
+            <Award className={`w-5 h-5 ${ahorroAbsoluto >= 0 ? "text-emerald-600" : "text-red-500"}`} />
+          </div>
+          <div>
+            <p className="text-[10px] font-bold uppercase tracking-widest text-slate-400">Ahorro total acumulado — {year2} vs {year1}</p>
+            <p className={`text-2xl font-black tabular-nums ${ahorroAbsoluto >= 0 ? "text-emerald-700" : "text-red-600"}`}>
+              {ahorroAbsoluto < 0 ? "+" : ""}{Math.abs(ahorroAbsoluto).toFixed(2)} €
+            </p>
+            <p className="text-xs text-slate-400">{paired.length} meses comparados</p>
+          </div>
+        </div>
+      )}
 
       {/* ── Charts ── */}
       <div className="grid grid-cols-1 xl:grid-cols-2 gap-5 animate-slide-up" style={{ animationDelay: "100ms" }}>
@@ -209,6 +260,13 @@ export default function ComparativaPage() {
             year1={year1}
             year2={year2}
           />
+        </Suspense>
+      </div>
+
+      {/* ── HC/HP breakdown chart ── */}
+      <div className="animate-slide-up" style={{ animationDelay: "125ms" }}>
+        <Suspense fallback={<ChartSkeleton />}>
+          <ComparativaHCHPChart data={comparData} year1={year1} year2={year2} />
         </Suspense>
       </div>
 
@@ -237,7 +295,9 @@ export default function ComparativaPage() {
                   <th scope="col" className="text-left px-6 py-3 text-[10px] font-bold uppercase tracking-widest text-slate-500 bg-slate-50/80 border-b border-slate-100">Mes</th>
                   <th scope="col" className="text-right px-4 py-3 text-[10px] font-bold uppercase tracking-widest text-slate-500 bg-slate-50/60 border-b border-slate-100">kWh {year1}</th>
                   <th scope="col" className="text-right px-4 py-3 text-[10px] font-bold uppercase tracking-widest text-brand-600 bg-brand-50/40 border-b border-slate-100">kWh {year2}</th>
-                  <th scope="col" className="text-right px-4 py-3 text-[10px] font-bold uppercase tracking-widest text-slate-500 bg-slate-50/80 border-b border-slate-100">Var% Consumo</th>
+                  <th scope="col" className="text-right px-4 py-3 text-[10px] font-bold uppercase tracking-widest text-slate-500 bg-slate-50/80 border-b border-slate-100">Var% Total</th>
+                  <th scope="col" className="text-right px-4 py-3 text-[10px] font-bold uppercase tracking-widest text-hc-600 bg-hc-50/30 border-b border-slate-100">Var% HC</th>
+                  <th scope="col" className="text-right px-4 py-3 text-[10px] font-bold uppercase tracking-widest text-hp-600 bg-hp-50/30 border-b border-slate-100">Var% HP</th>
                   <th scope="col" className="text-right px-4 py-3 text-[10px] font-bold uppercase tracking-widest text-slate-500 bg-slate-50/60 border-b border-slate-100">€ {year1}</th>
                   <th scope="col" className="text-right px-4 py-3 text-[10px] font-bold uppercase tracking-widest text-brand-600 bg-brand-50/40 border-b border-slate-100">€ {year2}</th>
                   <th scope="col" className="text-right px-6 py-3 text-[10px] font-bold uppercase tracking-widest text-slate-500 bg-slate-50/80 border-b border-slate-100">Var% Coste</th>
@@ -247,6 +307,8 @@ export default function ComparativaPage() {
                 {comparData.map(d => {
                   const vKwh   = d.total1 ? ((d.total2 - d.total1) / d.total1) * 100 : null;
                   const vCosto = d.costo1 ? ((d.costo2 - d.costo1) / d.costo1) * 100 : null;
+                  const vHC    = d.hc1    ? ((d.hc2    - d.hc1)    / d.hc1)    * 100 : null;
+                  const vHP    = d.hp1    ? ((d.hp2    - d.hp1)    / d.hp1)    * 100 : null;
                   const improved = vKwh !== null && vKwh < 0;
                   const worsened = vKwh !== null && vKwh > 0;
                   return (
@@ -265,39 +327,39 @@ export default function ComparativaPage() {
                       <td className="px-4 py-3.5 text-right font-mono font-bold text-slate-800 tabular-nums bg-brand-50/20 group-hover:bg-brand-50/40 transition-colors">
                         {d.total2.toFixed(3)}
                       </td>
-                      <td className="px-4 py-3.5 text-right">
-                        <VarBadge pct={vKwh} />
-                      </td>
+                      <td className="px-4 py-3.5 text-right"><VarBadge pct={vKwh} /></td>
+                      <td className="px-4 py-3.5 text-right"><VarBadge pct={vHC} /></td>
+                      <td className="px-4 py-3.5 text-right"><VarBadge pct={vHP} /></td>
                       <td className="px-4 py-3.5 text-right font-mono text-slate-400 tabular-nums text-xs bg-slate-50/30 group-hover:bg-slate-50/60 transition-colors">
                         {d.costo1 ? d.costo1.toFixed(3) : "—"}
                       </td>
                       <td className="px-4 py-3.5 text-right font-mono font-semibold text-slate-700 tabular-nums text-xs bg-brand-50/20 group-hover:bg-brand-50/40 transition-colors">
                         {d.costo2.toFixed(3)}
                       </td>
-                      <td className="px-6 py-3.5 text-right">
-                        <VarBadge pct={vCosto} />
-                      </td>
+                      <td className="px-6 py-3.5 text-right"><VarBadge pct={vCosto} /></td>
                     </tr>
                   );
                 })}
               </tbody>
               {paired.length > 0 && (
                 <tfoot>
-                  <tr className="border-t-2 border-slate-200 bg-gradient-to-r from-slate-50 to-white">
+                  <tr className="border-t-2 border-slate-200 bg-slate-50">
                     <td className="px-6 py-4">
                       <span className="text-[10px] font-bold uppercase tracking-widest text-slate-400">Acumulado</span>
                     </td>
-                    <td className="px-4 py-4 text-right font-mono font-bold text-slate-400 tabular-nums bg-slate-50/30">
+                    <td className="px-4 py-4 text-right font-mono font-bold text-slate-400 tabular-nums">
                       {paired.reduce((a, d) => a + d.total1, 0).toFixed(3)}
                     </td>
-                    <td className="px-4 py-4 text-right font-mono font-bold text-slate-900 tabular-nums bg-brand-50/30">
+                    <td className="px-4 py-4 text-right font-mono font-bold text-slate-900 tabular-nums">
                       {paired.reduce((a, d) => a + d.total2, 0).toFixed(3)}
                     </td>
                     <td className="px-4 py-4 text-right"><VarBadge pct={avgVarConsumo} /></td>
-                    <td className="px-4 py-4 text-right font-mono font-bold text-slate-400 tabular-nums text-xs bg-slate-50/30">
+                    <td className="px-4 py-4 text-right"><VarBadge pct={avgVarHC} /></td>
+                    <td className="px-4 py-4 text-right"><VarBadge pct={avgVarHP} /></td>
+                    <td className="px-4 py-4 text-right font-mono font-bold text-slate-400 tabular-nums text-xs">
                       {paired.reduce((a, d) => a + d.costo1, 0).toFixed(3)}
                     </td>
-                    <td className="px-4 py-4 text-right font-mono font-bold text-slate-900 tabular-nums text-xs bg-brand-50/30">
+                    <td className="px-4 py-4 text-right font-mono font-bold text-slate-900 tabular-nums text-xs">
                       {paired.reduce((a, d) => a + d.costo2, 0).toFixed(3)}
                     </td>
                     <td className="px-6 py-4 text-right"><VarBadge pct={avgVarCosto} /></td>

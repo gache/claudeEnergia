@@ -8,6 +8,25 @@ import { MESES } from "@/lib/data";
 
 const ConsumoHCHPChart = dynamic(() => import("@/components/ConsumoHCHPChart"), { ssr: false });
 const CostoEvolucionChart = dynamic(() => import("@/components/CostoEvolucionChart"), { ssr: false });
+const DonutHCHP = dynamic(() => import("@/components/DonutHCHP"), { ssr: false });
+
+/* ── MiniDonut ───────────────────────────────────────────────────── */
+function MiniDonut({ pct, color }: { pct: number; color: string }) {
+  const r = 20, cx = 24, cy = 24;
+  const circ = 2 * Math.PI * r;
+  const dash = (pct / 100) * circ;
+  return (
+    <svg width={48} height={48} aria-hidden="true">
+      <circle cx={cx} cy={cy} r={r} fill="none" stroke="#f1f5f9" strokeWidth={5} />
+      <circle cx={cx} cy={cy} r={r} fill="none" stroke={color} strokeWidth={5}
+        strokeDasharray={`${dash} ${circ - dash}`} strokeLinecap="round"
+        transform={`rotate(-90 ${cx} ${cy})`} />
+      <text x={cx} y={cy + 4} textAnchor="middle" fontSize={9} fontWeight="bold" fill={color}>
+        {pct.toFixed(1)}%
+      </text>
+    </svg>
+  );
+}
 
 /* ── Sparkline ────────────────────────────────────────────────────── */
 function Sparkline({ values, color }: { values: number[]; color: string }) {
@@ -15,19 +34,26 @@ function Sparkline({ values, color }: { values: number[]; color: string }) {
   const max = Math.max(...values);
   const min = Math.min(...values);
   const range = max - min || 1;
-  const bw = 5, gap = 2, h = 20;
-  const w = values.length * (bw + gap) - gap;
+  const W = 56, H = 18;
+  const pts = values.map((v, i) => ({
+    x: (i / (values.length - 1)) * W,
+    y: H - 2 - ((v - min) / range) * (H - 4),
+  }));
+  const line = pts.map((p, i) => `${i === 0 ? "M" : "L"} ${p.x.toFixed(1)},${p.y.toFixed(1)}`).join(" ");
+  const area = `${line} L ${pts[pts.length - 1].x.toFixed(1)},${H} L 0,${H} Z`;
+  const gid = `sg${color.replace(/[^a-z0-9]/gi, "")}`;
+  const last = pts[pts.length - 1];
   return (
-    <svg width={w} height={h} aria-hidden="true">
-      {values.map((v, i) => {
-        const bh = Math.max(2, ((v - min) / range) * (h - 2));
-        return (
-          <rect key={i} x={i * (bw + gap)} y={h - bh} width={bw} height={bh}
-            fill={color} rx={1}
-            opacity={i === values.length - 1 ? 0.9 : 0.25 + (i / (values.length - 1)) * 0.45}
-          />
-        );
-      })}
+    <svg width={W} height={H} aria-hidden="true">
+      <defs>
+        <linearGradient id={gid} x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stopColor={color} stopOpacity={0.22} />
+          <stop offset="100%" stopColor={color} stopOpacity={0.01} />
+        </linearGradient>
+      </defs>
+      <path d={area} fill={`url(#${gid})`} />
+      <path d={line} stroke={color} strokeWidth={1.5} fill="none" strokeLinecap="round" strokeLinejoin="round" />
+      <circle cx={last.x} cy={last.y} r={2} fill={color} />
     </svg>
   );
 }
@@ -38,12 +64,12 @@ type KpiAccent = "brand" | "hc" | "hp" | "violet" | "indigo" | "emerald";
 const accentConfig: Record<KpiAccent, {
   border: string; bg: string; valueColor: string; labelColor: string; iconBg: string; iconColor: string;
 }> = {
-  brand:   { border: "border border-brand-200/40",   bg: "bg-white",      valueColor: "text-brand-700",   labelColor: "text-slate-600",   iconBg: "bg-brand-100/60",   iconColor: "text-brand-600"   },
-  hc:      { border: "border border-hc-200/50",      bg: "bg-hc-50",      valueColor: "text-hc-700",      labelColor: "text-hc-600",      iconBg: "bg-hc-100/70",      iconColor: "text-hc-600"      },
-  hp:      { border: "border border-hp-200/50",      bg: "bg-hp-50",      valueColor: "text-hp-700",      labelColor: "text-hp-600",      iconBg: "bg-hp-100/70",      iconColor: "text-hp-600"      },
-  violet:  { border: "border border-violet-200/40",  bg: "bg-violet-50",  valueColor: "text-violet-700",  labelColor: "text-violet-600",  iconBg: "bg-violet-100/60",  iconColor: "text-violet-600"  },
-  indigo:  { border: "border border-indigo-200/50",  bg: "bg-indigo-50",  valueColor: "text-indigo-700",  labelColor: "text-indigo-600",  iconBg: "bg-indigo-100/70",  iconColor: "text-indigo-600"  },
-  emerald: { border: "border border-emerald-200/50", bg: "bg-emerald-50", valueColor: "text-emerald-700", labelColor: "text-emerald-600", iconBg: "bg-emerald-100/70", iconColor: "text-emerald-600" },
+  brand:   { border: "border border-slate-100", bg: "bg-white", valueColor: "text-brand-700",   labelColor: "text-slate-500",   iconBg: "bg-brand-50",    iconColor: "text-brand-600"   },
+  hc:      { border: "border border-slate-100", bg: "bg-white", valueColor: "text-hc-700",      labelColor: "text-hc-600",      iconBg: "bg-hc-100",      iconColor: "text-hc-600"      },
+  hp:      { border: "border border-slate-100", bg: "bg-white", valueColor: "text-hp-700",      labelColor: "text-hp-600",      iconBg: "bg-hp-100",      iconColor: "text-hp-600"      },
+  violet:  { border: "border border-slate-100", bg: "bg-white", valueColor: "text-violet-700",  labelColor: "text-violet-600",  iconBg: "bg-violet-100",  iconColor: "text-violet-600"  },
+  indigo:  { border: "border border-slate-100", bg: "bg-white", valueColor: "text-indigo-700",  labelColor: "text-indigo-600",  iconBg: "bg-indigo-100",  iconColor: "text-indigo-600"  },
+  emerald: { border: "border border-slate-100", bg: "bg-white", valueColor: "text-emerald-700", labelColor: "text-emerald-600", iconBg: "bg-emerald-100", iconColor: "text-emerald-600" },
 };
 
 function KpiCard({
@@ -100,16 +126,6 @@ function KpiCard({
 
       {subLabel && (
         <p className="text-xs text-slate-600 mt-1 group-hover:text-slate-700 transition-colors">{subLabel}</p>
-      )}
-
-      {projected && (
-        <p className="text-[10px] text-slate-400 mt-0.5 font-mono">≈ {projected} fin de mes</p>
-      )}
-
-      {sparkline && sparkline.length >= 2 && (
-        <div className="mt-2.5">
-          <Sparkline values={sparkline} color={sparklineColor ?? "#6366f1"} />
-        </div>
       )}
 
       {trend !== undefined && (
@@ -171,6 +187,47 @@ function sumKpis(kpis: AccumFields[]): AccumFields {
     difHCHP: hp - hc,
     ventajaHC: hc < hp,
   };
+}
+
+/* ── MetricRow ───────────────────────────────────────────────────── */
+function MetricRow({ label, curr, prev, color, varPct }: {
+  label: string; curr: number; prev?: number; color: string; varPct: number | null;
+}) {
+  const maxVal = Math.max(curr, prev ?? 0) || 1;
+  const currPct = (curr / maxVal) * 100;
+  const prevPct = prev !== undefined ? (prev / maxVal) * 100 : 0;
+  return (
+    <div className="space-y-1.5">
+      <div className="flex items-baseline justify-between gap-2">
+        <span className="text-[10px] font-bold uppercase tracking-wider text-slate-400 shrink-0">{label}</span>
+        <div className="flex items-baseline gap-1.5 min-w-0 overflow-hidden">
+          <span className="text-xs font-mono font-bold text-slate-700 tabular-nums">{curr.toFixed(1)}</span>
+          {prev !== undefined && (
+            <span className="text-[10px] font-mono text-slate-400 tabular-nums truncate">/ {prev.toFixed(1)}</span>
+          )}
+        </div>
+        {varPct !== null && (
+          <span className={`text-[10px] font-bold px-1.5 py-0.5 rounded shrink-0 ${
+            varPct < 0 ? "bg-emerald-50 text-emerald-700" : varPct > 0 ? "bg-red-50 text-red-600" : "bg-slate-50 text-slate-500"
+          }`}>
+            {varPct > 0 ? "+" : ""}{varPct}%
+          </span>
+        )}
+      </div>
+      <div className="space-y-1">
+        <div className="h-2.5 bg-slate-100 rounded-full overflow-hidden">
+          <div className="h-full rounded-full transition-all duration-700"
+            style={{ width: `${currPct}%`, background: `linear-gradient(90deg, ${color}88, ${color})` }} />
+        </div>
+        {prev !== undefined && (
+          <div className="h-1.5 bg-slate-100 rounded-full overflow-hidden">
+            <div className="h-full rounded-full bg-slate-300 transition-all duration-700"
+              style={{ width: `${prevPct}%` }} />
+          </div>
+        )}
+      </div>
+    </div>
+  );
 }
 
 /* ── Dashboard Page ──────────────────────────────────────────────── */
@@ -351,6 +408,26 @@ export default function DashboardPage() {
   const ahorroKwh = accumPrev.reduce((s, k) => s + k.total, 0) - accumCurr.reduce((s, k) => s + k.total, 0);
   const ahorroEur = accumPrev.reduce((s, k) => s + k.costoTotal, 0) - accumCurr.reduce((s, k) => s + k.costoTotal, 0);
 
+  // ── Proyección fin de año ─────────────────────────────────────
+  const remainingMonthNums = Array.from({ length: 12 - selectedMonth }, (_, i) => selectedMonth + 1 + i);
+  const showYearProj   = kpisYear.length > 0 && remainingMonthNums.length > 0;
+  const accumCurrKwh   = kpisForAccum.reduce((s, k) => s + k.total, 0);
+  const accumCurrCosto = kpisForAccum.reduce((s, k) => s + k.costoTotal, 0);
+  let projRemKwh = 0, projRemCosto = 0, projUsesPrevYear = false;
+  if (showYearProj) {
+    const prevMap  = new Map(kpisPrevYear.map(k => [k.mes, k]));
+    const avgKwh   = kpisForAccum.length > 0 ? accumCurrKwh   / kpisForAccum.length : 0;
+    const avgCosto = kpisForAccum.length > 0 ? accumCurrCosto / kpisForAccum.length : 0;
+    if (remainingMonthNums.some(m => prevMap.has(m))) projUsesPrevYear = true;
+    remainingMonthNums.forEach(m => {
+      const p = prevMap.get(m);
+      projRemKwh   += p ? p.total      : avgKwh;
+      projRemCosto += p ? p.costoTotal : avgCosto;
+    });
+  }
+  const projYearKwh   = accumCurrKwh   + projRemKwh;
+  const projYearCosto = accumCurrCosto + projRemCosto;
+
   // ── Trend alert threshold ──────────────────────────────────────
   const alertThreshold = 15;
   const showAlert = (varTotal !== undefined && varTotal > alertThreshold) && displayPrev !== null;
@@ -399,18 +476,6 @@ export default function DashboardPage() {
         </div>
 
         {selectorRow}
-
-        {/* Trend alert */}
-        {showAlert && (
-          <div className="flex items-start gap-2.5 px-3 py-2.5 bg-amber-50 border border-amber-200 rounded-xl">
-            <AlertTriangle className="w-4 h-4 text-amber-600 mt-0.5 flex-shrink-0" />
-            <p className="text-sm font-semibold text-amber-800">
-              <span className="font-bold">{mesLabel} {selectedYear}:</span> consumo +{varTotal}% vs {selectedYear - 1}
-              {varTotalHC !== undefined && varTotalHC > alertThreshold && <span className="ml-2 text-amber-700">· HC +{varTotalHC}%</span>}
-              {varTotalHP !== undefined && varTotalHP > alertThreshold && <span className="ml-2 text-amber-700">· HP +{varTotalHP}%</span>}
-            </p>
-          </div>
-        )}
       </div>
 
       {/* ── 1. KPI CARDS ── */}
@@ -490,123 +555,42 @@ export default function DashboardPage() {
         />
       </div>
 
-      {/* ── 1b. AHORRO ACUMULADO ── */}
-      {hasAhorro && (
-        <div className="grid grid-cols-2 gap-4 animate-slide-up" style={{ animationDelay: "325ms" }}>
-          <div className={`rounded-2xl border p-4 flex items-center gap-4 ${
-            ahorroKwh >= 0
-              ? "bg-emerald-50 border-emerald-200"
-              : "bg-red-50 border-red-200"
-          }`}>
-            <div className={`w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0 ${
-              ahorroKwh >= 0 ? "bg-emerald-100" : "bg-red-100"
-            }`}>
-              <Leaf className={`w-5 h-5 ${ahorroKwh >= 0 ? "text-emerald-600" : "text-red-500"}`} />
-            </div>
-            <div>
-              <p className="text-[10px] font-bold uppercase tracking-widest text-slate-500">Consumo Ene–{mesLabel}</p>
-              <p className={`text-xl font-black tabular-nums ${ahorroKwh >= 0 ? "text-emerald-700" : "text-red-600"}`}>
-                {ahorroKwh >= 0 ? "-" : "+"}{Math.abs(ahorroKwh).toFixed(0)} kWh
-              </p>
-              <p className="text-[11px] text-slate-500 font-medium">vs {selectedYear - 1}</p>
-            </div>
-          </div>
-          <div className={`rounded-2xl border p-4 flex items-center gap-4 ${
-            ahorroEur >= 0
-              ? "bg-emerald-50 border-emerald-200"
-              : "bg-red-50 border-red-200"
-          }`}>
-            <div className={`w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0 ${
-              ahorroEur >= 0 ? "bg-emerald-100" : "bg-red-100"
-            }`}>
-              <DollarSign className={`w-5 h-5 ${ahorroEur >= 0 ? "text-emerald-600" : "text-red-500"}`} />
-            </div>
-            <div>
-              <p className="text-[10px] font-bold uppercase tracking-widest text-slate-500">Ahorro Ene–{mesLabel}</p>
-              <p className={`text-xl font-black tabular-nums ${ahorroEur >= 0 ? "text-emerald-700" : "text-red-600"}`}>
-                {ahorroEur >= 0 ? "-" : "+"}{Math.abs(ahorroEur).toFixed(3)} €
-              </p>
-              <p className="text-[11px] text-slate-500 font-medium">vs {selectedYear - 1}</p>
-            </div>
-          </div>
+      {/* ── 1b. TREND ALERT ── */}
+      {showAlert && (
+        <div className="flex items-start gap-2.5 px-3 py-2.5 bg-amber-50 border border-amber-200 rounded-xl animate-slide-up">
+          <AlertTriangle className="w-4 h-4 text-amber-600 mt-0.5 flex-shrink-0" />
+          <p className="text-sm font-semibold text-amber-800">
+            <span className="font-bold">{mesLabel} {selectedYear}:</span> consumo +{varTotal}% vs {selectedYear - 1}
+            {varTotalHC !== undefined && varTotalHC > alertThreshold && <span className="ml-2 text-amber-700">· HC +{varTotalHC}%</span>}
+            {varTotalHP !== undefined && varTotalHP > alertThreshold && <span className="ml-2 text-amber-700">· HP +{varTotalHP}%</span>}
+          </p>
         </div>
       )}
 
-      {/* ── 2 & 3. PARTICIPACIÓN + DESGLOSE DE COSTO ── */}
+      {/* ── 2. PARTICIPACIÓN + DESGLOSE DE COSTO ── */}
       <div className="grid grid-cols-1 xl:grid-cols-2 gap-5">
         {/* Participación del consumo */}
         <div className="bg-white rounded-2xl shadow-card-md border border-slate-100/40 p-6 animate-slide-up hover:shadow-card-lg transition-shadow duration-300" style={{ animationDelay: "100ms" }}>
           <h2 className="text-xl font-black text-slate-900 mb-5 tracking-tight" style={{ fontFamily: "var(--font-jakarta, sans-serif)" }}>Participación del consumo</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div className="rounded-xl bg-hc-50 border border-hc-200/60 p-5 animate-slide-up hover:shadow-md transition-shadow duration-300" style={{ animationDelay: "150ms" }}>
-              <p className="text-xs font-bold text-hc-600 uppercase tracking-wider mb-4">HC — Heures Creuses</p>
-              <p className="text-5xl font-black text-hc-700 tabular-nums mb-1" style={{ fontFamily: "var(--font-space-mono, monospace), sans-serif" }}>{display.pctHC.toFixed(1)}%</p>
-              <p className="text-sm font-semibold text-hc-600 mb-3">{display.hc.toFixed(3)} kWh</p>
-              <div className="h-2 rounded-full bg-hc-100 overflow-hidden">
-                <div className="h-full bg-hc-500 transition-all duration-1000 origin-left" style={{ width: `${display.pctHC}%` }} />
-              </div>
-            </div>
-            <div className="rounded-xl bg-hp-50 border border-hp-200/60 p-5 animate-slide-up hover:shadow-md transition-shadow duration-300" style={{ animationDelay: "225ms" }}>
-              <p className="text-xs font-bold text-hp-600 uppercase tracking-wider mb-4">HP — Heures Pleines</p>
-              <p className="text-5xl font-black text-hp-700 tabular-nums mb-1" style={{ fontFamily: "var(--font-space-mono, monospace), sans-serif" }}>{display.pctHP.toFixed(1)}%</p>
-              <p className="text-sm font-semibold text-hp-600 mb-3">{display.hp.toFixed(3)} kWh</p>
-              <div className="h-2 rounded-full bg-hp-100 overflow-hidden">
-                <div className="h-full bg-hp-500 transition-all duration-1000 origin-left" style={{ width: `${display.pctHP}%` }} />
-              </div>
-            </div>
-          </div>
-          <div className="mt-6 animate-slide-up" style={{ animationDelay: "300ms" }}>
-            <div className="flex h-3 rounded-full overflow-hidden bg-slate-200 gap-0.5">
-              <div className="bg-hc-500 transition-all duration-1000 rounded-l-full origin-left" style={{ width: `${display.pctHC}%` }} />
-              <div className="bg-hp-500 transition-all duration-1000 rounded-r-full origin-right" style={{ width: `${display.pctHP}%` }} />
-            </div>
-            <div className="flex justify-between text-xs font-bold mt-2">
-              <span className="text-hc-600">HC {display.pctHC.toFixed(1)}%</span>
-              <span className="text-hp-600">HP {display.pctHP.toFixed(1)}%</span>
-            </div>
-          </div>
+          <DonutHCHP
+            hcPct={display.pctHC} hpPct={display.pctHP}
+            hcKwh={display.hc} hpKwh={display.hp}
+            total={display.total} layout="featured"
+          />
         </div>
 
         {/* Desglose del costo */}
         <div className="bg-white rounded-2xl shadow-card-md border border-slate-100/40 p-6 animate-slide-up hover:shadow-card-lg transition-shadow duration-300" style={{ animationDelay: "200ms" }}>
           <h2 className="text-xl font-black text-slate-900 mb-5 tracking-tight" style={{ fontFamily: "var(--font-jakarta, sans-serif)" }}>Desglose del costo</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div className="rounded-xl bg-hc-50 border border-hc-200/60 p-5 animate-slide-up hover:shadow-md transition-shadow duration-300" style={{ animationDelay: "250ms" }}>
-              <p className="text-xs font-bold text-hc-600 uppercase tracking-wider mb-4">HC — Coste</p>
-              <p className="text-5xl font-black text-hc-700 tabular-nums mb-1" style={{ fontFamily: "var(--font-space-mono, monospace), sans-serif" }}>
-                {display.costoHC.toFixed(3)}<span className="text-2xl font-bold ml-1">€</span>
-              </p>
-              <p className="text-sm font-semibold text-hc-600 mb-3">{pctCostoHC.toFixed(1)}% del costo total</p>
-              <div className="h-2 rounded-full bg-hc-100 overflow-hidden">
-                <div className="h-full bg-hc-500 transition-all duration-1000 origin-left" style={{ width: `${pctCostoHC}%` }} />
-              </div>
-            </div>
-            <div className="rounded-xl bg-hp-50 border border-hp-200/60 p-5 animate-slide-up hover:shadow-md transition-shadow duration-300" style={{ animationDelay: "325ms" }}>
-              <p className="text-xs font-bold text-hp-600 uppercase tracking-wider mb-4">HP — Coste</p>
-              <p className="text-5xl font-black text-hp-700 tabular-nums mb-1" style={{ fontFamily: "var(--font-space-mono, monospace), sans-serif" }}>
-                {display.costoHP.toFixed(3)}<span className="text-2xl font-bold ml-1">€</span>
-              </p>
-              <p className="text-sm font-semibold text-hp-600 mb-3">{pctCostoHP.toFixed(1)}% del costo total</p>
-              <div className="h-2 rounded-full bg-hp-100 overflow-hidden">
-                <div className="h-full bg-hp-500 transition-all duration-1000 origin-left" style={{ width: `${pctCostoHP}%` }} />
-              </div>
-            </div>
-          </div>
-          <div className="mt-6 animate-slide-up" style={{ animationDelay: "400ms" }}>
-            <div className="flex h-3 rounded-full overflow-hidden bg-slate-200 gap-0.5">
-              <div className="bg-hc-500 transition-all duration-1000 rounded-l-full origin-left" style={{ width: `${pctCostoHC}%` }} />
-              <div className="bg-hp-500 transition-all duration-1000 rounded-r-full origin-right" style={{ width: `${pctCostoHP}%` }} />
-            </div>
-            <div className="flex justify-between text-xs font-bold mt-2">
-              <span className="text-hc-600">HC {pctCostoHC.toFixed(1)}%</span>
-              <span className="text-slate-500 tabular-nums">Total: {display.costoTotal.toFixed(3)} €</span>
-              <span className="text-hp-600">HP {pctCostoHP.toFixed(1)}%</span>
-            </div>
-          </div>
+          <DonutHCHP
+            hcPct={pctCostoHC} hpPct={pctCostoHP}
+            hcKwh={display.costoHC} hpKwh={display.costoHP}
+            total={display.costoTotal} unit="€" decimals={3} layout="featured"
+          />
         </div>
       </div>
 
-      {/* ── 4. GRÁFICOS ── */}
+      {/* ── 3. GRÁFICOS ── */}
       <div className="grid grid-cols-1 xl:grid-cols-2 gap-5 animate-slide-up" style={{ animationDelay: "350ms" }}>
         <ConsumoHCHPChart
           data={kpisYear}
@@ -620,66 +604,154 @@ export default function DashboardPage() {
         />
       </div>
 
-      {/* ── 5. ÚLTIMOS MESES ── */}
-      {tableMonths.length > 0 && (
-        <div className="bg-white rounded-2xl shadow-card-md border border-slate-100/40 overflow-hidden animate-slide-up hover:shadow-card-lg transition-shadow duration-300" style={{ animationDelay: "400ms" }}>
-          <div className="px-6 py-4 border-b border-slate-100">
-            <h2 className="text-xl font-black text-slate-900 tracking-tight" style={{ fontFamily: "var(--font-jakarta, sans-serif)" }}>
-              {tableMonths.length === 1 ? "Mes seleccionado" : `Últimos ${tableMonths.length} meses`} — {selectedYear} vs {selectedYear - 1}
-            </h2>
-          </div>
-          <div className="relative">
-            <div className="overflow-x-auto">
-              <table className="w-full text-sm min-w-[600px]" aria-label={`Comparativa meses ${selectedYear} vs ${selectedYear - 1}`}>
-                <thead>
-                  <tr className="bg-slate-50/60 border-b border-slate-100/50">
-                    <th scope="col" className="text-left px-6 py-3 text-xs font-semibold uppercase tracking-wider text-slate-500">Mes</th>
-                    <th scope="col" className="text-right px-4 py-3 text-xs font-semibold uppercase tracking-wider text-hc-600">HC {selectedYear}</th>
-                    <th scope="col" className="text-right px-4 py-3 text-xs font-semibold uppercase tracking-wider text-hc-600">HC Var%</th>
-                    <th scope="col" className="text-right px-4 py-3 text-xs font-semibold uppercase tracking-wider text-hp-600">HP {selectedYear}</th>
-                    <th scope="col" className="text-right px-4 py-3 text-xs font-semibold uppercase tracking-wider text-hp-600">HP Var%</th>
-                    <th scope="col" className="text-right px-4 py-3 text-xs font-semibold uppercase tracking-wider text-slate-600">Total {selectedYear}</th>
-                    <th scope="col" className="text-right px-5 py-3 text-xs font-semibold uppercase tracking-wider text-slate-500">Total Var%</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {tableMonths.map((d, idx) => {
-                    const prev = kpisPrevByMes.get(d.mes);
-                    const varHC  = prev ? Math.round(((d.hc    - prev.hc)    / prev.hc)    * 100) : null;
-                    const varHP  = prev ? Math.round(((d.hp    - prev.hp)    / prev.hp)    * 100) : null;
-                    const varPct = prev ? Math.round(((d.total - prev.total) / prev.total) * 100) : null;
-                    const isSelected = d.mes === selectedMonth;
-                    return (
-                      <tr
-                        key={d.mes}
-                        className={`border-b border-slate-50 transition-colors animate-slide-up ${
-                          isSelected ? "bg-indigo-50/60" : "hover:bg-slate-50/70"
-                        }`}
-                        style={{ animationDelay: `${425 + idx * 25}ms` }}
-                      >
-                        <td className="px-6 py-3 font-semibold text-slate-700">
-                          {MESES[d.mes - 1]}
-                          {isSelected && <span className="ml-2 text-[10px] font-bold text-indigo-600 bg-indigo-100 px-1.5 py-0.5 rounded">sel</span>}
-                        </td>
-                        <td className="px-4 py-3 text-right font-mono text-hc-600 font-semibold">{d.hc.toFixed(3)}</td>
-                        <td className={`px-4 py-3 text-right font-semibold ${varHC !== null ? (varHC < 0 ? "text-savings-600" : "text-red-500") : "text-slate-400"}`}>
-                          {varHC !== null ? `${varHC > 0 ? "+" : ""}${varHC}%` : "—"}
-                        </td>
-                        <td className="px-4 py-3 text-right font-mono text-hp-600 font-semibold">{d.hp.toFixed(3)}</td>
-                        <td className={`px-4 py-3 text-right font-semibold ${varHP !== null ? (varHP < 0 ? "text-savings-600" : "text-red-500") : "text-slate-400"}`}>
-                          {varHP !== null ? `${varHP > 0 ? "+" : ""}${varHP}%` : "—"}
-                        </td>
-                        <td className="px-4 py-3 text-right font-mono text-slate-800 font-semibold">{d.total.toFixed(3)}</td>
-                        <td className={`px-5 py-3 text-right font-semibold ${varPct !== null ? (varPct < 0 ? "text-savings-600" : "text-red-500") : "text-slate-400"}`}>
-                          {varPct !== null ? `${varPct > 0 ? "+" : ""}${varPct}%` : "—"}
-                        </td>
-                      </tr>
-                    );
-                  })}
-                </tbody>
-              </table>
+      {/* ── 4. AHORRO ACUMULADO ── */}
+      {hasAhorro && (
+        <div className="animate-slide-up" style={{ animationDelay: "325ms" }}>
+          <h2 className="text-xl font-black text-slate-900 tracking-tight mb-4" style={{ fontFamily: "var(--font-jakarta, sans-serif)" }}>
+            Ahorro acumulado — Ene–{mesLabel}
+          </h2>
+          <div className="grid grid-cols-2 gap-4">
+            <div className="bg-white border border-slate-100 rounded-2xl p-4 flex items-center gap-4">
+              <div className={`w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0 ${ahorroKwh >= 0 ? "bg-emerald-100" : "bg-red-100"}`}>
+                <Leaf className={`w-5 h-5 ${ahorroKwh >= 0 ? "text-emerald-600" : "text-red-500"}`} />
+              </div>
+              <div>
+                <p className="text-[10px] font-bold uppercase tracking-widest text-slate-400">Consumo vs {selectedYear - 1}</p>
+                <p className={`text-xl font-black tabular-nums ${ahorroKwh >= 0 ? "text-emerald-700" : "text-red-600"}`}>
+                  {ahorroKwh < 0 ? "+" : ""}{Math.abs(ahorroKwh).toFixed(0)} kWh
+                </p>
+                <p className="text-[11px] text-slate-400 font-medium">{ahorroKwh >= 0 ? "menos consumo" : "más consumo"}</p>
+              </div>
             </div>
-            <div className="xl:hidden pointer-events-none absolute right-0 top-0 bottom-0 w-8 bg-gradient-to-l from-white to-transparent rounded-r-2xl" aria-hidden="true" />
+            <div className="bg-white border border-slate-100 rounded-2xl p-4 flex items-center gap-4">
+              <div className={`w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0 ${ahorroEur >= 0 ? "bg-emerald-100" : "bg-red-100"}`}>
+                <DollarSign className={`w-5 h-5 ${ahorroEur >= 0 ? "text-emerald-600" : "text-red-500"}`} />
+              </div>
+              <div>
+                <p className="text-[10px] font-bold uppercase tracking-widest text-slate-400">Ahorro en € vs {selectedYear - 1}</p>
+                <p className={`text-xl font-black tabular-nums ${ahorroEur >= 0 ? "text-emerald-700" : "text-red-600"}`}>
+                  {ahorroEur < 0 ? "+" : ""}{Math.abs(ahorroEur).toFixed(2)} €
+                </p>
+                <p className="text-[11px] text-slate-400 font-medium">{ahorroEur >= 0 ? "gastado menos" : "gastado más"}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* ── 5. PROYECCIÓN FIN DE AÑO ── */}
+      {showYearProj && (
+        <div className="bg-white rounded-2xl border border-slate-100 p-5 animate-slide-up" style={{ animationDelay: "450ms" }}>
+          <div className="flex items-center justify-between gap-2 mb-4">
+            <div className="flex items-center gap-2">
+              <TrendingUp className="w-4 h-4 text-indigo-500" />
+              <h2 className="text-base font-black text-slate-900" style={{ fontFamily: "var(--font-jakarta, sans-serif)" }}>
+                Estimado {selectedYear}
+              </h2>
+            </div>
+            <span className="text-[10px] font-bold text-slate-400 bg-slate-50 border border-slate-200 px-2 py-0.5 rounded-lg">
+              {projUsesPrevYear ? `datos ${selectedYear - 1}` : "promedio"} · {remainingMonthNums.length}m restantes
+            </span>
+          </div>
+          <div className="grid grid-cols-2 gap-4">
+            <div className="rounded-xl bg-white border border-slate-100 p-4">
+              <p className="text-[10px] font-bold uppercase tracking-widest text-slate-400 mb-1.5">kWh estimado año</p>
+              <p className="text-2xl font-black text-indigo-700 tabular-nums leading-none">
+                {projYearKwh.toFixed(0)}<span className="text-sm font-normal text-slate-400 ml-1">kWh</span>
+              </p>
+              <p className="text-[10px] text-slate-400 font-mono mt-1">
+                actual {accumCurrKwh.toFixed(0)} + ~{projRemKwh.toFixed(0)} est.
+              </p>
+            </div>
+            <div className="rounded-xl bg-white border border-slate-100 p-4">
+              <p className="text-[10px] font-bold uppercase tracking-widest text-slate-400 mb-1.5">€ estimado año</p>
+              <p className="text-2xl font-black text-emerald-700 tabular-nums leading-none">
+                {projYearCosto.toFixed(2)}<span className="text-sm font-normal text-slate-400 ml-1">€</span>
+              </p>
+              <p className="text-[10px] text-slate-400 font-mono mt-1">
+                actual {accumCurrCosto.toFixed(2)} + ~{projRemCosto.toFixed(2)} est.
+              </p>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* ── 6. COMPARATIVA DE MESES ── */}
+      {tableMonths.length > 0 && (
+        <div className="animate-slide-up" style={{ animationDelay: "400ms" }}>
+          <h2 className="text-xl font-black text-slate-900 tracking-tight mb-4" style={{ fontFamily: "var(--font-jakarta, sans-serif)" }}>
+            {tableMonths.length === 1 ? "Mes seleccionado" : `Últimos ${tableMonths.length} meses`} — {selectedYear} vs {selectedYear - 1}
+          </h2>
+          <div className={`grid gap-4 ${tableMonths.length >= 3 ? "grid-cols-1 sm:grid-cols-3" : tableMonths.length === 2 ? "grid-cols-1 sm:grid-cols-2" : "grid-cols-1 max-w-xs"}`}>
+            {tableMonths.map((d, idx) => {
+              const prev = kpisPrevByMes.get(d.mes);
+              const isSelected = d.mes === selectedMonth;
+              const varTot  = prev ? Math.round(((d.total      - prev.total)      / prev.total)      * 100) : null;
+              const varCost = prev ? Math.round(((d.costoTotal - prev.costoTotal) / prev.costoTotal) * 100) : null;
+              const varHC   = prev ? Math.round(((d.hc         - prev.hc)         / prev.hc)         * 100) : null;
+              const varHP   = prev ? Math.round(((d.hp         - prev.hp)         / prev.hp)         * 100) : null;
+              return (
+                <div
+                  key={d.mes}
+                  className={`bg-white rounded-2xl border p-5 hover:shadow-md transition-all duration-300 animate-slide-up ${
+                    isSelected ? "border-indigo-300 shadow-md shadow-indigo-50" : "border-slate-100"
+                  }`}
+                  style={{ animationDelay: `${425 + idx * 25}ms` }}
+                >
+                  {/* Header */}
+                  <div className="flex items-center justify-between mb-3">
+                    <div className="flex items-center gap-2">
+                      <h3 className="text-base font-black text-slate-900" style={{ fontFamily: "var(--font-jakarta, sans-serif)" }}>{MESES[d.mes - 1]}</h3>
+                      {isSelected && <span className="text-[10px] font-bold text-indigo-600 bg-indigo-100 px-1.5 py-0.5 rounded">sel</span>}
+                    </div>
+                    {varTot !== null && (
+                      <span className={`text-xs font-bold px-2 py-0.5 rounded-lg border ${
+                        varTot < 0 ? "bg-emerald-50 text-emerald-700 border-emerald-200" : varTot > 0 ? "bg-red-50 text-red-600 border-red-200" : "bg-slate-50 text-slate-500 border-slate-200"
+                      }`}>
+                        {varTot > 0 ? "+" : ""}{varTot}%
+                      </span>
+                    )}
+                  </div>
+
+                  {/* Year legend */}
+                  <div className="flex items-center gap-3 mb-3">
+                    <div className="flex items-center gap-1.5">
+                      <div className="w-5 h-1.5 rounded-full bg-slate-300" />
+                      <span className="text-[9px] text-slate-400 font-bold">{selectedYear - 1}</span>
+                    </div>
+                    <div className="flex items-center gap-1.5">
+                      <div className="w-5 h-1.5 rounded-full bg-indigo-400" />
+                      <span className="text-[9px] text-slate-500 font-bold">{selectedYear}</span>
+                    </div>
+                  </div>
+
+                  {/* Metric rows */}
+                  <div className="space-y-3">
+                    <MetricRow label="HC (kWh)"    curr={d.hc}    prev={prev?.hc}    color="#3b82f6" varPct={varHC}  />
+                    <MetricRow label="HP (kWh)"    curr={d.hp}    prev={prev?.hp}    color="#dc2626" varPct={varHP}  />
+                    <MetricRow label="Total (kWh)" curr={d.total} prev={prev?.total} color="#6366f1" varPct={varTot} />
+                  </div>
+
+                  {/* Cost footer */}
+                  <div className="mt-4 pt-3 border-t border-slate-50 flex items-center justify-between">
+                    <div>
+                      <p className="text-[10px] font-bold uppercase tracking-wider text-slate-400">Costo</p>
+                      <p className="text-base font-black text-slate-900 tabular-nums">{d.costoTotal.toFixed(3)} €</p>
+                      {prev && (
+                        <p className="text-[10px] text-slate-400 font-mono">{prev.costoTotal.toFixed(3)} € · {selectedYear - 1}</p>
+                      )}
+                    </div>
+                    {varCost !== null && (
+                      <span className={`text-sm font-black px-2.5 py-1 rounded-xl border ${
+                        varCost < 0 ? "bg-emerald-50 text-emerald-700 border-emerald-200" : varCost > 0 ? "bg-red-50 text-red-600 border-red-200" : "bg-slate-50 text-slate-500 border-slate-200"
+                      }`}>
+                        {varCost > 0 ? "+" : ""}{varCost}%
+                      </span>
+                    )}
+                  </div>
+                </div>
+              );
+            })}
           </div>
         </div>
       )}

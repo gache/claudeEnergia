@@ -265,6 +265,17 @@ export default function RegistroPage() {
               </button>
             )}
 
+            {saved && (
+              <div className="flex gap-2 mt-1 justify-start">
+                <a href="/" className="text-xs font-semibold text-slate-600 bg-slate-100 hover:bg-slate-200 px-3 py-2.5 rounded-xl transition-colors">
+                  Ver Dashboard
+                </a>
+                <a href="/historial" className="text-xs font-semibold text-slate-600 bg-slate-100 hover:bg-slate-200 px-3 py-2.5 rounded-xl transition-colors">
+                  Ver Historial
+                </a>
+              </div>
+            )}
+
             {hasErrors && (
               <p className="text-xs text-red-600 mt-2 text-center font-semibold">
                 Los valores deben ser números no negativos válidos
@@ -291,55 +302,55 @@ export default function RegistroPage() {
           </div>
 
           <div className="p-5 grid grid-cols-2 sm:grid-cols-3 gap-3">
-            <div className="bg-hc-50 rounded-xl p-4 border border-hc-100">
-              <p className="text-[10px] font-bold uppercase tracking-widest text-hc-400 mb-1.5">Consumo HC</p>
+            <div className="bg-white rounded-xl p-4 border border-slate-100">
+              <p className="text-[10px] font-bold uppercase tracking-widest text-slate-400 mb-1.5">Consumo HC</p>
               <p className="text-xl font-bold text-hc-700 tabular-nums">
                 {preview.hc.toFixed(3)}
-                <span className="text-xs font-normal ml-1 text-hc-400">kWh</span>
+                <span className="text-xs font-normal ml-1 text-slate-400">kWh</span>
               </p>
             </div>
 
-            <div className="bg-hp-50 rounded-xl p-4 border border-hp-100">
-              <p className="text-[10px] font-bold uppercase tracking-widest text-hp-400 mb-1.5">Consumo HP</p>
+            <div className="bg-white rounded-xl p-4 border border-slate-100">
+              <p className="text-[10px] font-bold uppercase tracking-widest text-slate-400 mb-1.5">Consumo HP</p>
               <p className="text-xl font-bold text-hp-700 tabular-nums">
                 {preview.hp.toFixed(3)}
-                <span className="text-xs font-normal ml-1 text-hp-400">kWh</span>
+                <span className="text-xs font-normal ml-1 text-slate-400">kWh</span>
               </p>
             </div>
 
-            <div className="bg-brand-50 rounded-xl p-4 border border-brand-100">
-              <p className="text-[10px] font-bold uppercase tracking-widest text-brand-400 mb-1.5">Consumo total</p>
-              <p className="text-xl font-bold text-brand-700 tabular-nums">
+            <div className="bg-white rounded-xl p-4 border border-slate-100">
+              <p className="text-[10px] font-bold uppercase tracking-widest text-slate-400 mb-1.5">Consumo total</p>
+              <p className="text-xl font-bold text-indigo-700 tabular-nums">
                 {preview.total.toFixed(3)}
-                <span className="text-xs font-normal ml-1 text-brand-400">kWh</span>
+                <span className="text-xs font-normal ml-1 text-slate-400">kWh</span>
               </p>
             </div>
 
-            <div className="bg-hc-50 rounded-xl p-4 border border-hc-100">
-              <p className="text-[10px] font-bold uppercase tracking-widest text-hc-400 mb-1.5">Coste HC</p>
+            <div className="bg-white rounded-xl p-4 border border-slate-100">
+              <p className="text-[10px] font-bold uppercase tracking-widest text-slate-400 mb-1.5">Coste HC</p>
               <p className="text-xl font-bold text-hc-700 tabular-nums">
                 {preview.costoHC.toFixed(3)}
-                <span className="text-xs font-normal ml-1 text-hc-400">€</span>
+                <span className="text-xs font-normal ml-1 text-slate-400">€</span>
               </p>
             </div>
 
-            <div className="bg-hp-50 rounded-xl p-4 border border-hp-100">
-              <p className="text-[10px] font-bold uppercase tracking-widest text-hp-400 mb-1.5">Coste HP</p>
+            <div className="bg-white rounded-xl p-4 border border-slate-100">
+              <p className="text-[10px] font-bold uppercase tracking-widest text-slate-400 mb-1.5">Coste HP</p>
               <p className="text-xl font-bold text-hp-700 tabular-nums">
                 {preview.costoHP.toFixed(3)}
-                <span className="text-xs font-normal ml-1 text-hp-400">€</span>
+                <span className="text-xs font-normal ml-1 text-slate-400">€</span>
               </p>
             </div>
 
-            <div className="bg-violet-50 rounded-xl p-4 border border-violet-100">
-              <p className="text-[10px] font-bold uppercase tracking-widest text-violet-400 mb-1.5">Coste total</p>
+            <div className="bg-white rounded-xl p-4 border border-slate-100">
+              <p className="text-[10px] font-bold uppercase tracking-widest text-slate-400 mb-1.5">Coste total</p>
               <p className="text-xl font-bold text-violet-700 tabular-nums">
                 {preview.costoTotal.toFixed(3)}
-                <span className="text-xs font-normal ml-1 text-violet-400">€</span>
+                <span className="text-xs font-normal ml-1 text-slate-400">€</span>
               </p>
             </div>
 
-            <div className="bg-slate-50 rounded-xl p-4 border border-slate-100">
+            <div className="bg-white rounded-xl p-4 border border-slate-100">
               <p className="text-[10px] font-bold uppercase tracking-widest text-slate-400 mb-1.5">% HC / % HP</p>
               <p className="text-xl font-bold tabular-nums">
                 <span className="text-hc-600">{preview.pctHC.toFixed(1)}%</span>
@@ -348,21 +359,11 @@ export default function RegistroPage() {
               </p>
             </div>
 
-            <div className={`rounded-xl p-4 border ${
-              preview.difHCHP > 0
-                ? "bg-red-50 border-red-100"
-                : "bg-hc-50 border-hc-100"
-            }`}>
-              <p className={`text-[10px] font-bold uppercase tracking-widest mb-1.5 ${
-                preview.difHCHP > 0 ? "text-red-400" : "text-hc-400"
-              }`}>
-                Dif. HP − HC
-              </p>
-              <p className={`text-xl font-bold tabular-nums ${
-                preview.difHCHP > 0 ? "text-red-600" : "text-hc-700"
-              }`}>
+            <div className="bg-white rounded-xl p-4 border border-slate-100">
+              <p className="text-[10px] font-bold uppercase tracking-widest text-slate-400 mb-1.5">Dif. HP − HC</p>
+              <p className={`text-xl font-bold tabular-nums ${preview.difHCHP > 0 ? "text-hp-700" : "text-hc-700"}`}>
                 {Math.abs(preview.difHCHP).toFixed(3)}
-                <span className="text-xs font-normal ml-1 opacity-60">kWh</span>
+                <span className="text-xs font-normal ml-1 text-slate-400">kWh</span>
               </p>
             </div>
           </div>

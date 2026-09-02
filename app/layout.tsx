@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Plus_Jakarta_Sans, Space_Mono, JetBrains_Mono } from "next/font/google";
+import { Fira_Code, Fira_Sans } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import SyncStatusBanner from "@/components/SyncStatusBanner";
@@ -7,25 +7,18 @@ import { EnergyProvider } from "@/lib/EnergyContext";
 import { AuthProvider } from "@/lib/AuthContext";
 import ProtectedLayout from "@/components/ProtectedLayout";
 
-const jakarta = Plus_Jakarta_Sans({
+const firaCode = Fira_Code({
   subsets: ["latin"],
-  variable: "--font-jakarta",
-  display: "swap",
-  weight: ["300", "400", "500", "600", "700", "800"],
-});
-
-const spaceMono = Space_Mono({
-  subsets: ["latin"],
-  variable: "--font-space-mono",
-  display: "swap",
-  weight: ["400", "700"],
-});
-
-const jetbrainsMono = JetBrains_Mono({
-  subsets: ["latin"],
-  variable: "--font-jetbrains",
+  variable: "--font-fira-code",
   display: "swap",
   weight: ["400", "500", "600", "700"],
+});
+
+const firaSans = Fira_Sans({
+  subsets: ["latin"],
+  variable: "--font-fira-sans",
+  display: "swap",
+  weight: ["300", "400", "500", "600", "700", "800"],
 });
 
 export const metadata: Metadata = {
@@ -36,8 +29,8 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="es" className={`${jakarta.variable} ${spaceMono.variable} ${jetbrainsMono.variable}`}>
-      <body className="flex flex-col min-h-screen antialiased" style={{ backgroundColor: "#F0F4F8" }}>
+    <html lang="es" className={`${firaCode.variable} ${firaSans.variable}`}>
+      <body className="flex flex-col min-h-screen antialiased">
         <AuthProvider>
           <EnergyProvider>
             <ProtectedLayout>

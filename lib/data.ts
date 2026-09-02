@@ -3,10 +3,9 @@ export const TARIFA_HP = 0.27436; // €/kWh — default 2026
 
 export const MESES = ["Ene","Feb","Mar","Abr","May","Jun","Jul","Ago","Sep","Oct","Nov","Dic"];
 export const ANOS_DISPONIBLES: number[] = (() => {
-  const years = [2022, 2023, 2024, 2025, 2026];
   const current = new Date().getFullYear();
-  if (current > 2026) years.push(current);
-  return years;
+  const end = Math.max(current, 2026);
+  return Array.from({ length: end - 2022 + 1 }, (_, i) => 2022 + i);
 })();
 export type AnoDisponible = number;
 
