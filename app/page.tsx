@@ -691,7 +691,7 @@ export default function DashboardPage() {
           </div>
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
             <div className="rounded-xl bg-hc-50/50 border border-hc-100 p-4">
-              <p className="text-[10px] font-bold uppercase tracking-widest text-hc-500 mb-1.5">HC estimado</p>
+              <p className="text-[10px] font-bold uppercase tracking-widest text-hc-500 mb-1.5">HC estimado año</p>
               <p className="text-xl font-black text-hc-700 tabular-nums leading-none">
                 {projYearHC.toFixed(0)}<span className="text-xs font-normal text-hc-400 ml-1">kWh</span>
               </p>
@@ -700,7 +700,7 @@ export default function DashboardPage() {
               </p>
             </div>
             <div className="rounded-xl bg-hp-50/50 border border-hp-100 p-4">
-              <p className="text-[10px] font-bold uppercase tracking-widest text-hp-500 mb-1.5">HP estimado</p>
+              <p className="text-[10px] font-bold uppercase tracking-widest text-hp-500 mb-1.5">HP estimado año</p>
               <p className="text-xl font-black text-hp-700 tabular-nums leading-none">
                 {projYearHP.toFixed(0)}<span className="text-xs font-normal text-hp-400 ml-1">kWh</span>
               </p>
