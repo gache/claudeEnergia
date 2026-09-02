@@ -440,20 +440,28 @@ export default function DashboardPage() {
   const remainingMonthNums = Array.from({ length: 12 - selectedMonth }, (_, i) => selectedMonth + 1 + i);
   const showYearProj   = kpisYear.length > 0 && remainingMonthNums.length > 0;
   const accumCurrKwh   = kpisForAccum.reduce((s, k) => s + k.total, 0);
+  const accumCurrHC    = kpisForAccum.reduce((s, k) => s + k.hc, 0);
+  const accumCurrHP    = kpisForAccum.reduce((s, k) => s + k.hp, 0);
   const accumCurrCosto = kpisForAccum.reduce((s, k) => s + k.costoTotal, 0);
-  let projRemKwh = 0, projRemCosto = 0, projUsesPrevYear = false;
+  let projRemKwh = 0, projRemHC = 0, projRemHP = 0, projRemCosto = 0, projUsesPrevYear = false;
   if (showYearProj) {
     const prevMap  = new Map(kpisPrevYear.map(k => [k.mes, k]));
     const avgKwh   = kpisForAccum.length > 0 ? accumCurrKwh   / kpisForAccum.length : 0;
+    const avgHC    = kpisForAccum.length > 0 ? accumCurrHC    / kpisForAccum.length : 0;
+    const avgHP    = kpisForAccum.length > 0 ? accumCurrHP    / kpisForAccum.length : 0;
     const avgCosto = kpisForAccum.length > 0 ? accumCurrCosto / kpisForAccum.length : 0;
     if (remainingMonthNums.some(m => prevMap.has(m))) projUsesPrevYear = true;
     remainingMonthNums.forEach(m => {
       const p = prevMap.get(m);
       projRemKwh   += p ? p.total      : avgKwh;
+      projRemHC    += p ? p.hc         : avgHC;
+      projRemHP    += p ? p.hp         : avgHP;
       projRemCosto += p ? p.costoTotal : avgCosto;
     });
   }
   const projYearKwh   = accumCurrKwh   + projRemKwh;
+  const projYearHC    = accumCurrHC    + projRemHC;
+  const projYearHP    = accumCurrHP    + projRemHP;
   const projYearCosto = accumCurrCosto + projRemCosto;
 
   // ── Trend alert threshold ──────────────────────────────────────
@@ -681,23 +689,41 @@ export default function DashboardPage() {
               {projUsesPrevYear ? `datos ${selectedYear - 1}` : "promedio"} · {remainingMonthNums.length}m restantes
             </span>
           </div>
-          <div className="grid grid-cols-2 gap-4">
-            <div className="rounded-xl bg-white border border-slate-100 p-4">
-              <p className="text-[10px] font-bold uppercase tracking-widest text-slate-400 mb-1.5">kWh estimado año</p>
-              <p className="text-2xl font-black text-indigo-700 tabular-nums leading-none">
-                {projYearKwh.toFixed(0)}<span className="text-sm font-normal text-slate-400 ml-1">kWh</span>
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+            <div className="rounded-xl bg-hc-50/50 border border-hc-100 p-4">
+              <p className="text-[10px] font-bold uppercase tracking-widest text-hc-500 mb-1.5">HC estimado</p>
+              <p className="text-xl font-black text-hc-700 tabular-nums leading-none">
+                {projYearHC.toFixed(0)}<span className="text-xs font-normal text-hc-400 ml-1">kWh</span>
               </p>
               <p className="text-[10px] text-slate-400 font-mono mt-1">
-                actual {accumCurrKwh.toFixed(0)} + ~{projRemKwh.toFixed(0)} est.
+                {accumCurrHC.toFixed(0)} + ~{projRemHC.toFixed(0)}
+              </p>
+            </div>
+            <div className="rounded-xl bg-hp-50/50 border border-hp-100 p-4">
+              <p className="text-[10px] font-bold uppercase tracking-widest text-hp-500 mb-1.5">HP estimado</p>
+              <p className="text-xl font-black text-hp-700 tabular-nums leading-none">
+                {projYearHP.toFixed(0)}<span className="text-xs font-normal text-hp-400 ml-1">kWh</span>
+              </p>
+              <p className="text-[10px] text-slate-400 font-mono mt-1">
+                {accumCurrHP.toFixed(0)} + ~{projRemHP.toFixed(0)}
+              </p>
+            </div>
+            <div className="rounded-xl bg-white border border-slate-100 p-4">
+              <p className="text-[10px] font-bold uppercase tracking-widest text-slate-400 mb-1.5">Total kWh año</p>
+              <p className="text-xl font-black text-indigo-700 tabular-nums leading-none">
+                {projYearKwh.toFixed(0)}<span className="text-xs font-normal text-slate-400 ml-1">kWh</span>
+              </p>
+              <p className="text-[10px] text-slate-400 font-mono mt-1">
+                {accumCurrKwh.toFixed(0)} + ~{projRemKwh.toFixed(0)}
               </p>
             </div>
             <div className="rounded-xl bg-white border border-slate-100 p-4">
               <p className="text-[10px] font-bold uppercase tracking-widest text-slate-400 mb-1.5">€ estimado año</p>
-              <p className="text-2xl font-black text-emerald-700 tabular-nums leading-none">
-                {projYearCosto.toFixed(2)}<span className="text-sm font-normal text-slate-400 ml-1">€</span>
+              <p className="text-xl font-black text-emerald-700 tabular-nums leading-none">
+                {projYearCosto.toFixed(2)}<span className="text-xs font-normal text-slate-400 ml-1">€</span>
               </p>
               <p className="text-[10px] text-slate-400 font-mono mt-1">
-                actual {accumCurrCosto.toFixed(2)} + ~{projRemCosto.toFixed(2)} est.
+                {accumCurrCosto.toFixed(2)} + ~{projRemCosto.toFixed(2)}
               </p>
             </div>
           </div>
